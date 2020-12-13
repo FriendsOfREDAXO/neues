@@ -1,0 +1,5 @@
+theme: jekyll-theme-minimal
+title: REDAXO 5 Events
+description: Terminverwaltung für REDAXO 5 auf YForm-Basis 
+logo: https://raw.githubusercontent.com/alexplusde/events/master/docs/screenshot.png
+show_downloads: true

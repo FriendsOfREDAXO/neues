@@ -1,0 +1,69 @@
+package: neues
+version: '2.0.0-dev'
+author: 'Alexander Walther'
+supportpage: https://alexplusde.github.io/neues/
+load: late
+
+requires:
+    php:
+        version: '^7.3'
+    redaxo: ^5.10
+    packages:
+        yform: ^3.4
+
+
+page:
+    title: translate:neues
+    prio: 100
+    icon: rex-icon fa-gear
+
+pages:
+    neues:
+        title: translate:neues
+        main: true
+        block: system
+        prio: 16
+        icon: rex-icon fa-calendar
+        perm: neues[]
+        subpages: 
+            dev:
+                title: Danger Zone
+                icon: rex-icon fa-calendar
+                perm: neues[calendar]
+            date_lang:
+                title: translate:neues_lang
+                perm: neues[date_lang]
+                icon: rex-icon fa-flag
+                subPath: pages/data_edit.php
+                yformTable: rex_news_entry_lang
+                yformClass: rex_news_entry_lang
+                yformTitle: false
+            date:
+                title: Termine
+                icon: rex-icon fa-calendar-o
+                subPath: pages/data_edit.php
+                yformTable: rex_news_entry
+                yformClass: rex_news_entry
+                yformTitle: false
+                perm: neues[date]
+            category:
+                title: Kategorien
+                icon: rex-icon fa-folder
+                subPath: pages/data_edit.php
+                yformTable: rex_news_category
+                yformClass: rex_news_category
+                yformTitle: false
+                perm: neues[category]
+            settings:
+                title: Settings
+                icon: rex-icon fa-gear
+                itemclass: pull-right
+                perm: admin
+            docs:
+                title: Docs
+                subPath: README.md
+                icon: rex-icon fa-info-circle
+                itemclass: pull-right
+                perm: neues[docs]
+
+default_config:
