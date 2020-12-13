@@ -23,7 +23,7 @@ pages:
         main: true
         block: system
         prio: 16
-        icon: rex-icon fa-calendar
+        icon: rex-icon fa-bullhorn
         perm: neues[]
         subpages: 
             date_lang:
@@ -36,7 +36,7 @@ pages:
                 yformTitle: false
             date:
                 title: News
-                icon: rex-icon fa-calendar-o
+                icon: rex-icon fa-bullhorn
                 subPath: pages/data_edit.php
                 yformTable: rex_news_entry
                 yformClass: rex_news_entry
