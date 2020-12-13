@@ -26,10 +26,6 @@ pages:
         icon: rex-icon fa-calendar
         perm: neues[]
         subpages: 
-            dev:
-                title: Danger Zone
-                icon: rex-icon fa-calendar
-                perm: neues[calendar]
             date_lang:
                 title: translate:neues_lang
                 perm: neues[date_lang]
@@ -39,7 +35,7 @@ pages:
                 yformClass: rex_news_entry_lang
                 yformTitle: false
             date:
-                title: Termine
+                title: News
                 icon: rex-icon fa-calendar-o
                 subPath: pages/data_edit.php
                 yformTable: rex_news_entry
@@ -55,7 +51,7 @@ pages:
                 yformTitle: false
                 perm: neues[category]
             settings:
-                title: Settings
+                title: Einstellungen
                 icon: rex-icon fa-gear
                 itemclass: pull-right
                 perm: admin
