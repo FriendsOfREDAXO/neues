@@ -1,3 +1,3 @@
-$(document).on("rex:ready", function (event, container) {
+$(document).on("rex:ready", function (neues, container) {
   
 });

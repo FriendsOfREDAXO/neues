@@ -17,7 +17,7 @@ class neues_entry extends \rex_yform_manager_dataset
 
     public function getCategory()
     {
-        $this->category = $this->getRelatedDataset('event_category_id');
+        $this->category = $this->getRelatedDataset('neues_category_id');
         return $this->category;
     }
 
@@ -52,7 +52,7 @@ class neues_entry extends \rex_yform_manager_dataset
             // fehlt: set timezone of location
         }
         
-        //  add event to calendar
+        //  add neues to calendar
         $vCalendar->addComponent($vEvent);
         
         return $vCalendar->render();
@@ -70,9 +70,9 @@ class neues_entry extends \rex_yform_manager_dataset
     }
     
     public function getTimezone($lat, $lng){
-        $event_timezone = "https://maps.googleapis.com/maps/api/timezone/json?location=" . $lat . "," . $lng . "&timestamp=" . time() . "&sensor=false";
-        $event_location_time_json = file_get_contents($event_timezone);
-        return $event_location_time_json;
+        $neues_timezone = "https://maps.googleapis.com/maps/api/timezone/json?location=" . $lat . "," . $lng . "&timestamp=" . time() . "&sensor=false";
+        $neues_location_time_json = file_get_contents($neues_timezone);
+        return $neues_location_time_json;
     }
 
     public function getOfferAll()
@@ -95,7 +95,7 @@ class neues_entry extends \rex_yform_manager_dataset
     }
     public function getIcsStatus()
     {
-        return strip_tags($this->eventStatus);
+        return strip_tags($this->neuesStatus);
     }
     public function getUid()
     {
@@ -111,7 +111,7 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         $fragment = new rex_fragment();
         $fragment->setVar("neues_entry", $this);
-        return $fragment->parse('event-date-single.json-ld.php');
+        return $fragment->parse('neues-date-single.json-ld.php');
     }
 
     private function getDateTime($date = null, $time = "00:00")

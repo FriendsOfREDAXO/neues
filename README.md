@@ -9,16 +9,16 @@ Mit diesem Addon können Termine anhand von YForm und YOrm im Backend verwaltet 
 * Flexibel: **Zugriff** über die [YForm Rest-API](https://github.com/yakamara/redaxo_yform/blob/master/docs/plugins.md#restful-api-einf%C3%BChrung)
 * Sinnvoll: Nur ausgewählte **Rollen**/Redakteure haben Zugriff
 * Bereit für **mehrsprachige** Websites: Reiter für Sprachen auf Wunsch anzeigen oder ausblenden
-* Bereit für mehr: Vorbereitet für das [JSON+LD-Format](https://jsonld.com/event/), ICS-Format
+* Bereit für mehr: Vorbereitet für das [JSON+LD-Format](https://jsonld.com/neues/), ICS-Format
 * Bereit für viel mehr: Kompatibel zum [URL2-Addon](https://github.com/tbaddade/redaxo_url)
 
 > **Tipp:** Events arbeitet hervorragend zusammen mit den Addons [`yform_usability`](https://github.com/FriendsOfREDAXO/yform_usability/) und [`yform_geo_osm`](https://github.com/FriendsOfREDAXO/yform_geo_osm)
 
-> **Steuere eigene Verbesserungen** dem [GitHub-Repository von events](https://github.com/alexplusde/events) bei. Oder **unterstütze dieses Addon:** Mit einer [Spende oder Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
+> **Steuere eigene Verbesserungen** dem [GitHub-Repository von neues](https://github.com/alexplusde/neues) bei. Oder **unterstütze dieses Addon:** Mit einer [Spende oder Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
 
 ## Installation
 
-Im REDAXO-Installer das Addon `events` herunterladen und installieren. Anschließend erscheint ein neuer Menüpunkt `Veranstaltungen` sichtbar.
+Im REDAXO-Installer das Addon `neues` herunterladen und installieren. Anschließend erscheint ein neuer Menüpunkt `Veranstaltungen` sichtbar.
 
 ## Nutzung im Frontend
 
@@ -35,10 +35,10 @@ dump(neues_entry::get(3)); // Termin mit der id=3
 #### Zusätzliche Methoden
 | Methode                       | Beschreibung                                                                                                                         |
 |-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| `getCategory()`               | holt die passende Kategorie als `event_category`-Dataset.                                                                            |
+| `getCategory()`               | holt die passende Kategorie als `neues_category`-Dataset.                                                                            |
 | `getIcs()`                    |  gibt eine ICS-Datei zur Veranstaltung zurück                                                                                        |
-| `getLocation()`               | holt den passenden Veranstaltungsort als `event_location`-Dataset.                                                                   |
-| `getOfferAll()`               | holt die passenden Angebote / Preise als `event_offer`-Dataset                                                                       |
+| `getLocation()`               | holt den passenden Veranstaltungsort als `neues_location`-Dataset.                                                                   |
+| `getOfferAll()`               | holt die passenden Angebote / Preise als `neues_offer`-Dataset                                                                       |
 | `getImage()`                  | gibt den Bild-Dateinamen aus dem Medienpool zurück                                                                                   |
 | `getMedia()`                  | gibt ein REDAXO-Medienobjekt des Bildes zurück                                                                                       |
 | `getDescriptionAsPlaintext()` | gibt die Veranstaltungsbeschreibung als Plaintext zurück                                                                             |
@@ -53,24 +53,24 @@ dump(neues_entry::get(3)); // Termin mit der id=3
 dump(neues_entry::get(3)->getCategory()); // Termin mit der id=3
 ```
 
-### Die Klasse `event_category`
+### Die Klasse `neues_category`
 
-Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_event_category` zu.
+Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_neues_category` zu.
 
 #### Beispiel-Ausgabe einer Kategorie
 
 ```php
-dump(event_category::get(3)); // Termin mit der id=3
+dump(neues_category::get(3)); // Termin mit der id=3
 ```
 
-### Die Klasse `event_location`
+### Die Klasse `neues_location`
 
-Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_event_location_` zu.
+Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_neues_location_` zu.
 
 #### Beispiel-Ausgabe einer Location
 
 ```php
-dump(event_location::get(3)); // Termin mit der id=3
+dump(neues_location::get(3)); // Termin mit der id=3
 ```
 
 ## Nutzung im Backend: Die Terminverwaltung
@@ -83,14 +83,14 @@ Wer keine mehrsprachigen Termine benötigt, kann diesen Menüpunkt problemlos f�
 
 ### Die Tabelle "TERMINE"
 
-In der Termin-Tabelle werden einzelne Daten festgehalten. Nach der Installation von `events` stehen folgende Felder zur Verfügung:
+In der Termin-Tabelle werden einzelne Daten festgehalten. Nach der Installation von `neues` stehen folgende Felder zur Verfügung:
 
 | Typ      | Typname             | Name                | Bezeichnung       |
 |----------|---------------------|---------------------|-------------------|
 | value    | text                | name                | Name              |
 | validate | empty               | name                |                   |
 | value    | textarea            | description         | Beschreibung      |
-| value    | be_manager_relation | event_category_id   | Kategorie         |
+| value    | be_manager_relation | neues_category_id   | Kategorie         |
 | value    | be_manager_relation | location            | Veranstaltungsort |
 | value    | be_media            | image               | Bild              |
 | value    | text                | url                 | URL               |
@@ -98,14 +98,14 @@ In der Termin-Tabelle werden einzelne Daten festgehalten. Nach der Installation 
 | validate | compare_value       | startDate           |                   |
 | value    | time                | doorTime            | Einlass           |
 | value    | datetime            | endDate             | Ende              |
-| value    | select              | eventStatus         | Status            |
+| value    | select              | neuesStatus         | Status            |
 | value    | text                | offers_url          | Tickets-URL       |
 | value    | text                | offers_price        | Preis             |
 | validate | type                | offers_price        |                   |
 | value    | select              | offers_availability | Verfügbarkeit     |
 | validate | type                | url                 |                   |
 
-Die Felder und Feldnamen orientieren sich dabei am [JSON+LD-Standard für Veranstaltungen](https://jsonld.com/event/), die wichtigsten Validierungen wurden bereits eingefügt.
+Die Felder und Feldnamen orientieren sich dabei am [JSON+LD-Standard für Veranstaltungen](https://jsonld.com/neues/), die wichtigsten Validierungen wurden bereits eingefügt.
 
 ### Die Tabelle "KATEGORIEN"
 
@@ -134,7 +134,7 @@ Die Tabelle Location enthält die passenden Veranstaltungsorte zu den Veranstalt
 | value   | text        | lat         | Latitude           |
 | value   | text        | lng         | Lng                |
 
-Die Felder und Feldnamen orientieren sich dabei am [JSON+LD-Standard für Veranstaltungen](https://jsonld.com/event/), die wichtigsten Validierungen wurden bereits eingefügt.
+Die Felder und Feldnamen orientieren sich dabei am [JSON+LD-Standard für Veranstaltungen](https://jsonld.com/neues/), die wichtigsten Validierungen wurden bereits eingefügt.
 
 ## RESTful API (dev)
 
@@ -145,28 +145,28 @@ Die [Rest-API](https://github.com/yakamara/redaxo_yform/blob/master/docs/plugins
 Zunächst das REST-Plugin von YForm installieren und einen Token einrichten. Den Token auf die jeweiligen Endpunkte legen:
 
 ```php
-    /v0.dev/event/date
-    /v0.dev/event/category
-    /v0.dev/event/location
+    /v0.dev/neues/date
+    /v0.dev/neues/category
+    /v0.dev/neues/location
 ```
 
 ### Endpunkt `date`
 
-**Auslesen:** GET `example.org/rest/v0.dev/event/date/?token=###TOKEN###`
+**Auslesen:** GET `example.org/rest/v0.dev/neues/date/?token=###TOKEN###`
 
-**Auslesen einzelner Termin**  GET `example.org/rest/v0.dev/event/date/7/?token=###TOKEN###` Termin  der `id=7`
+**Auslesen einzelner Termin**  GET `example.org/rest/v0.dev/neues/date/7/?token=###TOKEN###` Termin  der `id=7`
 
 ### Endpunkt `category`
 
-**Auslesen:** GET `example.org/rest/v0.dev/event/category/?token=###TOKEN###`
+**Auslesen:** GET `example.org/rest/v0.dev/neues/category/?token=###TOKEN###`
 
-**Auslesen einzelne Kategorie**  GET `example.org/rest/v0.dev/event/category/7/?token=###TOKEN###` Termin  der `id=7`
+**Auslesen einzelne Kategorie**  GET `example.org/rest/v0.dev/neues/category/7/?token=###TOKEN###` Termin  der `id=7`
 
 ### Endpunkt `location`
 
-**Auslesen:** GET `example.org/rest/v0.dev/event/location/?token=###TOKEN###`
+**Auslesen:** GET `example.org/rest/v0.dev/neues/location/?token=###TOKEN###`
 
-**Auslesen einzelner Standort**  GET `example.org/rest/v0.dev/event/location/7/?token=###TOKEN###` Termin  der `id=7`
+**Auslesen einzelner Standort**  GET `example.org/rest/v0.dev/neues/location/7/?token=###TOKEN###` Termin  der `id=7`
 
 ## Import
 
@@ -178,11 +178,11 @@ Events kommt mit einem eigenen Cronjob zum importieren von ics-Kalendern aus dem
 
 ## Export eines einzelnen Termins als ics-Datei (dev)
 
-Events kommt mit einer eigenen rex_api-Schnittstelle für den Export von einzelnen Terminen. `?rex-api-call=events_ics_file&id=2` aufrufen, um eine ICS-Datei anhand des Termins mit der `id=2` zu erzeugen.
+Events kommt mit einer eigenen rex_api-Schnittstelle für den Export von einzelnen Terminen. `?rex-api-call=neues_ics_file&id=2` aufrufen, um eine ICS-Datei anhand des Termins mit der `id=2` zu erzeugen.
 
 ## Lizenz
 
-MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/events/blob/master/LICENSE.md)  
+MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/neues/blob/master/LICENSE.md)  
 
 ## Autor
 
@@ -195,5 +195,5 @@ https://github.com/alexplusde
 
 ## Credits
 
-events basiert auf: [YForm](https://github.com/yakamara/redaxo_yform)  
+neues basiert auf: [YForm](https://github.com/yakamara/redaxo_yform)  
 Danke an [Gregor Harlan](https://github.com/gharlan) für die Unterstützung
