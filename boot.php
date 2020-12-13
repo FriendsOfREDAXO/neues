@@ -1,11 +1,11 @@
 <?php
 
 rex_yform_manager_dataset::setModelClass(
-    'rex_neues_entry',
+    'rex_news_entry',
     neues_entry::class
 );
 rex_yform_manager_dataset::setModelClass(
-    'rex_neues_category',
+    'rex_news_category',
     neues_category::class
 );
 
@@ -93,10 +93,3 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
 
     \rex_yform_rest::addRoute($rex_neues_category_route);
 }
-
-rex_extension::register('REX_YFORM_SAVED', static function (rex_extension_point $ep) {
-    // darf nur bei passender Tabelle passieren.
-//    $id = $ep->getParam('id');
-//    $dataset = neues_entry::get($ep->getParam('id'));
-//    rex_sql::factory()->setQuery("UPDATE rex_neues_entry SET uid = :uid WHERE id = :id", [":uid"=>$dataset->getUid(), ":id" => $id]);
-});
