@@ -1,15 +1,15 @@
 package: neues
-version: '2.0.0-dev'
+version: '2.0.0-beta1'
 author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/neues/
 load: late
 
 requires:
     php:
-        version: '>7.3'
-    redaxo: ^5.10
+        version: '>7.5'
+    redaxo: ^5.12
     packages:
-        yform: ^3.4
+        yform: '^4,<5'
 
 
 page:
