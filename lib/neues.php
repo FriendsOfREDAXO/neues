@@ -1,10 +1,16 @@
-class neues {
-
-    private function getRssFeed($collection = null, $domain = null, $lang = null)
+<?php
+class neues
+{
+    public static function getRssFeed($collection = null, $domain = null, $lang = null, $filename)
     {
-        if(!$collection) {
-              $collection = neues_entry::findOnline();
-         }
+        return self::createRssFeed($collection, $domain, $lang, $filename);
+    }
+
+    public static function createRssFeed($collection = null, $domain = null, $lang = null, $filename = 'rss.neues.xml')
+    {
+        if (!$collection) {
+            $collection = neues_entry::findOnline();
+        }
 
         $xml = new DOMDocument('1.0', 'utf-8');
         $xml->formatOutput = true;
@@ -22,32 +28,35 @@ class neues {
         $head_description = $xml->createElement('description', "");
         $channel->appendChild($head_description);
 
-        if($lang) {
-          $head_language = $xml->createElement('language', $lang->getCode());
-          $channel->appendChild($head_language);
+        if ($lang) {
+            $head_language = $xml->createElement('language', $lang->getCode());
+            $channel->appendChild($head_language);
         }
 
         $head_link = $xml->createElement('link', rex::getServer());
         $channel->appendChild($head_link);
 
         foreach ($collection as $entry) {
-                $item = $xml->createElement('item');
-                $channel->appendChild($item);
+            $item = $xml->createElement('item');
+            $channel->appendChild($item);
 
-                $item_title = $xml->createElement('title', htmlspecialchars($entry->getName()));
-                $item->appendChild($item_title);
+            $item_title = $xml->createElement('title', htmlspecialchars($entry->getName()));
+            $item->appendChild($item_title);
 
-                $article->setTeasertext($entry->getTeaser());
+            $entry->setTeasertext($entry->getTeaser());
 
-                $item_link = $xml->createElement('link', $entry->getUrl());
-                $item->appendChild($item_link);
+            $entry->setDescription($entry->getDescription());
 
-                $item_pubDate = $xml->createElement('pubDate', ($entry->getPublishDateFormatted("D, d M Y H:i:s O"));
-                $item->appendChild($item_pubDate);
+            $item_link = $xml->createElement('link', $entry->getUrl());
+            $item->appendChild($item_link);
 
-                $item_guid = $xml->createElement('guid', $entry->getUuid());
-                $item->appendChild($item_guid);
-            }
+            $item_pubDate = $xml->createElement('pubDate', date('r', strottime($entry->getPublishDate())));
+            $item->appendChild($item_pubDate);
 
-        echo $xml->save('../rss.neues.xml');
+            $item_guid = $xml->createElement('guid', $entry->getUuid());
+            $item->appendChild($item_guid);
+        }
+
+        return $xml->save(rex_path::base($filename));
     }
+}
