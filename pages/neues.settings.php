@@ -7,10 +7,13 @@ $form = rex_config_form::factory($addon->name);
 $field = $form->addMediaField('default_thumbnail');
 $field->setPreview(1);
 $field->setTypes('jpg,gif,png');
-$field->setLabel('Vorschau-Bild');
+$field->setLabel(rex_i18n::msg('neues_default_thumbnail'));
 
 $field = $form->addInputField('text', 'default_url_label', null, ['class' => 'form-control']);
-$field->setLabel(rex_i18n::msg('default_url_label'));
+$field->setLabel(rex_i18n::msg('neues_default_url_label'));
+
+$field = $form->addInputField('text', 'default_author', null, ['class' => 'form-control']);
+$field->setLabel(rex_i18n::msg('neues_default_author'));
 
 $fragment = new rex_fragment();
 $fragment->setVar('class', 'edit', false);

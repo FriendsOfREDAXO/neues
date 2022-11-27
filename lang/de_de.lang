@@ -1,2 +1,11 @@
 neues = Aktuelles
 neues_settings = Einstellungen
+neues_lang = Sprachen
+
+neues_category = Kategorien
+neues_settings = Einstellungen
+neues_help = Hilfe
+
+neues_default_url_label = Zur Website
+neues_default_thumbnail = Vorschau-Bild
+neues_default_author = Autor

@@ -4,14 +4,44 @@ class neues_entry extends \rex_yform_manager_dataset
 {
     private $publishdate;
     private $category;
+    private $categories;
     private $offer;
     private $image = '';
-    private $url_label = '';
+    private $externalUrl = '';
+    private $externalLabel = '';
+
+    public function getName()
+    {
+        return $this->getValue('name');
+    }
+
+    public function getAuthor()
+    {
+        return $this->getValue('author');
+    }
+    
+    public function getDomain()
+    {
+        return $this->getValue('domain');
+    }
+
+    public function getTeaser()
+    {
+        return $this->getValue('teaser');
+    }
 
     public function getCategory()
     {
-        $this->category = $this->getRelatedDataset('neues_category_id');
+        $this->category = $this->getRelatedDataset('category_id');
         return $this->category;
+    }
+
+    public function getCategories()
+    {
+        if (!$this->categories) {
+            $this->categories = $this->getRelatedCollection('category_id');
+            return $this->categories;
+        }
     }
 
     public function getTimezone($lat, $lng)
@@ -25,46 +55,40 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         if ('' == $this->image) {
             $this->image = rex_config::get('neues', 'default_thumbnail');
+        } else {
+            $this->image = $this->getValue('image');
         }
         return $this->image;
     }
 
     public function getMedia()
     {
-        return rex_media::get($this->image);
+        return rex_media::get($this->getValue('image'));
     }
 
     public function getDescriptionAsPlaintext(): string
     {
-        return strip_tags($this->description);
+        return strip_tags($this->getValue('description'));
     }
 
     public function getDescription(): string
     {
-        return $this->description;
+        return $this->getValue('description');
     }
 
-    public function getUrl(): string
+    public function getExternalUrl(): string
     {
-        return $this->url;
+        return $this->getValue('external_url');
     }
 
-    public function getUrlLabel(): string
+    public function getExternalLabel(): string
     {
-        if ('' == $this->url_label) {
-            $this->url_label = rex_config::get('neues', 'default_url_label');
+        if ('' == $this->externalLabel) {
+            $this->externalLabel = rex_config::get('neues', 'default_url_label');
+        } else {
+            $this->getValue('externalLabel');
         }
-        return $this->url_label;
-    }
-
-    public function getUid()
-    {
-        if ('' === $this->uid && '' === $this->getValue('uid')) {
-            $this->uid = self::generateUuid($this->id);
-
-            rex_sql::factory()->setQuery('UPDATE rex_neues_entry SET uid = :uid WHERE id = :id', [':uid' => $this->uid, ':id' => $this->getId()]);
-        }
-        return $this->uid;
+        return $this->externalLabel;
     }
 
     private function getDateTime($date = null, $time = '00:00')
@@ -78,12 +102,20 @@ class neues_entry extends \rex_yform_manager_dataset
 
     public function getPublishDate()
     {
-        $this->publishdate = $this->getDateTime($this->getValue('publishdate'));
-        return $this->publishdate;
+        return $this->getDateTime($this->getValue('publishdate'));
     }
 
-    public function getName()
+    public function getStatus()
     {
-        return $this->getValue('name');
+        return $this->getValue('status');
+    }
+
+    public static function findOnline()
+    {
+        self::query()->where("status", "0", ">")->find();
+    }
+    public static function findByCategory($category_id, $status = 1)
+    {
+        self::query()->where("status", "0", ">")->where("category_id", "FIND_IN_SET(".$category_id.", `category_ids`)")->find();
     }
 }
