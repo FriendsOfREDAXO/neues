@@ -23,15 +23,12 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                         'id',
                         'name',
                         'description',
-                        'image',
-                        'endDate',
-                        'status',
-                        'url',
+                        'images',
+                        'status'
                     ],
                     'rex_neues_category' => [
                         'id',
-                        'name',
-                        'image',
+                        'name'
                     ],
                 ],
             ],
@@ -40,8 +37,7 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                     'rex_neues_entry' => [
                         'name',
                         'description',
-                        'image',
-                        'url',
+                        'images'
                     ],
                 ],
             ],
@@ -68,16 +64,14 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                 'fields' => [
                     'rex_neues_category' => [
                         'id',
-                        'name',
-                        'image',
+                        'name'
                     ],
                 ],
             ],
             'post' => [
                 'fields' => [
                     'rex_neues_category' => [
-                        'name',
-                        'image',
+                        'name'
                     ],
                 ],
             ],
