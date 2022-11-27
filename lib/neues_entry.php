@@ -32,14 +32,14 @@ class neues_entry extends \rex_yform_manager_dataset
 
     public function getCategory()
     {
-        $this->category = $this->getRelatedDataset('category_id');
+        $this->category = $this->getRelatedDataset('category_ids');
         return $this->category;
     }
 
     public function getCategories()
     {
         if (!$this->categories) {
-            $this->categories = $this->getRelatedCollection('category_id');
+            $this->categories = $this->getRelatedCollection('category_ids');
             return $this->categories;
         }
     }
@@ -116,6 +116,6 @@ class neues_entry extends \rex_yform_manager_dataset
     }
     public static function findByCategory($category_id, $status = 1)
     {
-        self::query()->where("status", "0", ">")->where("category_id", "FIND_IN_SET(".$category_id.", `category_ids`)")->find();
+        self::query()->where("status", "0", ">")->whereRaw("category_ids", "FIND_IN_SET(".$category_id.", `category_ids`)")->find();
     }
 }
