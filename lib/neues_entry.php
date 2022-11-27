@@ -44,13 +44,6 @@ class neues_entry extends \rex_yform_manager_dataset
         }
     }
 
-    public function getTimezone($lat, $lng)
-    {
-        $neues_timezone = 'https://maps.googleapis.com/maps/api/timezone/json?location=' . $lat . ',' . $lng . '&timestamp=' . time() . '&sensor=false';
-        $neues_location_time_json = file_get_contents($neues_timezone);
-        return $neues_location_time_json;
-    }
-
     public function getImage(): string
     {
         if ('' == $this->image) {
@@ -102,7 +95,21 @@ class neues_entry extends \rex_yform_manager_dataset
 
     public function getPublishDate()
     {
+        return $this->getValue('publishdate');
+    }
+    public function getPublishDateTime()
+    {
         return $this->getDateTime($this->getValue('publishdate'));
+    }
+    
+    public static function formatDate($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::SHORT, $lang = "de")
+    {
+        return datefmt_create($lang, $format_date, $format_time, null, IntlDateFormatter::GREGORIAN);
+    }
+
+    public function getFormattedPublishDate($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::NONE, $lang = null)
+    {
+        return self::formatDate($format_date, $format_time)->format($this->getDateTime($this->getPublishDate(), $this->getStartTime()), $lang);
     }
 
     public function getStatus()
@@ -116,6 +123,6 @@ class neues_entry extends \rex_yform_manager_dataset
     }
     public static function findByCategory($category_id, $status = 1)
     {
-        self::query()->where("status", "0", ">")->whereRaw("category_ids", "FIND_IN_SET(".$category_id.", `category_ids`)")->find();
+        self::query()->where("status", $status, ">=")->whereRaw("category_ids", "FIND_IN_SET(".$category_id.", `category_ids`)")->find();
     }
 }
