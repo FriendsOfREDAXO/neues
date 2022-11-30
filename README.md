@@ -1,5 +1,7 @@
 # News-Verwaltung für REDAXO 5 (Aktuelles, Pressemitteilungen, Pressesteimmen, ...)
 
+![web_banner_redaxo_addon_neues](https://user-images.githubusercontent.com/3855487/204768778-99b56b18-3997-4466-9ae2-537fd792c521.png)
+
 Mit diesem Addon können News anhand von YForm und YOrm im Backend verwaltet und im Frontend ausgegeben werden. Auf Wunsch auch mehrsprachig.
 
 ## Features
