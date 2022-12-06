@@ -1,11 +1,42 @@
 neues = Aktuelles
+neues_entry = Einträge
 neues_settings = Einstellungen
 neues_lang = Sprachen
 
-neues_entry = Beiträge
 neues_category = Kategorien
 neues_help = Hilfe
 
-neues_default_url_label = Zur Website
 neues_default_thumbnail = Vorschau-Bild
 neues_default_author = Autor
+
+neues_name = Titel
+neues_category_title = Kategorie
+neues_teaser = Teaser
+neues_description = Inhalt
+neues_images = Bild(er)
+
+neues_external_url = Externer Link
+neues_external_url_label = Linktext
+
+neues_createdate = Erstellt am...
+neues_createuser = Erstellt von...
+neues_updatedate = Zuletzt geändert am...
+neues_updateuser = Zuletzt geändert von...
+neues_publishdate = Veröffentlicht am...
+neues_publishuser = Veröffentlicht von...
+
+neues_category_ids = Kategorie(n)
+neues_prio = Reihenfolge
+
+neues_status = Veröffentlicht?
+neues_status_online = Veröffentlicht
+neues_status_offline = Offline
+neues_status_draft = Entwurf
+
+neues_domain_ids = Websites
+neues_date_ids = Einträge
+
+neues_language = Sprache
+neues_language_name = Sprache
+neues_language_code = Sprachcode (ISO 639-1)
+neues_language_entry = Einträge verwalten

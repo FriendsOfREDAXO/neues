@@ -1,0 +1,42 @@
+neues = News
+neues_entry = Entries
+neues_settings = Settings
+neues_lang = Languages
+
+neues_category = Categories
+neues_help = Help
+
+neues_default_thumbnail = Preview image
+neues_default_author = Author
+
+neues_name = Title
+neues_category_title = Category
+neues_teaser = Teaser
+neues_description = Content
+neues_images = Image(s)
+
+neues_external_url = External URL
+neues_external_url_label = URL title
+
+neues_createdate = Created on...
+neues_createuser = Created by...
+neues_updatedate = Last modified on...
+neues_updateuser = Last modified by...
+neues_publishdate = Published on...
+neues_publishuser = Published by...
+
+neues_category_ids = Categories
+neues_prio = Order
+
+neues_status = Published?
+neues_status_online = Published
+neues_status_offline = Offline
+neues_status_draft = Draft
+
+neues_domain_ids = Websites
+neues_date_ids = Entries
+
+neues_language = Language
+neues_language_name = Language
+neues_language_code = Language Code (ISO 639-1)
+neues_language_entry = Manage entries
