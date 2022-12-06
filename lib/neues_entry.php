@@ -125,4 +125,9 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         self::query()->where("status", $status, ">=")->whereRaw("category_ids", "FIND_IN_SET(".$category_id.", `category_ids`)")->find();
     }
+    
+    public function getUrl()
+    {
+        return rex_getUrl(null, null, ["neues-entry-id" => $this->getId()]);
+    }
 }
