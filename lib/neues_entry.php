@@ -10,32 +10,38 @@ class neues_entry extends \rex_yform_manager_dataset
     private $externalUrl = '';
     private $externalLabel = '';
 
-    public function getName()
+    /** @api */
+    public function getName() :string
     {
         return $this->getValue('name');
     }
 
-    public function getAuthor()
+/** @api */
+    public function getAuthor() :string
     {
         return $this->getValue('author');
     }
     
-    public function getDomain()
+/** @api */
+    public function getDomain() :string
     {
         return $this->getValue('domain');
     }
 
-    public function getTeaser()
+/** @api */
+    public function getTeaser() :string
     {
         return $this->getValue('teaser');
     }
 
+/** @api */
     public function getCategory()
     {
         $this->category = $this->getRelatedDataset('category_ids');
         return $this->category;
     }
 
+/** @api */
     public function getCategories()
     {
         if (!$this->categories) {
@@ -44,6 +50,7 @@ class neues_entry extends \rex_yform_manager_dataset
         }
     }
 
+/** @api */
     public function getImage(): string
     {
         if ('' == $this->image) {
@@ -54,26 +61,31 @@ class neues_entry extends \rex_yform_manager_dataset
         return $this->image;
     }
 
+/** @api */
     public function getMedia()
     {
         return rex_media::get($this->getValue('image'));
     }
 
+/** @api */
     public function getDescriptionAsPlaintext(): string
     {
         return strip_tags($this->getValue('description'));
     }
 
+/** @api */
     public function getDescription(): string
     {
         return $this->getValue('description');
     }
 
+/** @api */
     public function getExternalUrl(): string
     {
         return $this->getValue('external_url');
     }
 
+/** @api */
     public function getExternalLabel(): string
     {
         if ('' == $this->externalLabel) {
@@ -84,7 +96,7 @@ class neues_entry extends \rex_yform_manager_dataset
         return $this->externalLabel;
     }
 
-    private function getDateTime($date = null, $time = '00:00')
+    private function getDateTime(string $date = null, string $time = '00:00')
     {
         $time = explode(':', $time);
         $dateTime = new DateTime($date);
@@ -93,10 +105,12 @@ class neues_entry extends \rex_yform_manager_dataset
         return $dateTime;
     }
 
-    public function getPublishDate()
+/** @api */
+    public function getPublishDate() :string
     {
         return $this->getValue('publishdate');
     }
+/** @api */
     public function getPublishDateTime()
     {
         return $this->getDateTime($this->getValue('publishdate'));
@@ -107,12 +121,14 @@ class neues_entry extends \rex_yform_manager_dataset
         return datefmt_create($lang, $format_date, $format_time, null, IntlDateFormatter::GREGORIAN);
     }
 
+/** @api */
     public function getFormattedPublishDate($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::NONE, $lang = null)
     {
         return self::formatDate($format_date, $format_time)->format($this->getDateTime($this->getPublishDate(), $this->getStartTime()), $lang);
     }
 
-    public function getStatus()
+/** @api */
+    public function getStatus() :string
     {
         return $this->getValue('status');
     }
@@ -126,7 +142,8 @@ class neues_entry extends \rex_yform_manager_dataset
         self::query()->where("status", $status, ">=")->whereRaw("category_ids", "FIND_IN_SET(".$category_id.", `category_ids`)")->find();
     }
     
-    public function getUrl()
+/** @api */
+    public function getUrl() :string
     {
         return rex_getUrl(null, null, ["neues-entry-id" => $this->getId()]);
     }
