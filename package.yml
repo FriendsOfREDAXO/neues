@@ -1,5 +1,5 @@
 package: neues
-version: '2.1.0-alpha'
+version: '2.1.0-beta'
 author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/neues/
 load: late
