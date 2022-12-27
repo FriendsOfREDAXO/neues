@@ -53,10 +53,10 @@ class neues_entry extends \rex_yform_manager_dataset
 /** @api */
     public function getImage(): string
     {
-        if ('' == $this->image) {
+        if ('' == $this->images) {
             $this->image = rex_config::get('neues', 'default_thumbnail');
         } else {
-            $this->image = $this->getValue('image');
+            $this->image = $this->getValue('images');
         }
         return $this->image;
     }
@@ -80,9 +80,9 @@ class neues_entry extends \rex_yform_manager_dataset
     }
 
 /** @api */
-    public function getExternalUrl(): string
+    public function getExternalUrl(): ?string
     {
-        return $this->getValue('external_url');
+        return $this->getValue('url');
     }
 
 /** @api */
@@ -91,7 +91,7 @@ class neues_entry extends \rex_yform_manager_dataset
         if ('' == $this->externalLabel) {
             $this->externalLabel = rex_config::get('neues', 'default_url_label');
         } else {
-            $this->getValue('externalLabel');
+            $this->getValue('url_Label');
         }
         return $this->externalLabel;
     }
@@ -124,7 +124,7 @@ class neues_entry extends \rex_yform_manager_dataset
 /** @api */
     public function getFormattedPublishDate($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::NONE, $lang = null)
     {
-        return self::formatDate($format_date, $format_time)->format($this->getDateTime($this->getPublishDate(), $this->getStartTime()), $lang);
+        return self::formatDate($format_date, $format_time)->format($this->getDateTime($this->getPublishDate(), '00:00', $lang));
     }
 
 /** @api */
@@ -145,6 +145,9 @@ class neues_entry extends \rex_yform_manager_dataset
 /** @api */
     public function getUrl() :string
     {
-        return rex_getUrl(null, null, ["neues-entry-id" => $this->getId()]);
+        if($url = rex_getUrl(null, null, ["neues-entry-id" => $this->getId()])) {
+            return $url;
+        }
+        return '';
     }
 }
