@@ -9,13 +9,22 @@ neues_help = Hilfe
 neues_default_thumbnail = Vorschau-Bild
 neues_default_author = Autor
 
-neues_name = Titel
+neues_entry = Eintrag
+neues_name = Überschrift
+neues_name_notice = Titel des News-Beitrags
+neues_name_validate_empty = Der Titel dieses News-Beitrags darf nicht leer sein.
+neues_category_name_validate_unique = Dieser Name ist bereits vergeben.
 neues_category_title = Kategorie
+neues_category_title_notice = Name der Kategorie, Schlagwort oder Name einer Beitragsreihe.
 neues_teaser = Teaser
+neues_teaser_notice = Ein kurzer Anreißer-Text oder eine Zusammenfassung, die in der Terminübersicht ausgegeben werden kann.
 neues_description = Inhalt
+neues_description_notice = Geben Sie den Inhalt Ihres News-Beitrags an.
 neues_images = Bild(er)
 
 neues_external_url = Externer Link
+neues_external_url_notice = Gibt es weitere Informationen auf einer anderen Website, dann geben Sie hier die Adresse zu einer externen Website ein, z.B. <code>http://www.example.org/foo-bar/</code>
+neues_external_url_validate_url = Bitte geben Sie eine gültige, vollständige URL ein (z.B. `https://example.org/`)
 neues_external_url_label = Linktext
 
 neues_createdate = Erstellt am...
@@ -23,22 +32,30 @@ neues_createuser = Erstellt von...
 neues_updatedate = Zuletzt geändert am...
 neues_updateuser = Zuletzt geändert von...
 neues_publishdate = Veröffentlicht am...
+neues_publishdate_validate_compare_value = Das Veröffentlichungsdatum darf nicht leer sein.
 neues_publishuser = Veröffentlicht von...
 
 neues_category_ids = Kategorie(n)
 neues_prio = Reihenfolge
 
 neues_status = Veröffentlicht?
+neues_status_notice = Gibt an, ob dieser News-Beitrag aktuell sichtbar sein soll (veröffentlicht/geplant) oder sich noch im Entwurfsstadium befindet.
+neues_category_status_notice = Gibt an, ob diese Kategorie aktuell sichtbar sein soll (veröffentlicht/geplant) oder sich noch im Entwurfsstadium befindet.
 neues_status_online = Veröffentlicht
 neues_status_offline = Offline
 neues_status_draft = Entwurf
 
 neues_domain_ids = Websites
+neues_domain_ids_notice = Hier können Sie festlegen, ob die News nur auf einer oder auf mehreren Websites innerhalb dieser REDAXO-Installation veröffentlicht werden soll.
 neues_date_ids = Einträge
+neues_date_id_notice = Dieser Kategorie zugeordnete News-Beiträge
 
 neues_language = Sprache
 neues_language_name = Sprache
+neues_language_name_notice = Name der Sprache
 neues_language_code = Sprachcode (ISO 639-1)
+neues_language_code_notice = Zweistelliger Sprachcode gemäß ISO-Norm, z.B.<code>de</code>
 neues_language_entry = Einträge verwalten
+neues_language_entry_notice = Verknüpfte Termine verwalten
 
 neues_editor = Editor
