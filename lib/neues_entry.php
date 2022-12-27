@@ -115,19 +115,20 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return $this->getDateTime($this->getValue('publishdate'));
     }
-    
-    public static function formatDate($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::SHORT, $lang = "de")
+
+    /** @api */
+    public function getFormattedPublishDate($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::SHORT, $lang = null)
     {
-        return datefmt_create($lang, $format_date, $format_time, null, IntlDateFormatter::GREGORIAN);
+        return rex_formatter::intlDateTime($this->getPublishDate(), [IntlDateFormatter::FULL, IntlDateFormatter::NONE]);
     }
 
-/** @api */
-    public function getFormattedPublishDate($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::NONE, $lang = null)
+    /** @api */
+    public function getFormattedPublishDateTime($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::SHORT, $lang = null)
     {
-        return self::formatDate($format_date, $format_time)->format($this->getDateTime($this->getPublishDate(), '00:00', $lang));
+        return rex_formatter::intlDateTime($this->getPublishDate(), [IntlDateFormatter::FULL, IntlDateFormatter::SHORT]);
     }
 
-/** @api */
+    /** @api */
     public function getStatus() :string
     {
         return $this->getValue('status');
@@ -142,10 +143,10 @@ class neues_entry extends \rex_yform_manager_dataset
         self::query()->where("status", $status, ">=")->whereRaw("category_ids", "FIND_IN_SET(".$category_id.", `category_ids`)")->find();
     }
     
-/** @api */
+    /** @api */
     public function getUrl() :string
     {
-        if($url = rex_getUrl(null, null, ["neues-entry-id" => $this->getId()])) {
+        if ($url = rex_getUrl(null, null, ["neues-entry-id" => $this->getId()])) {
             return $url;
         }
         return '';
