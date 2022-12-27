@@ -1,5 +1,5 @@
 package: neues
-version: '2.1.0-beta'
+version: '3.0.0-RC1'
 author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/neues/
 load: late
@@ -10,6 +10,7 @@ requires:
     redaxo: ^5.12
     packages:
         yform: '^4,<5'
+        yform_field: '>0'
 
 
 page:
@@ -26,7 +27,7 @@ pages:
         icon: rex-icon fa-bullhorn
         perm: neues[]
         subpages: 
-            date:
+            entry:
                 title: translate:neues_entry
                 icon: rex-icon fa-bullhorn
                 subPath: pages/data_edit.php
@@ -63,6 +64,7 @@ pages:
                 perm: neues[docs]
 
 default_config:
-    neues_default_author: "Redaktion"
-    neues_default_thumbnail: ""
-    neues_default_url_label: "Zur Website"
+    default_author: "Redaktion"
+    default_thumbnail: ""
+    external_url_label: "Zur Website"
+    editor: 'class="###neues-settings-editor###"'

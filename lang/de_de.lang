@@ -40,3 +40,5 @@ neues_language = Sprache
 neues_language_name = Sprache
 neues_language_code = Sprachcode (ISO 639-1)
 neues_language_entry = Einträge verwalten
+
+neues_editor = Editor
