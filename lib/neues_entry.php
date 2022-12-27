@@ -96,24 +96,10 @@ class neues_entry extends \rex_yform_manager_dataset
         return $this->externalLabel;
     }
 
-    private function getDateTime(string $date = null, string $time = '00:00')
-    {
-        $time = explode(':', $time);
-        $dateTime = new DateTime($date);
-        $dateTime->setTime($time[0], $time[1]);
-
-        return $dateTime;
-    }
-
 /** @api */
     public function getPublishDate() :string
     {
         return $this->getValue('publishdate');
-    }
-/** @api */
-    public function getPublishDateTime()
-    {
-        return $this->getDateTime($this->getValue('publishdate'));
     }
 
     /** @api */
