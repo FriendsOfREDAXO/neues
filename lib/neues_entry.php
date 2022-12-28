@@ -90,15 +90,15 @@ class neues_entry extends \rex_yform_manager_dataset
     }
 
     /** @api */
-    public function getFormattedPublishDate($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::NONE)
+    public function getFormattedPublishDate($format_date = IntlDateFormatter::FULL)
     {
-        return rex_formatter::intlDateTime($this->getPublishDate(), [$format_date, $format_time]);
+        return $this->getFormattedPublishDateTime([$format_date, IntlDateFormatter::NONE]);
     }
 
     /** @api */
-    public function getFormattedPublishDateTime($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::SHORT)
+    public function getFormattedPublishDateTime($format = [IntlDateFormatter::FULL, IntlDateFormatter::SHORT])
     {
-        return rex_formatter::intlDateTime($this->getPublishDate(), [$format_date, $format_time]);
+        return rex_formatter::intlDateTime($this->getPublishDate(), $format);
     }
 
     /** @api */
