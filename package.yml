@@ -1,5 +1,5 @@
 package: neues
-version: '3.0.0-RC2'
+version: '3.0.0'
 author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/neues/
 load: late
