@@ -117,9 +117,9 @@ class neues_entry extends \rex_yform_manager_dataset
     }
     
     /** @api */
-    public function getUrl() :string
+    public function getUrl($profile = "neues-entry-id") :string
     {
-        if ($url = rex_getUrl(null, null, ["neues-entry-id" => $this->getId()])) {
+        if ($url = rex_getUrl(null, null, [$profile => $this->getId()])) {
             return $url;
         }
         return '';
