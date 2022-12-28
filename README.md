@@ -22,7 +22,10 @@ Mit diesem Addon können News-Beiträge anhand von YForm und YOrm im Backend ver
 
 ## Installation
 
-Im REDAXO-Installer das Addon `neues` herunterladen und installieren. Anschließend erscheint ein neuer Menüpunkt `Veranstaltungen` sichtbar.
+Im REDAXO-Installer das Addon `neues` herunterladen und installieren. Anschließend erscheint ein neuer Menüpunkt `Aktuelles` sichtbar.
+
+![image](https://user-images.githubusercontent.com/3855487/209792457-b6f824dc-7fd8-4295-a7c7-2eab046d19c7.png)
+
 
 ## Nutzung im Frontend
 
@@ -159,4 +162,4 @@ MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/neues/blob/master/L
 ## Credits
 
 neues basiert auf: [YForm](https://github.com/yakamara/redaxo_yform)  
-Danke an [Gregor Harlan](https://github.com/gharlan) für die Unterstützung
+Danke an [Gregor Harlan](https://github.com/gharlan) sowie [Norbert Micheel](https://github.com/tyrant88) für die Unterstützung
