@@ -96,9 +96,13 @@ foreach($entries as $entry) {
 
 ## URL2-Profile
 
-### News-Einträge
+### News-Einträge mit einer Domain
 
 Mit der Methode `getUrl()` kann die URL des aktuellen News-Eintrags geholt werden. Dazu muss URL2 installiert sein und ein Profil mit dem Schlüssel `neues-entry-id` angelegt sein.
+
+### News-Einträge im Kontext von YRewrite und Multidomains / mehreren Sprachen
+
+Die Methode `getUrl("neues-entry-id-domain-x")` erlaubt optional als Parameter anstelle von `neues-entry-id`. Somit lassen sich weitere Profile mit Filter je Domain erstellen und diese mit einem eigenen definitierten Schlüssel übergeben.
 
 ## Nutzung im Backend: Die Terminverwaltung
 
