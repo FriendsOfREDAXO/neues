@@ -2,13 +2,7 @@
 
 class neues_entry extends \rex_yform_manager_dataset
 {
-    private $publishdate;
-    private $category;
     private $categories;
-    private $offer;
-    private $image = '';
-    private $externalUrl = '';
-    private $externalLabel = '';
 
     /** @api */
     public function getName() :string
@@ -32,13 +26,6 @@ class neues_entry extends \rex_yform_manager_dataset
     public function getTeaser() :string
     {
         return $this->getValue('teaser');
-    }
-
-/** @api */
-    public function getCategory()
-    {
-        $this->category = $this->getRelatedDataset('category_ids');
-        return $this->category;
     }
 
 /** @api */
@@ -103,15 +90,15 @@ class neues_entry extends \rex_yform_manager_dataset
     }
 
     /** @api */
-    public function getFormattedPublishDate($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::SHORT, $lang = null)
+    public function getFormattedPublishDate($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::NONE)
     {
-        return rex_formatter::intlDateTime($this->getPublishDate(), [IntlDateFormatter::FULL, IntlDateFormatter::NONE]);
+        return rex_formatter::intlDateTime($this->getPublishDate(), [$format_date, $format_time]);
     }
 
     /** @api */
-    public function getFormattedPublishDateTime($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::SHORT, $lang = null)
+    public function getFormattedPublishDateTime($format_date = IntlDateFormatter::FULL, $format_time = IntlDateFormatter::SHORT)
     {
-        return rex_formatter::intlDateTime($this->getPublishDate(), [IntlDateFormatter::FULL, IntlDateFormatter::SHORT]);
+        return rex_formatter::intlDateTime($this->getPublishDate(), [$format_date, $format_time]);
     }
 
     /** @api */
@@ -122,7 +109,7 @@ class neues_entry extends \rex_yform_manager_dataset
 
     public static function findOnline()
     {
-        self::query()->where("status", "0", ">")->find();
+        self::query()->where("status", 1, ">=")->find();
     }
     public static function findByCategory($category_id, $status = 1)
     {
