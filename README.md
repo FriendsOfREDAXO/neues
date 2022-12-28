@@ -162,4 +162,4 @@ MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/neues/blob/master/L
 ## Credits
 
 neues basiert auf: [YForm](https://github.com/yakamara/redaxo_yform)  
-Danke an [Gregor Harlan](https://github.com/gharlan) für die Unterstützung
+Danke an [Gregor Harlan](https://github.com/gharlan) sowie [Norbert Micheel])(https://github.com/tyrant88) für die Unterstützung
