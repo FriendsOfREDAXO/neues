@@ -62,7 +62,7 @@ echo $entry->getPublishDateTime();
 echo $entry->getFormattedPublishDate($format); // IntlDateFormatter::FULL
 echo $entry->getFormattedPublishDateTime($format); // [IntlDateFormatter::FULL, IntlDateFormatter::SHORT]
 echo $entry->getStatus();
-echo $entry->getUrl();
+echo $entry->getUrl(); // opt. URL-Schlüssel angeben
 ```
 
 ```php
