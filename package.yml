@@ -1,5 +1,5 @@
 package: neues
-version: '3.0.1'
+version: '3.1.0'
 author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/neues/
 load: late
@@ -31,26 +31,29 @@ pages:
                 title: translate:neues_entry
                 icon: rex-icon fa-bullhorn
                 subPath: pages/data_edit.php
-                yformTable: rex_neues_entry
-                yformClass: rex_neues_entry
-                yformTitle: false
+                yform:
+                    table_name: rex_neues_entry
+                    wrapper_class: rex_neues_entry
+                    show_title: false
                 perm: neues[date]
             category:
                 title: translate:neues_category
                 icon: rex-icon fa-folder
                 subPath: pages/data_edit.php
-                yformTable: rex_neues_category
-                yformClass: rex_neues_category
-                yformTitle: false
+                yform:
+                    table_name: rex_neues_category
+                    wrapper_class: rex_neues_category
+                    show_title: false
                 perm: neues[category]
             date_lang:
                 title: translate:neues_lang
                 perm: neues[date_lang]
                 icon: rex-icon fa-flag
                 subPath: pages/data_edit.php
-                yformTable: rex_neues_entry_lang
-                yformClass: rex_neues_entry_lang
-                yformTitle: false
+                yform:
+                    table_name: rex_neues_entry_lang
+                    wrapper_class: rex_neues_entry_lang
+                    show_title: false
             settings:
                 title: translate:neues_settings
                 icon: rex-icon fa-gear
