@@ -109,11 +109,12 @@ class neues_entry extends \rex_yform_manager_dataset
 
     public static function findOnline()
     {
-        self::query()->where("status", 1, ">=")->find();
+        return self::query()->where("status", 1, ">=")->find();
     }
     public static function findByCategory($category_id, $status = 1)
     {
-        self::query()->where("status", $status, ">=")->whereRaw("category_ids", "FIND_IN_SET(".$category_id.", `category_ids`)")->find();
+        $query = self::query()->joinRelation('category_ids', 'c')->where("rex_neues_entry.status", $status, ">=")->where('c.id', $category_id);
+        return $query->find();
     }
     
     /** @api */
