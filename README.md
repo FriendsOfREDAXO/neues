@@ -36,7 +36,7 @@ Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_neues_entry` zu.
 #### Alle Einträge erhalten
 
 ```php
-$entries = neues_entry::query()->findAll(); // YOrm-Standard-Methode zum Finden von Einträgen, lässt sich mit where(), Limit(), etc. einschränken und Filtern.
+$entries = neues_entry::query()->find(); // YOrm-Standard-Methode zum Finden von Einträgen, lässt sich mit where(), Limit(), etc. einschränken und Filtern.
 $entries = neues_entry::findOnline(); // Alle Online-Einträge
 $entries = neues_entry::findByCategory($category_id [, $status]) // Alle Einträge einer Kategorie
 ```
