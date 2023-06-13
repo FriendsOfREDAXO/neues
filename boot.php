@@ -121,7 +121,7 @@ rex_extension::register('YFORM_DATA_LIST', function ($ep) {
             }
         );
         $list->setColumnFormat(
-            'event_category_id',
+            'neues_category_id',
             'custom',
             function ($a) {
                 $_csrf_key = rex_yform_manager_table::get('rex_neues_category')->getCSRFKey();
@@ -136,12 +136,12 @@ rex_extension::register('YFORM_DATA_LIST', function ($ep) {
     
                 $return = [];
 
-                $category_ids = array_filter(explode(",", $a['value']));
+                $category_ids = array_filter(array_map('intval', explode(",", $a['value'])));
 
                 foreach ($category_ids as $category_id) {
-                    $event = event_category::get($category_id);
-                    if ($event) {
-                        $return[] = '<a href="'.rex_url::backendPage('neues/category', $params) .'">'. $event->getName().'</a>';
+                    $neues = neues_category::get($category_id);
+                    if ($neues) {
+                        $return[] = '<a href="'.rex_url::backendPage('neues/category', $params) .'">'. $neues->getName().'</a>';
                     }
                 }
                 return implode("<br>", $return);
