@@ -2,21 +2,20 @@
 
 rex_yform_manager_dataset::setModelClass(
     'rex_neues_entry',
-    neues_entry::class
+    neues_entry::class,
 );
 rex_yform_manager_dataset::setModelClass(
     'rex_neues_category',
-    neues_category::class
+    neues_category::class,
 );
 
-if (rex::isBackend() && rex_be_controller::getCurrentPage() == "neues/entry" || rex_be_controller::getCurrentPage() == "yform/manager/data_edit") {
-    rex_extension::register('OUTPUT_FILTER', function (rex_extension_point $ep) {
+if (rex::isBackend() && 'neues/entry' == rex_be_controller::getCurrentPage() || 'yform/manager/data_edit' == rex_be_controller::getCurrentPage()) {
+    rex_extension::register('OUTPUT_FILTER', static function (rex_extension_point $ep) {
         $suchmuster = 'class="###neues-settings-editor###"';
-        $ersetzen = rex_config::get("neues", "editor");
+        $ersetzen = rex_config::get('neues', 'editor');
         $ep->setSubject(str_replace($suchmuster, $ersetzen, $ep->getSubject()));
     });
 }
-
 
 if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
     /* YForm Rest API */
@@ -33,11 +32,11 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                         'name',
                         'description',
                         'images',
-                        'status'
+                        'status',
                     ],
                     'rex_neues_category' => [
                         'id',
-                        'name'
+                        'name',
                     ],
                 ],
             ],
@@ -46,7 +45,7 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                     'rex_neues_entry' => [
                         'name',
                         'description',
-                        'images'
+                        'images',
                     ],
                 ],
             ],
@@ -57,7 +56,7 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                     ],
                 ],
             ],
-        ]
+        ],
     );
 
     \rex_yform_rest::addRoute($rex_neues_entry_route);
@@ -73,14 +72,14 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                 'fields' => [
                     'rex_neues_category' => [
                         'id',
-                        'name'
+                        'name',
                     ],
                 ],
             ],
             'post' => [
                 'fields' => [
                     'rex_neues_category' => [
-                        'name'
+                        'name',
                     ],
                 ],
             ],
@@ -91,52 +90,50 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                     ],
                 ],
             ],
-        ]
+        ],
     );
 
     \rex_yform_rest::addRoute($rex_neues_category_route);
 }
 
-
-
-rex_extension::register('YFORM_DATA_LIST', function ($ep) {
-    if ($ep->getParam('table')->getTableName()=="rex_neues_entry") {
+rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
+    if ('rex_neues_entry' == $ep->getParam('table')->getTableName()) {
         $list = $ep->getSubject();
 
         $list->setColumnFormat(
             'name',
             'custom',
-            function ($a) {
+            static function ($a) {
                 $_csrf_key = rex_yform_manager_table::get('rex_neues_entry')->getCSRFKey();
                 $token = rex_csrf_token::factory($_csrf_key)->getUrlParams();
 
-                $params = array();
+                $params = [];
                 $params['table_name'] = 'rex_neues_entry';
                 $params['rex_yform_manager_popup'] = '0';
                 $params['_csrf_token'] = $token['_csrf_token'];
                 $params['data_id'] = $a['list']->getValue('id');
                 $params['func'] = 'edit';
-    
+
                 return '<a href="'.rex_url::backendPage('neues/entry', $params) .'">'. $a['value'].'</a>';
-            }
+            },
         );
         $list->setColumnFormat(
             'neues_category_id',
             'custom',
-            function ($a) {
+            static function ($a) {
                 $_csrf_key = rex_yform_manager_table::get('rex_neues_category')->getCSRFKey();
                 $token = rex_csrf_token::factory($_csrf_key)->getUrlParams();
 
-                $params = array();
+                $params = [];
                 $params['table_name'] = 'rex_neues_category';
                 $params['rex_yform_manager_popup'] = '0';
                 $params['_csrf_token'] = $token['_csrf_token'];
                 $params['data_id'] = $a['list']->getValue('id');
                 $params['func'] = 'edit';
-    
+
                 $return = [];
 
-                $category_ids = array_filter(array_map('intval', explode(",", $a['value'])));
+                $category_ids = array_filter(array_map('intval', explode(',', $a['value'])));
 
                 foreach ($category_ids as $category_id) {
                     $neues = neues_category::get($category_id);
@@ -144,8 +141,8 @@ rex_extension::register('YFORM_DATA_LIST', function ($ep) {
                         $return[] = '<a href="'.rex_url::backendPage('neues/category', $params) .'">'. $neues->getName().'</a>';
                     }
                 }
-                return implode("<br>", $return);
-            }
+                return implode('<br>', $return);
+            },
         );
     }
 });

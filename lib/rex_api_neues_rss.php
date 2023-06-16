@@ -13,7 +13,8 @@ class rex_api_neues_rss extends rex_api_function
         header('Content-Type: application/rss+xml; charset=utf-8');
         exit(self::getRssFeed(neues_enty::findOnline()));
     }
-    public static function getRssFeed($collection = null, $domain = null, $lang = null, $filename)
+
+    public static function getRssFeed($collection, $domain, $lang, $filename)
     {
         return self::createRssFeed($collection, $domain, $lang, $filename);
     }
@@ -37,7 +38,7 @@ class rex_api_neues_rss extends rex_api_function
         $head_title = $xml->createElement('title', rex::getServerName());
         $channel->appendChild($head_title);
 
-        $head_description = $xml->createElement('description', "");
+        $head_description = $xml->createElement('description', '');
         $channel->appendChild($head_description);
 
         if ($lang) {

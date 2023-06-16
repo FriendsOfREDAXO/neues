@@ -5,30 +5,30 @@ class neues_entry extends \rex_yform_manager_dataset
     private $categories;
 
     /** @api */
-    public function getName() :string
+    public function getName(): string
     {
         return $this->getValue('name');
     }
 
-/** @api */
-    public function getAuthor() :string
+    /** @api */
+    public function getAuthor(): string
     {
         return $this->getValue('author');
     }
-    
-/** @api */
-    public function getDomain() :string
+
+    /** @api */
+    public function getDomain(): string
     {
         return $this->getValue('domain');
     }
 
-/** @api */
-    public function getTeaser() :string
+    /** @api */
+    public function getTeaser(): string
     {
         return $this->getValue('teaser');
     }
 
-/** @api */
+    /** @api */
     public function getCategories()
     {
         if (!$this->categories) {
@@ -37,7 +37,7 @@ class neues_entry extends \rex_yform_manager_dataset
         }
     }
 
-/** @api */
+    /** @api */
     public function getImage(): string
     {
         if ('' == $this->images) {
@@ -48,31 +48,31 @@ class neues_entry extends \rex_yform_manager_dataset
         return $this->image;
     }
 
-/** @api */
+    /** @api */
     public function getMedia()
     {
         return rex_media::get($this->getValue('image'));
     }
 
-/** @api */
+    /** @api */
     public function getDescriptionAsPlaintext(): string
     {
         return strip_tags($this->getValue('description'));
     }
 
-/** @api */
+    /** @api */
     public function getDescription(): string
     {
         return $this->getValue('description');
     }
 
-/** @api */
+    /** @api */
     public function getExternalUrl(): ?string
     {
         return $this->getValue('url');
     }
 
-/** @api */
+    /** @api */
     public function getExternalLabel(): string
     {
         if ('' == $this->externalLabel) {
@@ -83,8 +83,8 @@ class neues_entry extends \rex_yform_manager_dataset
         return $this->externalLabel;
     }
 
-/** @api */
-    public function getPublishDate() :string
+    /** @api */
+    public function getPublishDate(): string
     {
         return $this->getValue('publishdate');
     }
@@ -102,23 +102,24 @@ class neues_entry extends \rex_yform_manager_dataset
     }
 
     /** @api */
-    public function getStatus() :string
+    public function getStatus(): string
     {
         return $this->getValue('status');
     }
 
     public static function findOnline()
     {
-        return self::query()->where("status", 1, ">=")->find();
+        return self::query()->where('status', 1, '>=')->find();
     }
+
     public static function findByCategory($category_id, $status = 1)
     {
-        $query = self::query()->joinRelation('category_ids', 'c')->where("rex_neues_entry.status", $status, ">=")->where('c.id', $category_id);
+        $query = self::query()->joinRelation('category_ids', 'c')->where('rex_neues_entry.status', $status, '>=')->where('c.id', $category_id);
         return $query->find();
     }
-    
+
     /** @api */
-    public function getUrl($profile = "neues-entry-id") :string
+    public function getUrl($profile = 'neues-entry-id'): string
     {
         if ($url = rex_getUrl(null, null, [$profile => $this->getId()])) {
             return $url;

@@ -1,5 +1,6 @@
 <?php
-$yform = rex_package::get("neues")->getProperty('pages')[rex_be_controller::getCurrentPagePart(1)]['subpages'][rex_be_controller::getCurrentPagePart(2)]['yform'];
+
+$yform = rex_package::get('neues')->getProperty('pages')[rex_be_controller::getCurrentPagePart(1)]['subpages'][rex_be_controller::getCurrentPagePart(2)]['yform'];
 
 $table_name = $yform['table_name'] ?? '';
 $show_title = true === ($yform['show_title'] ?? false);
@@ -12,13 +13,13 @@ if ($table_name) {
 if (!$show_title) {
     \rex_extension::register(
         'YFORM_MANAGER_DATA_PAGE_HEADER',
-        function (\rex_extension_point $ep) {
+        static function (rex_extension_point $ep) {
             if ($ep->getParam('yform')->table->getTableName() === $ep->getParam('table_name')) {
                 return '';
             }
         },
         \rex_extension::EARLY,
-        ['table_name'=>$table_name]
+        ['table_name' => $table_name],
     );
 }
 
