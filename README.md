@@ -22,7 +22,7 @@ Mit diesem Addon können News-Beiträge anhand von YForm und YOrm im Backend ver
 
 ## Installation
 
-Im REDAXO-Installer das Addon `neues` herunterladen und installieren. Anschließend erscheint ein neuer Menüpunkt `Aktuelles` sichtbar.
+Im REDAXO-Installer das Addon `neues` herunterladen und installieren. Anschließend erscheint im Hauptmenü ein neuer Menüpunkt `Aktuelles`.
 
 ![image](https://user-images.githubusercontent.com/3855487/209792457-b6f824dc-7fd8-4295-a7c7-2eab046d19c7.png)
 
