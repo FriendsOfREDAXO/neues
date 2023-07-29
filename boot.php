@@ -114,7 +114,7 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
                 $params['data_id'] = $a['list']->getValue('id');
                 $params['func'] = 'edit';
 
-                return '<a href="'.rex_url::backendPage('neues/entry', $params) .'">'. $a['value'].'</a>';
+                return '<a href="' . rex_url::backendPage('neues/entry', $params) . '">' . $a['value'] . '</a>';
             },
         );
         $list->setColumnFormat(
@@ -138,7 +138,7 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
                 foreach ($category_ids as $category_id) {
                     $neues = neues_category::get($category_id);
                     if ($neues) {
-                        $return[] = '<a href="'.rex_url::backendPage('neues/category', $params) .'">'. $neues->getName().'</a>';
+                        $return[] = '<a href="' . rex_url::backendPage('neues/category', $params) . '">' . $neues->getName() . '</a>';
                     }
                 }
                 return implode('<br>', $return);
