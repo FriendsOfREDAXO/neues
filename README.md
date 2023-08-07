@@ -157,7 +157,7 @@ Neues basiert auf YForm. Exportiere deine Einträge bequem per CSV, wie du es vo
 
 ## Editor für Textfeld "Inhalt" einbinden
 
-- installiere den Editor deiner Wahl (zum Beispiel *redactor*)
+- Installiere den Editor deiner Wahl (zum Beispiel *redactor*)
 - lege im Editor dein Wunschprofil an
 - nach dem Speichern erscheint die Profilübersicht in *Redactor*
 - hier den Wert kopieren, der in der Spalte `Selektor` steht
