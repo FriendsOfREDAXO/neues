@@ -44,7 +44,7 @@ $entries = neues_entry::findByCategory($category_id [, $status]) // Alle Einträ
 #### Beispiel-Ausgabe einer News
 
 ```php
-$entry = neues_entry::get(3)); // News mit der id=3
+$entry = neues_entry::get(3); // News mit der id=3
 // dump($entry);
 
 echo $entry->getName();
@@ -81,7 +81,7 @@ Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_neues_category` zu.
 #### Beispiel-Ausgabe einer Kategorie
 
 ```php
-$category = neues_category::get(3)); // News-Kategorie mit der id=3
+$category = neues_category::get(3); // News-Kategorie mit der id=3
 // dump($category);
 
 echo $category->getName();
