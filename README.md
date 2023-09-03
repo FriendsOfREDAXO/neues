@@ -7,8 +7,8 @@ Mit diesem Addon können News-Beiträge anhand von YForm und YOrm im Backend ver
 ## Features
 
 * Vollständig mit **YForm** umgesetzt: Alle Features und Anpassungsmöglichkeiten von YForm verfügbar
-* Einfach: Die Ausgabe erfolgt über [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) oder objektorientiert über [YOrm](https://github.com/yakamara/redaxo_yform_docs/blob/master/de_de/yorm.md)
-* Flexibel: **Zugriff** über die [YForm Rest-API](https://github.com/yakamara/redaxo_yform/blob/master/docs/plugins.md#restful-api-einf%C3%BChrung)
+* Einfach: Die Ausgabe erfolgt über [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) oder objektorientiert über [YOrm](https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md)
+* Flexibel: **Zugriff** über die [YForm Rest-API](https://github.com/yakamara/redaxo_yform/blob/master/docs/05_rest.md)
 * Sinnvoll: Nur ausgewählte **Rollen**/Redakteure haben Zugriff
 * Bereit für Multidomain-Newsverwaltung mit YRewrite
 * Bereit für **mehrsprachige** Websites: Reiter für Sprachen auf Wunsch anzeigen oder ausblenden
@@ -112,7 +112,7 @@ Die Methode `getUrl("neues-entry-id-domain-x")` erlaubt optional als Parameter a
 
 ## RESTful API
 
-Die [Rest-API](https://github.com/yakamara/redaxo_yform/blob/master/docs/plugins.md#restful-api-einf%C3%BChrung) ist über das REST-Plugin von YForm umgesetzt.
+Die [Rest-API](https://github.com/yakamara/redaxo_yform/blob/master/docs/05_rest.md) ist über das REST-Plugin von YForm umgesetzt.
 
 ### Einrichtung
 
@@ -173,7 +173,7 @@ Für den Editor CK5 ist es: `class="form-control cke5-editor" data-profile="defa
 
 ## Lizenz
 
-MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/neues/blob/master/LICENSE.md)  
+MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/neues/blob/master/LICENSE)  
 
 ## Autor
 
