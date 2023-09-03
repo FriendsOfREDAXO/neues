@@ -13,7 +13,7 @@ class neues_entry extends \rex_yform_manager_dataset
     /** @api */
     public function getAuthor(): string
     {
-        return $this->getValue('author');
+        return $this->getValue('createuser');
     }
 
     /** @api */
