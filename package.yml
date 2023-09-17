@@ -10,7 +10,7 @@ requires:
     redaxo: ^5.12
     packages:
         yform: '^4,<5'
-        yform_field: '>2.3.3'
+        yform_field: '^2.3.0'
 
 
 page:
