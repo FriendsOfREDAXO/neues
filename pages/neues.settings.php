@@ -2,7 +2,7 @@
 
 $addon = rex_addon::get('neues');
 
-$form = rex_config_form::factory($addon->name);
+$form = rex_config_form::factory($addon->getName());
 
 $field = $form->addMediaField('default_thumbnail');
 $field->setPreview(1);
