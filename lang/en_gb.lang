@@ -13,7 +13,8 @@ neues_name = Title
 neues_category_title = Category
 neues_teaser = Teaser
 neues_description = Content
-neues_images = Image(s)
+neues_image = Poster image
+neues_images = Gallery
 
 neues_external_url = External URL
 neues_external_url_label = URL title
