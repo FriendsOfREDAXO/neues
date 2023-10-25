@@ -29,7 +29,7 @@ class neues_entry extends \rex_yform_manager_dataset
     }
 
     /** @api */
-    public function getCategories()
+    public function getCategories() : ?rex_yform_manager_collection
     {
         if (!$this->categories) {
             $this->categories = $this->getRelatedCollection('category_ids');
@@ -40,18 +40,24 @@ class neues_entry extends \rex_yform_manager_dataset
     /** @api */
     public function getImage(): string
     {
-        if ('' == $this->images) {
+        if ('' == $this->getValue('image')) {
             $this->image = rex_config::get('neues', 'default_thumbnail');
         } else {
-            $this->image = $this->getValue('images');
+            $this->image = $this->getValue('image');
         }
         return $this->image;
     }
 
     /** @api */
-    public function getMedia()
+    public function getImages(): ?array
     {
-        return rex_media::get($this->getValue('image'));
+        return array_filter(explode(",", $this->getValue('images')));
+    }
+
+    /** @api */
+    public function getMedia() : ?rex_media
+    {
+        return rex_media::get($this->getImage());
     }
 
     /** @api */

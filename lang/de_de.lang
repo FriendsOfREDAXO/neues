@@ -20,7 +20,8 @@ neues_teaser = Teaser
 neues_teaser_notice = Ein kurzer Anreißer-Text oder eine Zusammenfassung, die in der Terminübersicht ausgegeben werden kann.
 neues_description = Inhalt
 neues_description_notice = Geben Sie den Inhalt Ihres News-Beitrags an.
-neues_images = Bild(er)
+neues_image = Titelbild
+neues_images = Galerie
 
 neues_external_url = Externer Link
 neues_external_url_notice = Gibt es weitere Informationen auf einer anderen Website, dann geben Sie hier die Adresse zu einer externen Website ein, z.B. <code>http://www.example.org/foo-bar/</code>
