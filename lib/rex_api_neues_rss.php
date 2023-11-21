@@ -11,7 +11,7 @@ class rex_api_neues_rss extends rex_api_function
         $lang_id = rex_request('lang_id', 'int', 0);
 
         header('Content-Type: application/rss+xml; charset=utf-8');
-        exit(self::getRssFeed(neues_enty::findOnline()));
+        exit(self::getRssFeed(neues_entry::findOnline()));
     }
 
     public static function getRssFeed($collection, $domain, $lang, $filename)
