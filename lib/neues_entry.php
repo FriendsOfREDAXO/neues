@@ -96,13 +96,13 @@ class neues_entry extends \rex_yform_manager_dataset
     }
 
     /** @api */
-    public function getFormattedPublishDate($format_date = IntlDateFormatter::FULL)
+    public function getFormattedPublishDate($format_date = IntlDateFormatter::FULL): string
     {
         return $this->getFormattedPublishDateTime([$format_date, IntlDateFormatter::NONE]);
     }
 
     /** @api */
-    public function getFormattedPublishDateTime($format = [IntlDateFormatter::FULL, IntlDateFormatter::SHORT])
+    public function getFormattedPublishDateTime($format = [IntlDateFormatter::FULL, IntlDateFormatter::SHORT]): string
     {
         return rex_formatter::intlDateTime($this->getPublishDate(), $format);
     }
@@ -113,12 +113,12 @@ class neues_entry extends \rex_yform_manager_dataset
         return $this->getValue('status');
     }
 
-    public static function findOnline()
+    public static function findOnline(): ?rex_yform_manager_collection
     {
         return self::query()->where('status', 1, '>=')->find();
     }
 
-    public static function findByCategory($category_id, $status = 1)
+    public static function findByCategory($category_id, $status = 1): ?rex_yform_manager_collection
     {
         $query = self::query()->joinRelation('category_ids', 'c')->where('rex_neues_entry.status', $status, '>=')->where('c.id', $category_id);
         return $query->find();
