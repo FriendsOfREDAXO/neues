@@ -118,7 +118,7 @@ class neues_entry extends \rex_yform_manager_dataset
         return self::query()->where('status', 1, '>=')->find();
     }
 
-    public static function findByCategory($category_id, $status = 1): ?rex_yform_manager_collection 
+    public static function findByCategory($category_id, $status = 1): ?rex_yform_manager_collection
     {
         $query = self::query()->joinRelation('category_ids', 'c')->where('rex_neues_entry.status', $status, '>=')->where('c.id', $category_id);
         return $query->find();
