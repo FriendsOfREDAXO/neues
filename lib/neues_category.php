@@ -9,7 +9,7 @@ class neues_category extends \rex_yform_manager_dataset
     }
 
     /** @api */
-    public function getEntries()
+    public function getEntries(): array
     {
         return $this->getRelatedDataset('entry_ids');
     }
