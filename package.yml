@@ -1,5 +1,5 @@
 package: neues
-version: '3.1.4'
+version: '3.2.0'
 author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/neues/
 load: late
@@ -45,6 +45,15 @@ pages:
                     wrapper_class: rex_neues_category
                     show_title: false
                 perm: neues[category]
+            author:
+                title: translate:neues_author
+                perm: neues[author]
+                icon: rex-icon fa-user
+                subPath: pages/data_edit.php
+                yform:
+                    table_name: rex_neues_author
+                    wrapper_class: rex_neues_author
+                    show_title: false
             date_lang:
                 title: translate:neues_lang
                 perm: neues[date_lang]
