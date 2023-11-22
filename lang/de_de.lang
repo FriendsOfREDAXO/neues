@@ -9,7 +9,14 @@ neues_help = Hilfe
 neues_default_thumbnail = Vorschau-Bild
 neues_default_author = Autor
 
+neues_author_table = 📰 Autor:innen
+neues_entry_category_rel = 📰 Einträge 🔀 Kategorien
+neues_entry_category_table = 📰 Kategorien
+neues_entry_table = 📰 Einträge
+neues_entry_lang = 📰 Sprachen
+
 neues_entry = Eintrag
+neues_entry_author_id = Autor:in
 neues_name = Überschrift
 neues_name_notice = Titel des News-Beitrags
 neues_name_validate_empty = Der Titel dieses News-Beitrags darf nicht leer sein.
@@ -60,3 +67,9 @@ neues_language_entry = Einträge verwalten
 neues_language_entry_notice = Verknüpfte Termine verwalten
 
 neues_editor = Editor
+
+neues_author = Autor:innen
+neues_author_name = Name
+neues_author_nickname = Spitzname
+neues_author_text = Beschreibung
+neues_author_be_user_id = REDAXO-Benutzer:in
