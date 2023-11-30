@@ -19,7 +19,7 @@ class rex_api_neues_rss extends rex_api_function
         return self::createRssFeed($collection, $domain, $lang, $filename);
     }
 
-    public static function createRssFeed(array $collection = null, string $domain = null, string $lang = null, string $filename = 'rss.neues.xml'): void
+    public static function createRssFeed(?array $collection = null, ?string $domain = null, ?string $lang = null, string $filename = 'rss.neues.xml'): void
     {
         if (!$collection) {
             $collection = neues_entry::findOnline();
