@@ -96,13 +96,13 @@ class neues_entry extends \rex_yform_manager_dataset
     }
 
     /** @api */
-    public function getFormattedPublishDate($format_date = IntlDateFormatter::FULL): string
+    public function getFormattedPublishDate(string $format_date = IntlDateFormatter::FULL): string
     {
         return $this->getFormattedPublishDateTime([$format_date, IntlDateFormatter::NONE]);
     }
 
     /** @api */
-    public function getFormattedPublishDateTime($format = [IntlDateFormatter::FULL, IntlDateFormatter::SHORT]): string
+    public function getFormattedPublishDateTime(string $format = [IntlDateFormatter::FULL, IntlDateFormatter::SHORT]): string
     {
         return rex_formatter::intlDateTime($this->getPublishDate(), $format);
     }
@@ -118,14 +118,14 @@ class neues_entry extends \rex_yform_manager_dataset
         return self::query()->where('status', 1, '>=')->find();
     }
 
-    public static function findByCategory($category_id, $status = 1): ?rex_yform_manager_collection
+    public static function findByCategory(int $category_id, $status = 1): ?rex_yform_manager_collection
     {
         $query = self::query()->joinRelation('category_ids', 'c')->where('rex_neues_entry.status', $status, '>=')->where('c.id', $category_id);
         return $query->find();
     }
 
     /** @api */
-    public function getUrl($profile = 'neues-entry-id'): string
+    public function getUrl(string $profile = 'neues-entry-id'): string
     {
         if ($url = rex_getUrl(null, null, [$profile => $this->getId()])) {
             return $url;
