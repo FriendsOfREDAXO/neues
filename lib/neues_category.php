@@ -7,7 +7,8 @@ class neues_category extends \rex_yform_manager_dataset
     {
         return $this->getValue('name');
     }
-    public function setName(string $string) :self
+
+    public function setName(string $string): self
     {
         $this->setValue('name', $string);
         return $this;
@@ -18,6 +19,7 @@ class neues_category extends \rex_yform_manager_dataset
     {
         return $this->getRelatedDataset('entry_ids');
     }
+
     public function setEntries(rex_yform_manager_collection $entries): self
     {
         $this->setValue('entry_ids', $entries);
