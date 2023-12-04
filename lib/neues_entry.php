@@ -9,7 +9,8 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return $this->getValue('name');
     }
-    public function setName(string $name) :self
+
+    public function setName(string $name): self
     {
         $this->setValue('name', $name);
         return $this;
@@ -20,7 +21,8 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return $this->getValue('author');
     }
-    public function setAuthor(string $author) :self
+
+    public function setAuthor(string $author): self
     {
         $this->setValue('author', $author);
         return $this;
@@ -31,7 +33,8 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return $this->getValue('domain');
     }
-    public function setDomain(string $domain) :self
+
+    public function setDomain(string $domain): self
     {
         $this->setValue('domain', $domain);
         return $this;
@@ -42,6 +45,7 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return $this->getValue('teaser');
     }
+
     public function setTeaser(string $teaser): self
     {
         $this->setValue('teaser', $teaser);
@@ -56,6 +60,7 @@ class neues_entry extends \rex_yform_manager_dataset
             return $this->categories;
         }
     }
+
     public function setCategories(?rex_yform_manager_collection $categories): self
     {
         $this->categories = $categories;
@@ -72,6 +77,7 @@ class neues_entry extends \rex_yform_manager_dataset
         }
         return $this->image;
     }
+
     public function setImage(string $image): self
     {
         $this->setValue('image', $image);
@@ -83,6 +89,7 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return array_filter(explode(',', $this->getValue('images')));
     }
+
     public function setImages(?array $images): self
     {
         $this->setValue('images', implode(',', $images));
@@ -94,9 +101,10 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return rex_media::get($this->getImage());
     }
+
     public function setMedia(?rex_media $media): self
     {
-        if ($media !== null) {
+        if (null !== $media) {
             $this->setValue('image', $media->getFileName());
         } else {
             $this->setValue('image', null);
@@ -109,6 +117,7 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return strip_tags($this->getValue('description'));
     }
+
     public function setDescriptionAsPlaintext(string $description): self
     {
         $this->setValue('description', $description);
@@ -120,6 +129,7 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return $this->getValue('description');
     }
+
     public function setDescription(string $description): self
     {
         $this->setValue('description', $description);
@@ -131,6 +141,7 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return $this->getValue('url');
     }
+
     public function setExternalUrl(string $url): self
     {
         $this->setValue('url', $url);
@@ -147,6 +158,7 @@ class neues_entry extends \rex_yform_manager_dataset
         }
         return $this->externalLabel;
     }
+
     public function setExternalLabel(string $label): self
     {
         $this->setValue('url_label', $label);
@@ -158,6 +170,7 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return $this->getValue('publishdate');
     }
+
     public function setPublishDate(string $publishdate): self
     {
         $this->setValue('publishdate', $publishdate);
@@ -181,6 +194,7 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return $this->getValue('status');
     }
+
     public function setStatus(int $status): self
     {
         $this->setValue('status', $status);
@@ -206,6 +220,7 @@ class neues_entry extends \rex_yform_manager_dataset
         }
         return '';
     }
+
     public function setUrl(string $url): self
     {
         $this->setValue('url', $url);
