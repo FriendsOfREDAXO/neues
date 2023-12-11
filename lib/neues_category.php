@@ -19,10 +19,4 @@ class neues_category extends \rex_yform_manager_dataset
     {
         return $this->getRelatedDataset('entry_ids');
     }
-
-    public function setEntries(rex_yform_manager_collection $entries): self
-    {
-        $this->setValue('entry_ids', $entries);
-        return $this;
-    }
 }
