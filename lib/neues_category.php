@@ -8,6 +8,12 @@ class neues_category extends \rex_yform_manager_dataset
         return $this->getValue('name');
     }
 
+    public function setName(string $string): self
+    {
+        $this->setValue('name', $string);
+        return $this;
+    }
+
     /** @api */
     public function getEntries(): ?rex_yform_manager_collection
     {
