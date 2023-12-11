@@ -61,12 +61,6 @@ class neues_entry extends \rex_yform_manager_dataset
         }
     }
 
-    public function setCategories(?rex_yform_manager_collection $categories): self
-    {
-        $this->categories = $categories;
-        return $this;
-    }
-
     /** @api */
     public function getImage(): string
     {
