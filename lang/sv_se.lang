@@ -1,0 +1,75 @@
+neues = Aktuellt
+neues_entry = Inlägg
+neues_settings = Inställningar
+neues_lang = Språk
+
+neues_category = Kategorier
+neues_help = Hjälp
+
+neues_default_thumbnail = Förhandsgranskningsbild
+neues_default_author = Författare
+
+neues_author_table = 📰 Författare
+neues_entry_category_rel = 📰 Inlägg 🔀 Kategorier
+neues_entry_category_table = 📰 Kategorier
+neues_entry_table = 📰 Inlägg
+neues_entry_lang = 📰 Språk
+
+neues_entry = Inlägg
+neues_entry_author_id = Författare
+neues_name = Rubrik
+neues_name_notice = Titel på nyhetsinlägget
+neues_name_validate_empty = Titeln på detta nyhetsinlägg får inte vara tom.
+neues_category_name_validate_unique = Detta namn är redan taget.
+neues_category_title = Kategori
+neues_category_title_notice = Namn på kategori, nyckelord eller namn på en serie inlägg.
+neues_teaser = Teaser
+neues_teaser_notice = En kort teaser-text eller en sammanfattning som kan visas i händelseöversikten.
+neues_description = Innehåll
+neues_description_notice = Ange innehållet i ditt nyhetsinlägg.
+neues_image = Titelbild
+neues_images = Galleri
+
+neues_external_url = Extern länk
+neues_external_url_notice = Om det finns mer information på en annan webbplats, ange här adressen till en extern webbplats, t.ex. <code>http://www.example.org/foo-bar/</code>
+neues_external_url_validate_url = Ange en giltig, fullständig URL (t.ex. `https://example.org/`)
+neues_external_url_label = Länktext
+
+neues_createdate = Skapad den...
+neues_createuser = Skapad av...
+neues_updatedate = Senast ändrad den...
+neues_updateuser = Senast ändrad av...
+neues_publishdate = Publicerad den...
+neues_publishdate_validate_compare_value = Publiceringsdatumet får inte vara tomt.
+neues_publishuser = Publicerad av...
+
+neues_category_ids = Kategori(er)
+neues_prio = Ordning
+
+neues_status = Publicerad?
+neues_status_notice = Anger om detta nyhetsinlägg ska vara synligt just nu (publicerat/schemalagt) eller om det fortfarande är i utkaststadiet.
+neues_category_status_notice = Anger om denna kategori ska vara synlig just nu (publicerat/schemalagt) eller om det fortfarande är i utkaststadiet.
+neues_status_online = Publicerad
+neues_status_offline = Offline
+neues_status_draft = Utkast
+
+neues_domain_ids = Webbplatser
+neues_domain_ids_notice = Här kan du bestämma om nyheterna ska publiceras på bara en eller flera webbplatser inom denna REDAXO-installation.
+neues_date_ids = Inlägg
+neues_date_id_notice = Nyhetsinlägg kopplade till denna kategori
+
+neues_language = Språk
+neues_language_name = Språk
+neues_language_name_notice = Namn på språk
+neues_language_code = Språkkod (ISO 639-1)
+neues_language_code_notice = Tvåbokstavskod enligt ISO-standard, t.ex. <code>sv</code>
+neues_language_entry = Hantera inlägg
+neues_language_entry_notice = Hantera länkade datum
+
+neues_editor = Redaktör
+
+neues_author = Författare
+neues_author_name = Namn
+neues_author_nickname = Smeknamn
+neues_author_text = Beskrivning
+neues_author_be_user_id = REDAXO-användare
