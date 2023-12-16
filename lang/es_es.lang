@@ -1,0 +1,75 @@
+neues = Noticias
+neues_entry = Entradas
+neues_settings = Configuraciones
+neues_lang = Idiomas
+
+neues_category = Categorías
+neues_help = Ayuda
+
+neues_default_thumbnail = Imagen de vista previa
+neues_default_author = Autor
+
+neues_author_table = 📰 Autores
+neues_entry_category_rel = 📰 Entradas 🔀 Categorías
+neues_entry_category_table = 📰 Categorías
+neues_entry_table = 📰 Entradas
+neues_entry_lang = 📰 Idiomas
+
+neues_entry = Entrada
+neues_entry_author_id = Autor
+neues_name = Título
+neues_name_notice = Título de la entrada de noticias
+neues_name_validate_empty = El título de esta entrada de noticias no puede estar vacío.
+neues_category_name_validate_unique = Este nombre ya está en uso.
+neues_category_title = Categoría
+neues_category_title_notice = Nombre de la categoría, palabra clave o nombre de una serie de entradas.
+neues_teaser = Resumen
+neues_teaser_notice = Un breve texto de resumen o un resumen que se puede mostrar en la vista general de eventos.
+neues_description = Contenido
+neues_description_notice = Proporcione el contenido de su entrada de noticias.
+neues_image = Imagen de título
+neues_images = Galería
+
+neues_external_url = Enlace externo
+neues_external_url_notice = Si hay más información en otro sitio web, ingrese aquí la dirección de un sitio web externo, por ejemplo <code>http://www.example.org/foo-bar/</code>
+neues_external_url_validate_url = Por favor, introduzca una URL válida y completa (por ejemplo, `https://example.org/`)
+neues_external_url_label = Texto del enlace
+
+neues_createdate = Creado el...
+neues_createuser = Creado por...
+neues_updatedate = Última modificación el...
+neues_updateuser = Última modificación por...
+neues_publishdate = Publicado el...
+neues_publishdate_validate_compare_value = La fecha de publicación no puede estar vacía.
+neues_publishuser = Publicado por...
+
+neues_category_ids = Categoría(s)
+neues_prio = Orden
+
+neues_status = ¿Publicado?
+neues_status_notice = Indica si esta entrada de noticias debe ser visible actualmente (publicada/programada) o si todavía está en la etapa de borrador.
+neues_category_status_notice = Indica si esta categoría debe ser visible actualmente (publicada/programada) o si todavía está en la etapa de borrador.
+neues_status_online = Publicado
+neues_status_offline = Desconectado
+neues_status_draft = Borrador
+
+neues_domain_ids = Sitios web
+neues_domain_ids_notice = Aquí puede determinar si las noticias deben publicarse solo en uno o en varios sitios web dentro de esta instalación de REDAXO.
+neues_date_ids = Entradas
+neues_date_id_notice = Entradas de noticias asignadas a esta categoría
+
+neues_language = Idioma
+neues_language_name = Idioma
+neues_language_name_notice = Nombre del idioma
+neues_language_code = Código de idioma (ISO 639-1)
+neues_language_code_notice = Código de idioma de dos letras según la norma ISO, por ejemplo <code>es</code>
+neues_language_entry = Administrar entradas
+neues_language_entry_notice = Administrar fechas vinculadas
+
+neues_editor = Editor
+
+neues_author = Autores
+neues_author_name = Nombre
+neues_author_nickname = Apodo
+neues_author_text = Descripción
+neues_author_be_user_id = Usuario de REDAXO

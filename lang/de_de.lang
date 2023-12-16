@@ -1,4 +1,5 @@
 neues = Aktuelles
+neues_title = Aktuelles
 neues_entry = Einträge
 neues_settings = Einstellungen
 neues_lang = Sprachen
@@ -23,6 +24,8 @@ neues_name_validate_empty = Der Titel dieses News-Beitrags darf nicht leer sein.
 neues_category_name_validate_unique = Dieser Name ist bereits vergeben.
 neues_category_title = Kategorie
 neues_category_title_notice = Name der Kategorie, Schlagwort oder Name einer Beitragsreihe.
+neues_category_image = Titelbild
+
 neues_teaser = Teaser
 neues_teaser_notice = Ein kurzer Anreißer-Text oder eine Zusammenfassung, die in der Terminübersicht ausgegeben werden kann.
 neues_description = Inhalt
@@ -73,3 +76,17 @@ neues_author_name = Name
 neues_author_nickname = Spitzname
 neues_author_text = Beschreibung
 neues_author_be_user_id = REDAXO-Benutzer:in
+
+# Doku
+
+neues_docs_a_intro = Einleitung
+neues_docs_b_import_export = Import/Export
+neues_docs_c_migration = Migration
+neues_docs_settings = Einstellungen
+neues_docs_neues_entry = Einträge
+neues_docs_neues_category = Kategorien
+neues_docs_neues_author = Autor:innen  
+neues_docs_neues_language = Sprachen
+neues_docs_url = URL-Adon
+neues_docs_rss = RSS-Feed
+neues_docs_restful_api = YForm RESTful API
