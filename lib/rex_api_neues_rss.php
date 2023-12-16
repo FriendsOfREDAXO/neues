@@ -6,20 +6,20 @@ class rex_api_neues_rss extends rex_api_function
 
     public function execute(): void
     {
-        $category_id = rex_request('category_id', 'int', 0);
-        $event_id = rex_request('domain_id', 'int', 0);
-        $lang_id = rex_request('lang_id', 'int', 0);
+        $domain_id = rex_request('domain_id', 'int', null);
+        $lang_id = rex_request('lang_id', 'int', null);
+        $category_id = rex_request('category_id', 'int', null);
 
         header('Content-Type: application/rss+xml; charset=utf-8');
-        exit(self::getRssFeed(neues_entry::findOnline()));
+        exit(self::getRssFeed(neues_entry::findOnline($category_id), $domain_id, $lang_id, 'rss.neues.xml'));
     }
 
-    public static function getRssFeed(array $collection, string $domain, string $lang, string $filename): array
+    public static function getRssFeed(rex_yform_manager_collection $collection, $domain, $lang, $filename)
     {
         return self::createRssFeed($collection, $domain, $lang, $filename);
     }
 
-    public static function createRssFeed(?array $collection = null, ?string $domain = null, ?string $lang = null, string $filename = 'rss.neues.xml'): void
+    public static function createRssFeed(rex_yform_manager_collection $collection = null, $domain = null, $lang = null, $filename = 'rss.neues.xml')
     {
         if (!$collection) {
             $collection = neues_entry::findOnline();
@@ -63,7 +63,7 @@ class rex_api_neues_rss extends rex_api_function
             $item_link = $xml->createElement('link', $entry->getUrl());
             $item->appendChild($item_link);
 
-            $item_pubDate = $xml->createElement('pubDate', date('r', strottime($entry->getPublishDate())));
+            $item_pubDate = $xml->createElement('pubDate', date('r', strtotime($entry->getPublishDate())));
             $item->appendChild($item_pubDate);
 
             $item_guid = $xml->createElement('guid', $entry->getUuid());
