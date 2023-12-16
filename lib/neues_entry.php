@@ -1,10 +1,27 @@
 <?php
-
+/**
+ * Class neues_entry
+ *
+ * Diese Klasse repräsentiert einen neuen Eintrag.
+ * This class represents a new entry.
+ *
+ * Beispiel / Example:
+ * $entry = neues_entry::get($id);
+ *
+ * @package rex_yform_manager_dataset
+ */
 class neues_entry extends \rex_yform_manager_dataset
 {
-    private $categories;
-
-    /** @api */
+    /**
+     * @api
+     * @return string
+     *
+     * Gibt den Namen des Eintrags zurück.
+     * Returns the name of the entry.
+     *
+     * Beispiel / Example:
+     * $name = $entry->getName();
+     */
     public function getName(): string
     {
         return $this->getValue('name');
@@ -15,8 +32,16 @@ class neues_entry extends \rex_yform_manager_dataset
         $this->setValue('name', $name);
         return $this;
     }
-
-    /** @api */
+    /**
+     * @api
+     * @return string
+     *
+     * Gibt den Autor des Eintrags zurück.
+     * Returns the author of the entry.
+     *
+     * Beispiel / Example:
+     * $author = $entry->getAuthor();
+     */
     public function getAuthor(): string
     {
         return $this->getValue('author');
@@ -27,8 +52,16 @@ class neues_entry extends \rex_yform_manager_dataset
         $this->setValue('author', $author);
         return $this;
     }
-
-    /** @api */
+    /**
+     * @api
+     * @return string
+     *
+     * Gibt die Domain des Eintrags zurück.
+     * Returns the domain of the entry.
+     *
+     * Beispiel / Example:
+     * $domain = $entry->getDomain();
+     */
     public function getDomain(): string
     {
         return $this->getValue('domain');
@@ -46,19 +79,10 @@ class neues_entry extends \rex_yform_manager_dataset
         return $this->getValue('teaser');
     }
 
-    public function setTeaser(string $teaser): self
-    {
-        $this->setValue('teaser', $teaser);
-        return $this;
-    }
-
     /** @api */
     public function getCategories(): ?rex_yform_manager_collection
     {
-        if (!$this->categories) {
-            $this->categories = $this->getRelatedCollection('category_ids');
-            return $this->categories;
-        }
+        return $this->getRelatedCollection('category_ids');
     }
 
     /** @api */
@@ -93,6 +117,9 @@ class neues_entry extends \rex_yform_manager_dataset
     /** @api */
     public function getMedia(): ?rex_media
     {
+        if(rex_addon::get('media_manager_resposnive')->isAvailable()) {
+            return rex_media_plus::get($this->getImage());
+        }
         return rex_media::get($this->getImage());
     }
 
@@ -110,12 +137,6 @@ class neues_entry extends \rex_yform_manager_dataset
     public function getDescriptionAsPlaintext(): string
     {
         return strip_tags($this->getValue('description'));
-    }
-
-    public function setDescriptionAsPlaintext(string $description): self
-    {
-        $this->setValue('description', $description);
-        return $this;
     }
 
     /** @api */
@@ -172,13 +193,13 @@ class neues_entry extends \rex_yform_manager_dataset
     }
 
     /** @api */
-    public function getFormattedPublishDate(string $format_date = IntlDateFormatter::FULL): string
+    public function getFormattedPublishDate($format_date = IntlDateFormatter::FULL): string
     {
         return $this->getFormattedPublishDateTime([$format_date, IntlDateFormatter::NONE]);
     }
 
     /** @api */
-    public function getFormattedPublishDateTime(string $format = [IntlDateFormatter::FULL, IntlDateFormatter::SHORT]): string
+    public function getFormattedPublishDateTime($format = [IntlDateFormatter::FULL, IntlDateFormatter::SHORT]): string
     {
         return rex_formatter::intlDateTime($this->getPublishDate(), $format);
     }
@@ -195,12 +216,15 @@ class neues_entry extends \rex_yform_manager_dataset
         return $this;
     }
 
-    public static function findOnline(): ?rex_yform_manager_collection
+    public static function findOnline(int $category_id = null): ?rex_yform_manager_collection
     {
+        if($category_id) {
+            return self::findByCategory($category_id);
+        }
         return self::query()->where('status', 1, '>=')->find();
     }
 
-    public static function findByCategory(int $category_id, $status = 1): ?rex_yform_manager_collection
+    public static function findByCategory(int $category_id = null, int $status = 1): ?rex_yform_manager_collection
     {
         $query = self::query()->joinRelation('category_ids', 'c')->where('rex_neues_entry.status', $status, '>=')->where('c.id', $category_id);
         return $query->find();
@@ -213,11 +237,5 @@ class neues_entry extends \rex_yform_manager_dataset
             return $url;
         }
         return '';
-    }
-
-    public function setUrl(string $url): self
-    {
-        $this->setValue('url', $url);
-        return $this;
     }
 }
