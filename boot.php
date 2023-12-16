@@ -2,21 +2,20 @@
 
 if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
 
-rex_yform_manager_dataset::setModelClass(
-    'rex_neues_entry',
-    neues_entry::class,
-);
-rex_yform_manager_dataset::setModelClass(
-    'rex_neues_category',
-    neues_category::class,
-);
-rex_yform_manager_dataset::setModelClass(
-    'rex_neues_author',
-    neues_author::class,
-);
+    rex_yform_manager_dataset::setModelClass(
+        'rex_neues_entry',
+        neues_entry::class,
+    );
+    rex_yform_manager_dataset::setModelClass(
+        'rex_neues_category',
+        neues_category::class,
+    );
+    rex_yform_manager_dataset::setModelClass(
+        'rex_neues_author',
+        neues_author::class,
+    );
 
 }
-
 
 if (rex::isBackend() && 'neues/entry' == rex_be_controller::getCurrentPage() || 'yform/manager/data_edit' == rex_be_controller::getCurrentPage()) {
     rex_extension::register('OUTPUT_FILTER', static function (rex_extension_point $ep) {
