@@ -1,4 +1,5 @@
 neues = News
+neues_title = News
 neues_entry = Entries
 neues_settings = Settings
 neues_lang = Languages
@@ -9,15 +10,30 @@ neues_help = Help
 neues_default_thumbnail = Preview image
 neues_default_author = Author
 
-neues_name = Title
+neues_author_table = 📰 Authors
+neues_entry_category_rel = 📰 Entries 🔀 Categories
+neues_entry_category_table = 📰 Categories
+neues_entry_table = 📰 News Entries
+neues_entry_lang = 📰 Languages
+
+neues_entry_author_id = Author
+neues_name = Headline
+neues_name_notice = Title of the news post
+neues_name_validate_empty = The title of this news post must not be empty.
+neues_category_name_validate_unique = This name is already taken.
 neues_category_title = Category
+neues_category_title_notice = Name of the category, keyword or name of a series of posts.
+neues_category_image = Cover image
 neues_teaser = Teaser
+neues_teaser_notice = A short teaser text or a summary that can be displayed in the event overview.
 neues_description = Content
-neues_image = Poster image
+neues_description_notice = Enter the content of your news post.
+neues_image = Cover image
 neues_images = Gallery
 
-neues_external_url = External URL
-neues_external_url_label = URL title
+neues_external_url = External link
+neues_external_url_notice = If there is more information on another website, enter the address of an external website here, e.g. <code>http://www.example.org/foo-bar/</code>
+neues_external_url_validate_url = Please enter a valid, complete URL (e.g. `https://example.org/`)
 
 neues_createdate = Created on...
 neues_createuser = Created by...
@@ -30,14 +46,44 @@ neues_category_ids = Categories
 neues_prio = Order
 
 neues_status = Published?
+neues_status_notice = Indicates whether this news post should currently be visible (published/scheduled) or is still in the draft stage.
+neues_category_status_notice = Indicates whether this category should currently be visible (published/scheduled) or is still in the draft stage.
 neues_status_online = Published
 neues_status_offline = Offline
 neues_status_draft = Draft
-
 neues_domain_ids = Websites
 neues_date_ids = Entries
 
 neues_language = Language
 neues_language_name = Language
-neues_language_code = Language Code (ISO 639-1)
+neues_language_name_notice = Name of the language
+neues_language_code = Language code (ISO 639-1)
+neues_language_code_notice = Two-letter language code according to ISO standard, e.g.<code>en</code>
 neues_language_entry = Manage entries
+neues_language_entry_notice = Manage linked dates
+neues_domain_ids = Websites
+neues_domain_ids_notice = Here you can specify whether the news should be published on one or more websites within this REDAXO installation.
+neues_date_ids = Entries
+neues_date_id_notice = News posts assigned to this category
+
+neues_editor = Editor
+
+neues_author = Authors
+neues_author_name = Name
+neues_author_nickname = Nickname
+neues_author_text = Description
+neues_author_be_user_id = REDAXO User
+
+# Documentation
+
+neues_docs_a_intro = Introduction
+neues_docs_b_import_export = Import/Export
+neues_docs_c_migration = Migration
+neues_docs_settings = Settings
+neues_docs_neues_entry = Entries
+neues_docs_neues_category = Categories
+neues_docs_neues_author = Authors  
+neues_docs_neues_language = Languages
+neues_docs_url = URL Addon
+neues_docs_rss = RSS Feed
+neues_docs_restful_api = YForm RESTful API

@@ -1,6 +1,6 @@
 neues = Aktuelles
 neues_title = Aktuelles
-neues_entry = Einträge
+neues_entry = Beiträge
 neues_settings = Einstellungen
 neues_lang = Sprachen
 
@@ -11,21 +11,19 @@ neues_default_thumbnail = Vorschau-Bild
 neues_default_author = Autor
 
 neues_author_table = 📰 Autor:innen
-neues_entry_category_rel = 📰 Einträge 🔀 Kategorien
+neues_entry_category_rel = 📰 Beiträge 🔀 Kategorien
 neues_entry_category_table = 📰 Kategorien
-neues_entry_table = 📰 Einträge
+neues_entry_table = 📰 Beiträge
 neues_entry_lang = 📰 Sprachen
 
-neues_entry = Eintrag
 neues_entry_author_id = Autor:in
 neues_name = Überschrift
-neues_name_notice = Titel des News-Beitrags
+neues_name_notice = Titel des Beitrags
 neues_name_validate_empty = Der Titel dieses News-Beitrags darf nicht leer sein.
 neues_category_name_validate_unique = Dieser Name ist bereits vergeben.
 neues_category_title = Kategorie
 neues_category_title_notice = Name der Kategorie, Schlagwort oder Name einer Beitragsreihe.
 neues_category_image = Titelbild
-
 neues_teaser = Teaser
 neues_teaser_notice = Ein kurzer Anreißer-Text oder eine Zusammenfassung, die in der Terminübersicht ausgegeben werden kann.
 neues_description = Inhalt
@@ -36,7 +34,6 @@ neues_images = Galerie
 neues_external_url = Externer Link
 neues_external_url_notice = Gibt es weitere Informationen auf einer anderen Website, dann geben Sie hier die Adresse zu einer externen Website ein, z.B. <code>http://www.example.org/foo-bar/</code>
 neues_external_url_validate_url = Bitte geben Sie eine gültige, vollständige URL ein (z.B. `https://example.org/`)
-neues_external_url_label = Linktext
 
 neues_createdate = Erstellt am...
 neues_createuser = Erstellt von...

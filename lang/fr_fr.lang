@@ -1,0 +1,89 @@
+neues = Actualités
+neues_title = Actualités
+neues_entry = Articles de nouvelles
+neues_settings = Paramètres
+neues_lang = Langues
+
+neues_category = Catégories
+neues_help = Aide
+
+neues_default_thumbnail = Image d'aperçu
+neues_default_author = Auteur
+
+neues_author_table = 📰 Auteurs
+neues_entry_category_rel = 📰 Articles 🔀 Catégories
+neues_entry_category_table = 📰 Catégories
+neues_entry_table = 📰 Articles de nouvelles
+neues_entry_lang = 📰 Langues
+
+neues_entry_author_id = Auteur
+neues_name = Titre
+neues_name_notice = Titre de l'article de nouvelles
+neues_name_validate_empty = Le titre de cet article de nouvelles ne doit pas être vide.
+neues_category_name_validate_unique = Ce nom est déjà pris.
+neues_category_title = Catégorie
+neues_category_title_notice = Nom de la catégorie, mot-clé ou nom d'une série d'articles.
+neues_category_image = Image de couverture
+neues_teaser = Teaser
+neues_teaser_notice = Un court texte d'accroche ou un résumé qui peut être affiché dans l'aperçu des événements.
+neues_description = Contenu
+neues_description_notice = Entrez le contenu de votre article de nouvelles.
+neues_image = Image de couverture
+neues_images = Galerie
+
+neues_external_url = Lien externe
+neues_external_url_notice = S'il y a plus d'informations sur un autre site web, entrez ici l'adresse d'un site web externe, par exemple <code>http://www.example.org/foo-bar/</code>
+neues_external_url_validate_url = Veuillez entrer une URL valide et complète (par exemple `https://example.org/`)
+
+neues_createdate = Créé le...
+neues_createuser = Créé par...
+neues_updatedate = Dernière modification le...
+neues_updateuser = Dernière modification par...
+neues_publishdate = Publié le...
+neues_publishdate_validate_compare_value = La date de publication ne doit pas être vide.
+neues_publishuser = Publié par...
+
+neues_category_ids = Catégorie(s)
+neues_prio = Ordre
+
+neues_status = Publié ?
+neues_status_notice = Indique si cet article de nouvelles doit actuellement être visible (publié/prévu) ou s'il est encore à l'état de brouillon.
+neues_category_status_notice = Indique si cette catégorie doit actuellement être visible (publiée/prévue) ou si elle est encore à l'état de brouillon.
+neues_status_online = Publié
+neues_status_offline = Hors ligne
+neues_status_draft = Brouillon
+
+neues_domain_ids = Sites web
+neues_domain_ids_notice = Ici, vous pouvez déterminer si les nouvelles doivent être publiées sur un ou plusieurs sites web au sein de cette installation REDAXO.
+neues_date_ids = Entrées
+neues_date_id_notice = Articles de nouvelles associés à cette catégorie
+
+neues_language = Langue
+neues_language_name = Langue
+neues_language_name_notice = Nom de la langue
+neues_language_code = Code de langue (ISO 639-1)
+neues_language_code_notice = Code de langue à deux lettres selon la norme ISO, par exemple <code>fr</code>
+neues_language_entry = Gérer les entrées
+neues_language_entry_notice = Gérer les dates liées
+
+neues_editor = Éditeur
+
+neues_author = Auteurs
+neues_author_name = Nom
+neues_author_nickname = Pseudo
+neues_author_text = Description
+neues_author_be_user_id = Utilisateur REDAXO
+
+# Documentation
+
+neues_docs_a_intro = Introduction
+neues_docs_b_import_export = Import/Export
+neues_docs_c_migration = Migration
+neues_docs_settings = Paramètres
+neues_docs_neues_entry = Entrées
+neues_docs_neues_category = Catégories
+neues_docs_neues_author = Auteurs  
+neues_docs_neues_language = Langues
+neues_docs_url = Addon URL
+neues_docs_rss = Flux RSS
+neues_docs_restful_api = API RESTful YForm
