@@ -1,6 +1,6 @@
 # News-Verwaltung für REDAXO 5 (Aktuelles, Pressemitteilungen, Pressestimmen, ...)
 
-![image](https://user-images.githubusercontent.com/3855487/209688259-e64e78f9-cfb2-4c52-a252-4178fb7dab04.png)
+![friendsofredaxo neues](https://github.com/alexplusde/neues/assets/3855487/9baa05e7-17d3-46a2-ad62-36223a896e94)
 
 Mit diesem Addon können News-Beiträge anhand von YForm und YOrm im Backend verwaltet und im Frontend ausgegeben werden. Auf Wunsch auch multidomainfähig und mehrsprachig.
 
