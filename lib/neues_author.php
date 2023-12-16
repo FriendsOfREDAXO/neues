@@ -141,7 +141,7 @@ class neues_author extends \rex_yform_manager_dataset
      */
     public function getBeUserId(): ?int
     {
-        return $this->getValue('be_user_id');
+        return (int) $this->getValue('be_user_id');
     }
 
     /**
@@ -170,6 +170,8 @@ class neues_author extends \rex_yform_manager_dataset
      *
      * Beispiel / Example:
      * $beUser = $author->getBeUser();
+     * 
+     * @api
      */
     public function getBeUser(): ?rex_user
     {

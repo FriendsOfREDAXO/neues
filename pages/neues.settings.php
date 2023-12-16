@@ -7,7 +7,7 @@ $addon = rex_addon::get('neues');
 $form = rex_config_form::factory($addon->getName());
 
 $field = $form->addMediaField('default_thumbnail');
-$field->setPreview(1);
+$field->setPreview(true);
 $field->setTypes('jpg,gif,png');
 $field->setLabel(rex_i18n::msg('neues_default_thumbnail'));
 
