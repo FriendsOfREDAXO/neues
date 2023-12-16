@@ -1,6 +1,6 @@
 <?php
 /**
- * Klasse neues_category
+ * Klasse neues_category.
  *
  * Diese Klasse repräsentiert eine Kategorie in der News-Verwaltung.
  * Sie erbt von der rex_yform_manager_dataset Klasse.
@@ -31,6 +31,7 @@ class neues_category extends \rex_yform_manager_dataset
     {
         return $this->getValue('name');
     }
+
     /**
      * Setzt den Namen der Kategorie.
      * Sets the name of the category.
@@ -45,6 +46,7 @@ class neues_category extends \rex_yform_manager_dataset
         $this->setValue('name', $name);
         return $this;
     }
+
     /**
      * Gibt die Einträge der Kategorie zurück.
      * Returns the entries of the category.
@@ -60,6 +62,7 @@ class neues_category extends \rex_yform_manager_dataset
     {
         return $this->getRelatedDataset('entry_ids');
     }
+
     /**
      * Gibt die URL der Kategorie zurück.
      * Returns the URL of the category.

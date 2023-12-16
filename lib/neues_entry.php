@@ -1,6 +1,6 @@
 <?php
 /**
- * Class neues_entry
+ * Class neues_entry.
  *
  * Diese Klasse repräsentiert einen neuen Eintrag.
  * This class represents a new entry.
@@ -32,6 +32,7 @@ class neues_entry extends \rex_yform_manager_dataset
         $this->setValue('name', $name);
         return $this;
     }
+
     /**
      * @api
      * @return string
@@ -52,6 +53,7 @@ class neues_entry extends \rex_yform_manager_dataset
         $this->setValue('author', $author);
         return $this;
     }
+
     /**
      * @api
      * @return string
@@ -117,7 +119,7 @@ class neues_entry extends \rex_yform_manager_dataset
     /** @api */
     public function getMedia(): ?rex_media
     {
-        if(rex_addon::get('media_manager_resposnive')->isAvailable()) {
+        if (rex_addon::get('media_manager_resposnive')->isAvailable()) {
             return rex_media_plus::get($this->getImage());
         }
         return rex_media::get($this->getImage());
@@ -216,15 +218,15 @@ class neues_entry extends \rex_yform_manager_dataset
         return $this;
     }
 
-    public static function findOnline(int $category_id = null): ?rex_yform_manager_collection
+    public static function findOnline(?int $category_id = null): ?rex_yform_manager_collection
     {
-        if($category_id) {
+        if ($category_id) {
             return self::findByCategory($category_id);
         }
         return self::query()->where('status', 1, '>=')->find();
     }
 
-    public static function findByCategory(int $category_id = null, int $status = 1): ?rex_yform_manager_collection
+    public static function findByCategory(?int $category_id = null, int $status = 1): ?rex_yform_manager_collection
     {
         $query = self::query()->joinRelation('category_ids', 'c')->where('rex_neues_entry.status', $status, '>=')->where('c.id', $category_id);
         return $query->find();
