@@ -1,5 +1,5 @@
 package: neues
-version: '3.2.0'
+version: '3.3.0-dev'
 author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/neues/
 load: late
@@ -30,39 +30,19 @@ pages:
             entry:
                 title: translate:neues_entry
                 icon: rex-icon fa-bullhorn
-                subPath: pages/data_edit.php
-                yform:
-                    table_name: rex_neues_entry
-                    wrapper_class: rex_neues_entry
-                    show_title: false
                 perm: neues[date]
             category:
                 title: translate:neues_category
                 icon: rex-icon fa-folder
-                subPath: pages/data_edit.php
-                yform:
-                    table_name: rex_neues_category
-                    wrapper_class: rex_neues_category
-                    show_title: false
                 perm: neues[category]
             author:
                 title: translate:neues_author
-                perm: neues[author]
                 icon: rex-icon fa-user
-                subPath: pages/data_edit.php
-                yform:
-                    table_name: rex_neues_author
-                    wrapper_class: rex_neues_author
-                    show_title: false
-            date_lang:
+                perm: neues[author]
+            lang:
                 title: translate:neues_lang
-                perm: neues[date_lang]
+                perm: neues[lang]
                 icon: rex-icon fa-flag
-                subPath: pages/data_edit.php
-                yform:
-                    table_name: rex_neues_entry_lang
-                    wrapper_class: rex_neues_entry_lang
-                    show_title: false
             settings:
                 title: translate:neues_settings
                 icon: rex-icon fa-gear
@@ -70,7 +50,6 @@ pages:
                 perm: admin
             docs:
                 title: translate:neues_help
-                subPath: README.md
                 icon: rex-icon fa-info-circle
                 itemclass: pull-right
                 perm: neues[docs]
@@ -79,4 +58,4 @@ default_config:
     default_author: "Redaktion"
     default_thumbnail: ""
     external_url_label: "Zur Website"
-    editor: 'class="###neues-settings-editor###"'
+    editor: 'class="form-control redactor-editor--default"'
