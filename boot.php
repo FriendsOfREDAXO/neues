@@ -14,6 +14,10 @@ if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
         'rex_neues_author',
         neues_author::class,
     );
+    rex_yform_manager_dataset::setModelClass(
+        'rex_neues_entry_lang',
+        neues_entry_lang::class,
+    );
 
 }
 
@@ -81,6 +85,8 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                     'rex_neues_category' => [
                         'id',
                         'name',
+                        'description',
+                        'status',
                     ],
                 ],
             ],
@@ -144,9 +150,10 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
                 $category_ids = array_filter(array_map('intval', explode(',', $a['value'])));
 
                 foreach ($category_ids as $category_id) {
-                    $neues = neues_category::get($category_id);
-                    if ($neues) {
-                        $return[] = '<a href="' . rex_url::backendPage('neues/category', $params) . '">' . $neues->getName() . '</a>';
+                    /* @var $neues_category neues_category */
+                    $neues_category = neues_category::get($category_id);
+                    if ($neues_category) {
+                        $return[] = '<a href="' . rex_url::backendPage('neues/category', $params) . '">' . $neues_category->getName() . '</a>';
                     }
                 }
                 return implode('<br>', $return);
