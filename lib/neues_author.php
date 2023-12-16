@@ -1,6 +1,6 @@
 <?php
 /**
- * Klasse neues_author.
+ * Klasse neues_author
  *
  * Diese Klasse repräsentiert einen Autor in der News-Verwaltung.
  * Sie erbt von der rex_yform_manager_dataset Klasse.
@@ -30,9 +30,9 @@ class neues_author extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function getName(): ?string
+    public function getName() : ?string
     {
-        return $this->getValue('name');
+        return $this->getValue("name");
     }
 
     /**
@@ -47,9 +47,9 @@ class neues_author extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function setName(string $value): self
+    public function setName(string $value) : self
     {
-        $this->setValue('name', $value);
+        $this->setValue("name", $value);
         return $this;
     }
 
@@ -65,9 +65,9 @@ class neues_author extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function getNickname(): ?string
+    public function getNickname() : ?string
     {
-        return $this->getValue('nickname');
+        return $this->getValue("nickname");
     }
 
     /**
@@ -82,9 +82,9 @@ class neues_author extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function setNickname(string $value): self
+    public function setNickname(string $value) : self
     {
-        $this->setValue('nickname', $value);
+        $this->setValue("nickname", $value);
         return $this;
     }
 
@@ -101,14 +101,14 @@ class neues_author extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function getText(bool $asPlaintext = false): ?string
+    public function getText(bool $asPlaintext = false) : ?string
     {
-        if ($asPlaintext) {
-            return strip_tags($this->getValue('text'));
+        if($asPlaintext) {
+            return strip_tags($this->getValue("text"));
         }
-        return $this->getValue('text');
+        return $this->getValue("text");
     }
-
+    
     /**
      * Setzt den Text des Autors.
      * Sets the text of the author.
@@ -121,9 +121,9 @@ class neues_author extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function setText(string $value): self
+    public function setText(string $value) : self
     {
-        $this->setValue('text', $value);
+        $this->setValue("text", $value);
         return $this;
     }
 
@@ -139,9 +139,9 @@ class neues_author extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function getBeUserId(): ?int
+    public function getBeUserId() : ?int
     {
-        return $this->getValue('be_user_id');
+        return $this->getValue("be_user_id");
     }
 
     /**
@@ -156,9 +156,9 @@ class neues_author extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function setBeUserId(int $value): self
+    public function setBeUserId(int $value) : self
     {
-        $this->setValue('be_user_id', $value);
+        $this->setValue("be_user_id", $value);
         return $this;
     }
 
@@ -171,7 +171,7 @@ class neues_author extends \rex_yform_manager_dataset
      * Beispiel / Example:
      * $beUser = $author->getBeUser();
      */
-    public function getBeUser(): ?rex_user
+    public function getBeUser() : ?rex_user
     {
         return rex_user::get($this->getBeUserId());
     }
