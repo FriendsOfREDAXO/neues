@@ -26,151 +26,6 @@ Im REDAXO-Installer das Addon `neues` herunterladen und installieren. Anschließ
 
 ![image](https://user-images.githubusercontent.com/3855487/209792457-b6f824dc-7fd8-4295-a7c7-2eab046d19c7.png)
 
-
-## Nutzung im Frontend
-
-### Die Klasse `neues_entry`
-
-Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_neues_entry` zu.
-
-#### Alle Einträge erhalten
-
-```php
-$entries = neues_entry::query()->find(); // YOrm-Standard-Methode zum Finden von Einträgen, lässt sich mit where(), Limit(), etc. einschränken und Filtern.
-$entries = neues_entry::findOnline(); // Alle Online-Einträge
-$entries = neues_entry::findByCategory($category_id [, $status]) // Alle Einträge einer Kategorie
-```
-
-#### Beispiel-Ausgabe einer News
-
-```php
-$entry = neues_entry::get(3); // News mit der id=3
-// dump($entry);
-
-echo $entry->getName();
-echo $entry->getAuthor();
-echo $entry->getDomain();
-echo $entry->getTeaser();
-echo $entry->getImage();
-echo $entry->getMedia();
-echo $entry->getDescriptionAsPlaintext();
-echo $entry->getDescription();
-echo $entry->getExternalUrl();
-echo $entry->getExternalLabel();
-echo $entry->getPublishDate();
-echo $entry->getPublishDateTime();
-echo $entry->getFormattedPublishDate($format); // IntlDateFormatter::FULL
-echo $entry->getFormattedPublishDateTime($format); // [IntlDateFormatter::FULL, IntlDateFormatter::SHORT]
-echo $entry->getStatus();
-echo $entry->getUrl(); // opt. URL-Schlüssel angeben
-```
-
-```php
-$categories = neues_entry::get(3)->getCategories();
-// dump($categories);
-
-foreach($categories as $category) {
-// ...
-}
-```
-
-### Die Klasse `neues_category`
-
-Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_neues_category` zu.
-
-#### Beispiel-Ausgabe einer Kategorie
-
-```php
-$category = neues_category::get(3); // News-Kategorie mit der id=3
-// dump($category);
-
-echo $category->getName();
-
-$entries =  $category->getEntries();
-
-foreach($entries as $entry) {
-    echo $entry->getName();
-// ...
-}
-```
-
-## URL2-Profile
-
-### News-Einträge mit einer Domain
-
-Mit der Methode `getUrl()` kann die URL des aktuellen News-Eintrags geholt werden. Dazu muss URL2 installiert sein und ein Profil mit dem Schlüssel `neues-entry-id` angelegt sein.
-
-Beispiel:
-
-![sunstrom de_redaxo_index php_page=url_generator_profiles func=edit id=1 list=5fa6c979(Surface Pro 7)](https://user-images.githubusercontent.com/3855487/209814035-f194a7d6-ae9a-463c-979a-7d8b542d239c.png)
-
-### News-Einträge im Kontext von YRewrite und Multidomains / mehreren Sprachen
-
-Die Methode `getUrl("neues-entry-id-domain-x")` erlaubt optional als Parameter anstelle von `neues-entry-id`. Somit lassen sich weitere Profile mit Filter je Domain erstellen und diese mit einem eigenen definitierten Schlüssel übergeben.
-
-## Nutzung im Backend: Die Terminverwaltung
-
-## RESTful API
-
-Die [Rest-API](https://github.com/yakamara/redaxo_yform/blob/master/docs/05_rest.md) ist über das REST-Plugin von YForm umgesetzt.
-
-### Einrichtung
-
-Zunächst das REST-Plugin von YForm installieren und einen Token einrichten. Den Token auf die jeweiligen Endpunkte legen:
-
-```
-    /neues/3/entry
-    /neues/3/category
-    /neues/3/location
-```
-
-### Endpunkt `entry`
-
-**Auslesen:** GET `example.org/rest/neues/3/date/?token=###TOKEN###`
-
-**Auslesen einzelner Termin**  GET `example.org/rest/neues/3//entry/7/?token=###TOKEN###` Eintrag der `id=7`
-
-### Endpunkt `category`
-
-**Auslesen:** GET `example.org/rest/neues/3/category/?token=###TOKEN###`
-
-**Auslesen einzelne Kategorie**  GET `example.org/rest/neues/3/category/7/?token=###TOKEN###` Eintrag der `id=7`
-
-### Endpunkt `location`
-
-**Auslesen:** GET `example.org/rest/neues/3/location/?token=###TOKEN###`
-
-**Auslesen einzelner Standort**  GET `example.org/rest/neues/3/location/7/?token=###TOKEN###` Eintrag  der `id=7`
-
-## Import
-
-### Import via CSV
-
-Neues basiert auf YForm. Importiere deine Einträge bequem per CSV, wie du es von YForm kennst.
-
-## Export
-
-### Export via CSV
-
-Neues basiert auf YForm. Exportiere deine Einträge bequem per CSV, wie du es von YForm kennst.
-
-
-## Editor für Textfeld "Inhalt" einbinden
-
-- Installiere den Editor deiner Wahl (zum Beispiel *redactor*)
-- lege im Editor dein Wunschprofil an
-- nach dem Speichern erscheint die Profilübersicht in *Redactor*
-- hier den Wert kopieren, der in der Spalte `Selektor` steht
-- im Hauptmenü unter `Aktuelles` >`Einstellungen` bei `Editor` den kopierten Eintrag einfügen - achte darauf, dass der Name ohne den Punkt davor eingefügt wird
-
-**Beispiel**  
-Im Redactor wurde das Profil mit dem Namen *Mein-Redactor-Profil* angelegt. Dann steht bei `Selector`: `.redactor-editor--Mein-Redactor-Profil`  
-In den Addon-Einstellungen von diesem Addon hier, muss dann bei Editor der Eintrag so aussehen: `class="redactor-editor--Mein-Redactor-Profil"`
-
-Für den Editor CK5 ist es: `class="form-control cke5-editor" data-profile="default" data-lang="de"`
-
-
-
 ## Lizenz
 
 MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/neues/blob/master/LICENSE)  
@@ -180,6 +35,10 @@ MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/neues/blob/master/L
 **Alexander Walther**  
 <http://www.alexplus.de>
 <https://github.com/alexplusde>
+
+**Paul Götz**  
+<http://www.alexplus.de>
+<https://github.com/schorschy>
 
 **Projekt-Lead**  
 [Alexander Walther](https://github.com/alexplusde)
