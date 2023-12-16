@@ -1,4 +1,5 @@
 <?php
+echo rex_view::title(rex_addon::get('neues')->getProperty('page')['title']);
 
 $addon = rex_addon::get('neues');
 
