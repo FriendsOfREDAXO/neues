@@ -56,6 +56,6 @@ pages:
 
 default_config:
     default_author: "Redaktion"
-    default_thumbnail: ""
+    default_thumbnail: "neues_entry_fallback_iamge.png"
     external_url_label: "Zur Website"
     editor: 'class="form-control redactor-editor--default"'
