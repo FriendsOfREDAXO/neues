@@ -15,7 +15,6 @@ neues_entry_category_table = 📰 Categorías
 neues_entry_table = 📰 Entradas
 neues_entry_lang = 📰 Idiomas
 
-neues_entry = Entrada
 neues_entry_author_id = Autor
 neues_name = Título
 neues_name_notice = Título de la entrada de noticias
@@ -23,6 +22,7 @@ neues_name_validate_empty = El título de esta entrada de noticias no puede esta
 neues_category_name_validate_unique = Este nombre ya está en uso.
 neues_category_title = Categoría
 neues_category_title_notice = Nombre de la categoría, palabra clave o nombre de una serie de entradas.
+neues_category_image = Titelbild
 neues_teaser = Resumen
 neues_teaser_notice = Un breve texto de resumen o un resumen que se puede mostrar en la vista general de eventos.
 neues_description = Contenido
@@ -33,7 +33,6 @@ neues_images = Galería
 neues_external_url = Enlace externo
 neues_external_url_notice = Si hay más información en otro sitio web, ingrese aquí la dirección de un sitio web externo, por ejemplo <code>http://www.example.org/foo-bar/</code>
 neues_external_url_validate_url = Por favor, introduzca una URL válida y completa (por ejemplo, `https://example.org/`)
-neues_external_url_label = Texto del enlace
 
 neues_createdate = Creado el...
 neues_createuser = Creado por...
@@ -73,3 +72,17 @@ neues_author_name = Nombre
 neues_author_nickname = Apodo
 neues_author_text = Descripción
 neues_author_be_user_id = Usuario de REDAXO
+
+# Doku
+
+neues_docs_a_intro = Einleitung
+neues_docs_b_import_export = Import/Export
+neues_docs_c_migration = Migration
+neues_docs_settings = Einstellungen
+neues_docs_neues_entry = Einträge
+neues_docs_neues_category = Kategorien
+neues_docs_neues_author = Autor:innen  
+neues_docs_neues_language = Sprachen
+neues_docs_url = URL-Adon
+neues_docs_rss = RSS-Feed
+neues_docs_restful_api = YForm RESTful API

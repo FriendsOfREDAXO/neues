@@ -1,0 +1,89 @@
+neues = Notizie
+neues_title = Notizie
+neues_entry = Articoli di notizie
+neues_settings = Impostazioni
+neues_lang = Lingue
+
+neues_category = Categorie
+neues_help = Aiuto
+
+neues_default_thumbnail = Immagine di anteprima
+neues_default_author = Autore
+
+neues_author_table = 📰 Autori
+neues_entry_category_rel = 📰 Articoli 🔀 Categorie
+neues_entry_category_table = 📰 Categorie
+neues_entry_table = 📰 Articoli di notizie
+neues_entry_lang = 📰 Lingue
+
+neues_entry_author_id = Autore
+neues_name = Titolo
+neues_name_notice = Titolo dell'articolo di notizie
+neues_name_validate_empty = Il titolo di questo articolo di notizie non può essere vuoto.
+neues_category_name_validate_unique = Questo nome è già stato preso.
+neues_category_title = Categoria
+neues_category_title_notice = Nome della categoria, parola chiave o nome di una serie di articoli.
+neues_category_image = Immagine di copertina
+neues_teaser = Anteprima
+neues_teaser_notice = Un breve testo di anteprima o un riassunto che può essere visualizzato nell'anteprima degli eventi.
+neues_description = Contenuto
+neues_description_notice = Inserisci il contenuto del tuo articolo di notizie.
+neues_image = Immagine di copertina
+neues_images = Galleria
+
+neues_external_url = Link esterno
+neues_external_url_notice = Se ci sono ulteriori informazioni su un altro sito web, inserisci qui l'indirizzo di un sito web esterno, ad esempio <code>http://www.example.org/foo-bar/</code>
+neues_external_url_validate_url = Per favore, inserisci un URL valido e completo (ad esempio `https://example.org/`)
+
+neues_createdate = Creato il...
+neues_createuser = Creato da...
+neues_updatedate = Ultima modifica il...
+neues_updateuser = Ultima modifica da...
+neues_publishdate = Pubblicato il...
+neues_publishdate_validate_compare_value = La data di pubblicazione non può essere vuota.
+neues_publishuser = Pubblicato da...
+
+neues_category_ids = Categoria(e)
+neues_prio = Ordine
+
+neues_status = Pubblicato?
+neues_status_notice = Indica se questo articolo di notizie dovrebbe essere attualmente visibile (pubblicato/pianificato) o se è ancora in fase di bozza.
+neues_category_status_notice = Indica se questa categoria dovrebbe essere attualmente visibile (pubblicata/pianificata) o se è ancora in fase di bozza.
+neues_status_online = Pubblicato
+neues_status_offline = Offline
+neues_status_draft = Bozza
+
+neues_domain_ids = Siti web
+neues_domain_ids_notice = Qui puoi decidere se le notizie devono essere pubblicate su uno o più siti web all'interno di questa installazione REDAXO.
+neues_date_ids = Voci
+neues_date_id_notice = Articoli di notizie associati a questa categoria
+
+neues_language = Lingua
+neues_language_name = Lingua
+neues_language_name_notice = Nome della lingua
+neues_language_code = Codice della lingua (ISO 639-1)
+neues_language_code_notice = Codice della lingua a due lettere secondo lo standard ISO, ad esempio <code>it</code>
+neues_language_entry = Gestisci le voci
+neues_language_entry_notice = Gestisci le date collegate
+
+neues_editor = Editor
+
+neues_author = Autori
+neues_author_name = Nome
+neues_author_nickname = Soprannome
+neues_author_text = Descrizione
+neues_author_be_user_id = Utente REDAXO
+
+# Documentazione
+
+neues_docs_a_intro = Introduzione
+neues_docs_b_import_export = Import/Export
+neues_docs_c_migration = Migrazione
+neues_docs_settings = Impostazioni
+neues_docs_neues_entry = Voci
+neues_docs_neues_category = Categorie
+neues_docs_neues_author = Autori  
+neues_docs_neues_language = Lingue
+neues_docs_url = Addon URL
+neues_docs_rss = Feed RSS
+neues_docs_restful_api = YForm API RESTful

@@ -15,7 +15,6 @@ neues_entry_category_table = 📰 Kategorier
 neues_entry_table = 📰 Inlägg
 neues_entry_lang = 📰 Språk
 
-neues_entry = Inlägg
 neues_entry_author_id = Författare
 neues_name = Rubrik
 neues_name_notice = Titel på nyhetsinlägget
@@ -23,6 +22,7 @@ neues_name_validate_empty = Titeln på detta nyhetsinlägg får inte vara tom.
 neues_category_name_validate_unique = Detta namn är redan taget.
 neues_category_title = Kategori
 neues_category_title_notice = Namn på kategori, nyckelord eller namn på en serie inlägg.
+neues_category_image = Titelbild
 neues_teaser = Teaser
 neues_teaser_notice = En kort teaser-text eller en sammanfattning som kan visas i händelseöversikten.
 neues_description = Innehåll
@@ -33,7 +33,6 @@ neues_images = Galleri
 neues_external_url = Extern länk
 neues_external_url_notice = Om det finns mer information på en annan webbplats, ange här adressen till en extern webbplats, t.ex. <code>http://www.example.org/foo-bar/</code>
 neues_external_url_validate_url = Ange en giltig, fullständig URL (t.ex. `https://example.org/`)
-neues_external_url_label = Länktext
 
 neues_createdate = Skapad den...
 neues_createuser = Skapad av...
@@ -73,3 +72,17 @@ neues_author_name = Namn
 neues_author_nickname = Smeknamn
 neues_author_text = Beskrivning
 neues_author_be_user_id = REDAXO-användare
+
+# Doku
+
+neues_docs_a_intro = Einleitung
+neues_docs_b_import_export = Import/Export
+neues_docs_c_migration = Migration
+neues_docs_settings = Einstellungen
+neues_docs_neues_entry = Einträge
+neues_docs_neues_category = Kategorien
+neues_docs_neues_author = Autor:innen  
+neues_docs_neues_language = Sprachen
+neues_docs_url = URL-Adon
+neues_docs_rss = RSS-Feed
+neues_docs_restful_api = YForm RESTful API
