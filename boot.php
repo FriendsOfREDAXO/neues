@@ -33,7 +33,7 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
     /* YForm Rest API */
     $rex_neues_entry_route = new \rex_yform_rest_route(
         [
-            'path' => '/neues/3/date/',
+            'path' => '/neues/4/date/',
             'auth' => '\rex_yform_rest_auth_token::checkToken',
             'type' => \neues_entry::class,
             'query' => \neues_entry::query(),
@@ -41,23 +41,56 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                 'fields' => [
                     'rex_neues_entry' => [
                         'id',
-                        'name',
-                        'description',
-                        'images',
                         'status',
+                        'name',
+                        'teaser',
+                        'description',
+                        'domain_ids',
+                        'lang_id',
+                        'publishdate',
+                        'author_id',
+                        'url',
+                        'image',
+                        'images',
+                        'createdate',
+                        'createuser',
+                        'updatedate',
+                        'updateuser',
                     ],
                     'rex_neues_category' => [
                         'id',
                         'name',
+                        'image',
+                        'status',
+                    ],
+                    'rex_neues_author' => [
+                        'id',
+                        'name',
+                        'nickname',
+                        'text',
+                        'image',
+                        'be_user_id',
                     ],
                 ],
             ],
             'post' => [
                 'fields' => [
                     'rex_neues_entry' => [
+                        'status',
                         'name',
+                        'teaser',
                         'description',
+                        'domain_ids',
+                        'lang_id',
+                        'publishdate',
+                        'author_id',
+                        'url',
+                        'image',
                         'images',
+                        'createdate',
+                        'createuser',
+                        'updatedate',
+                        'updateuser',
                     ],
                 ],
             ],
@@ -76,7 +109,7 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
     /* YForm Rest API */
     $rex_neues_category_route = new \rex_yform_rest_route(
         [
-            'path' => '/v0.dev/neues/category/',
+            'path' => '/neues/4/category/',
             'auth' => '\rex_yform_rest_auth_token::checkToken',
             'type' => \neues_category::class,
             'query' => \neues_category::query(),
@@ -85,7 +118,7 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                     'rex_neues_category' => [
                         'id',
                         'name',
-                        'description',
+                        'image',
                         'status',
                     ],
                 ],
@@ -94,6 +127,8 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                 'fields' => [
                     'rex_neues_category' => [
                         'name',
+                        'image',
+                        'status',
                     ],
                 ],
             ],
