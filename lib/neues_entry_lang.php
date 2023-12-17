@@ -23,9 +23,9 @@ class neues_entry_lang extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function getEntries() : ?rex_yform_manager_collection
+    public function getEntries(): ?rex_yform_manager_collection
     {
-        return $this->getRelatedCollection("entry");
+        return $this->getRelatedCollection('entry');
     }
 
     /**
@@ -39,9 +39,9 @@ class neues_entry_lang extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function getCode() : ?string
+    public function getCode(): ?string
     {
-        return $this->getValue("code");
+        return $this->getValue('code');
     }
 
     /**
@@ -56,9 +56,9 @@ class neues_entry_lang extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function setCode(string $value) : self
+    public function setCode(string $value): self
     {
-        $this->setValue("code", $value);
+        $this->setValue('code', $value);
         return $this;
     }
 
@@ -73,9 +73,9 @@ class neues_entry_lang extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function getName() : string
+    public function getName(): string
     {
-        return $this->getValue("name");
+        return $this->getValue('name');
     }
 
     /**
@@ -90,9 +90,9 @@ class neues_entry_lang extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function setName(string $value) : self
+    public function setName(string $value): self
     {
-        $this->setValue("name", $value);
+        $this->setValue('name', $value);
         return $this;
     }
 }

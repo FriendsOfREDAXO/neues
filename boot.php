@@ -150,7 +150,7 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
                 $category_ids = array_filter(array_map('intval', explode(',', $a['value'])));
 
                 foreach ($category_ids as $category_id) {
-                    /* @var $neues_category neues_category */
+                    /** @var neues_category $neues_category */
                     $neues_category = neues_category::get($category_id);
                     if ($neues_category) {
                         $return[] = '<a href="' . rex_url::backendPage('neues/category', $params) . '">' . $neues_category->getName() . '</a>';

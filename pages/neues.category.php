@@ -24,7 +24,6 @@ if ($wrapper = $currentPage->getItemAttr('wrapper_class', '')) {
     echo "<div class=\"$wrapper\">";
 }
 
-
 include rex_path::plugin('yform', 'manager', 'pages/data_edit.php');
 
 if ($wrapper) {
