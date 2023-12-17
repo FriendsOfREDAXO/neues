@@ -25,7 +25,7 @@ if (!$cronjob) {
 }
 
 /* URL-Profile installieren */
-if (rex_config::get('neues', 'url_profile', false) === false) {
+if (false === rex_config::get('neues', 'url_profile', false)) {
 
     $rex_neues_category = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_url_generator_profile WHERE `table_name` = '1_xxx_rex_neues_category'"));
     if (!$rex_neues_category) {
