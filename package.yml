@@ -59,3 +59,4 @@ default_config:
     default_thumbnail: "neues_entry_fallback_iamge.png"
     external_url_label: "Zur Website"
     editor: 'class="form-control redactor-editor--default"'
+    url_profile: false

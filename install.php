@@ -25,13 +25,18 @@ if (!$cronjob) {
 }
 
 /* URL-Profile installieren */
-$rex_neues_category = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_url_generator_profile WHERE `table_name` = '1_xxx_rex_neues_category'"));
-if (!$rex_neues_category) {
-    $query = rex_file::get(rex_path::addon('neues', 'install/rex_url_profile_neues_category.sql'));
-    rex_sql::factory()->setQuery($query);
-}
-$rex_neues_entry = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_url_generator_profile WHERE `table_name` = '1_xxx_rex_neues_entry'"));
-if (!$rex_neues_entry) {
-    $query = rex_file::get(rex_path::addon('neues', 'install/rex_url_profile_neues_entry.sql'));
-    rex_sql::factory()->setQuery($query);
+if (rex_config::get('neues', 'url_profile', false) === false) {
+
+    $rex_neues_category = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_url_generator_profile WHERE `table_name` = '1_xxx_rex_neues_category'"));
+    if (!$rex_neues_category) {
+        $query = rex_file::get(rex_path::addon('neues', 'install/rex_url_profile_neues_category.sql'));
+        rex_sql::factory()->setQuery($query);
+    }
+    $rex_neues_entry = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_url_generator_profile WHERE `table_name` = '1_xxx_rex_neues_entry'"));
+    if (!$rex_neues_entry) {
+        $query = rex_file::get(rex_path::addon('neues', 'install/rex_url_profile_neues_entry.sql'));
+        rex_sql::factory()->setQuery($query);
+    }
+    /* URL-Profile wurden bereits einmal installiert, daher nicht nochmals installieren und Entwickler-Einstellungen respektieren */
+    rex_config::set('neues', 'url_profile', true);
 }
