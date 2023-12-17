@@ -49,8 +49,9 @@ neues_status = Publicerad?
 neues_status_notice = Anger om detta nyhetsinlägg ska vara synligt just nu (publicerat/schemalagt) eller om det fortfarande är i utkaststadiet.
 neues_category_status_notice = Anger om denna kategori ska vara synlig just nu (publicerat/schemalagt) eller om det fortfarande är i utkaststadiet.
 neues_status_online = Publicerad
-neues_status_offline = Offline
+neues_status_planned = Planerad
 neues_status_draft = Utkast
+neues_status_deleted = Kasserad
 
 neues_domain_ids = Webbplatser
 neues_domain_ids_notice = Här kan du bestämma om nyheterna ska publiceras på bara en eller flera webbplatser inom denna REDAXO-installation.
@@ -75,14 +76,20 @@ neues_author_be_user_id = REDAXO-användare
 
 # Doku
 
-neues_docs_a_intro = Einleitung
+neues_docs_a_intro = Introduktion
 neues_docs_b_import_export = Import/Export
 neues_docs_c_migration = Migration
-neues_docs_settings = Einstellungen
-neues_docs_neues_entry = Einträge
-neues_docs_neues_category = Kategorien
-neues_docs_neues_author = Autor:innen  
-neues_docs_neues_language = Sprachen
-neues_docs_url = URL-Adon
-neues_docs_rss = RSS-Feed
+neues_docs_settings = Inställningar
+neues_docs_neues_entry = Inlägg
+neues_docs_neues_category = Kategorier
+neues_docs_neues_author = Författare
+neues_docs_neues_language = Språk
+neues_docs_url = URL-Addon
+neues_docs_rss = RSS-flöde
 neues_docs_restful_api = YForm RESTful API
+
+# Cronjob
+
+neues_entry_publish_success = %s inlägg har publicerats framgångsrikt.
+neues_entry_publish_error = %s inlägg kunde inte publiceras.
+neues_entry_publish_cronjob = Publicera planerade inlägg.
