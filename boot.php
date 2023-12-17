@@ -55,7 +55,7 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                         'createdate',
                         'createuser',
                         'updatedate',
-                        'updateuser'
+                        'updateuser',
                     ],
                     'rex_neues_category' => [
                         'id',
@@ -69,7 +69,7 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                         'nickname',
                         'text',
                         'image',
-                        'be_user_id'
+                        'be_user_id',
                     ],
                 ],
             ],
@@ -90,7 +90,7 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                         'createdate',
                         'createuser',
                         'updatedate',
-                        'updateuser'
+                        'updateuser',
                     ],
                 ],
             ],
@@ -144,7 +144,6 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
 
     \rex_yform_rest::addRoute($rex_neues_category_route);
 }
-
 
 rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
     if ('rex_neues_entry' == $ep->getParam('table')->getTableName()) {
