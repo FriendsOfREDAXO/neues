@@ -170,7 +170,7 @@ class neues_author extends \rex_yform_manager_dataset
      *
      * Beispiel / Example:
      * $beUser = $author->getBeUser();
-     * 
+     *
      * @api
      */
     public function getBeUser(): ?rex_user

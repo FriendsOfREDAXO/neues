@@ -50,8 +50,9 @@ neues_status = Pubblicato?
 neues_status_notice = Indica se questo articolo di notizie dovrebbe essere attualmente visibile (pubblicato/pianificato) o se è ancora in fase di bozza.
 neues_category_status_notice = Indica se questa categoria dovrebbe essere attualmente visibile (pubblicata/pianificata) o se è ancora in fase di bozza.
 neues_status_online = Pubblicato
-neues_status_offline = Offline
+neues_status_planned = Pianificato
 neues_status_draft = Bozza
+neues_status_deleted = Scartato
 
 neues_domain_ids = Siti web
 neues_domain_ids_notice = Qui puoi decidere se le notizie devono essere pubblicate su uno o più siti web all'interno di questa installazione REDAXO.
@@ -87,3 +88,9 @@ neues_docs_neues_language = Lingue
 neues_docs_url = Addon URL
 neues_docs_rss = Feed RSS
 neues_docs_restful_api = YForm API RESTful
+
+# Cronjob
+
+neues_entry_publish_success = %s articoli sono stati pubblicati con successo.
+neues_entry_publish_error = %s articoli non sono stati pubblicati.
+neues_entry_publish_cronjob = Pubblica articoli pianificati. (Corrente)

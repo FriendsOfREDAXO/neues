@@ -40,7 +40,7 @@ class neues_category extends \rex_yform_manager_dataset
      *
      * Beispiel / Example:
      * $category->setName('Neuer Name');
-     * 
+     *
      * @api
      */
     public function setName(string $name): self

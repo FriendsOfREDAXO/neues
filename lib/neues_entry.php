@@ -26,6 +26,7 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return $this->getValue('name');
     }
+
     /**
      * Setzt den Namen des Eintrags.
      * Sets the name of the entry.
@@ -43,6 +44,7 @@ class neues_entry extends \rex_yform_manager_dataset
         $this->setValue('name', $name);
         return $this;
     }
+
     /**
      * Gibt den Autor des Eintrags zurück.
      * Returns the author of the entry.
@@ -56,7 +58,7 @@ class neues_entry extends \rex_yform_manager_dataset
      */
     public function getAuthor(): ?neues_author
     {
-        if($this->getRelatedDataset('author')) {
+        if ($this->getRelatedDataset('author')) {
             return neues_author::get($this->getRelatedDataset('author')->getId());
         }
         return null;
@@ -125,7 +127,9 @@ class neues_entry extends \rex_yform_manager_dataset
     public function getCategories(): ?rex_yform_manager_collection
     {
         return $this->getRelatedCollection('category_ids');
-    }    /**
+    }
+
+    /**
      * Gibt das Bild des Eintrags zurück.
      * Returns the image of the entry.
      *
@@ -197,6 +201,7 @@ class neues_entry extends \rex_yform_manager_dataset
         $this->setValue('images', implode(',', $images));
         return $this;
     }
+
     /**
      * Gibt das Medium des Eintrags zurück.
      * Returns the media of the entry.
@@ -269,6 +274,7 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return $this->getValue('description');
     }
+
     /**
      * Setzt die Beschreibung des Eintrags.
      * Sets the description of the entry.
@@ -320,6 +326,7 @@ class neues_entry extends \rex_yform_manager_dataset
         $this->setValue('url', $url);
         return $this;
     }
+
     /**
      * Gibt das Veröffentlichungsdatum des Eintrags zurück.
      * Returns the publish date of the entry.
@@ -387,6 +394,7 @@ class neues_entry extends \rex_yform_manager_dataset
     {
         return rex_formatter::intlDateTime($this->getPublishDate(), $format);
     }
+
     /**
      * Gibt den Status des Eintrags zurück.
      * Returns the status of the entry.
@@ -420,6 +428,7 @@ class neues_entry extends \rex_yform_manager_dataset
         $this->setValue('status', $status);
         return $this;
     }
+
     /**
      * Findet Online-Einträge. Wenn eine Kategorie-ID angegeben ist, werden nur Einträge aus dieser Kategorie zurückgegeben.
      * Finds online entries. If a category ID is provided, only entries from this category are returned.
