@@ -1,5 +1,5 @@
 package: neues
-version: '4.0.0-beta1'
+version: '4.0.0'
 author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/neues/
 load: late
@@ -9,9 +9,8 @@ requires:
         version: '>7.3,<9'
     redaxo: ^5.12
     packages:
-        yform: '^4,<5'
+        yform: '^4'
         yform_field: '^2.3.0'
-
 
 page:
     title: translate:neues
