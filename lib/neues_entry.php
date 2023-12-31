@@ -58,8 +58,8 @@ class neues_entry extends \rex_yform_manager_dataset
      */
     public function getAuthor(): ?neues_author
     {
-        if ($this->getRelatedDataset('author')) {
-            return neues_author::get($this->getRelatedDataset('author')->getId());
+        if ($this->getRelatedDataset('author_id')) {
+            return neues_author::get($this->getRelatedDataset('author_id')->getId());
         }
         return null;
     }
