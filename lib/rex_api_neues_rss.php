@@ -29,9 +29,9 @@ class rex_api_neues_rss extends rex_api_function
         exit;
     }
 
-    public static function getRssFeed($collection, $domain, $lang, $filename)
+    public static function getRssFeed($collection, $domain, $lang, $description, $filename)
     {
-        return self::createRssFeed($collection, $domain, $lang, $filename);
+        return self::createRssFeed($collection, $domain, $lang, $description, $filename);
     }
 
     public static function createRssFeed($collection, $domain, $lang, $description, $filename = 'rss.neues.xml')
@@ -43,8 +43,8 @@ class rex_api_neues_rss extends rex_api_function
         $channel->addChild('description', $description);
         $channel->addChild('link', rex::getServer());
 
-        if ($lang) {
-            $channel->addChild('language', $lang);
+        if ($lang && $lang > 0) {
+            $channel->addChild('language', rex_clang::get($lang)->getCode());
         }
 
         foreach ($collection as $entry) {
