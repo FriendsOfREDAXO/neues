@@ -50,6 +50,7 @@ neues_status = Veröffentlicht?
 neues_status_notice = Gibt an, ob dieser News-Beitrag aktuell sichtbar sein soll (veröffentlicht/geplant) oder sich noch im Entwurfsstadium befindet.
 neues_category_status_notice = Gibt an, ob diese Kategorie aktuell sichtbar sein soll (veröffentlicht/geplant) oder sich noch im Entwurfsstadium befindet.
 neues_status_online = Veröffentlicht
+neues_status_offline = Offline
 neues_status_planned = Geplant
 neues_status_draft = Entwurf
 neues_status_deleted = Verworfen
