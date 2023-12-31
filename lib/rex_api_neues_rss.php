@@ -26,15 +26,16 @@ class rex_api_neues_rss extends rex_api_function
 
         // RSS-Feed generieren und ausgeben
         echo self::getRssFeed($collection, $domain_id, $lang_id, $description, $filename);
-        die();
+        exit;
     }
 
     public static function getRssFeed($collection, $domain, $lang, $description, $filename)
     {
         return self::createRssFeed($collection, $domain, $lang, $description, $filename);
     }
-    
-    public static function joinUrls($url1, $url2) {
+
+    public static function joinUrls($url1, $url2)
+    {
         return rtrim($url1, '/') . '/' . ltrim($url2, '/');
     }
 
