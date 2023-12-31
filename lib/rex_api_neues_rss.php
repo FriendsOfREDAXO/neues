@@ -12,9 +12,12 @@ class rex_api_neues_rss extends rex_api_function
 
         if ($category_id && $category = neues_category::get($category_id)) {
             $collection = neues_entry::findOnline($category_id);
-            $filename = 'rss.neues.' . rex_string::normalize($category->getName()) . '.xml';
+            $categoryname = rex_string::normalize($category->getName());
+            $filename = 'rss.neues.' . $categoryname . '.xml';
+            $description = 'RSS-FEED: ' . rex::getServerName() . ' | ' . $categoryname;
         } else {
             $collection = neues_entry::findOnline();
+            $description = 'RSS-FEED: ' . rex::getServerName();
             $filename = 'rss.neues.xml';
         }
 
@@ -22,7 +25,7 @@ class rex_api_neues_rss extends rex_api_function
         rex_response::sendContentType('application/xml; charset=utf-8');
 
         // RSS-Feed generieren und ausgeben
-        echo self::getRssFeed($collection, $domain_id, $lang_id, $filename);
+        echo self::getRssFeed($collection, $domain_id, $lang_id, $description, $filename);
         exit;
     }
 
@@ -31,13 +34,13 @@ class rex_api_neues_rss extends rex_api_function
         return self::createRssFeed($collection, $domain, $lang, $filename);
     }
 
-    public static function createRssFeed($collection, $domain, $lang, $filename = 'rss.neues.xml')
+    public static function createRssFeed($collection, $domain, $lang, $description, $filename = 'rss.neues.xml')
     {
         $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"></rss>');
 
         $channel = $xml->addChild('channel');
         $channel->addChild('title', rex::getServerName());
-        // $channel->addChild('description', $description);
+        $channel->addChild('description', $description);
         $channel->addChild('link', rex::getServer());
 
         if ($lang) {
