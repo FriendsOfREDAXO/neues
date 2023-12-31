@@ -79,6 +79,7 @@ neues_author_be_user_id = REDAXO User
 neues_docs_a_intro = Introduction
 neues_docs_b_import_export = Import/Export
 neues_docs_c_migration = Migration
+neues_docs_d_example = Example
 neues_docs_settings = Settings
 neues_docs_neues_entry = Entries
 neues_docs_neues_category = Categories
