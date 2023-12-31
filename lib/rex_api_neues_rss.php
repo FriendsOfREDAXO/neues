@@ -26,12 +26,16 @@ class rex_api_neues_rss extends rex_api_function
 
         // RSS-Feed generieren und ausgeben
         echo self::getRssFeed($collection, $domain_id, $lang_id, $description, $filename);
-        exit;
+        die();
     }
 
     public static function getRssFeed($collection, $domain, $lang, $description, $filename)
     {
         return self::createRssFeed($collection, $domain, $lang, $description, $filename);
+    }
+    
+    public static function joinUrls($url1, $url2) {
+        return rtrim($url1, '/') . '/' . ltrim($url2, '/');
     }
 
     public static function createRssFeed($collection, $domain, $lang, $description, $filename = 'rss.neues.xml')
@@ -51,9 +55,9 @@ class rex_api_neues_rss extends rex_api_function
             $item = $channel->addChild('item');
             $item->addChild('title', htmlspecialchars($entry->getName()));
             $item->addChild('description', htmlspecialchars(strip_tags($entry->getDescription())));
-            $item->addChild('link', rex::getServer() . $entry->getUrl());
+            $item->addChild('link', self::joinUrls(rex::getServer(), $entry->getUrl()));
             $item->addChild('pubDate', date('r', strtotime($entry->getPublishDate())));
-            $item->addChild('guid', rex::getServer() . $entry->getUrl());
+            $item->addChild('guid', self::joinUrls(rex::getServer(), $entry->getUrl()));
         }
 
         // Speichern und ausgeben des XML
