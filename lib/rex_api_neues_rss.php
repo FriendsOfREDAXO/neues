@@ -23,7 +23,7 @@ class rex_api_neues_rss extends rex_api_function
 
         // RSS-Feed generieren und ausgeben
         echo self::getRssFeed($collection, $domain_id, $lang_id, $filename);
-        exit();
+        exit;
     }
 
     public static function getRssFeed($collection, $domain, $lang, $filename)
@@ -37,7 +37,7 @@ class rex_api_neues_rss extends rex_api_function
 
         $channel = $xml->addChild('channel');
         $channel->addChild('title', rex::getServerName());
-        # $channel->addChild('description', $description);
+        // $channel->addChild('description', $description);
         $channel->addChild('link', rex::getServer());
 
         if ($lang) {
