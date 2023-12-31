@@ -23,6 +23,8 @@ Im Template, in dem du die Ausgabe von Neues realisieren möchtest, fügst du fo
 ```
 
 
+## Methoden
+
 ### getEntry(int $postId)
 
 Gibt einen einzelnen Datensatz aus. Benötigt wird die ID des Datensatzes.
