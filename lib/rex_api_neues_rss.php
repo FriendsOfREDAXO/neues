@@ -4,7 +4,7 @@ class rex_api_neues_rss extends rex_api_function
 {
     protected $published = true;  // Erlaubt den Aufruf aus dem Frontend
 
-    public function execute():void
+    public function execute(): void
     {
         $domain_id = rex_request('domain_id', 'int', null);
         $lang_id = rex_request('lang_id', 'int', null);
