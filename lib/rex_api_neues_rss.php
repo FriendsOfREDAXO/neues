@@ -59,7 +59,7 @@ class rex_api_neues_rss extends rex_api_function
             $item->addChild('description', htmlspecialchars(strip_tags($entry->getDescription())));
             $item->addChild('link', self::joinUrls(rex::getServer(), $entry->getUrl()));
             $item->addChild('pubDate', date('r', strtotime($entry->getPublishDate())));
-            $item->addChild('guid', self::joinUrls(rex::getServer(), $entry->getUrl()));
+            $item->addChild('guid', self::joinUrls(rex::getServer(), $entry->getUrl()))->addAttribute('isPermaLink', 'true');
         }
 
         // Speichern und ausgeben des XML
