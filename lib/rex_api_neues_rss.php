@@ -12,9 +12,8 @@ class rex_api_neues_rss extends rex_api_function
 
         if ($category_id && $category = neues_category::get($category_id)) {
             $collection = neues_entry::findOnline($category_id);
-            $categoryname = rex_string::normalize($category->getName());
-            $filename = 'rss.neues.' . $categoryname . '.xml';
-            $description = 'RSS-FEED: ' . rex::getServerName() . ' | ' . $categoryname;
+            $filename = 'rss.neues.' . rex_string::normalize($category->getName()) . '.xml';
+            $description = 'RSS-FEED: ' . rex::getServerName() . ' | ' . rex_escape($category->getName());
         } else {
             $collection = neues_entry::findOnline();
             $description = 'RSS-FEED: ' . rex::getServerName();
