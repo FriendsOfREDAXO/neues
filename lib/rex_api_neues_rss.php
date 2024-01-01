@@ -2,7 +2,7 @@
 
 class rex_api_neues_rss extends rex_api_function
 {
-    protected $published = true;  // Aufruf aus dem Frontend erlaubt
+    protected $published = true;  // Erlaubt den Aufruf aus dem Frontend
 
     public function execute(): void
     {
@@ -10,90 +10,59 @@ class rex_api_neues_rss extends rex_api_function
         $lang_id = rex_request('lang_id', 'int', null);
         $category_id = rex_request('category_id', 'int', null);
 
-        if($category_id && $category = neues_category::get($category_id)) {
-            /** @var neues_category $category */
+        if ($category_id && $category = neues_category::get($category_id)) {
             $collection = neues_entry::findOnline($category_id);
             $filename = 'rss.neues.' . rex_string::normalize($category->getName()) . '.xml';
+            $description = 'RSS-FEED: ' . rex::getServerName() . ' | ' . rex_escape($category->getName());
         } else {
             $collection = neues_entry::findOnline();
+            $description = 'RSS-FEED: ' . rex::getServerName();
             $filename = 'rss.neues.xml';
         }
-        header('Content-Type: application/rss+xml; charset=utf-8');
-        exit(self::getRssFeed($collection, $domain_id, $lang_id, $filename));
+
+        rex_response::cleanOutputBuffers();
+        rex_response::sendContentType('application/xml; charset=utf-8');
+
+        // RSS-Feed generieren und ausgeben
+        echo self::getRssFeed($collection, $domain_id, $lang_id, $description, $filename);
+        exit;
     }
 
-    public static function getRssFeed(rex_yform_manager_collection $collection, $domain, $lang, $filename)
+    public static function getRssFeed($collection, $domain, $lang, $description, $filename)
     {
-        return self::createRssFeed($collection, $domain, $lang, $filename);
+        return self::createRssFeed($collection, $domain, $lang, $description, $filename);
     }
 
-    public static function createRssFeed(?rex_yform_manager_collection $collection = null, $domain = null, $lang = null, $filename = 'rss.neues.xml')
+    public static function joinUrls($url1, $url2)
     {
-        if (!$collection) {
-            $collection = neues_entry::findOnline();
+        return rtrim($url1, '/') . '/' . ltrim($url2, '/');
+    }
+
+    public static function createRssFeed(rex_yform_manager_collection $collection, $domain, $lang, $description, $filename = 'rss.neues.xml')
+    {
+        $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"></rss>');
+
+        $channel = $xml->addChild('channel');
+        $channel->addChild('title', rex::getServerName());
+        $channel->addChild('description', $description);
+        $channel->addChild('link', rex::getServer());
+
+        if ($lang && $lang > 0) {
+            $channel->addChild('language', rex_clang::get($lang)->getCode());
         }
-
-        $xml = new DOMDocument('1.0', 'utf-8');
-        $xml->formatOutput = true;
-
-        $rss = $xml->createElement('rss');
-        $rss->setAttribute('version', '2.0');
-        $xml->appendChild($rss);
-
-        $channel = $xml->createElement('channel');
-        $rss->appendChild($channel);
-
-        $head_title = $xml->createElement('title', rex::getServerName());
-        $channel->appendChild($head_title);
-
-        $head_description = $xml->createElement('description', '');
-        $channel->appendChild($head_description);
-
-        if ($lang) {
-            $head_language = $xml->createElement('language', $lang->getCode());
-            $channel->appendChild($head_language);
-        }
-
-        $head_link = $xml->createElement('link', rex::getServer());
-        $channel->appendChild($head_link);
 
         foreach ($collection as $entry) {
             /** @var neues_entry $entry */
-            $item = $xml->createElement('item');
-            $channel->appendChild($item);
-
-            $item_title = $xml->createElement('title', htmlspecialchars($entry->getName()));
-            $item->appendChild($item_title);
-
-            $item_description = $xml->createElement('description', htmlspecialchars(strip_tags($entry->getDescription())));
-            $item->appendChild($item_description);
-
-            $item_link = $xml->createElement('link', rex::getServer() . $entry->getUrl());
-            $item->appendChild($item_link);
-
-            $item_pubDate = $xml->createElement('pubDate', date('r', strtotime($entry->getPublishDate())));
-            $item->appendChild($item_pubDate);
-
-            $item_guid = $xml->createElement('guid', self::guidv4(str_pad($entry->getId(), 16, '0', STR_PAD_LEFT)));
-            $item->appendChild($item_guid);
+            $item = $channel->addChild('item');
+            $item->addChild('title', htmlspecialchars($entry->getName()));
+            $item->addChild('description', htmlspecialchars(strip_tags($entry->getDescription())));
+            $item->addChild('link', self::joinUrls(rex::getServer(), $entry->getUrl()));
+            $item->addChild('pubDate', date('r', strtotime($entry->getPublishDate())));
+            $item->addChild('guid', self::joinUrls(rex::getServer(), $entry->getUrl()))->addAttribute('isPermaLink', 'true');
         }
 
-        $return = $xml->saveXML();
-        $xml->save(rex_path::base($filename));
-        return $return;
-    }
-    
-    public static function guidv4($data = null)
-    {
-        // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
-        $data ??= random_bytes(16);
-
-        // Set version to 0100
-        $data[6] = chr(ord($data[6]) & 0x0F | 0x40);
-        // Set bits 6-7 to 10
-        $data[8] = chr(ord($data[8]) & 0x3F | 0x80);
-
-        // Output the 36 character UUID.
-        return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+        // Speichern und ausgeben des XML
+        $xml->asXML(rex_path::base($filename));
+        return $xml->asXML();
     }
 }
