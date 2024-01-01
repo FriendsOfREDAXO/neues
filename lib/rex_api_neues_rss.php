@@ -4,7 +4,7 @@ class rex_api_neues_rss extends rex_api_function
 {
     protected $published = true;  // Erlaubt den Aufruf aus dem Frontend
 
-    public function execute()
+    public function execute():void
     {
         $domain_id = rex_request('domain_id', 'int', null);
         $lang_id = rex_request('lang_id', 'int', null);
@@ -39,7 +39,7 @@ class rex_api_neues_rss extends rex_api_function
         return rtrim($url1, '/') . '/' . ltrim($url2, '/');
     }
 
-    public static function createRssFeed($collection, $domain, $lang, $description, $filename = 'rss.neues.xml')
+    public static function createRssFeed(rex_yform_manager_collection $collection, $domain, $lang, $description, $filename = 'rss.neues.xml')
     {
         $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"></rss>');
 
@@ -53,6 +53,7 @@ class rex_api_neues_rss extends rex_api_function
         }
 
         foreach ($collection as $entry) {
+            /** @var neues_entry $entry */
             $item = $channel->addChild('item');
             $item->addChild('title', htmlspecialchars($entry->getName()));
             $item->addChild('description', htmlspecialchars(strip_tags($entry->getDescription())));
