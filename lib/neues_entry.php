@@ -10,17 +10,10 @@
  *
  * @package rex_yform_manager_dataset
  */
-class neues_entry extends \rex_yform_manager_dataset
+class neues_entry extends rex_yform_manager_dataset
 {
     /**
      * @api
-     * @return string
-     *
-     * Gibt den Namen des Eintrags zurück.
-     * Returns the name of the entry.
-     *
-     * Beispiel / Example:
-     * $name = $entry->getName();
      */
     public function getName(): string
     {
@@ -32,10 +25,6 @@ class neues_entry extends \rex_yform_manager_dataset
      * Sets the name of the entry.
      *
      * @param string $name Der neue Name des Eintrags. / The new name of the entry.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $entry = $entry->setName('Neuer Name');
      *
      * @api
      */
@@ -66,13 +55,6 @@ class neues_entry extends \rex_yform_manager_dataset
 
     /**
      * @api
-     * @return string
-     *
-     * Gibt die Domain des Eintrags zurück.
-     * Returns the domain of the entry.
-     *
-     * Beispiel / Example:
-     * $domain = $entry->getDomain();
      */
     public function getDomain(): string
     {
@@ -84,10 +66,6 @@ class neues_entry extends \rex_yform_manager_dataset
      * Sets the domain of the entry.
      *
      * @param mixed $domain Die neue Domain des Eintrags. / The new domain of the entry.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $entry = $entry->setDomain('neue-domain.com');
      *
      * @api
      */
@@ -155,10 +133,6 @@ class neues_entry extends \rex_yform_manager_dataset
      * Sets the image of the entry.
      *
      * @param string $image Das neue Bild des Eintrags. / The new image of the entry.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $entry = $entry->setImage('neues_bild.jpg');
      *
      * @api
      */
@@ -189,10 +163,6 @@ class neues_entry extends \rex_yform_manager_dataset
      * Sets the images of the entry.
      *
      * @param array|null $images Die neuen Bilder des Eintrags. / The new images of the entry.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $entry = $entry->setImages(['bild1.jpg', 'bild2.jpg']);
      *
      * @api
      */
@@ -226,10 +196,6 @@ class neues_entry extends \rex_yform_manager_dataset
      * Sets the media of the entry.
      *
      * @param rex_media|null $media Das neue Medium des Eintrags. / The new media of the entry.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $entry = $entry->setMedia($newMedia);
      *
      * @api
      */
@@ -280,10 +246,6 @@ class neues_entry extends \rex_yform_manager_dataset
      * Sets the description of the entry.
      *
      * @param string $description Die neue Beschreibung des Eintrags. / The new description of the entry.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $entry = $entry->setDescription('Neue Beschreibung');
      *
      * @api
      */
@@ -314,10 +276,6 @@ class neues_entry extends \rex_yform_manager_dataset
      * Sets the external URL of the entry.
      *
      * @param string $url Die neue externe URL des Eintrags. / The new external URL of the entry.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $entry = $entry->setExternalUrl('http://neue-url.com');
      *
      * @api
      */
@@ -348,10 +306,6 @@ class neues_entry extends \rex_yform_manager_dataset
      * Sets the publish date of the entry.
      *
      * @param string $publishdate Das neue Veröffentlichungsdatum des Eintrags. / The new publish date of the entry.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $entry = $entry->setPublishDate('2022-01-01');
      *
      * @api
      */
@@ -416,10 +370,6 @@ class neues_entry extends \rex_yform_manager_dataset
      * Sets the status of the entry.
      *
      * @param int $status Der neue Status des Eintrags. / The new status of the entry.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $entry = $entry->setStatus(1);
      *
      * @api
      */

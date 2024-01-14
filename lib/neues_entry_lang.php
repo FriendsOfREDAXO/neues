@@ -10,7 +10,7 @@
  *
  * @package rex_yform_manager_dataset
  */
-class neues_entry_lang extends \rex_yform_manager_dataset
+class neues_entry_lang extends rex_yform_manager_dataset
 {
     /**
      * Gibt die News-Einträge der aktuellen Sprache zurück.
@@ -49,10 +49,6 @@ class neues_entry_lang extends \rex_yform_manager_dataset
      * Sets the code of the language.
      *
      * @param string $value Der neue Code der Sprache. / The new code of the language.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $language = $language->setCode('Neuer Code');
      *
      * @api
      */
@@ -83,10 +79,6 @@ class neues_entry_lang extends \rex_yform_manager_dataset
      * Sets the name of the language.
      *
      * @param string $value Der neue Name der Sprache. / The new name of the language.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $language = $language->setName('Neuer Name');
      *
      * @api
      */
