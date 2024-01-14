@@ -35,12 +35,12 @@ if (rex::isBackend() && 'neues/entry' == rex_be_controller::getCurrentPage() || 
 
 if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
     /* YForm Rest API */
-    $rex_neues_entry_route = new \rex_yform_rest_route(
+    $rex_neues_entry_route = new rex_yform_rest_route(
         [
             'path' => '/neues/4/date/',
             'auth' => '\rex_yform_rest_auth_token::checkToken',
-            'type' => \neues_entry::class,
-            'query' => \neues_entry::query(),
+            'type' => neues_entry::class,
+            'query' => neues_entry::query(),
             'get' => [
                 'fields' => [
                     'rex_neues_entry' => [
@@ -108,15 +108,15 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
         ],
     );
 
-    \rex_yform_rest::addRoute($rex_neues_entry_route);
+    rex_yform_rest::addRoute($rex_neues_entry_route);
 
     /* YForm Rest API */
-    $rex_neues_category_route = new \rex_yform_rest_route(
+    $rex_neues_category_route = new rex_yform_rest_route(
         [
             'path' => '/neues/4/category/',
             'auth' => '\rex_yform_rest_auth_token::checkToken',
-            'type' => \neues_category::class,
-            'query' => \neues_category::query(),
+            'type' => neues_category::class,
+            'query' => neues_category::query(),
             'get' => [
                 'fields' => [
                     'rex_neues_category' => [
@@ -146,7 +146,7 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
         ],
     );
 
-    \rex_yform_rest::addRoute($rex_neues_category_route);
+    rex_yform_rest::addRoute($rex_neues_category_route);
 }
 
 rex_extension::register('YFORM_DATA_LIST', static function ($ep) {

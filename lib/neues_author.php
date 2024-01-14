@@ -16,7 +16,7 @@
  * $author->save();
  */
 
-class neues_author extends \rex_yform_manager_dataset
+class neues_author extends rex_yform_manager_dataset
 {
     /* translate:neues_author_name */
     /**
@@ -40,10 +40,6 @@ class neues_author extends \rex_yform_manager_dataset
      * Sets the name of the author.
      *
      * @param string $value Der neue Name des Autors. / The new name of the author.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $author = $author->setName('Neuer Name');
      *
      * @api
      */
@@ -75,10 +71,6 @@ class neues_author extends \rex_yform_manager_dataset
      * Sets the nickname of the author.
      *
      * @param string $value Der neue Spitzname des Autors. / The new nickname of the author.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $author = $author->setNickname('Neuer Spitzname');
      *
      * @api
      */
@@ -114,10 +106,6 @@ class neues_author extends \rex_yform_manager_dataset
      * Sets the text of the author.
      *
      * @param string $value Der neue Text des Autors. / The new text of the author.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $author = $author->setText('Neuer Text');
      *
      * @api
      */
@@ -149,10 +137,6 @@ class neues_author extends \rex_yform_manager_dataset
      * Sets the user ID of the author.
      *
      * @param int $value Die neue Benutzer-ID des Autors. / The new user ID of the author.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $author = $author->setBeUserId('Neue Benutzer-ID');
      *
      * @api
      */
