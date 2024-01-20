@@ -185,7 +185,7 @@ class neues_entry extends rex_yform_manager_dataset
      */
     public function getMedia(): ?rex_media
     {
-        if (rex_addon::get('media_manager_resposnive')->isAvailable()) {
+        if (rex_addon::get('media_manager_responsive')->isAvailable()) {
             return rex_media_plus::get($this->getImage());
         }
         return rex_media::get($this->getImage());
