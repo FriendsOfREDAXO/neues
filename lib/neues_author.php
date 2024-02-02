@@ -2,8 +2,8 @@
 
 namespace FriendsOfRedaxo\neues;
 
-use rex_yform_manager_dataset;
 use rex_user;
+use rex_yform_manager_dataset;
 
 /**
  * Klasse neues_author.

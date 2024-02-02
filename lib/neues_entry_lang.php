@@ -2,8 +2,8 @@
 
 namespace FriendsOfRedaxo\neues;
 
-use rex_yform_manager_dataset;
 use rex_yform_manager_collection;
+use rex_yform_manager_dataset;
 
 /**
  * Class neues_entry_lang.
