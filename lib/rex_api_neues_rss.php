@@ -1,5 +1,17 @@
 <?php
 
+namespace FriendsOfRedaxo\neues;
+
+use rex_api_function;
+use rex_yform_manager_collection;
+use rex_string;
+use rex;
+use rex_response;
+use SimpleXMLElement;
+use rex_clang;
+use rex_path;
+/* Achtung, evtl. Namespace entfernen weil anhand Klassennamen gesucht wird */
+
 class rex_api_neues_rss extends rex_api_function
 {
     protected $published = true;  // Erlaubt den Aufruf aus dem Frontend

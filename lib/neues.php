@@ -1,5 +1,10 @@
 <?php
 
+namespace FriendsOfRedaxo\neues;
+
+use rex_fragment;
+use rex_pager;
+
 class neues
 {
     /**

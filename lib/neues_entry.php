@@ -1,4 +1,16 @@
 <?php
+
+namespace FriendsOfRedaxo\neues;
+
+use rex_yform_manager_dataset;
+use rex_yform_manager_collection;
+use rex_config;
+use rex_addon;
+use rex_media;
+use rex_media_plus;
+use rex_formatter;
+use IntlDateFormatter;
+
 /**
  * Class neues_entry.
  *

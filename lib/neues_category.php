@@ -1,4 +1,11 @@
 <?php
+
+
+namespace FriendsOfRedaxo\neues;
+
+use rex_yform_manager_dataset;
+use rex_yform_manager_collection;
+
 /**
  * Klasse neues_category.
  *

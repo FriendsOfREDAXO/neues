@@ -1,4 +1,10 @@
 <?php
+
+namespace FriendsOfRedaxo\neues;
+
+use rex_yform_manager_dataset;
+use rex_user;
+
 /**
  * Klasse neues_author.
  *
