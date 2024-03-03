@@ -6,7 +6,6 @@ if (rex_addon::get('yform') && rex_addon::get('yform')->isAvailable()) {
 }
 
 if (!rex_media::get('neues_entry_fallback_image.png')) {
-
     rex_file::copy(rex_path::addon('neues', '/install/neues_entry_fallback_image.png'), rex_path::media('neues_entry_fallback_image.png'));
     $data = [];
     $data['title'] = 'Aktuelles - Fallback-Image';
@@ -30,9 +29,7 @@ if (rex_addon::get('cronjob') && rex_addon::get('cronjob')->isAvailable()) {
 
 /* URL-Profile installieren */
 if (rex_addon::get('url') && rex_addon::get('url')->isAvailable()) {
-
     if (false === rex_config::get('neues', 'url_profile', false)) {
-
         $rex_neues_category = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_url_generator_profile WHERE `table_name` = '1_xxx_rex_neues_category'"));
         if (!$rex_neues_category) {
             $query = rex_file::get(rex_path::addon('neues', 'install/rex_url_profile_neues_category.sql'));
