@@ -19,7 +19,7 @@ class neues
     public static function getList(int $rowsPerPage = 10, string $pageCursor = 'page'): string
     {
         $query = neues_entry::query()
-            ->whereRaw('status = 0 OR status = 1')
+            ->where('status', 1, '>=')
             ->where('publishdate', rex_sql::datetime(), '<=')
             ->orderBy('publishdate', 'desc');
         $pager = new rex_pager($rowsPerPage, $pageCursor);
