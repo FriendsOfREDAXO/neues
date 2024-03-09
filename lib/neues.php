@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\neues;
+namespace FriendsOfRedaxo\Neues;
 
 use rex_fragment;
 use rex_pager;
