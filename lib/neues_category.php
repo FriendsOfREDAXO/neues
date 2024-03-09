@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\neues;
+namespace FriendsOfRedaxo\Neues;
 
 use rex_yform_manager_collection;
 use rex_yform_manager_dataset;
