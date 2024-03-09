@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\neues;
+namespace FriendsOfRedaxo\Neues;
 
 use IntlDateFormatter;
 use rex_addon;
