@@ -25,19 +25,19 @@ if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
 
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_entry',
-        neues_entry::class,
+        \neues_entry::class,
     );
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_category',
-        neues_category::class,
+        \neues_category::class,
     );
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_author',
-        neues_author::class,
+        \neues_author::class,
     );
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_entry_lang',
-        neues_entry_lang::class,
+        \neues_entry_lang::class,
     );
 
 }
