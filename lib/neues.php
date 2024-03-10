@@ -5,7 +5,7 @@ namespace FriendsOfRedaxo\neues;
 use rex_fragment;
 use rex_pager;
 
-class neues
+class Neues
 {
     /**
      * Gibt eine HTML-Liste mit den Einträgen zurück.

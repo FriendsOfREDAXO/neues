@@ -22,7 +22,7 @@ use rex_yform_manager_dataset;
  *
  * @package rex_yform_manager_dataset
  */
-class neues_entry extends rex_yform_manager_dataset
+class Entry extends rex_yform_manager_dataset
 {
     /**
      * @api

@@ -22,7 +22,7 @@ use rex_yform_manager_dataset;
  * $author->save();
  */
 
-class neues_author extends rex_yform_manager_dataset
+class Author extends rex_yform_manager_dataset
 {
     /* translate:neues_author_name */
     /**

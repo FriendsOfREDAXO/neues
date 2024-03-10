@@ -16,7 +16,7 @@ use rex_yform_manager_dataset;
  *
  * @package rex_yform_manager_dataset
  */
-class neues_entry_lang extends rex_yform_manager_dataset
+class EntryLang extends rex_yform_manager_dataset
 {
     /**
      * Gibt die News-Einträge der aktuellen Sprache zurück.
