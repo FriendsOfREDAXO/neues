@@ -1,5 +1,5 @@
 package: neues
-version: '4.0.2'
+version: '4.1.0-dev'
 author: 'FriendsOfREDAXO, Alexander Walther, Paul Götz, Thorben'
 supportpage: https://alexplusde.github.io/neues/
 load: late
