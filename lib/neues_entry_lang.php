@@ -1,4 +1,10 @@
 <?php
+
+namespace FriendsOfRedaxo\Neues;
+
+use rex_yform_manager_collection;
+use rex_yform_manager_dataset;
+
 /**
  * Class neues_entry_lang.
  *
@@ -10,7 +16,7 @@
  *
  * @package rex_yform_manager_dataset
  */
-class neues_entry_lang extends rex_yform_manager_dataset
+class EntryLang extends rex_yform_manager_dataset
 {
     /**
      * Gibt die News-Einträge der aktuellen Sprache zurück.

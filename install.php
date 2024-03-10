@@ -1,5 +1,16 @@
 <?php
 
+namespace FriendsOfRedaxo\Neues;
+
+use rex_addon;
+use rex_config;
+use rex_file;
+use rex_media;
+use rex_media_service;
+use rex_path;
+use rex_sql;
+use rex_yform_manager_table_api;
+
 /* Tablesets aktualisieren */
 if (rex_addon::get('yform') && rex_addon::get('yform')->isAvailable()) {
     rex_yform_manager_table_api::importTablesets(rex_file::get(__DIR__ . '/install/tableset.json'));

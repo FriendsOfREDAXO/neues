@@ -1,25 +1,42 @@
 <?php
 
+namespace FriendsOfRedaxo\Neues;
+
+use rex;
+use rex_addon;
+use rex_be_controller;
+use rex_config;
+use rex_cronjob_manager;
+use rex_csrf_token;
+use rex_extension;
+use rex_extension_point;
+use rex_plugin;
+use rex_url;
+use rex_yform_manager_dataset;
+use rex_yform_manager_table;
+use rex_yform_rest;
+use rex_yform_rest_route;
+
 if (rex_addon::get('cronjob')->isAvailable() && !rex::isSafeMode()) {
-    rex_cronjob_manager::registerType('rex_cronjob_neues_publish');
+    rex_cronjob_manager::registerType(\rex_cronjob_neues_publish::class);
 }
 
 if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_entry',
-        neues_entry::class,
+        \neues_entry::class,
     );
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_category',
-        neues_category::class,
+        \neues_category::class,
     );
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_author',
-        neues_author::class,
+        \neues_author::class,
     );
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_entry_lang',
-        neues_entry_lang::class,
+        \neues_entry_lang::class,
     );
 }
 

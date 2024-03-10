@@ -1,6 +1,11 @@
 <?php
 
-class neues
+namespace FriendsOfRedaxo\Neues;
+
+use rex_fragment;
+use rex_pager;
+
+class Neues
 {
     /**
      * Gibt eine HTML-Liste mit den Einträgen zurück.
