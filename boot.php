@@ -17,26 +17,27 @@ use rex_yform_manager_table;
 use rex_yform_rest;
 use rex_yform_rest_route;
 
+
 if (rex_addon::get('cronjob')->isAvailable() && !rex::isSafeMode()) {
-    rex_cronjob_manager::registerType(\rex_cronjob_neues_publish::class);
+    rex_cronjob_manager::registerType(rex_cronjob_neues_publish::class);
 }
 
 if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_entry',
-        \neues_entry::class,
+        Entry::class,
     );
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_category',
-        \neues_category::class,
+        Category::class,
     );
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_author',
-        \neues_author::class,
+        Author::class,
     );
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_entry_lang',
-        \neues_entry_lang::class,
+        EntryLang::class,
     );
 }
 
@@ -54,8 +55,8 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
         [
             'path' => '/neues/4/date/',
             'auth' => '\rex_yform_rest_auth_token::checkToken',
-            'type' => neues_entry::class,
-            'query' => neues_entry::query(),
+            'type' => Entry::class,
+            'query' => Entry::query(),
             'get' => [
                 'fields' => [
                     'rex_neues_entry' => [
@@ -130,8 +131,8 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
         [
             'path' => '/neues/4/category/',
             'auth' => '\rex_yform_rest_auth_token::checkToken',
-            'type' => neues_category::class,
-            'query' => neues_category::query(),
+            'type' => Category::class,
+            'query' => Category::query(),
             'get' => [
                 'fields' => [
                     'rex_neues_category' => [
@@ -205,7 +206,7 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
 
                 foreach ($category_ids as $category_id) {
                     /** @var neues_category $neues_category */
-                    $neues_category = neues_category::get($category_id);
+                    $neues_category = Category::get($category_id);
                     if ($neues_category) {
                         $return[] = '<a href="' . rex_url::backendPage('neues/category', $params) . '">' . $neues_category->getName() . '</a>';
                     }
