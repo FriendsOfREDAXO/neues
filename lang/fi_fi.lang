@@ -1,0 +1,98 @@
+neues = Uutiset
+neues_title = Uutiset
+neues_entry = Artikkelit
+neues_settings = Asetukset
+neues_lang = Kielet
+
+neues_category = Kategoriat
+neues_help = Apua
+
+neues_default_thumbnail = Esikatselukuva
+neues_default_author = Kirjoittaja
+
+neues_author_table = 📰 Kirjoittajat
+neues_entry_category_rel = 📰 Artikkelit 🔀 Kategoriat
+neues_entry_category_table = 📰 Kategoriat
+neues_entry_table = 📰 Artikkelit
+neues_entry_lang = 📰 Kielet
+
+neues_entry_author_id = Kirjoittaja
+neues_name = Otsikko
+neues_name_notice = Artikkelin otsikko
+neues_name_validate_empty = Tämän uutisartikkelin otsikko ei saa olla tyhjä.
+neues_category_name_validate_unique = Tämä nimi on jo käytössä.
+neues_category_title = Kategoria
+neues_category_title_notice = Kategorian nimi, avainsana tai artikkelisarjan nimi.
+neues_category_image = Otsikkokuva
+neues_teaser = Teaser
+neues_teaser_notice = Lyhyt teaser-teksti tai yhteenveto, joka voidaan näyttää tapahtumakatsauksessa.
+neues_description = Sisältö
+neues_description_notice = Anna uutisartikkelisi sisältö.
+neues_image = Otsikkokuva
+neues_images = Galleria
+
+neues_external_url = Ulkoinen linkki
+neues_external_url_notice = Jos on lisätietoja toisella verkkosivustolla, anna tässä ulkoisen verkkosivuston osoite, esim. <code>http://www.example.org/foo-bar/</code>
+neues_external_url_validate_url = Anna kelvollinen, täydellinen URL (esim. `https://example.org/`)
+
+neues_createdate = Luotu...
+neues_createuser = Luonut...
+neues_updatedate = Viimeksi muokattu...
+neues_updateuser = Viimeksi muokannut...
+neues_publishdate = Julkaistu...
+neues_publishdate_validate_compare_value = Julkaisupäivämäärä ei saa olla tyhjä.
+neues_publishuser = Julkaissut...
+
+neues_category_ids = Kategoria(t)
+neues_prio = Järjestys
+
+neues_status = Julkaistu?
+neues_status_notice = Ilmoittaa, pitäisikö tämän uutisartikkelin olla näkyvissä nyt (julkaistu/suunniteltu) vai onko se vielä luonnosvaiheessa.
+neues_category_status_notice = Ilmoittaa, pitäisikö tämän kategorian olla näkyvissä nyt (julkaistu/suunniteltu) vai onko se vielä luonnosvaiheessa.
+neues_status_online = Julkaistu
+neues_status_offline = Offline
+neues_status_planned = Suunniteltu
+neues_status_draft = Luonnos
+neues_status_deleted = Hylätty
+
+neues_domain_ids = Verkkosivustot
+neues_domain_ids_notice = Tässä voit määrittää, pitäisikö uutisten olla julkaistu vain yhdellä tai useammalla verkkosivustolla tässä REDAXO-asennuksessa.
+neues_date_ids = Merkinnät
+neues_date_id_notice = Tähän kategoriaan liittyvät uutisartikkelit
+
+neues_language = Kieli
+neues_language_name = Kieli
+neues_language_name_notice = Kielen nimi
+neues_language_code = Kielikoodi (ISO 639-1)
+neues_language_code_notice = Kahden merkin kielikoodi ISO-standardin mukaan, esim.<code>fi</code>
+neues_language_entry = Hallitse merkintöjä
+neues_language_entry_notice = Hallitse linkitettyjä tapahtumia
+
+neues_editor = Editori
+
+neues_author = Kirjoittajat
+neues_author_name = Nimi
+neues_author_nickname = Nimimerkki
+neues_author_text = Kuvaus
+neues_author_be_user_id = REDAXO-käyttäjä
+
+# Doku
+
+neues_docs_a_intro = Johdanto
+neues_docs_b_import_export = Tuonti/Vienti
+neues_docs_c_migration = Migraatio
+neues_docs_d_example = Esimerkki
+neues_docs_settings = Asetukset
+neues_docs_neues_entry = Merkinnät
+neues_docs_neues_category = Kategoriat
+neues_docs_neues_author = Kirjoittajat  
+neues_docs_neues_language = Kielet
+neues_docs_url = URL-lisäosa
+neues_docs_rss = RSS-syöte
+neues_docs_restful_api = YForm RESTful API
+
+# Cronjob
+
+neues_entry_publish_success = %s artikkelia on julkaistu onnistuneesti.
+neues_entry_publish_error = %s artikkelia ei voitu julkaista.
+neues_entry_publish_cronjob = Julkaise suunnitellut artikkelit. (Uutiset)

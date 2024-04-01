@@ -1,0 +1,98 @@
+neues = yeni
+neues_title = yeni_baslik
+neues_entry = yeni_giris
+neues_settings = ayarlar
+neues_lang = diller
+
+neues_category = kategoriler
+neues_help = yardim
+
+neues_default_thumbnail = varsayilan_onizleme
+neues_default_author = varsayilan_yazar
+
+neues_author_table = 📰 Yazarlar
+neues_entry_category_rel = 📰 Girişler 🔀 Kategoriler
+neues_entry_category_table = 📰 Kategoriler
+neues_entry_table = 📰 Girişler
+neues_entry_lang = 📰 Diller
+
+neues_entry_author_id = Yazar
+neues_name = baslik
+neues_name_notice = Girişin başlığı
+neues_name_validate_empty = Bu haber girişinin başlığı boş olamaz.
+neues_category_name_validate_unique = Bu isim zaten alınmış.
+neues_category_title = kategori
+neues_category_title_notice = Kategorinin adı, anahtar kelime veya bir giriş serisinin adı.
+neues_category_image = kapak_resmi
+neues_teaser = teaser
+neues_teaser_notice = Kısa bir teaser metni veya özet, terminoloji genel bakışında verilebilir.
+neues_description = icerik
+neues_description_notice = Haber girişinizin içeriğini belirtin.
+neues_image = kapak_resmi
+neues_images = galeri
+
+neues_external_url = dis_link
+neues_external_url_notice = Başka bir web sitesinde daha fazla bilgi varsa, buraya dış bir web sitesinin adresini girin, örneğin <code>http://www.example.org/foo-bar/</code>
+neues_external_url_validate_url = Lütfen geçerli, tam bir URL girin (örneğin `https://example.org/`)
+
+neues_createdate = olusturulma_tarihi
+neues_createuser = olusturan_kullanici
+neues_updatedate = son_guncelleme_tarihi
+neues_updateuser = son_guncelleyen_kullanici
+neues_publishdate = yayin_tarihi
+neues_publishdate_validate_compare_value = Yayın tarihi boş olamaz.
+neues_publishuser = yayinlayan_kullanici
+
+neues_category_ids = kategori(ler)
+neues_prio = siralama
+
+neues_status = yayinda?
+neues_status_notice = Bu haber girişinin şu anda görünür olup olmadığını belirtir (yayınlanmış/gelecek) veya hala taslak aşamasında mıdır.
+neues_category_status_notice = Bu kategorinin şu anda görünür olup olmadığını belirtir (yayınlanmış/gelecek) veya hala taslak aşamasında mıdır.
+neues_status_online = yayinda
+neues_status_offline = çevrimdışı
+neues_status_planned = planlanan
+neues_status_draft = taslak
+neues_status_deleted = silindi
+
+neues_domain_ids = web_siteleri
+neues_domain_ids_notice = Haberin bu REDAXO kurulumu içinde bir veya daha fazla web sitesinde yayınlanıp yayınlanmayacağını belirleyebilirsiniz.
+neues_date_ids = girisler
+neues_date_id_notice = Bu kategoriye atanmış haber girişleri
+
+neues_language = dil
+neues_language_name = dil_adi
+neues_language_name_notice = Dilin adı
+neues_language_code = dil_kodu (ISO 639-1)
+neues_language_code_notice = ISO standardına göre iki haneli dil kodu, örneğin<code>tr</code>
+neues_language_entry = girisleri_yonet
+neues_language_entry_notice = İlişkili tarihleri yönet
+
+neues_editor = editor
+
+neues_author = yazarlar
+neues_author_name = isim
+neues_author_nickname = takma_isim
+neues_author_text = aciklama
+neues_author_be_user_id = REDAXO_Kullanici
+
+# Doku
+
+neues_docs_a_intro = giris
+neues_docs_b_import_export = import_export
+neues_docs_c_migration = goc
+neues_docs_d_example = ornek
+neues_docs_settings = ayarlar
+neues_docs_neues_entry = girisler
+neues_docs_neues_category = kategoriler
+neues_docs_neues_author = yazarlar  
+neues_docs_neues_language = diller
+neues_docs_url = URL-Adon
+neues_docs_rss = RSS-Feed
+neues_docs_restful_api = YForm RESTful API
+
+# Cronjob
+
+neues_entry_publish_success = %s giriş başarıyla yayınlandı.
+neues_entry_publish_error = %s giriş yayınlanamadı.
+neues_entry_publish_cronjob = Planlanan girişleri yayınla. (Yeni)
