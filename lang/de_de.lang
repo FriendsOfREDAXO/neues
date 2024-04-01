@@ -51,7 +51,9 @@ neues_status_notice = Gibt an, ob dieser News-Beitrag aktuell sichtbar sein soll
 neues_category_status_notice = Gibt an, ob diese Kategorie aktuell sichtbar sein soll (veröffentlicht/geplant) oder sich noch im Entwurfsstadium befindet.
 neues_status_online = Veröffentlicht
 neues_status_offline = Offline
+neues_status_planned = Geplant
 neues_status_draft = Entwurf
+neues_status_deleted = Verworfen
 
 neues_domain_ids = Websites
 neues_domain_ids_notice = Hier können Sie festlegen, ob die News nur auf einer oder auf mehreren Websites innerhalb dieser REDAXO-Installation veröffentlicht werden soll.
@@ -79,6 +81,7 @@ neues_author_be_user_id = REDAXO-Benutzer:in
 neues_docs_a_intro = Einleitung
 neues_docs_b_import_export = Import/Export
 neues_docs_c_migration = Migration
+neues_docs_d_example = Beispiel
 neues_docs_settings = Einstellungen
 neues_docs_neues_entry = Einträge
 neues_docs_neues_category = Kategorien
@@ -87,3 +90,9 @@ neues_docs_neues_language = Sprachen
 neues_docs_url = URL-Adon
 neues_docs_rss = RSS-Feed
 neues_docs_restful_api = YForm RESTful API
+
+# Cronjob
+
+neues_entry_publish_success = %s Beiträge wurden erfolgreich veröffentlicht.
+neues_entry_publish_error = %s Beiträge konnten nicht veröffentlicht werden.
+neues_entry_publish_cronjob = Geplante Beiträge veröffentlichen. (Aktuelles)

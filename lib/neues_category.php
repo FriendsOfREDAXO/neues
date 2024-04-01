@@ -1,4 +1,10 @@
 <?php
+
+namespace FriendsOfRedaxo\Neues;
+
+use rex_yform_manager_collection;
+use rex_yform_manager_dataset;
+
 /**
  * Klasse neues_category.
  *
@@ -14,7 +20,7 @@
  * $category->setValue('name', 'Neue Kategorie');
  * $category->save();
  */
-class neues_category extends \rex_yform_manager_dataset
+class Category extends rex_yform_manager_dataset
 {
     /**
      * Gibt den Namen der Kategorie zurück.
@@ -40,6 +46,8 @@ class neues_category extends \rex_yform_manager_dataset
      *
      * Beispiel / Example:
      * $category->setName('Neuer Name');
+     *
+     * @api
      */
     public function setName(string $name): self
     {
@@ -60,7 +68,7 @@ class neues_category extends \rex_yform_manager_dataset
      */
     public function getEntries(): ?rex_yform_manager_collection
     {
-        return $this->getRelatedDataset('entry_ids');
+        return $this->getRelatedCollection('entry_ids');
     }
 
     /**

@@ -1,20 +1,44 @@
 <?php
 
-if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
+namespace FriendsOfRedaxo\Neues;
 
+use rex;
+use rex_addon;
+use rex_be_controller;
+use rex_config;
+use rex_cronjob_manager;
+use rex_csrf_token;
+use rex_extension;
+use rex_extension_point;
+use rex_plugin;
+use rex_url;
+use rex_yform_manager_dataset;
+use rex_yform_manager_table;
+use rex_yform_rest;
+use rex_yform_rest_route;
+
+
+if (rex_addon::get('cronjob')->isAvailable() && !rex::isSafeMode()) {
+    rex_cronjob_manager::registerType(rex_cronjob_neues_publish::class);
+}
+
+if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_entry',
-        neues_entry::class,
+        Entry::class,
     );
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_category',
-        neues_category::class,
+        Category::class,
     );
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_author',
-        neues_author::class,
+        Author::class,
     );
-
+    rex_yform_manager_dataset::setModelClass(
+        'rex_neues_entry_lang',
+        EntryLang::class,
+    );
 }
 
 if (rex::isBackend() && 'neues/entry' == rex_be_controller::getCurrentPage() || 'yform/manager/data_edit' == rex_be_controller::getCurrentPage()) {
@@ -27,33 +51,66 @@ if (rex::isBackend() && 'neues/entry' == rex_be_controller::getCurrentPage() || 
 
 if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
     /* YForm Rest API */
-    $rex_neues_entry_route = new \rex_yform_rest_route(
+    $rex_neues_entry_route = new rex_yform_rest_route(
         [
-            'path' => '/neues/3/date/',
+            'path' => '/neues/4/date/',
             'auth' => '\rex_yform_rest_auth_token::checkToken',
-            'type' => \neues_entry::class,
-            'query' => \neues_entry::query(),
+            'type' => Entry::class,
+            'query' => Entry::query(),
             'get' => [
                 'fields' => [
                     'rex_neues_entry' => [
                         'id',
+                        'status',
                         'name',
+                        'teaser',
                         'description',
+                        'domain_ids',
+                        'lang_id',
+                        'publishdate',
+                        'author_id',
+                        'url',
+                        'image',
                         'images',
+                        'createdate',
+                        'createuser',
+                        'updatedate',
+                        'updateuser',
+                    ],
+                    'rex_neues_category' => [
+                        'id',
+                        'name',
+                        'image',
                         'status',
                     ],
-                    'rex_neues_category' => [
+                    'rex_neues_author' => [
                         'id',
                         'name',
+                        'nickname',
+                        'text',
+                        'image',
+                        'be_user_id',
                     ],
                 ],
             ],
             'post' => [
                 'fields' => [
                     'rex_neues_entry' => [
+                        'status',
                         'name',
+                        'teaser',
                         'description',
+                        'domain_ids',
+                        'lang_id',
+                        'publishdate',
+                        'author_id',
+                        'url',
+                        'image',
                         'images',
+                        'createdate',
+                        'createuser',
+                        'updatedate',
+                        'updateuser',
                     ],
                 ],
             ],
@@ -67,20 +124,22 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
         ],
     );
 
-    \rex_yform_rest::addRoute($rex_neues_entry_route);
+    rex_yform_rest::addRoute($rex_neues_entry_route);
 
     /* YForm Rest API */
-    $rex_neues_category_route = new \rex_yform_rest_route(
+    $rex_neues_category_route = new rex_yform_rest_route(
         [
-            'path' => '/v0.dev/neues/category/',
+            'path' => '/neues/4/category/',
             'auth' => '\rex_yform_rest_auth_token::checkToken',
-            'type' => \neues_category::class,
-            'query' => \neues_category::query(),
+            'type' => Category::class,
+            'query' => Category::query(),
             'get' => [
                 'fields' => [
                     'rex_neues_category' => [
                         'id',
                         'name',
+                        'image',
+                        'status',
                     ],
                 ],
             ],
@@ -88,6 +147,8 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
                 'fields' => [
                     'rex_neues_category' => [
                         'name',
+                        'image',
+                        'status',
                     ],
                 ],
             ],
@@ -101,7 +162,7 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
         ],
     );
 
-    \rex_yform_rest::addRoute($rex_neues_category_route);
+    rex_yform_rest::addRoute($rex_neues_category_route);
 }
 
 rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
@@ -144,9 +205,10 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
                 $category_ids = array_filter(array_map('intval', explode(',', $a['value'])));
 
                 foreach ($category_ids as $category_id) {
-                    $neues = neues_category::get($category_id);
-                    if ($neues) {
-                        $return[] = '<a href="' . rex_url::backendPage('neues/category', $params) . '">' . $neues->getName() . '</a>';
+                    /** @var neues_category $neues_category */
+                    $neues_category = Category::get($category_id);
+                    if ($neues_category) {
+                        $return[] = '<a href="' . rex_url::backendPage('neues/category', $params) . '">' . $neues_category->getName() . '</a>';
                     }
                 }
                 return implode('<br>', $return);

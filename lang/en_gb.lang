@@ -49,10 +49,9 @@ neues_status = Published?
 neues_status_notice = Indicates whether this news post should currently be visible (published/scheduled) or is still in the draft stage.
 neues_category_status_notice = Indicates whether this category should currently be visible (published/scheduled) or is still in the draft stage.
 neues_status_online = Published
-neues_status_offline = Offline
+neues_status_planned = Planned
 neues_status_draft = Draft
-neues_domain_ids = Websites
-neues_date_ids = Entries
+neues_status_deleted = Discarded
 
 neues_language = Language
 neues_language_name = Language
@@ -61,6 +60,7 @@ neues_language_code = Language code (ISO 639-1)
 neues_language_code_notice = Two-letter language code according to ISO standard, e.g.<code>en</code>
 neues_language_entry = Manage entries
 neues_language_entry_notice = Manage linked dates
+
 neues_domain_ids = Websites
 neues_domain_ids_notice = Here you can specify whether the news should be published on one or more websites within this REDAXO installation.
 neues_date_ids = Entries
@@ -79,6 +79,7 @@ neues_author_be_user_id = REDAXO User
 neues_docs_a_intro = Introduction
 neues_docs_b_import_export = Import/Export
 neues_docs_c_migration = Migration
+neues_docs_d_example = Example
 neues_docs_settings = Settings
 neues_docs_neues_entry = Entries
 neues_docs_neues_category = Categories
@@ -87,3 +88,9 @@ neues_docs_neues_language = Languages
 neues_docs_url = URL Addon
 neues_docs_rss = RSS Feed
 neues_docs_restful_api = YForm RESTful API
+
+# Cronjob
+
+neues_entry_publish_success = %s posts have been successfully published.
+neues_entry_publish_error = %s posts could not be published.
+neues_entry_publish_cronjob = Publish planned posts. (Current)

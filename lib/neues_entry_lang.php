@@ -1,4 +1,10 @@
 <?php
+
+namespace FriendsOfRedaxo\Neues;
+
+use rex_yform_manager_collection;
+use rex_yform_manager_dataset;
+
 /**
  * Class neues_entry_lang.
  *
@@ -10,7 +16,7 @@
  *
  * @package rex_yform_manager_dataset
  */
-class neues_entry_lang extends \rex_yform_manager_dataset
+class EntryLang extends rex_yform_manager_dataset
 {
     /**
      * Gibt die News-Einträge der aktuellen Sprache zurück.
@@ -23,9 +29,9 @@ class neues_entry_lang extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function getEntries() : ?rex_yform_manager_collection
+    public function getEntries(): ?rex_yform_manager_collection
     {
-        return $this->getRelatedCollection("entry");
+        return $this->getRelatedCollection('entry');
     }
 
     /**
@@ -39,9 +45,9 @@ class neues_entry_lang extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function getCode() : ?string
+    public function getCode(): ?string
     {
-        return $this->getValue("code");
+        return $this->getValue('code');
     }
 
     /**
@@ -49,16 +55,12 @@ class neues_entry_lang extends \rex_yform_manager_dataset
      * Sets the code of the language.
      *
      * @param string $value Der neue Code der Sprache. / The new code of the language.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $language = $language->setCode('Neuer Code');
      *
      * @api
      */
-    public function setCode(string $value) : self
+    public function setCode(string $value): self
     {
-        $this->setValue("code", $value);
+        $this->setValue('code', $value);
         return $this;
     }
 
@@ -73,9 +75,9 @@ class neues_entry_lang extends \rex_yform_manager_dataset
      *
      * @api
      */
-    public function getName() : string
+    public function getName(): string
     {
-        return $this->getValue("name");
+        return $this->getValue('name');
     }
 
     /**
@@ -83,16 +85,12 @@ class neues_entry_lang extends \rex_yform_manager_dataset
      * Sets the name of the language.
      *
      * @param string $value Der neue Name der Sprache. / The new name of the language.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $language = $language->setName('Neuer Name');
      *
      * @api
      */
-    public function setName(string $value) : self
+    public function setName(string $value): self
     {
-        $this->setValue("name", $value);
+        $this->setValue('name', $value);
         return $this;
     }
 }

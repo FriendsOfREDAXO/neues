@@ -1,4 +1,10 @@
 <?php
+
+namespace FriendsOfRedaxo\Neues;
+
+use rex_user;
+use rex_yform_manager_dataset;
+
 /**
  * Klasse neues_author.
  *
@@ -16,7 +22,7 @@
  * $author->save();
  */
 
-class neues_author extends \rex_yform_manager_dataset
+class Author extends rex_yform_manager_dataset
 {
     /* translate:neues_author_name */
     /**
@@ -40,10 +46,6 @@ class neues_author extends \rex_yform_manager_dataset
      * Sets the name of the author.
      *
      * @param string $value Der neue Name des Autors. / The new name of the author.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $author = $author->setName('Neuer Name');
      *
      * @api
      */
@@ -75,10 +77,6 @@ class neues_author extends \rex_yform_manager_dataset
      * Sets the nickname of the author.
      *
      * @param string $value Der neue Spitzname des Autors. / The new nickname of the author.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $author = $author->setNickname('Neuer Spitzname');
      *
      * @api
      */
@@ -114,10 +112,6 @@ class neues_author extends \rex_yform_manager_dataset
      * Sets the text of the author.
      *
      * @param string $value Der neue Text des Autors. / The new text of the author.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $author = $author->setText('Neuer Text');
      *
      * @api
      */
@@ -141,7 +135,7 @@ class neues_author extends \rex_yform_manager_dataset
      */
     public function getBeUserId(): ?int
     {
-        return $this->getValue('be_user_id');
+        return (int) $this->getValue('be_user_id');
     }
 
     /**
@@ -149,10 +143,6 @@ class neues_author extends \rex_yform_manager_dataset
      * Sets the user ID of the author.
      *
      * @param int $value Die neue Benutzer-ID des Autors. / The new user ID of the author.
-     * @return self
-     *
-     * Beispiel / Example:
-     * $author = $author->setBeUserId('Neue Benutzer-ID');
      *
      * @api
      */
@@ -170,6 +160,8 @@ class neues_author extends \rex_yform_manager_dataset
      *
      * Beispiel / Example:
      * $beUser = $author->getBeUser();
+     *
+     * @api
      */
     public function getBeUser(): ?rex_user
     {
