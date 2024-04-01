@@ -23,12 +23,12 @@ class rex_api_neues_rss extends rex_api_function
         $lang_id = rex_request('lang_id', 'int', null);
         $category_id = rex_request('category_id', 'int', null);
 
-        if ($category_id && $category = neues_category::get($category_id)) {
-            $collection = neues_entry::findOnline($category_id);
+        if ($category_id && $category = Category::get($category_id)) {
+            $collection = Entry::findOnline($category_id);
             $filename = 'rss.neues.' . rex_string::normalize($category->getName()) . '.xml';
             $description = 'RSS-FEED: ' . rex::getServerName() . ' | ' . rex_escape($category->getName());
         } else {
-            $collection = neues_entry::findOnline();
+            $collection = Entry::findOnline();
             $description = 'RSS-FEED: ' . rex::getServerName();
             $filename = 'rss.neues.xml';
         }
