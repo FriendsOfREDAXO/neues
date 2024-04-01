@@ -27,7 +27,7 @@ Mehrsprachigkeit | ✅ `News Manager > (Sprache auswählen)` | ✅ `Aktuelles > 
 Dokumentation | ✅ als Plugin | ✅ `Aktuelles > Hilfe`
 Einstellungen | ❌ nein | ✅ `Aktuelles > Einstellungen`
 WYSIWYG-Editor | ✅ ausschließlich `redactor2` | ✅ frei wählbar (`cke5`, `redactor`, `markitup`, `tinymce`)
-Backend-Sprachen | `de,en,es,se` | `de,en,es,se`
+Backend-Sprachen | `de,en,es,se` | `de,en,es,se,da,el,fi,nl,no,pl,ro,tr,uk`
 RSS | ✅ ja | 🚧 in Arbeit
 Fertige Fragmente | ✅ ja | 🚧 in Arbeit
 Multi-Domain-Unterstützung | ❌ über Umwege | ✅ ja
