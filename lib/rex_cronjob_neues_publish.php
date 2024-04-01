@@ -9,7 +9,6 @@ class rex_cronjob_neues_publish extends rex_cronjob
 {
     public function execute()
     {
-
         /* Collection von Neues-Einträgen, die noch nicht veröffentlicht sind, aber es sein sollten. (geplant) */
         $neues_entry_to_publish = Entry::query()->where('status', 0)->where('publishdate', date('Y-m-d'), '<')->find();
         $neues_entry_to_publish->setValue('status', 1);
