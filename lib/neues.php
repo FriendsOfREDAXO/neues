@@ -49,7 +49,7 @@ class Neues
      */
     public static function getEntry(int $postId): string
     {
-        $post = neues_entry::get($postId);
+        $post = Entry::get($postId);
         $fragment = new rex_fragment();
         $fragment->setVar('post', $post);
         return $fragment->parse('neues/entry.php');
