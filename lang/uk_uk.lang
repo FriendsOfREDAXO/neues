@@ -1,0 +1,98 @@
+neues = Новини
+neues_title = Новини
+neues_entry = Записи
+neues_settings = Налаштування
+neues_lang = Мови
+
+neues_category = Категорії
+neues_help = Допомога
+
+neues_default_thumbnail = Зображення для попереднього перегляду
+neues_default_author = Автор
+
+neues_author_table = 📰 Автори
+neues_entry_category_rel = 📰 Записи 🔀 Категорії
+neues_entry_category_table = 📰 Категорії
+neues_entry_table = 📰 Записи
+neues_entry_lang = 📰 Мови
+
+neues_entry_author_id = Автор
+neues_name = Заголовок
+neues_name_notice = Назва новини
+neues_name_validate_empty = Назва цієї новини не може бути порожньою.
+neues_category_name_validate_unique = Це ім'я вже використовується.
+neues_category_title = Категорія
+neues_category_title_notice = Назва категорії, ключове слово або назва серії записів.
+neues_category_image = Зображення для заголовка
+neues_teaser = Тизер
+neues_teaser_notice = Короткий текст-анонс або резюме, яке можна вивести в огляді подій.
+neues_description = Зміст
+neues_description_notice = Введіть зміст вашої новини.
+neues_image = Зображення для заголовка
+neues_images = Галерея
+
+neues_external_url = Зовнішнє посилання
+neues_external_url_notice = Якщо є додаткова інформація на іншому веб-сайті, введіть тут адресу зовнішнього веб-сайту, наприклад, <code>http://www.example.org/foo-bar/</code>
+neues_external_url_validate_url = Будь ласка, введіть дійсний, повний URL (наприклад, `https://example.org/`)
+
+neues_createdate = Створено...
+neues_createuser = Створено...
+neues_updatedate = Останнє оновлення...
+neues_updateuser = Останнє оновлення від...
+neues_publishdate = Опубліковано...
+neues_publishdate_validate_compare_value = Дата публікації не може бути порожньою.
+neues_publishuser = Опубліковано...
+
+neues_category_ids = Категорія(ї)
+neues_prio = Порядок
+
+neues_status = Опубліковано?
+neues_status_notice = Вказує, чи повинна ця новина бути видимою зараз (опублікована/запланована) або вона все ще в стадії проекту.
+neues_category_status_notice = Вказує, чи повинна ця категорія бути видимою зараз (опублікована/запланована) або вона все ще в стадії проекту.
+neues_status_online = Опубліковано
+neues_status_offline = Офлайн
+neues_status_planned = Заплановано
+neues_status_draft = Чернетка
+neues_status_deleted = Видалено
+
+neues_domain_ids = Веб-сайти
+neues_domain_ids_notice = Тут ви можете вказати, чи повинні новини бути опубліковані тільки на одному або на декількох веб-сайтах в цій установці REDAXO.
+neues_date_ids = Записи
+neues_date_id_notice = Новини, пов'язані з цією категорією
+
+neues_language = Мова
+neues_language_name = Мова
+neues_language_name_notice = Назва мови
+neues_language_code = Код мови (ISO 639-1)
+neues_language_code_notice = Двозначний код мови за стандартом ISO, наприклад, <code>uk</code>
+neues_language_entry = Керування записами
+neues_language_entry_notice = Керування пов'язаними подіями
+
+neues_editor = Редактор
+
+neues_author = Автори
+neues_author_name = Ім'я
+neues_author_nickname = Псевдонім
+neues_author_text = Опис
+neues_author_be_user_id = Користувач REDAXO
+
+# Документація
+
+neues_docs_a_intro = Вступ
+neues_docs_b_import_export = Імпорт/Експорт
+neues_docs_c_migration = Міграція
+neues_docs_d_example = Приклад
+neues_docs_settings = Налаштування
+neues_docs_neues_entry = Записи
+neues_docs_neues_category = Категорії
+neues_docs_neues_author = Автори
+neues_docs_neues_language = Мови
+neues_docs_url = URL-аддон
+neues_docs_rss = RSS-канал
+neues_docs_restful_api = YForm RESTful API
+
+# Cronjob
+
+neues_entry_publish_success = %s записів було успішно опубліковано.
+neues_entry_publish_error = %s записів не вдалося опублікувати.
+neues_entry_publish_cronjob = Опублікувати заплановані записи. (Новини)

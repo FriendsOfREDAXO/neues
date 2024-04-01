@@ -1,0 +1,98 @@
+neues = Aktualności
+neues_title = Aktualności
+neues_entry = Wpisy
+neues_settings = Ustawienia
+neues_lang = Języki
+
+neues_category = Kategorie
+neues_help = Pomoc
+
+neues_default_thumbnail = Domyślna miniaturka
+neues_default_author = Autor
+
+neues_author_table = 📰 Autorzy
+neues_entry_category_rel = 📰 Wpisy 🔀 Kategorie
+neues_entry_category_table = 📰 Kategorie
+neues_entry_table = 📰 Wpisy
+neues_entry_lang = 📰 Języki
+
+neues_entry_author_id = Autor
+neues_name = Nagłówek
+neues_name_notice = Tytuł wpisu
+neues_name_validate_empty = Tytuł tego wpisu nie może być pusty.
+neues_category_name_validate_unique = Ta nazwa jest już używana.
+neues_category_title = Kategoria
+neues_category_title_notice = Nazwa kategorii, słowo kluczowe lub nazwa serii wpisów.
+neues_category_image = Obraz tytułowy
+neues_teaser = Zwiastun
+neues_teaser_notice = Krótki tekst wprowadzający lub streszczenie, które może być wyświetlane w przeglądzie terminów.
+neues_description = Zawartość
+neues_description_notice = Podaj zawartość swojego wpisu.
+neues_image = Obraz tytułowy
+neues_images = Galeria
+
+neues_external_url = Zewnętrzny link
+neues_external_url_notice = Jeśli są dodatkowe informacje na innej stronie internetowej, wprowadź tutaj adres zewnętrznej strony internetowej, np. <code>http://www.example.org/foo-bar/</code>
+neues_external_url_validate_url = Proszę wprowadzić prawidłowy, pełny adres URL (np. `https://example.org/`)
+
+neues_createdate = Utworzono...
+neues_createuser = Utworzony przez...
+neues_updatedate = Ostatnio zmieniony...
+neues_updateuser = Ostatnio zmieniony przez...
+neues_publishdate = Opublikowany...
+neues_publishdate_validate_compare_value = Data publikacji nie może być pusta.
+neues_publishuser = Opublikowany przez...
+
+neues_category_ids = Kategoria(e)
+neues_prio = Kolejność
+
+neues_status = Opublikowany?
+neues_status_notice = Wskazuje, czy ten wpis powinien być aktualnie widoczny (opublikowany/zaplanowany) czy jest jeszcze w fazie roboczej.
+neues_category_status_notice = Wskazuje, czy ta kategoria powinna być aktualnie widoczna (opublikowana/zaplanowana) czy jest jeszcze w fazie roboczej.
+neues_status_online = Opublikowany
+neues_status_offline = Offline
+neues_status_planned = Zaplanowany
+neues_status_draft = Szkic
+neues_status_deleted = Usunięty
+
+neues_domain_ids = Strony internetowe
+neues_domain_ids_notice = Tutaj możesz określić, czy wiadomości powinny być publikowane tylko na jednej stronie internetowej, czy na wielu stronach internetowych w tej instalacji REDAXO.
+neues_date_ids = Wpisy
+neues_date_id_notice = Wpisy wiadomości przypisane do tej kategorii
+
+neues_language = Język
+neues_language_name = Język
+neues_language_name_notice = Nazwa języka
+neues_language_code = Kod języka (ISO 639-1)
+neues_language_code_notice = Dwuliterowy kod języka zgodny z normą ISO, np.<code>pl</code>
+neues_language_entry = Zarządzaj wpisami
+neues_language_entry_notice = Zarządzaj powiązanymi terminami
+
+neues_editor = Edytor
+
+neues_author = Autorzy
+neues_author_name = Nazwa
+neues_author_nickname = Pseudonim
+neues_author_text = Opis
+neues_author_be_user_id = Użytkownik REDAXO
+
+# Doku
+
+neues_docs_a_intro = Wstęp
+neues_docs_b_import_export = Import/Eksport
+neues_docs_c_migration = Migracja
+neues_docs_d_example = Przykład
+neues_docs_settings = Ustawienia
+neues_docs_neues_entry = Wpisy
+neues_docs_neues_category = Kategorie
+neues_docs_neues_author = Autorzy  
+neues_docs_neues_language = Języki
+neues_docs_url = Dodatek URL
+neues_docs_rss = Kanał RSS
+neues_docs_restful_api = YForm RESTful API
+
+# Cronjob
+
+neues_entry_publish_success = %s wpisów zostało pomyślnie opublikowanych.
+neues_entry_publish_error = %s wpisów nie udało się opublikować.
+neues_entry_publish_cronjob = Publikowanie zaplanowanych wpisów. (Aktualności)

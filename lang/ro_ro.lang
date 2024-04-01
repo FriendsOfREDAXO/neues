@@ -1,0 +1,98 @@
+neues = Noutăți
+neues_title = Noutăți
+neues_entry = Articole
+neues_settings = Setări
+neues_lang = Limbi
+
+neues_category = Categorii
+neues_help = Ajutor
+
+neues_default_thumbnail = Imagine previzualizare
+neues_default_author = Autor
+
+neues_author_table = 📰 Autori
+neues_entry_category_rel = 📰 Articole 🔀 Categorii
+neues_entry_category_table = 📰 Categorii
+neues_entry_table = 📰 Articole
+neues_entry_lang = 📰 Limbi
+
+neues_entry_author_id = Autor
+neues_name = Titlu
+neues_name_notice = Titlul articolului
+neues_name_validate_empty = Titlul acestui articol de știri nu poate fi gol.
+neues_category_name_validate_unique = Acest nume este deja folosit.
+neues_category_title = Categorie
+neues_category_title_notice = Numele categoriei, cuvântul cheie sau numele unei serii de articole.
+neues_category_image = Imagine de titlu
+neues_teaser = Teaser
+neues_teaser_notice = Un text scurt sau un rezumat care poate fi afișat în prezentarea evenimentelor.
+neues_description = Conținut
+neues_description_notice = Introduceți conținutul articolului dvs. de știri.
+neues_image = Imagine de titlu
+neues_images = Galerie
+
+neues_external_url = Link extern
+neues_external_url_notice = Dacă există informații suplimentare pe un alt site web, introduceți aici adresa site-ului web extern, de exemplu <code>http://www.example.org/foo-bar/</code>
+neues_external_url_validate_url = Vă rugăm să introduceți un URL valid și complet (de exemplu, `https://example.org/`)
+
+neues_createdate = Creat la...
+neues_createuser = Creat de...
+neues_updatedate = Ultima modificare la...
+neues_updateuser = Ultima modificare de...
+neues_publishdate = Publicat la...
+neues_publishdate_validate_compare_value = Data de publicare nu poate fi goală.
+neues_publishuser = Publicat de...
+
+neues_category_ids = Categorie(i)
+neues_prio = Ordine
+
+neues_status = Publicat?
+neues_status_notice = Indică dacă acest articol de știri ar trebui să fie vizibil în prezent (publicat/planificat) sau este încă în stadiul de proiect.
+neues_category_status_notice = Indică dacă această categorie ar trebui să fie vizibilă în prezent (publicată/planificată) sau este încă în stadiul de proiect.
+neues_status_online = Publicat
+neues_status_offline = Offline
+neues_status_planned = Planificat
+neues_status_draft = Proiect
+neues_status_deleted = Șters
+
+neues_domain_ids = Site-uri web
+neues_domain_ids_notice = Aici puteți specifica dacă știrile ar trebui publicate pe un singur site web sau pe mai multe site-uri web în această instalare REDAXO.
+neues_date_ids = Intrări
+neues_date_id_notice = Articole de știri atribuite acestei categorii
+
+neues_language = Limbă
+neues_language_name = Limbă
+neues_language_name_notice = Numele limbii
+neues_language_code = Codul limbii (ISO 639-1)
+neues_language_code_notice = Codul limbii de două litere conform standardului ISO, de exemplu<code>ro</code>
+neues_language_entry = Gestionează intrările
+neues_language_entry_notice = Gestionează termenii asociați
+
+neues_editor = Editor
+
+neues_author = Autori
+neues_author_name = Nume
+neues_author_nickname = Pseudonim
+neues_author_text = Descriere
+neues_author_be_user_id = Utilizator REDAXO
+
+# Doku
+
+neues_docs_a_intro = Introducere
+neues_docs_b_import_export = Import/Export
+neues_docs_c_migration = Migrație
+neues_docs_d_example = Exemplu
+neues_docs_settings = Setări
+neues_docs_neues_entry = Intrări
+neues_docs_neues_category = Categorii
+neues_docs_neues_author = Autori  
+neues_docs_neues_language = Limbi
+neues_docs_url = Addon URL
+neues_docs_rss = Flux RSS
+neues_docs_restful_api = YForm RESTful API
+
+# Cronjob
+
+neues_entry_publish_success = %s articole au fost publicate cu succes.
+neues_entry_publish_error = %s articole nu au putut fi publicate.
+neues_entry_publish_cronjob = Publică articolele planificate. (Noutăți)
