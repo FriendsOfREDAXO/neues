@@ -23,7 +23,7 @@ class Neues
      */
     public static function getList(int $rowsPerPage = 10, string $pageCursor = 'page'): string
     {
-        $query = neues_entry::query()->orderBy('publishdate', 'desc');
+        $query = Entry::query()->orderBy('publishdate', 'desc');
         $pager = new rex_pager($rowsPerPage, $pageCursor);
         $posts = $query->paginate($pager);
 
@@ -46,7 +46,7 @@ class Neues
      */
     public static function getEntry(int $postId): string
     {
-        $post = neues_entry::get($postId);
+        $post = Entry::get($postId);
         $fragment = new rex_fragment();
         $fragment->setVar('post', $post);
         return $fragment->parse('neues/entry.php');

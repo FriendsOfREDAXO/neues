@@ -57,10 +57,10 @@ class Entry extends rex_yform_manager_dataset
      *
      * @api
      */
-    public function getAuthor(): ?neues_author
+    public function getAuthor(): ?Author
     {
         if ($this->getRelatedDataset('author_id')) {
-            return neues_author::get($this->getRelatedDataset('author_id')->getId());
+            return Author::get($this->getRelatedDataset('author_id')->getId());
         }
         return null;
     }
