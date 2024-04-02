@@ -2,7 +2,6 @@
 
 namespace FriendsOfRedaxo\Neues;
 
-use FriendsOfRedaxo\neues\neues_rss_api;
 use rex;
 use rex_addon;
 use rex_be_controller;
