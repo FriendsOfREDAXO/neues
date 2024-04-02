@@ -2,6 +2,7 @@
 
 namespace FriendsOfRedaxo\Neues;
 
+use FriendsOfRedaxo\neues\neues_rss_api;
 use rex;
 use rex_addon;
 use rex_be_controller;
@@ -11,6 +12,7 @@ use rex_csrf_token;
 use rex_extension;
 use rex_extension_point;
 use rex_plugin;
+use rex_api_function;
 use rex_url;
 use rex_yform_manager_dataset;
 use rex_yform_manager_table;
@@ -50,6 +52,8 @@ if (rex::isBackend() && 'neues/entry' == rex_be_controller::getCurrentPage() || 
         $ep->setSubject(str_replace($suchmuster, $ersetzen, $ep->getSubject()));
     });
 }
+
+rex_api_function::register('neues_rss', neues_rss_api::class);
 
 if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
     /* YForm Rest API */
