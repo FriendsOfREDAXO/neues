@@ -1,0 +1,98 @@
+neues = Nieuws
+neues_title = Nieuws
+neues_entry = Berichten
+neues_settings = Instellingen
+neues_lang = Talen
+
+neues_category = Categorieën
+neues_help = Help
+
+neues_default_thumbnail = Standaard thumbnail
+neues_default_author = Auteur
+
+neues_author_table = 📰 Auteurs
+neues_entry_category_rel = 📰 Berichten 🔀 Categorieën
+neues_entry_category_table = 📰 Categorieën
+neues_entry_table = 📰 Berichten
+neues_entry_lang = 📰 Talen
+
+neues_entry_author_id = Auteur
+neues_name = Titel
+neues_name_notice = Titel van het bericht
+neues_name_validate_empty = De titel van dit nieuwsbericht mag niet leeg zijn.
+neues_category_name_validate_unique = Deze naam is al in gebruik.
+neues_category_title = Categorie
+neues_category_title_notice = Naam van de categorie, trefwoord of naam van een reeks berichten.
+neues_category_image = Omslagfoto
+neues_teaser = Teaser
+neues_teaser_notice = Een korte teaser of samenvatting die kan worden weergegeven in het overzicht.
+neues_description = Inhoud
+neues_description_notice = Geef de inhoud van uw nieuwsbericht op.
+neues_image = Omslagfoto
+neues_images = Galerij
+
+neues_external_url = Externe link
+neues_external_url_notice = Als er meer informatie is op een andere website, voer dan hier het adres van een externe website in, bijvoorbeeld <code>http://www.example.org/foo-bar/</code>
+neues_external_url_validate_url = Voer een geldige, volledige URL in (bijvoorbeeld `https://example.org/`)
+
+neues_createdate = Aangemaakt op...
+neues_createuser = Aangemaakt door...
+neues_updatedate = Laatst gewijzigd op...
+neues_updateuser = Laatst gewijzigd door...
+neues_publishdate = Gepubliceerd op...
+neues_publishdate_validate_compare_value = De publicatiedatum mag niet leeg zijn.
+neues_publishuser = Gepubliceerd door...
+
+neues_category_ids = Categorie(ën)
+neues_prio = Volgorde
+
+neues_status = Gepubliceerd?
+neues_status_notice = Geeft aan of dit nieuwsbericht momenteel zichtbaar moet zijn (gepubliceerd/gepland) of nog in de ontwerpfase is.
+neues_category_status_notice = Geeft aan of deze categorie momenteel zichtbaar moet zijn (gepubliceerd/gepland) of nog in de ontwerpfase is.
+neues_status_online = Gepubliceerd
+neues_status_offline = Offline
+neues_status_planned = Gepland
+neues_status_draft = Concept
+neues_status_deleted = Verwijderd
+
+neues_domain_ids = Websites
+neues_domain_ids_notice = Hier kunt u bepalen of het nieuws op één of meerdere websites binnen deze REDAXO-installatie moet worden gepubliceerd.
+neues_date_ids = Berichten
+neues_date_id_notice = Aan deze categorie toegewezen nieuwsberichten
+
+neues_language = Taal
+neues_language_name = Taal
+neues_language_name_notice = Naam van de taal
+neues_language_code = Taalcode (ISO 639-1)
+neues_language_code_notice = Tweeletterige taalcode volgens de ISO-norm, bijvoorbeeld<code>nl</code>
+neues_language_entry = Berichten beheren
+neues_language_entry_notice = Gekoppelde data beheren
+
+neues_editor = Editor
+
+neues_author = Auteurs
+neues_author_name = Naam
+neues_author_nickname = Bijnaam
+neues_author_text = Beschrijving
+neues_author_be_user_id = REDAXO-gebruiker
+
+# Doku
+
+neues_docs_a_intro = Inleiding
+neues_docs_b_import_export = Import/Export
+neues_docs_c_migration = Migratie
+neues_docs_d_example = Voorbeeld
+neues_docs_settings = Instellingen
+neues_docs_neues_entry = Berichten
+neues_docs_neues_category = Categorieën
+neues_docs_neues_author = Auteurs  
+neues_docs_neues_language = Talen
+neues_docs_url = URL-Addon
+neues_docs_rss = RSS-Feed
+neues_docs_restful_api = YForm RESTful API
+
+# Cronjob
+
+neues_entry_publish_success = %s berichten zijn succesvol gepubliceerd.
+neues_entry_publish_error = %s berichten konden niet worden gepubliceerd.
+neues_entry_publish_cronjob = Geplande berichten publiceren. (Nieuws)

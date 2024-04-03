@@ -24,7 +24,6 @@ if (rex_addon::get('cronjob')->isAvailable() && !rex::isSafeMode()) {
 }
 
 if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
-
     rex_yform_manager_dataset::setModelClass(
         'rex_neues_entry',
         Entry::class,
@@ -41,7 +40,6 @@ if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
         'rex_neues_entry_lang',
         EntryLang::class,
     );
-
 }
 
 if (rex::isBackend() && 'neues/entry' == rex_be_controller::getCurrentPage() || 'yform/manager/data_edit' == rex_be_controller::getCurrentPage()) {

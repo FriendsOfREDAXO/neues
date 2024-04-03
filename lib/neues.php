@@ -23,7 +23,10 @@ class Neues
      */
     public static function getList(int $rowsPerPage = 10, string $pageCursor = 'page'): string
     {
-        $query = Entry::query()->orderBy('publishdate', 'desc');
+        $query = neues_entry::query()
+            ->where('status', 1, '>=')
+            ->where('publishdate', rex_sql::datetime(), '<=')
+            ->orderBy('publishdate', 'desc');
         $pager = new rex_pager($rowsPerPage, $pageCursor);
         $posts = $query->paginate($pager);
 

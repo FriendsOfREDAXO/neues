@@ -1,0 +1,98 @@
+neues = Aktuelt
+neues_title = Aktuelt
+neues_entry = Indlæg
+neues_settings = Indstillinger
+neues_lang = Sprog
+
+neues_category = Kategorier
+neues_help = Hjælp
+
+neues_default_thumbnail = Forhåndsvisningsbillede
+neues_default_author = Forfatter
+
+neues_author_table = 📰 Forfattere
+neues_entry_category_rel = 📰 Indlæg 🔀 Kategorier
+neues_entry_category_table = 📰 Kategorier
+neues_entry_table = 📰 Indlæg
+neues_entry_lang = 📰 Sprog
+
+neues_entry_author_id = Forfatter
+neues_name = Overskrift
+neues_name_notice = Titel på indlægget
+neues_name_validate_empty = Titlen på dette nyhedsindlæg må ikke være tom.
+neues_category_name_validate_unique = Dette navn er allerede taget.
+neues_category_title = Kategori
+neues_category_title_notice = Navn på kategori, nøgleord eller navn på en serie af indlæg.
+neues_category_image = Titelbillede
+neues_teaser = Teaser
+neues_teaser_notice = En kort teaser-tekst eller et resumé, der kan vises i oversigten over begivenheder.
+neues_description = Indhold
+neues_description_notice = Angiv indholdet af dit nyhedsindlæg.
+neues_image = Titelbillede
+neues_images = Galleri
+
+neues_external_url = Ekstern link
+neues_external_url_notice = Hvis der er yderligere informationer på en anden hjemmeside, så angiv her adressen til en ekstern hjemmeside, f.eks. <code>http://www.example.org/foo-bar/</code>
+neues_external_url_validate_url = Indtast venligst en gyldig, fuldstændig URL (f.eks. `https://example.org/`)
+
+neues_createdate = Oprettet den...
+neues_createuser = Oprettet af...
+neues_updatedate = Sidst ændret den...
+neues_updateuser = Sidst ændret af...
+neues_publishdate = Offentliggjort den...
+neues_publishdate_validate_compare_value = Offentliggørelsesdatoen må ikke være tom.
+neues_publishuser = Offentliggjort af...
+
+neues_category_ids = Kategori(er)
+neues_prio = Rækkefølge
+
+neues_status = Offentliggjort?
+neues_status_notice = Angiver, om dette nyhedsindlæg skal være synligt nu (offentliggjort/planlagt) eller stadig er i udkaststadiet.
+neues_category_status_notice = Angiver, om denne kategori skal være synlig nu (offentliggjort/planlagt) eller stadig er i udkaststadiet.
+neues_status_online = Offentliggjort
+neues_status_offline = Offline
+neues_status_planned = Planlagt
+neues_status_draft = Udkast
+neues_status_deleted = Kasseret
+
+neues_domain_ids = Websites
+neues_domain_ids_notice = Her kan du angive, om nyhederne kun skal offentliggøres på en eller flere websites inden for denne REDAXO-installation.
+neues_date_ids = Indlæg
+neues_date_id_notice = Nyhedsindlæg, der er tilknyttet denne kategori
+
+neues_language = Sprog
+neues_language_name = Sprog
+neues_language_name_notice = Navn på sprog
+neues_language_code = Sprogkode (ISO 639-1)
+neues_language_code_notice = Tocifret sprogkode i henhold til ISO-standard, f.eks.<code>da</code>
+neues_language_entry = Administrer indlæg
+neues_language_entry_notice = Administrer linkede begivenheder
+
+neues_editor = Editor
+
+neues_author = Forfattere
+neues_author_name = Navn
+neues_author_nickname = Kaldenavn
+neues_author_text = Beskrivelse
+neues_author_be_user_id = REDAXO-bruger
+
+# Doku
+
+neues_docs_a_intro = Introduktion
+neues_docs_b_import_export = Import/Eksport
+neues_docs_c_migration = Migration
+neues_docs_d_example = Eksempel
+neues_docs_settings = Indstillinger
+neues_docs_neues_entry = Indlæg
+neues_docs_neues_category = Kategorier
+neues_docs_neues_author = Forfattere  
+neues_docs_neues_language = Sprog
+neues_docs_url = URL-tilføjelse
+neues_docs_rss = RSS-feed
+neues_docs_restful_api = YForm RESTful API
+
+# Cronjob
+
+neues_entry_publish_success = %s indlæg er blevet offentliggjort med succes.
+neues_entry_publish_error = %s indlæg kunne ikke offentliggøres.
+neues_entry_publish_cronjob = Offentliggør planlagte indlæg. (Aktuelt)

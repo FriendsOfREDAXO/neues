@@ -1,13 +1,16 @@
 package: neues
-version: '4.1.0-dev'
+version: '4.1.0-beta1'
 author: 'FriendsOfREDAXO, Alexander Walther, Paul Götz, Thorben'
 supportpage: https://alexplusde.github.io/neues/
 load: late
 
 requires:
     php:
+
         version: '>7.3,<9'
     redaxo: ^5.17
+
+
     packages:
         yform: '^4'
         yform_field: '^2.3.0'
