@@ -6,8 +6,11 @@ load: late
 
 requires:
     php:
-        version: '>8.1,<9'
-    redaxo: ^5.15
+
+        version: '>7.3,<9'
+    redaxo: ^5.17
+
+
     packages:
         yform: '^4'
         yform_field: '^2.3.0'
