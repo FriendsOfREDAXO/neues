@@ -18,7 +18,7 @@ $field = $form->addInputField('text', 'default_author', null, ['class' => 'form-
 $field->setLabel(rex_i18n::msg('neues_default_author'));
 
 $field = $form->addInputField('textarea', 'no_entries_placeholder', null, ['class' => 'form-control']);
-$field->setLabel(rex_i18n::msg('no_entries_placeholder'));
+$field->setLabel(rex_i18n::msg('neues_no_entries_placeholder'));
 
 $field = $form->addInputField('text', 'editor', null, ['class' => 'form-control']);
 $field->setLabel(rex_i18n::msg('neues_editor'));
