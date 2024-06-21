@@ -23,7 +23,7 @@ $posts = $this->getVar('posts');
             <?php } else { ?>
                 <div class="placeholder">
                     <?php if(rex_config::get('neues', 'no_entries_placeholder')) { ?>
-                    <p><?php echo rex_i18n::msg('no_entries_placeholder'); ?></p>
+                    <p><?= rex_i18n::msg('no_entries_placeholder') ?></p>
                     <?php } ?>
                 </div>
             <?php } ?>

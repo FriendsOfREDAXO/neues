@@ -5,6 +5,8 @@ namespace FriendsOfRedaxo\Neues;
 use rex_cronjob;
 use rex_i18n;
 
+use function count;
+
 class rex_cronjob_neues_publish extends rex_cronjob
 {
     public function execute()
