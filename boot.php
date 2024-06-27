@@ -4,6 +4,7 @@ namespace FriendsOfRedaxo\Neues;
 
 use rex;
 use rex_addon;
+use rex_api_function;
 use rex_be_controller;
 use rex_config;
 use rex_cronjob_manager;
@@ -11,13 +12,11 @@ use rex_csrf_token;
 use rex_extension;
 use rex_extension_point;
 use rex_plugin;
-use rex_api_function;
 use rex_url;
 use rex_yform_manager_dataset;
 use rex_yform_manager_table;
 use rex_yform_rest;
 use rex_yform_rest_route;
-
 
 if (rex_addon::get('cronjob')->isAvailable() && !rex::isSafeMode()) {
     rex_cronjob_manager::registerType(rex_cronjob_neues_publish::class);
