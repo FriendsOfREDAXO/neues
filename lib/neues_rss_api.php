@@ -4,9 +4,7 @@ namespace FriendsOfRedaxo\Neues;
 
 use rex;
 use rex_clang;
-use rex_escape;
 use rex_path;
-use rex_request;
 use rex_response;
 use rex_string;
 use rex_yform_manager_collection;
@@ -50,7 +48,7 @@ class neues_rss_api
         return rtrim($url1, '/') . '/' . ltrim($url2, '/');
     }
 
-    public static function createRssFeed(\rex_yform_manager_collection $collection, $domain, $lang, $description, $filename = 'rss.neues.xml')
+    public static function createRssFeed(rex_yform_manager_collection $collection, $domain, $lang, $description, $filename = 'rss.neues.xml')
     {
         $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"></rss>');
 

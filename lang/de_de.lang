@@ -68,13 +68,17 @@ neues_language_code_notice = Zweistelliger Sprachcode gemäß ISO-Norm, z.B.<cod
 neues_language_entry = Einträge verwalten
 neues_language_entry_notice = Verknüpfte Termine verwalten
 
-neues_editor = Editor
-
 neues_author = Autor:innen
 neues_author_name = Name
 neues_author_nickname = Spitzname
 neues_author_text = Beschreibung
 neues_author_be_user_id = REDAXO-Benutzer:in
+
+# Settings
+
+neues_editor = Editor
+neues_external_url_label = Label externer Link
+neues_no_entries_placeholder = Platzhalter-Text bei leerer Liste
 
 # Doku
 

@@ -1,41 +1,31 @@
 <?php
 
-/**
- * @deprecated Use FriendsOfRedaxo\neues\Author instead.
- */
-class neues_author extends FriendsOfRedaxo\neues\Author
-{
-
-}
+use FriendsOfRedaxo\neues\Author;
+use FriendsOfRedaxo\neues\Category;
+use FriendsOfRedaxo\neues\Entry;
+use FriendsOfRedaxo\neues\EntryLang;
 
 /**
- * @deprecated Use FriendsOfRedaxo\neues\Category instead.
+ * @deprecated use FriendsOfRedaxo\neues\Author instead
  */
-class neues_category extends FriendsOfRedaxo\neues\Category
-{
-
-}
+class neues_author extends Author {}
 
 /**
- * @deprecated Use FriendsOfRedaxo\neues\Entry instead.
+ * @deprecated use FriendsOfRedaxo\neues\Category instead
  */
-class neues_entry extends FriendsOfRedaxo\neues\Entry
-{
-
-}
+class neues_category extends Category {}
 
 /**
- * @deprecated Use FriendsOfRedaxo\neues\EntryLang instead.
+ * @deprecated use FriendsOfRedaxo\neues\Entry instead
  */
-class neues_entry_lang extends FriendsOfRedaxo\neues\EntryLang
-{
-
-}
+class neues_entry extends Entry {}
 
 /**
- * @deprecated Use FriendsOfRedaxo\neues\Neues instead.
+ * @deprecated use FriendsOfRedaxo\neues\EntryLang instead
  */
-class neues extends FriendsOfRedaxo\neues\Neues
-{
+class neues_entry_lang extends EntryLang {}
 
-}
+/**
+ * @deprecated use FriendsOfRedaxo\neues\Neues instead
+ */
+class neues extends FriendsOfRedaxo\neues\Neues {}
