@@ -48,7 +48,7 @@ if (rex_addon::get('url') && rex_addon::get('url')->isAvailable()) {
         }
         $rex_neues_entry = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_url_generator_profile WHERE `table_name` = '1_xxx_rex_neues_entry'"));
         if (!$rex_neues_entry) {
-            $query = rex_file::get(__DIR__ . 'install/rex_url_profile_neues_entry.sql');
+            $query = rex_file::get(__DIR__ . '/install/rex_url_profile_neues_entry.sql');
             rex_sql::factory()->setQuery($query);
         }
         /* URL-Profile wurden bereits einmal installiert, daher nicht nochmals installieren und Entwickler-Einstellungen respektieren */
