@@ -5,7 +5,7 @@ Wurde Neues mit dem URL-Addon installiert und entsprechend der [Anleitung](/reda
 Die Ausgabe erfolgt über Fragment-Dateien. Diese findest du im Ordner `fragments/neues`. Die Fragmente können nach Belieben angepasst werden. 
 
 Um sicherzustellen, dass deine Anpassungen updatesicher sind, kopiere die entsprechenden Fragmente in den folgenden Ordner und nimm dort die Änderungen vor:
-- bei Verwendung des theme-Addons:`theme/private/fragments/neues`
+- bei Verwendung des theme-Addons: `theme/private/fragments/neues`
 - bei Verwendung des project-Addons: `redaxo/addons/project/fragments/neues`
 
 Weitere Informationen zu Fragmenten findest du in der [Redaxo-Dokumentation](https://redaxo.org/doku/main/fragmente).
