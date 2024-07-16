@@ -44,6 +44,12 @@ class rex_cronjob_neues_sync extends rex_cronjob
 
             $neues_category->setValue('uuid', $category['uuid']);
             $neues_category->setValue('name', $category['name']);
+            $neues_category->setValue('image', $category['image']);
+            $neues_category->setValue('status', $status);
+            $neues_category->setValue('createdate', $category['createdate']);
+            $neues_category->setValue('createuser', 'cronjob');
+            $neues_category->setValue('updatedate', $category['updatedate']);
+            $neues_category->setValue('updateuser', 'cronjob');
             $neues_category->save();
         }
 
@@ -56,6 +62,8 @@ class rex_cronjob_neues_sync extends rex_cronjob
 
             $neues_author->setValue('uuid', $author['uuid']);
             $neues_author->setValue('name', $author['name']);
+            $neues_author->setValue('nickname', $author['nickname']);
+            $neues_author->setValue('text', $author['text']);
             $neues_author->save();
         }
 
