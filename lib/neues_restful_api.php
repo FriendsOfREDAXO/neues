@@ -16,7 +16,7 @@ class RestfulApi {
                 'query' => Entry::query(),
                 'get' => [
                     'fields' => [
-                        'rex_neues_entry' => [
+                        'FriendsOfRedaxo\Neues\Entry' => [
                             'id',
                             'status',
                             'name',
@@ -26,6 +26,7 @@ class RestfulApi {
                             'lang_id',
                             'publishdate',
                             'author_id',
+                            'category_ids',
                             'url',
                             'image',
                             'images',
@@ -33,26 +34,37 @@ class RestfulApi {
                             'createuser',
                             'updatedate',
                             'updateuser',
+                            'uuid',
                         ],
-                        'rex_neues_category' => [
+                        'FriendsOfRedaxo\Neues\Category' => [
                             'id',
                             'name',
                             'image',
                             'status',
+                            'createdate',
+                            'createuser',
+                            'updatedate',
+                            'updateuser',
+                            'uuid',
                         ],
-                        'rex_neues_author' => [
+                        'FriendsOfRedaxo\Neues\Author' => [
                             'id',
                             'name',
                             'nickname',
                             'text',
                             'image',
                             'be_user_id',
+                            'createdate',
+                            'createuser',
+                            'updatedate',
+                            'updateuser',
+                            'uuid',
                         ],
                     ],
                 ],
                 'post' => [
                     'fields' => [
-                        'rex_neues_entry' => [
+                        'FriendsOfRedaxo\Neues\Entry' => [
                             'status',
                             'name',
                             'teaser',
@@ -73,7 +85,7 @@ class RestfulApi {
                 ],
                 'delete' => [
                     'fields' => [
-                        'rex_neues_entry' => [
+                        'FriendsOfRedaxo\Neues\Entry' => [
                             'id',
                         ],
                     ],
@@ -92,26 +104,32 @@ class RestfulApi {
                 'query' => Category::query(),
                 'get' => [
                     'fields' => [
-                        'rex_neues_category' => [
+                        'FriendsOfRedaxo\Neues\Category' => [
                             'id',
                             'name',
                             'image',
                             'status',
+                            'createdate',
+                            'createuser',
+                            'updatedate',
+                            'updateuser',
+                            'uuid',
                         ],
                     ],
                 ],
                 'post' => [
                     'fields' => [
-                        'rex_neues_category' => [
+                        'FriendsOfRedaxo\Neues\Category' => [
                             'name',
                             'image',
                             'status',
+                            'uuid',
                         ],
                     ],
                 ],
                 'delete' => [
                     'fields' => [
-                        'rex_neues_category' => [
+                        'FriendsOfRedaxo\Neues\Category' => [
                             'id',
                         ],
                     ],
@@ -130,19 +148,24 @@ class RestfulApi {
                 'query' => Author::query(),
                 'get' => [
                     'fields' => [
-                        'rex_neues_author' => [
+                        'FriendsOfRedaxo\Neues\Author' => [
                             'id',
                             'name',
                             'nickname',
                             'text',
                             'image',
                             'be_user_id',
+                            'createdate',
+                            'createuser',
+                            'updatedate',
+                            'updateuser',
+                            'uuid',
                         ],
                     ],
                 ],
                 'post' => [
                     'fields' => [
-                        'rex_neues_author' => [
+                        'FriendsOfRedaxo\Neues\Author' => [
                             'name',
                             'nickname',
                             'text',
@@ -153,7 +176,7 @@ class RestfulApi {
                 ],
                 'delete' => [
                     'fields' => [
-                        'rex_neues_author' => [
+                        'FriendsOfRedaxo\Neues\Author' => [
                             'id',
                         ],
                     ],
