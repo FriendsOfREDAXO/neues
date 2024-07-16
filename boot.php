@@ -20,6 +20,7 @@ use rex_yform_rest_route;
 
 if (rex_addon::get('cronjob')->isAvailable() && !rex::isSafeMode()) {
     rex_cronjob_manager::registerType(rex_cronjob_neues_publish::class);
+    rex_cronjob_manager::registerType(rex_cronjob_neues_sync::class);
 }
 
 if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
