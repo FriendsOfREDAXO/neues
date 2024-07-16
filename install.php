@@ -18,6 +18,8 @@ if (rex_addon::get('yform') && rex_addon::get('yform')->isAvailable()) {
 
     // Vorhandene leere UUID-Felder aktualisieren
     $sql = rex_sql::factory();
+    $sql->setQuery('UPDATE ' . \rex::getTable('neues_author') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
+    $sql->setQuery('UPDATE ' . \rex::getTable('neues_category') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
     $sql->setQuery('UPDATE ' . \rex::getTable('neues_entry') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
 
     Neues::ensureDbScheme();
