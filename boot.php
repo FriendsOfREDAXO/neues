@@ -11,6 +11,7 @@ use rex_cronjob_manager;
 use rex_csrf_token;
 use rex_extension;
 use rex_extension_point;
+use rex_package;
 use rex_plugin;
 use rex_url;
 use rex_yform_manager_dataset;
@@ -219,7 +220,7 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
     }
 });
 
-if (rex::isBackend()) {
+if (rex::isBackend() && \rex_addon::get('neues') && \rex_addon::get('neues')->isAvailable() && !rex::isSafeMode()) {
     $addon = rex_addon::get('neues');
     $pages = $addon->getProperty('pages');
 
@@ -232,6 +233,8 @@ if (rex::isBackend()) {
     $params['_csrf_token'] = $token['_csrf_token'];
     $params['func'] = 'add';
 
-    $pages['neues']['title'] .= ' <a style="position: absolute; top: 0; right: 0; padding: 5px; margin: 8px 19px 8px 8px" href="' . rex_url::backendPage('neues/entry', $params) . '" class="label label-default pull-right">+</a>';
+    $href = rex_url::backendPage('neues/entry', $params);
+
+    $pages['neues']['title'] .= ' <a class="label label-primary tex-primary" style="position: absolute; right: 18px; top: 10px; padding: 0.2em 0.6em 0.3em; border-radius: 3px; color: white; display: inline; width: auto;" href="' . $href . '">+</a>';
     $addon->setProperty('pages', $pages);
 }
