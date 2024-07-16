@@ -18,7 +18,7 @@ use rex_yform_manager_dataset;
  * This class represents a new entry.
  *
  * Beispiel / Example:
- * $entry = neues_entry::get($id);
+ * $entry = FriendsOfRedaxo\Neues\Entry::get($id);
  *
  * @package rex_yform_manager_dataset
  */
@@ -393,13 +393,13 @@ class Entry extends rex_yform_manager_dataset
 
     /**
      * Findet Online-Einträge. Wenn eine Kategorie-ID angegeben ist, werden nur Einträge aus dieser Kategorie zurückgegeben.
-     * Finds online entries. If a category ID is provided, only entries from this category are returned.
+     * Finds online entries. If a Category ID is provided, only entries from this Category are returned.
      *
-     * @param int|null $category_id Die ID der Kategorie. / The ID of the category.
+     * @param int|null $category_id Die ID der Kategorie. / The ID of the Category.
      * @return rex_yform_manager_collection|null Die gefundenen Einträge oder null, wenn keine Einträge gefunden wurden. / The found entries or null if no entries were found.
      *
      * Beispiel / Example:
-     * $entries = neues_entry::findOnline(1);
+     * $entries = FriendsOfRedaxo\Neues\Entry::findOnline(1);
      *
      * @api
      */
@@ -413,14 +413,14 @@ class Entry extends rex_yform_manager_dataset
 
     /**
      * Findet Einträge nach Kategorie.
-     * Finds entries by category.
+     * Finds entries by Category.
      *
-     * @param int|null $category_id Die ID der Kategorie. / The ID of the category.
+     * @param int|null $category_id Die ID der Kategorie. / The ID of the Category.
      * @param int $status Der Status der Einträge. / The status of the entries.
      * @return rex_yform_manager_collection|null Die gefundenen Einträge oder null, wenn keine Einträge gefunden wurden. / The found entries or null if no entries were found.
      *
      * Beispiel / Example:
-     * $entries = neues_entry::findByCategory(1, 1);
+     * $entries = FriendsOfRedaxo\Neues\Entry::findByCategory(1, 1);
      *
      * @api
      */

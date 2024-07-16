@@ -100,3 +100,9 @@ neues_docs_restful_api = YForm RESTful API
 neues_entry_publish_success = %s Beiträge wurden erfolgreich veröffentlicht.
 neues_entry_publish_error = %s Beiträge konnten nicht veröffentlicht werden.
 neues_entry_publish_cronjob = Geplante Beiträge veröffentlichen. (Aktuelles)
+
+neues_entry_sync_error = Fehler beim Synchronisieren der Beiträge.
+neues_entry_sync_cronjob = [📰 Neues] Beiträge, Kategorien und Autoren einer anderen REDAXO-Installation abrufen
+neues_entry_sync_cronjob_url = URL der REDAXO-Installation
+neues_entry_sync_cronjob_token = RESTful API-Token
+neues_entry_sync_cronjob_status = Status-Wert
