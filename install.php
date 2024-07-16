@@ -2,6 +2,7 @@
 
 namespace FriendsOfRedaxo\Neues;
 
+use rex;
 use rex_addon;
 use rex_config;
 use rex_file;
@@ -14,6 +15,14 @@ use rex_yform_manager_table_api;
 /* Tablesets aktualisieren */
 if (rex_addon::get('yform') && rex_addon::get('yform')->isAvailable()) {
     rex_yform_manager_table_api::importTablesets(rex_file::get(__DIR__ . '/install/tableset.json'));
+
+    // Vorhandene leere UUID-Felder aktualisieren
+    $sql = rex_sql::factory();
+    $sql->setQuery('UPDATE ' . rex::getTable('neues_author') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
+    $sql->setQuery('UPDATE ' . rex::getTable('neues_category') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
+    $sql->setQuery('UPDATE ' . rex::getTable('neues_entry') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
+
+    Neues::ensureDbScheme();
 }
 
 if (!rex_media::get('neues_entry_fallback_image.png')) {

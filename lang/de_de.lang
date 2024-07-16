@@ -24,6 +24,7 @@ neues_category_name_validate_unique = Dieser Name ist bereits vergeben.
 neues_category_title = Kategorie
 neues_category_title_notice = Name der Kategorie, Schlagwort oder Name einer Beitragsreihe.
 neues_category_image = Titelbild
+neues_category_uuid = UUID
 neues_teaser = Teaser
 neues_teaser_notice = Ein kurzer Anreißer-Text oder eine Zusammenfassung, die in der Terminübersicht ausgegeben werden kann.
 neues_description = Inhalt
@@ -42,6 +43,7 @@ neues_updateuser = Zuletzt geändert von...
 neues_publishdate = Veröffentlicht am...
 neues_publishdate_validate_compare_value = Das Veröffentlichungsdatum darf nicht leer sein.
 neues_publishuser = Veröffentlicht von...
+neues_entry_uuid = UUID
 
 neues_category_ids = Kategorie(n)
 neues_prio = Reihenfolge
@@ -73,6 +75,7 @@ neues_author_name = Name
 neues_author_nickname = Spitzname
 neues_author_text = Beschreibung
 neues_author_be_user_id = REDAXO-Benutzer:in
+neues_author_uuid = UUID
 
 # Settings
 
