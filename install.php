@@ -22,7 +22,8 @@ if (rex_addon::get('yform') && rex_addon::get('yform')->isAvailable()) {
     $sql->setQuery('UPDATE ' . rex::getTable('neues_category') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
     $sql->setQuery('UPDATE ' . rex::getTable('neues_entry') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
 
-    Neues::ensureDbScheme();
+    require_once __DIR__ . '/install/update_scheme.php';
+    
 }
 
 if (!rex_media::get('neues_entry_fallback_image.png')) {

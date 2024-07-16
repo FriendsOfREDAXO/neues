@@ -1,0 +1,55 @@
+<?php
+
+rex_sql_table::get(rex::getTable('neues_entry'))
+    ->ensurePrimaryIdColumn()
+    ->ensureColumn(new rex_sql_column('status', 'int(11)'))
+    ->ensureColumn(new rex_sql_column('name', 'varchar(191)', false, ''))
+    ->ensureColumn(new rex_sql_column('teaser', 'text'))
+    ->ensureColumn(new rex_sql_column('description', 'text'))
+    ->ensureColumn(new rex_sql_column('domain_ids', 'text'))
+    ->ensureColumn(new rex_sql_column('lang_id', 'int(10) unsigned'))
+    ->ensureColumn(new rex_sql_column('publishdate', 'datetime'))
+    ->ensureColumn(new rex_sql_column('author_id', 'int(10) unsigned'))
+    ->ensureColumn(new rex_sql_column('url', 'varchar(191)', false, ''))
+    ->ensureColumn(new rex_sql_column('image', 'text'))
+    ->ensureColumn(new rex_sql_column('images', 'text'))
+    ->ensureColumn(new rex_sql_column('createdate', 'datetime'))
+    ->ensureColumn(new rex_sql_column('createuser', 'varchar(191)'))
+    ->ensureColumn(new rex_sql_column('updatedate', 'datetime'))
+    ->ensureColumn(new rex_sql_column('updateuser', 'varchar(191)'))
+    ->ensureColumn(new rex_sql_column('uuid', 'varchar(36)'))
+    ->ensureIndex(new rex_sql_index('uuid', ['uuid'], rex_sql_index::UNIQUE))
+    ->ensureIndex(new rex_sql_index('status', ['status']))
+    ->ensureIndex(new rex_sql_index('publishdate', ['publishdate']))
+    ->ensureIndex(new rex_sql_index('description', ['description'], rex_sql_index::FULLTEXT))
+    ->ensure();
+
+rex_sql_table::get(rex::getTable('neues_category'))
+    ->ensurePrimaryIdColumn()
+    ->ensureColumn(new rex_sql_column('name', 'varchar(191)', false, ''))
+    ->ensureColumn(new rex_sql_column('image', 'text'))
+    ->ensureColumn(new rex_sql_column('status', 'text'))
+    ->ensureColumn(new rex_sql_column('createuser', 'varchar(191)'))
+    ->ensureColumn(new rex_sql_column('updateuser', 'varchar(191)'))
+    ->ensureColumn(new rex_sql_column('updatedate', 'datetime'))
+    ->ensureColumn(new rex_sql_column('createdate', 'datetime'))
+    ->ensureColumn(new rex_sql_column('uuid', 'varchar(36)'))
+    ->ensureIndex(new rex_sql_index('uuid', ['uuid'], rex_sql_index::UNIQUE))
+    ->ensure();
+rex_sql_table::get(rex::getTable('neues_author'))
+    ->ensurePrimaryIdColumn()
+    ->ensureColumn(new rex_sql_column('name', 'varchar(191)', false, ''))
+    ->ensureColumn(new rex_sql_column('nickname', 'varchar(191)', false, ''))
+    ->ensureColumn(new rex_sql_column('text', 'text'))
+    ->ensureColumn(new rex_sql_column('be_user_id', 'text'))
+    ->ensureColumn(new rex_sql_column('uuid', 'varchar(36)'))
+    ->ensure();
+
+rex_sql_table::get(rex::getTable('neues_entry_category_rel'))
+    ->ensurePrimaryIdColumn()
+    ->ensureColumn(new rex_sql_column('entry_id', 'int(10) unsigned'))
+    ->ensureColumn(new rex_sql_column('category_id', 'int(10) unsigned'))
+    ->ensureIndex(new rex_sql_index('entry_id_category_id', ['entry_id', 'category_id'], rex_sql_index::UNIQUE))
+    ->ensure();
+    
+?>
