@@ -55,7 +55,7 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
     /* YForm Rest API */
     $rex_neues_entry_route = new rex_yform_rest_route(
         [
-            'path' => '/neues/4/date/',
+            'path' => '/neues/entry/5.0.0/',
             'auth' => '\rex_yform_rest_auth_token::checkToken',
             'type' => Entry::class,
             'query' => Entry::query(),
@@ -131,7 +131,7 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
     /* YForm Rest API */
     $rex_neues_category_route = new rex_yform_rest_route(
         [
-            'path' => '/neues/4/category/',
+            'path' => '/neues/category/5.0.0/',
             'auth' => '\rex_yform_rest_auth_token::checkToken',
             'type' => Category::class,
             'query' => Category::query(),
@@ -165,6 +165,48 @@ if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
     );
 
     rex_yform_rest::addRoute($rex_neues_category_route);
+
+    /* YForm Rest API */
+    $rex_neues_author_route = new rex_yform_rest_route(
+        [
+            'path' => '/neues/author/5.0.0/',
+            'auth' => '\rex_yform_rest_auth_token::checkToken',
+            'type' => Author::class,
+            'query' => Author::query(),
+            'get' => [
+                'fields' => [
+                    'rex_neues_author' => [
+                        'id',
+                        'name',
+                        'nickname',
+                        'text',
+                        'image',
+                        'be_user_id',
+                    ],
+                ],
+            ],
+            'post' => [
+                'fields' => [
+                    'rex_neues_author' => [
+                        'name',
+                        'nickname',
+                        'text',
+                        'image',
+                        'be_user_id',
+                    ],
+                ],
+            ],
+            'delete' => [
+                'fields' => [
+                    'rex_neues_author' => [
+                        'id',
+                    ],
+                ],
+            ],
+        ],
+    );
+
+    rex_yform_rest::addRoute($rex_neues_author_route);
 }
 
 rex_extension::register('YFORM_DATA_LIST', static function ($ep) {

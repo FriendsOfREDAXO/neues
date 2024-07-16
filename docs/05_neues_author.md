@@ -7,14 +7,14 @@ Kind-Klasse von `rex_yform_manager_dataset`, damit stehen alle Methoden von YOrm
 ## Infos zu einem Autor erhalten
 
 ```php
-$author = neues_author::get(3); // Autor mit der id=3
+$author = FriendsOfRedaxo\Neues\Author::get(3); // Autor mit der id=3
 // dump($author);
 ```
 
 ## Alle Autoren erhalten
 
 ```php
-$authors = neues_author::query()->find();
+$authors = FriendsOfRedaxo\Neues\Authorquery()->find();
 foreach($authors as $author) {
     echo $author->getName();
 }
@@ -23,7 +23,7 @@ foreach($authors as $author) {
 ## Neuen Autor erstellen
 
 ```php
-$author = new neues_author::create();
+$author = new FriendsOfRedaxo\Neues\Author::create();
 $author->setName('Name');
 $author->setNickname('Spitzname');
 $author->save();

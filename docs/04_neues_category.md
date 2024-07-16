@@ -7,7 +7,7 @@ Kind-Klasse von `rex_yform_manager_dataset`, damit stehen alle Methoden von YOrm
 ## Beispiel-Ausgabe einer Kategorie
 
 ```php
-$category = neues_category::get(3); // News-Kategorie mit der id=3
+$category = FriendsOfRedaxo\Neues\Category::get(3); // News-Kategorie mit der id=3
 // dump($category);
 
 echo $category->getName();

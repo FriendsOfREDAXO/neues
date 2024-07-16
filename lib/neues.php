@@ -4,6 +4,7 @@ namespace FriendsOfRedaxo\Neues;
 
 use rex_fragment;
 use rex_pager;
+use rex_sql;
 
 class Neues
 {
@@ -23,7 +24,7 @@ class Neues
      */
     public static function getList(int $rowsPerPage = 10, string $pageCursor = 'page'): string
     {
-        $query = neues_entry::query()
+        $query = Entry::query()
             ->where('status', 1, '>=')
             ->where('publishdate', rex_sql::datetime(), '<=')
             ->orderBy('publishdate', 'desc');

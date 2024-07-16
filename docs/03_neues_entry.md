@@ -7,15 +7,15 @@ Kind-Klasse von `rex_yform_manager_dataset`, damit stehen alle Methoden von YOrm
 ## Alle Einträge erhalten
 
 ```php
-$entries = neues_entry::query()->find(); // YOrm-Standard-Methode zum Finden von Einträgen, lässt sich mit where(), Limit(), etc. einschränken und Filtern.
-$entries = neues_entry::findOnline(); // Alle Online-Einträge
-$entries = neues_entry::findByCategory($category_id [, $status]) // Alle Einträge einer Kategorie
+$entries = FriendsOfRedaxo\Neues\Entry::query()->find(); // YOrm-Standard-Methode zum Finden von Einträgen, lässt sich mit where(), Limit(), etc. einschränken und Filtern.
+$entries = FriendsOfRedaxo\Neues\Entry::findOnline(); // Alle Online-Einträge
+$entries = FriendsOfRedaxo\Neues\Entry::findByCategory($category_id [, $status]) // Alle Einträge einer Kategorie
 ```
 
 ## Methoden und Beispiele
 
 ```php
-$entry = neues_entry::get(3); // News mit der id=3
+$entry = FriendsOfRedaxo\Neues\Entry::get(3); // News mit der id=3
 // dump($entry);
 
 echo $entry->getName();
@@ -36,7 +36,7 @@ echo $entry->getUrl(); // opt. URL-Schlüssel angeben
 ```
 
 ```php
-$categories = neues_entry::get(3)->getCategories();
+$categories = FriendsOfRedaxo\Neues\Entry::get(3)->getCategories();
 // dump($categories);
 
 foreach($categories as $category) {
@@ -241,7 +241,7 @@ $entry = $entry->setStatus(1);
 Findet Online-Einträge. Wenn eine Kategorie-ID angegeben ist, werden nur Einträge aus dieser Kategorie zurückgegeben.
 
 ```php
-$entries = neues_entry::findOnline(1);
+$entries = FriendsOfRedaxo\Neues\Entry::findOnline(1);
 ```
 
 ### findByCategory(?int $category_id = null, int $status = 1)
@@ -249,7 +249,7 @@ $entries = neues_entry::findOnline(1);
 Findet Einträge nach Kategorie.
 
 ```php
-$entries = neues_entry::findByCategory(1, 1);
+$entries = FriendsOfRedaxo\Neues\Entry::findByCategory(1, 1);
 ```
 
 ### getUrl(string $profile = 'neues-entry-id')

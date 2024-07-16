@@ -17,7 +17,7 @@ use rex_yform_manager_dataset;
  * It inherits from the rex_yform_manager_dataset class.
  *
  *
- * $author = neues_author::create();
+ * $author = FriendsOfRedaxo\Neues\Author::create();
  * $author->setValue('name', 'Neuer Autor');
  * $author->save();
  */
