@@ -2,13 +2,13 @@
 
 namespace FriendsOfRedaxo\Neues;
 
+use rex;
 use rex_fragment;
 use rex_pager;
 use rex_sql;
-use rex_sql_table;
-use rex;
 use rex_sql_column;
 use rex_sql_index;
+use rex_sql_table;
 
 class Neues
 {
@@ -85,7 +85,7 @@ class Neues
             ->ensureIndex(new rex_sql_index('publishdate', ['publishdate']))
             ->ensureIndex(new rex_sql_index('description', ['description'], rex_sql_index::FULLTEXT))
             ->ensure();
-        
+
         rex_sql_table::get(rex::getTable('neues_category'))
             ->ensurePrimaryIdColumn()
             ->ensureColumn(new rex_sql_column('name', 'varchar(191)', false, ''))
@@ -106,7 +106,7 @@ class Neues
             ->ensureColumn(new rex_sql_column('be_user_id', 'text'))
             ->ensureColumn(new rex_sql_column('uuid', 'varchar(36)'))
             ->ensure();
-            
+
         rex_sql_table::get(rex::getTable('neues_entry_category_rel'))
             ->ensurePrimaryIdColumn()
             ->ensureColumn(new rex_sql_column('entry_id', 'int(10) unsigned'))
