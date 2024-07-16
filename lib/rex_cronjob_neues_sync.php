@@ -1,12 +1,5 @@
 <?php
 
-namespace FriendsOfRedaxo\Neues;
-
-use rex_cronjob;
-use rex_i18n;
-use rex_socket;
-use rex_socket_response;
-
 class rex_cronjob_neues_sync extends rex_cronjob
 {
     private $rest_urls = ['category' => '/rest/neues/category/5.0.0/',
@@ -23,7 +16,7 @@ class rex_cronjob_neues_sync extends rex_cronjob
             $status = $this->getParam('status');
 
             $socket = rex_socket::factoryUrl($url);
-            $socket->addHeader('Authorization', 'Bearer ' . $token);
+            $socket->addHeader('token', $token);
             /** @var rex_socket_response $response */
             $response = $socket->doGet();
 
@@ -35,55 +28,67 @@ class rex_cronjob_neues_sync extends rex_cronjob
             $data[$type] = json_decode($response->getBody(), true);
         }
 
-        foreach ($data['category'] as $category) {
-            // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
-            $neues_category = Category::query()->where('uuid', $category['uuid'])->findOne();
-            if (null === $neues_category) {
-                $neues_category = new Category();
-            }
+        if(isset($data['category']['data'])) {
 
-            $neues_category->setValue('uuid', $category['uuid']);
-            $neues_category->setValue('name', $category['name']);
-            $neues_category->setValue('image', $category['image']);
-            $neues_category->setValue('status', $status);
-            $neues_category->setValue('createdate', $category['createdate']);
-            $neues_category->setValue('createuser', 'cronjob');
-            $neues_category->setValue('updatedate', $category['updatedate']);
-            $neues_category->setValue('updateuser', 'cronjob');
-            $neues_category->save();
+            foreach ($data['category']['data'] as $category) {
+                $category = $category['attributes'];
+
+                // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
+                $neues_category = FriendsOfRedaxo\Neues\Category::query()->where('uuid', $category['uuid'])->findOne();
+                if (null === $neues_category) {
+                    $neues_category = FriendsOfRedaxo\Neues\Category::create();
+                }
+
+                $neues_category->setValue('uuid', $category['uuid']);
+                $neues_category->setValue('name', $category['name']);
+                $neues_category->setValue('image', $category['image']);
+                $neues_category->setValue('status', $status);
+                $neues_category->setValue('createdate', $category['createdate']);
+                $neues_category->setValue('createuser', 'cronjob');
+                $neues_category->setValue('updatedate', $category['updatedate']);
+                $neues_category->setValue('updateuser', 'cronjob');
+                $neues_category->save();
+            }
         }
 
-        foreach ($data['author'] as $author) {
-            // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
-            $neues_author = Author::query()->where('uuid', $author['uuid'])->findOne();
-            if (null === $neues_author) {
-                $neues_author = new Author();
-            }
+        if(isset($data['author']['data'])) {
 
-            $neues_author->setValue('uuid', $author['uuid']);
-            $neues_author->setValue('name', $author['name']);
-            $neues_author->setValue('nickname', $author['nickname']);
-            $neues_author->setValue('text', $author['text']);
-            $neues_author->save();
+            foreach ($data['author']['data'] as $author) {
+                $author = $author['attributes'];
+
+                // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
+                $neues_author = FriendsOfRedaxo\Neues\Author::query()->where('uuid', $author['uuid'])->findOne();
+                if (null === $neues_author) {
+                    $neues_author = FriendsOfRedaxo\Neues\Author::create();
+                }
+
+                $neues_author->setValue('uuid', $author['uuid']);
+                $neues_author->setValue('name', $author['name']);
+                $neues_author->setValue('nickname', $author['nickname']);
+                $neues_author->setValue('text', $author['text']);
+                $neues_author->save();
+            }
         }
 
-        foreach ($data['entry'] as $entry) {
+        foreach ($data['entry']['data'] as $entry) {
+            $entry = $entry['attributes'];
             // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
-            $neues_entry = Entry::query()->where('uuid', $entry['uuid'])->findOne();
+            $neues_entry = FriendsOfRedaxo\Neues\Entry::query()->where('uuid', $entry['uuid'])->findOne();
             if (null === $neues_entry) {
-                $neues_entry = new Entry();
+                $neues_entry = FriendsOfRedaxo\Neues\Entry::create();
             }
+
 
             $neues_entry->setValue('uuid', $entry['uuid']);
-            $neues_entry->setValue('title', $entry['title']);
+            $neues_entry->setValue('name', $entry['name']);
             $neues_entry->setValue('teaser', $entry['teaser']);
             $neues_entry->setValue('description', $entry['description']);
             $neues_entry->setValue('url', $entry['url']);
-            // $neues_entry->setValue('image', $entry['image']);
-            // $neues_entry->setValue('images', $entry['images']);
-            $neues_entry->setValue('lang_id', $entry['lang_id']);
-            $neues_entry->setValue('category_id', $entry['category_id']);
-            $neues_entry->setValue('author_id', $entry['author_id']);
+            $neues_entry->setValue('image', $entry['image']);
+            $neues_entry->setValue('images', $entry['images']);
+            // $neues_entry->setValue('lang_id', $entry['lang_id']);
+            // $neues_entry->setValue('category_id', $entry['category_id']);
+            // $neues_entry->setValue('author_id', $entry['author_id']);
             $neues_entry->setValue('status', $status);
             $neues_entry->setValue('publishdate', $entry['publishdate']);
             $neues_entry->setValue('domain_ids', 0);
@@ -93,6 +98,8 @@ class rex_cronjob_neues_sync extends rex_cronjob
             $neues_entry->setValue('updatedate', $entry['updatedate']);
             $neues_entry->save();
         }
+        $this->setMessage(sprintf(rex_i18n::msg('neues_entry_sync_success'), $response->getStatusCode()));
+        return true;
     }
 
     public function getTypeName()
@@ -102,22 +109,24 @@ class rex_cronjob_neues_sync extends rex_cronjob
 
     public function getParamFields()
     {
-        return [
+        $fields = [
             [
-                'label' => rex_i18n::msg('neues_entry_sync_cronjob_url'),
                 'name' => 'url',
+                'label' => rex_i18n::msg('neues_entry_sync_cronjob_url'),
                 'type' => 'text',
             ],
             [
-                'label' => rex_i18n::msg('neues_entry_sync_cronjob_token'),
                 'name' => 'token',
+                'label' => rex_i18n::msg('neues_entry_sync_cronjob_token'),
                 'type' => 'text',
             ],
             [
-                'label' => rex_i18n::msg('neues_entry_sync_cronjob_status'),
                 'name' => 'status',
+                'label' => rex_i18n::msg('neues_entry_sync_cronjob_status'),
                 'type' => 'text',
             ],
         ];
+
+        return  $fields;
     }
 }
