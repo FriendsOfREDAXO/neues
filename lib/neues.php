@@ -106,6 +106,12 @@ class Neues
             ->ensureColumn(new rex_sql_column('be_user_id', 'text'))
             ->ensureColumn(new rex_sql_column('uuid', 'varchar(36)'))
             ->ensure();
-
+            
+        rex_sql_table::get(rex::getTable('neues_entry_category_rel'))
+            ->ensurePrimaryIdColumn()
+            ->ensureColumn(new rex_sql_column('entry_id', 'int(10) unsigned'))
+            ->ensureColumn(new rex_sql_column('category_id', 'int(10) unsigned'))
+            ->ensureIndex(new rex_sql_index('entry_id_category_id', ['entry_id', 'category_id'], rex_sql_index::UNIQUE))
+            ->ensure();
     }
 }
