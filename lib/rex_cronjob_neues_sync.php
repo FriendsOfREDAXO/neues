@@ -9,9 +9,9 @@ use rex_socket_response;
 
 class rex_cronjob_neues_sync extends rex_cronjob
 {
-    private $rest_urls = ['category' => '/rest/neues/category/5.0.0',
-        'author' => '/rest/neues/author/5.0.0',
-        'entry' => '/rest/neues/entry/5.0.0'];
+    private $rest_urls = ['category' => '/rest/neues/category/5.0.0/',
+        'author' => '/rest/neues/author/5.0.0/',
+        'entry' => '/rest/neues/entry/5.0.0/'];
 
     public function execute()
     {
@@ -28,7 +28,7 @@ class rex_cronjob_neues_sync extends rex_cronjob
             $response = $socket->doGet();
 
             if (!$response->isOk()) {
-                $this->setMessage(sprintf(rex_i18n::msg('neues_entry_sync_error'), $response->statusMessage()));
+                $this->setMessage(sprintf(rex_i18n::msg('neues_entry_sync_error'), $response->getStatusCode()));
                 return false;
             }
 
@@ -71,13 +71,18 @@ class rex_cronjob_neues_sync extends rex_cronjob
             $neues_entry->setValue('teaser', $entry['teaser']);
             $neues_entry->setValue('description', $entry['description']);
             $neues_entry->setValue('url', $entry['url']);
-            $neues_entry->setValue('image', $entry['image']);
-            //          $neues_entry->setValue('images', $entry['images']);
+            // $neues_entry->setValue('image', $entry['image']);
+            // $neues_entry->setValue('images', $entry['images']);
             $neues_entry->setValue('lang_id', $entry['lang_id']);
             $neues_entry->setValue('category_id', $entry['category_id']);
             $neues_entry->setValue('author_id', $entry['author_id']);
             $neues_entry->setValue('status', $status);
             $neues_entry->setValue('publishdate', $entry['publishdate']);
+            $neues_entry->setValue('domain_ids', 0);
+            $neues_entry->setValue('createuser', 'cronjob');
+            $neues_entry->setValue('updateuser', 'cronjob');
+            $neues_entry->setValue('createdate', $entry['createdate']);
+            $neues_entry->setValue('updatedate', $entry['updatedate']);
             $neues_entry->save();
         }
     }
