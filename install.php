@@ -52,12 +52,12 @@ if (rex_addon::get('url') && rex_addon::get('url')->isAvailable()) {
     if (false === rex_config::get('neues', 'url_profile', false)) {
         $rex_neues_category = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_url_generator_profile WHERE `table_name` = '1_xxx_rex_neues_category'"));
         if (!$rex_neues_category) {
-            $query = rex_file::get(__DIR__ . '/install/rex_url_profile_neues_category.sql');
+            $query = \str_replace("999999", \rex_article::getSiteStartArticleId(), rex_file::get(__DIR__ . '/install/rex_url_profile_neues_category.sql'));
             rex_sql::factory()->setQuery($query);
         }
         $rex_neues_entry = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_url_generator_profile WHERE `table_name` = '1_xxx_rex_neues_entry'"));
         if (!$rex_neues_entry) {
-            $query = rex_file::get(__DIR__ . '/install/rex_url_profile_neues_entry.sql');
+            $query = \str_replace("999999", \rex_article::getSiteStartArticleId(), rex_file::get(__DIR__ . '/install/rex_url_profile_neues_entry.sql'));
             rex_sql::factory()->setQuery($query);
         }
         /* URL-Profile wurden bereits einmal installiert, daher nicht nochmals installieren und Entwickler-Einstellungen respektieren */
