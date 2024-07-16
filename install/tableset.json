@@ -363,7 +363,7 @@
                 "choices": "translate:neues_status_deleted=2,translate:neues_status_draft=-1,translate:neues_status_planned=0,translate:neues_status_online=1",
                 "choice_attributes": "",
                 "attributes": "",
-                "default": "",
+                "default": "-1",
                 "no_db": "0",
                 "notice": "translate:neues_status_notice",
                 "preferred_choices": "",
