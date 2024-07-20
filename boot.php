@@ -94,7 +94,7 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
                 $category_ids = array_filter(array_map('intval', explode(',', $a['value'])));
 
                 foreach ($category_ids as $category_id) {
-                    /** @var neues_category $neues_category */
+                    /** @var $neues_category neues_category */
                     $neues_category = Category::get($category_id);
                     if ($neues_category) {
                         $return[] = '<a href="' . rex_url::backendPage('neues/category', $params) . '">' . $neues_category->getName() . '</a>';
@@ -105,3 +105,25 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
         );
     }
 });
+
+if (rex::isBackend() && \rex_addon::get('neues') && \rex_addon::get('neues')->isAvailable() && !rex::isSafeMode()) {
+    $addon = rex_addon::get('neues');
+    $pages = $addon->getProperty('pages');
+
+    if($_REQUEST) {
+        $_csrf_key = rex_yform_manager_table::get('rex_neues_entry')->getCSRFKey();
+        
+        $token = rex_csrf_token::factory($_csrf_key)->getUrlParams();
+
+        $params = [];
+        $params['table_name'] = 'rex_neues_entry'; // Tabellenname anpassen
+        $params['rex_yform_manager_popup'] = '0';
+        $params['_csrf_token'] = $token['_csrf_token'];
+        $params['func'] = 'add';
+
+        $href = rex_url::backendPage('neues/entry', $params);
+
+        $pages['neues']['title'] .= ' <a class="label label-primary tex-primary" style="position: absolute; right: 18px; top: 10px; padding: 0.2em 0.6em 0.3em; border-radius: 3px; color: white; display: inline; width: auto;" href="' . $href . '">+</a>';
+        $addon->setProperty('pages', $pages);
+    }
+}
