@@ -433,7 +433,7 @@ class Entry extends rex_yform_manager_dataset
     }
 
     /**
-     * Findet Einträge nach mehreren Kategorien.
+     * Findet Einträge durch IDs mehrerer Kategorien.
      * Finds entries by multiple Categories.
      *
      * @param string|array|null $category_ids Die IDs der Kategorien als String oder Array. / The IDs of the Categories as a String or Array.
@@ -441,11 +441,11 @@ class Entry extends rex_yform_manager_dataset
      * @return rex_yform_manager_collection|null Die gefundenen Einträge oder null, wenn keine Einträge gefunden wurden. / The found entries or null if no entries were found.
      *
      * Beispiel / Example:
-     * $entries = FriendsOfRedaxo\Neues\Entry::findByCategories('1,2', 1);
+     * $entries = FriendsOfRedaxo\Neues\Entry::findByCategoryIds('1,2', 1);
      *
      * @api
      */
-    public static function findByCategories(string|array|null $category_ids = null, int $status = 1): ?rex_yform_manager_collection
+    public static function findByCategoryIds(string|array|null $category_ids = null, int $status = 1): ?rex_yform_manager_collection
     {
         $query = self::query()->where('status', $status, '>=');
 
