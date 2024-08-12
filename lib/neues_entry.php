@@ -11,6 +11,8 @@ use rex_media_plus;
 use rex_yform_manager_collection;
 use rex_yform_manager_dataset;
 
+use function is_string;
+
 /**
  * Class neues_entry.
  *
@@ -430,7 +432,6 @@ class Entry extends rex_yform_manager_dataset
         return $query->find();
     }
 
-
     /**
      * Findet Einträge nach mehreren Kategorien.
      * Finds entries by multiple Categories.
@@ -453,7 +454,7 @@ class Entry extends rex_yform_manager_dataset
             if (is_string($category_ids)) {
                 $category_ids = explode(',', $category_ids);
             }
-            
+
             // whereInList anwenden
             $query->whereInList('category_ids', $category_ids);
         }
