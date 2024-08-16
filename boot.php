@@ -51,7 +51,6 @@ if (rex::isBackend() && rex_addon::get('neues') && rex_addon::get('neues')->isAv
     $pages = $addon->getProperty('pages');
 
     if ($_REQUEST) {
-
         $_csrf_key = Entry::table()->getCSRFKey();
 
         $token = rex_csrf_token::factory($_csrf_key)->getUrlParams();
