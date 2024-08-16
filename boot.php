@@ -38,7 +38,7 @@ if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
     );
 }
 
-rex_api_function::register('neues_rss', neues_rss_api::class);
+rex_api_function::register('neues_rss', RssApi::class);
 
 if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
     RestfulApi::init();
