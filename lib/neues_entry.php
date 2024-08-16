@@ -125,7 +125,7 @@ class Entry extends rex_yform_manager_dataset
                 $category_ids = array_filter(array_map('intval', explode(',', $a['value'])));
 
                 foreach ($category_ids as $category_id) {
-                    /** @var null|Category $neues_category */
+                    /** @var Category|null $neues_category */
                     $neues_category = Category::get($category_id);
                     if (null !== $neues_category) {
                         $return[] = '<a href="' . rex_url::backendPage('neues/category', $params) . '">' . $neues_category->getName() . '</a>';
