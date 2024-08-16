@@ -68,7 +68,7 @@ class Category extends rex_yform_manager_dataset
      */
     public function getEntries(): ?rex_yform_manager_collection
     {
-        return $this->getRelatedCollection('entry_ids');
+        return $this->getRelatedCollection('date_id');
     }
 
     /**

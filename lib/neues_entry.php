@@ -5,11 +5,16 @@ namespace FriendsOfRedaxo\Neues;
 use IntlDateFormatter;
 use rex_addon;
 use rex_config;
+use rex_csrf_token;
+use rex_extension_point;
 use rex_formatter;
 use rex_media;
 use rex_media_plus;
+use rex_url;
+use rex_yform;
 use rex_yform_manager_collection;
 use rex_yform_manager_dataset;
+use rex_yform_manager_table;
 
 use function is_string;
 
@@ -26,6 +31,26 @@ use function is_string;
  */
 class Entry extends rex_yform_manager_dataset
 {
+    /**
+     * Standards für das Formular anpassen
+     * - Editor-Konfiguration einfügen.
+     *
+     * @api
+     */
+    public function getForm(): rex_yform
+    {
+        $yform = parent::getForm();
+
+        $suchtext = '###neues-settings-editor###';
+        foreach ($yform->objparams['form_elements'] as $k => &$e) {
+            if ('textarea' === $e[0] && str_contains($e[5], $suchtext)) {
+                $e[5] = str_replace($suchtext, rex_config::get('neues', 'editor'), $e[5]);
+            }
+        }
+
+        return $yform;
+    }
+
     /**
      * @api
      */
@@ -46,6 +71,71 @@ class Entry extends rex_yform_manager_dataset
     {
         $this->setValue('name', $name);
         return $this;
+    }
+
+    /**
+     * YFORM_DATA_LIST: passt die Listendarstellung an.
+     *
+     * @api
+     * @param rex_extension_point<rex_yform_list> $ep
+     * @return void|rex_yform_list
+     */
+    public static function epYformDataList(rex_extension_point $ep)
+    {
+        /** @var rex_yform_manager_table $table */
+        $table = $ep->getParam('table');
+        if ($table->getTableName() !== self::table()->getTableName()) {
+            return;
+        }
+
+        /** @var rex_yform_list $list */
+        $list = $ep->getSubject();
+
+        $list->setColumnFormat(
+            'name',
+            'custom',
+            static function ($a) {
+                $_csrf_key = Entry::table()->getCSRFKey();
+                $token = rex_csrf_token::factory($_csrf_key)->getUrlParams();
+
+                $params = [];
+                $params['table_name'] = Entry::table()->getTableName();
+                $params['rex_yform_manager_popup'] = '0';
+                $params['_csrf_token'] = $token['_csrf_token'];
+                $params['data_id'] = $a['list']->getValue('id');
+                $params['func'] = 'edit';
+
+                return '<a href="' . rex_url::backendPage('neues/entry', $params) . '">' . $a['value'] . '</a>';
+            },
+        );
+        $list->setColumnFormat(
+            'neues_category_id',
+            'custom',
+            static function ($a) {
+                $_csrf_key = Category::table()->getCSRFKey();
+                $token = rex_csrf_token::factory($_csrf_key)->getUrlParams();
+
+                $params = [];
+                $params['table_name'] = Category::table()->getTableName();
+                $params['rex_yform_manager_popup'] = '0';
+                $params['_csrf_token'] = $token['_csrf_token'];
+                $params['data_id'] = $a['list']->getValue('id');
+                $params['func'] = 'edit';
+
+                $return = [];
+
+                $category_ids = array_filter(array_map('intval', explode(',', $a['value'])));
+
+                foreach ($category_ids as $category_id) {
+                    /** @var Category|null $neues_category */
+                    $neues_category = Category::get($category_id);
+                    if (null !== $neues_category) {
+                        $return[] = '<a href="' . rex_url::backendPage('neues/category', $params) . '">' . $neues_category->getName() . '</a>';
+                    }
+                }
+                return implode('<br>', $return);
+            },
+        );
     }
 
     /**
@@ -428,7 +518,9 @@ class Entry extends rex_yform_manager_dataset
      */
     public static function findByCategory(?int $category_id = null, int $status = 1): ?rex_yform_manager_collection
     {
-        $query = self::query()->joinRelation('category_ids', 'c')->where('rex_neues_entry.status', $status, '>=')->where('c.id', $category_id);
+        $query = self::query();
+        $alias = $query->getTableAlias();
+        $query->joinRelation('category_ids', 'c')->where($alias . '.status', $status, '>=')->where('c.id', $category_id);
         return $query->find();
     }
 
