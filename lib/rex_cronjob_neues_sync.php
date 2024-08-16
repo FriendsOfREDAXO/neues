@@ -1,5 +1,9 @@
 <?php
 
+use FriendsOfRedaxo\Neues\Author;
+use FriendsOfRedaxo\Neues\Category;
+use FriendsOfRedaxo\Neues\Entry;
+
 class rex_cronjob_neues_sync extends rex_cronjob
 {
     private $rest_urls = ['category' => '/rest/neues/category/5.0.0/',
@@ -28,15 +32,14 @@ class rex_cronjob_neues_sync extends rex_cronjob
             $data[$type] = json_decode($response->getBody(), true);
         }
 
-        if(isset($data['category']['data'])) {
-
+        if (isset($data['category']['data'])) {
             foreach ($data['category']['data'] as $category) {
                 $category = $category['attributes'];
 
                 // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
-                $neues_category = FriendsOfRedaxo\Neues\Category::query()->where('uuid', $category['uuid'])->findOne();
+                $neues_category = Category::query()->where('uuid', $category['uuid'])->findOne();
                 if (null === $neues_category) {
-                    $neues_category = FriendsOfRedaxo\Neues\Category::create();
+                    $neues_category = Category::create();
                 }
 
                 $neues_category->setValue('uuid', $category['uuid']);
@@ -51,15 +54,14 @@ class rex_cronjob_neues_sync extends rex_cronjob
             }
         }
 
-        if(isset($data['author']['data'])) {
-
+        if (isset($data['author']['data'])) {
             foreach ($data['author']['data'] as $author) {
                 $author = $author['attributes'];
 
                 // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
-                $neues_author = FriendsOfRedaxo\Neues\Author::query()->where('uuid', $author['uuid'])->findOne();
+                $neues_author = Author::query()->where('uuid', $author['uuid'])->findOne();
                 if (null === $neues_author) {
-                    $neues_author = FriendsOfRedaxo\Neues\Author::create();
+                    $neues_author = Author::create();
                 }
 
                 $neues_author->setValue('uuid', $author['uuid']);
@@ -73,11 +75,10 @@ class rex_cronjob_neues_sync extends rex_cronjob
         foreach ($data['entry']['data'] as $entry) {
             $entry = $entry['attributes'];
             // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
-            $neues_entry = FriendsOfRedaxo\Neues\Entry::query()->where('uuid', $entry['uuid'])->findOne();
+            $neues_entry = Entry::query()->where('uuid', $entry['uuid'])->findOne();
             if (null === $neues_entry) {
-                $neues_entry = FriendsOfRedaxo\Neues\Entry::create();
+                $neues_entry = Entry::create();
             }
-
 
             $neues_entry->setValue('uuid', $entry['uuid']);
             $neues_entry->setValue('name', $entry['name']);
@@ -127,6 +128,6 @@ class rex_cronjob_neues_sync extends rex_cronjob
             ],
         ];
 
-        return  $fields;
+        return $fields;
     }
 }

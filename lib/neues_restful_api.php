@@ -2,12 +2,13 @@
 
 namespace FriendsOfRedaxo\Neues;
 
-use rex_yform_rest_route;
 use rex_yform_rest;
+use rex_yform_rest_route;
 
-class RestfulApi {
-
-    public static function init() :void {
+class RestfulApi
+{
+    public static function init(): void
+    {
         $rex_neues_entry_route = new rex_yform_rest_route(
             [
                 'path' => '/neues/entry/5.0.0/',
@@ -92,9 +93,9 @@ class RestfulApi {
                 ],
             ],
         );
-    
+
         rex_yform_rest::addRoute($rex_neues_entry_route);
-    
+
         /* YForm Rest API */
         $rex_neues_category_route = new rex_yform_rest_route(
             [
@@ -136,9 +137,9 @@ class RestfulApi {
                 ],
             ],
         );
-    
+
         rex_yform_rest::addRoute($rex_neues_category_route);
-    
+
         /* YForm Rest API */
         $rex_neues_author_route = new rex_yform_rest_route(
             [
@@ -183,9 +184,7 @@ class RestfulApi {
                 ],
             ],
         );
-    
-        rex_yform_rest::addRoute($rex_neues_author_route);
-    
-    }
 
+        rex_yform_rest::addRoute($rex_neues_author_route);
+    }
 }

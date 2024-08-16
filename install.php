@@ -4,6 +4,7 @@ namespace FriendsOfRedaxo\Neues;
 
 use rex;
 use rex_addon;
+use rex_article;
 use rex_config;
 use rex_file;
 use rex_media;
@@ -23,7 +24,6 @@ if (rex_addon::get('yform') && rex_addon::get('yform')->isAvailable()) {
     $sql->setQuery('UPDATE ' . rex::getTable('neues_entry') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
 
     require_once __DIR__ . '/install/update_scheme.php';
-    
 }
 
 if (!rex_media::get('neues_entry_fallback_image.png')) {
@@ -53,12 +53,12 @@ if (rex_addon::get('url') && rex_addon::get('url')->isAvailable()) {
     if (false === rex_config::get('neues', 'url_profile', false)) {
         $rex_neues_category = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_url_generator_profile WHERE `table_name` = '1_xxx_rex_neues_category'"));
         if (!$rex_neues_category) {
-            $query = \str_replace("999999", \rex_article::getSiteStartArticleId(), rex_file::get(__DIR__ . '/install/rex_url_profile_neues_category.sql'));
+            $query = str_replace('999999', rex_article::getSiteStartArticleId(), rex_file::get(__DIR__ . '/install/rex_url_profile_neues_category.sql'));
             rex_sql::factory()->setQuery($query);
         }
         $rex_neues_entry = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_url_generator_profile WHERE `table_name` = '1_xxx_rex_neues_entry'"));
         if (!$rex_neues_entry) {
-            $query = \str_replace("999999", \rex_article::getSiteStartArticleId(), rex_file::get(__DIR__ . '/install/rex_url_profile_neues_entry.sql'));
+            $query = str_replace('999999', rex_article::getSiteStartArticleId(), rex_file::get(__DIR__ . '/install/rex_url_profile_neues_entry.sql'));
             rex_sql::factory()->setQuery($query);
         }
         /* URL-Profile wurden bereits einmal installiert, daher nicht nochmals installieren und Entwickler-Einstellungen respektieren */
