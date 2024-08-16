@@ -6,17 +6,17 @@ use rex_yform_manager_collection;
 use rex_yform_manager_dataset;
 
 /**
- * Klasse neues_category.
+ * Klasse Category (ex. neues_category).
  *
  * Diese Klasse repräsentiert eine Kategorie in der News-Verwaltung.
  * Sie erbt von der rex_yform_manager_dataset Klasse.
  *
- * Class neues_category
+ * Class Category (ex. neues_category).
  *
  * This class represents a Category in the news management.
  * It inherits from the rex_yform_manager_dataset class.
  *
- * $category = FriendsOfRedaxo\Neues\Categoycreate();
+ * $category = FriendsOfRedaxo\Neues\Categoy::create();
  * $category->setValue('name', 'Neue Kategorie');
  * $category->save();
  */
