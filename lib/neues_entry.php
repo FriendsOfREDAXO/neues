@@ -19,7 +19,7 @@ use rex_yform_manager_table;
 use function is_string;
 
 /**
- * Class neues_entry.
+ * Class Entry (ex. neues_entry).
  *
  * Diese Klasse repräsentiert einen neuen Eintrag.
  * This class represents a new entry.

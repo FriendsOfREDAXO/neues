@@ -1,4 +1,5 @@
 <?php
+
 /** @var rex_fragment $this */
 
 /** @var rex_pager $pager */

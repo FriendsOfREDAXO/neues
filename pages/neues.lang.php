@@ -1,11 +1,13 @@
 <?php
 
+use FriendsOfRedaxo\Neues\EntryLang;
+
 echo rex_view::title(rex_addon::get('neues')->getProperty('page')['title']);
 
 $currentPage = rex_be_controller::getCurrentPageObject();
 $wrapper = '';
 
-$table_name = 'rex_neues_entry_lang';
+$table_name = EntryLang::table()->getTableName();
 if (!rex_request('table_name', 'string', '')) {
     /* @phpstan-ignore-next-line */
     $_REQUEST['table_name'] = $table_name;

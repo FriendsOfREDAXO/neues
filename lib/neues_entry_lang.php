@@ -6,13 +6,13 @@ use rex_yform_manager_collection;
 use rex_yform_manager_dataset;
 
 /**
- * Class neues_entry_lang.
+ * Class EntryLang (ex. neues_entry_lang).
  *
  * Diese Klasse repräsentiert einen neuen Eintrag.
  * This class represents a new entry.
  *
  * Beispiel / Example:
- * $entry = neues_entry_lang::get($id);
+ * $entry = EntryLang::get($id);
  *
  * @package rex_yform_manager_dataset
  */

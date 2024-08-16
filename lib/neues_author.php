@@ -6,12 +6,12 @@ use rex_user;
 use rex_yform_manager_dataset;
 
 /**
- * Klasse neues_author.
+ * Klasse Author (ex. neues_author).
  *
  * Diese Klasse repräsentiert einen Autor in der News-Verwaltung.
  * Sie erbt von der rex_yform_manager_dataset Klasse.
  *
- * Class neues_author
+ * Class Author (ex. neues_author)
  *
  * This class represents an author in the news management.
  * It inherits from the rex_yform_manager_dataset class.

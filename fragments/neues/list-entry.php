@@ -1,7 +1,10 @@
 <?php
+
+use FriendsOfRedaxo\Neues\Entry;
+
 /** @var rex_fragment $this */
 
-/** @var neues_entry $post */
+/** @var Entry $post */
 $post = $this->getVar('post');
 ?>
 
