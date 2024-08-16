@@ -70,7 +70,7 @@ class Category extends rex_yform_manager_dataset
     {
         return $this->getRelatedCollection('date_id');
     }
-    
+
     /**
      * Gibt die URL der Kategorie zurück.
      * Returns the URL of the Category.

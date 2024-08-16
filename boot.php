@@ -8,6 +8,8 @@ use rex_api_function;
 use rex_be_controller;
 use rex_config;
 use rex_cronjob_manager;
+use rex_cronjob_neues_publish;
+use rex_cronjob_neues_sync;
 use rex_csrf_token;
 use rex_extension;
 use rex_extension_point;
@@ -17,8 +19,8 @@ use rex_yform_manager_dataset;
 use rex_yform_manager_table;
 
 if (rex_addon::get('cronjob')->isAvailable() && !rex::isSafeMode()) {
-    rex_cronjob_manager::registerType(\rex_cronjob_neues_publish::class);
-    rex_cronjob_manager::registerType(\rex_cronjob_neues_sync::class);
+    rex_cronjob_manager::registerType(rex_cronjob_neues_publish::class);
+    rex_cronjob_manager::registerType(rex_cronjob_neues_sync::class);
 }
 
 if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
@@ -94,7 +96,7 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
                 $category_ids = array_filter(array_map('intval', explode(',', $a['value'])));
 
                 foreach ($category_ids as $category_id) {
-                    /** @var $neues_category neues_category */
+                    /** @var neues_category $neues_category */
                     $neues_category = Category::get($category_id);
                     if ($neues_category) {
                         $return[] = '<a href="' . rex_url::backendPage('neues/category', $params) . '">' . $neues_category->getName() . '</a>';
@@ -106,13 +108,13 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
     }
 });
 
-if (rex::isBackend() && \rex_addon::get('neues') && \rex_addon::get('neues')->isAvailable() && !rex::isSafeMode()) {
+if (rex::isBackend() && rex_addon::get('neues') && rex_addon::get('neues')->isAvailable() && !rex::isSafeMode()) {
     $addon = rex_addon::get('neues');
     $pages = $addon->getProperty('pages');
 
-    if($_REQUEST) {
+    if ($_REQUEST) {
         $_csrf_key = rex_yform_manager_table::get('rex_neues_entry')->getCSRFKey();
-        
+
         $token = rex_csrf_token::factory($_csrf_key)->getUrlParams();
 
         $params = [];

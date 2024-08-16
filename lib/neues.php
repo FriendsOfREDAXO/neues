@@ -2,13 +2,9 @@
 
 namespace FriendsOfRedaxo\Neues;
 
-use rex;
 use rex_fragment;
 use rex_pager;
 use rex_sql;
-use rex_sql_column;
-use rex_sql_index;
-use rex_sql_table;
 
 class Neues
 {
