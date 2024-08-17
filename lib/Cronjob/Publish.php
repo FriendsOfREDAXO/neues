@@ -1,10 +1,14 @@
 <?php
 
+namespace FriendsOfRedaxo\Neues\Cronjob;
+
 use FriendsOfRedaxo\Neues\Entry;
+use rex_cronjob;
+use rex_i18n;
 
 use function count;
 
-class rex_cronjob_neues_publish extends rex_cronjob
+class Publish extends rex_cronjob
 {
     public function execute()
     {

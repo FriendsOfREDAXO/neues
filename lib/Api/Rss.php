@@ -1,7 +1,9 @@
 <?php
 
-namespace FriendsOfRedaxo\Neues;
+namespace FriendsOfRedaxo\Neues\Api;
 
+use FriendsOfRedaxo\Neues\Category;
+use FriendsOfRedaxo\Neues\Entry;
 use rex;
 use rex_api_function;
 use rex_clang;
@@ -11,7 +13,7 @@ use rex_string;
 use rex_yform_manager_collection;
 use SimpleXMLElement;
 
-class RssApi extends rex_api_function
+class Rss extends rex_api_function
 {
     protected $published = true;  // Erlaubt den Aufruf aus dem Frontend
 

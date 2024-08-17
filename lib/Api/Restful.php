@@ -1,11 +1,14 @@
 <?php
 
-namespace FriendsOfRedaxo\Neues;
+namespace FriendsOfRedaxo\Neues\Api;
 
+use FriendsOfRedaxo\Neues\Author;
+use FriendsOfRedaxo\Neues\Category;
+use FriendsOfRedaxo\Neues\Entry;
 use rex_yform_rest;
 use rex_yform_rest_route;
 
-class RestfulApi
+class Restful
 {
     public static function init(): void
     {

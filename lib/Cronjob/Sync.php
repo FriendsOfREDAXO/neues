@@ -1,10 +1,15 @@
 <?php
 
+namespace FriendsOfRedaxo\Neues\Cronjob;
+
 use FriendsOfRedaxo\Neues\Author;
 use FriendsOfRedaxo\Neues\Category;
 use FriendsOfRedaxo\Neues\Entry;
+use rex_cronjob;
+use rex_i18n;
+use rex_socket;
 
-class rex_cronjob_neues_sync extends rex_cronjob
+class Sync extends rex_cronjob
 {
     private $rest_urls = ['category' => '/rest/neues/category/5.0.0/',
         'author' => '/rest/neues/author/5.0.0/',
