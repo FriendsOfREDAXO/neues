@@ -16,6 +16,8 @@ use rex_yform_manager_collection;
 use rex_yform_manager_dataset;
 use rex_yform_manager_table;
 
+use function is_string;
+
 /**
  * Class Entry (ex. neues_entry).
  *
@@ -519,6 +521,36 @@ class Entry extends rex_yform_manager_dataset
         $query = self::query();
         $alias = $query->getTableAlias();
         $query->joinRelation('category_ids', 'c')->where($alias . '.status', $status, '>=')->where('c.id', $category_id);
+        return $query->find();
+    }
+
+    /**
+     * Findet Einträge durch IDs mehrerer Kategorien.
+     * Finds entries by multiple Categories.
+     *
+     * @param string|array|null $category_ids Die IDs der Kategorien als String oder Array. / The IDs of the Categories as a String or Array.
+     * @param int $status Der Status der Einträge. / The status of the entries.
+     * @return rex_yform_manager_collection|null Die gefundenen Einträge oder null, wenn keine Einträge gefunden wurden. / The found entries or null if no entries were found.
+     *
+     * Beispiel / Example:
+     * $entries = FriendsOfRedaxo\Neues\Entry::findByCategoryIds('1,2', 1);
+     *
+     * @api
+     */
+    public static function findByCategoryIds(string|array|null $category_ids = null, int $status = 1): ?rex_yform_manager_collection
+    {
+        $query = self::query()->where('status', $status, '>=');
+
+        if ($category_ids) {
+            // Wenn es ein String ist, in ein Array umwandeln
+            if (is_string($category_ids)) {
+                $category_ids = explode(',', $category_ids);
+            }
+
+            // whereInList anwenden
+            $query->whereInList('category_ids', $category_ids);
+        }
+
         return $query->find();
     }
 
