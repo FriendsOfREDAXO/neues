@@ -6,8 +6,6 @@ use rex;
 use rex_addon;
 use rex_api_function;
 use rex_cronjob_manager;
-use rex_cronjob_neues_publish;
-use rex_cronjob_neues_sync;
 use rex_csrf_token;
 use rex_extension;
 use rex_plugin;
@@ -15,8 +13,8 @@ use rex_url;
 use rex_yform_manager_dataset;
 
 if (rex_addon::get('cronjob')->isAvailable() && !rex::isSafeMode()) {
-    rex_cronjob_manager::registerType(rex_cronjob_neues_publish::class);
-    rex_cronjob_manager::registerType(rex_cronjob_neues_sync::class);
+    rex_cronjob_manager::registerType(Cronjob\Publish::class);
+    rex_cronjob_manager::registerType(Cronjob\Sync::class);
 }
 
 if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
@@ -38,10 +36,10 @@ if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
     );
 }
 
-rex_api_function::register('neues_rss', neues_rss_api::class);
+rex_api_function::register('neues_rss', Api\Rss::class);
 
 if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
-    RestfulApi::init();
+    Api\Restful::init();
 }
 
 rex_extension::register('YFORM_DATA_LIST', Entry::epYformDataList(...));

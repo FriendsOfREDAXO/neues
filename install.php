@@ -41,8 +41,26 @@ if (!rex_media::get('neues_entry_fallback_image.png')) {
 
 /* Cronjob installieren */
 if (rex_addon::get('cronjob') && rex_addon::get('cronjob')->isAvailable()) {
-    $cronjob = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_cronjob WHERE `type` = 'rex_cronjob_neues_publish'"));
-    if (!$cronjob) {
+    $cronjobPublish = 'FriendsOfRedaxo\\Neues\\Cronjob\\Publish';
+
+    /**
+     * ggf Update von früheren Versionen mit dem alten Klassennamen
+     * -> rex_cronjob_neues_publish ändern in FriendsOfRedaxo\Neues\Cronjob\Publish.
+     */
+    $sql->setTable(rex::getTable('cronjob'));
+    $sql->setValue('type', $cronjobPublish);
+    $sql->setWhere('`type` = :class', [':class' => 'rex_cronjob_neues_publish']);
+    $sql->update();
+
+    /**
+     * Fehlenden CronJob eintragen.
+     */
+    $sql = rex_sql::factory();
+    $sql->setTable(rex::getTable('cronjob'));
+    $sql->setWhere('`type` = :class', [':class' => $cronjobPublish]);
+    $sql->select();
+
+    if (0 === $sql->getRows()) {
         $query = rex_file::get(__DIR__ . '/install/rex_cronjob_neues_publish.sql');
         rex_sql::factory()->setQuery($query);
     }
