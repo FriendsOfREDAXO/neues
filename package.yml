@@ -48,12 +48,12 @@ pages:
             settings:
                 title: translate:neues_settings
                 icon: rex-icon fa-gear
-                itemclass: pull-right
+                itemClass: pull-right
                 perm: admin
             docs:
                 title: translate:neues_help
                 icon: rex-icon fa-info-circle
-                itemclass: pull-right
+                itemClass: pull-right
                 perm: neues[docs]
 
 default_config:
