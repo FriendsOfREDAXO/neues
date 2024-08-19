@@ -15,15 +15,6 @@ use rex_yform_manager_dataset;
 use function count;
 
 /**
- * Cronjobs nur bereitstellen, wenn das Addon verfügbar ist
- * (optionales Feature).
- */
-if (rex_addon::get('cronjob')->isAvailable()) {
-    rex_cronjob_manager::registerType(Cronjob\Publish::class);
-    rex_cronjob_manager::registerType(Cronjob\Sync::class);
-}
-
-/**
  * Tabellen in YForm mit eigener Model-Class.
  */
 rex_yform_manager_dataset::setModelClass(
@@ -44,14 +35,19 @@ rex_yform_manager_dataset::setModelClass(
 );
 
 /**
- * RSS-Fead via rex-api.
+ * RSS-Fead via rex-api anbieten.
  */
 rex_api_function::register('neues_rss', Api\Rss::class);
 
 /**
- * REST-API aktivieren wenn das YForm-REST-Plugin aktiviert ist
- * (optionales Feature).
+ * Optionale Dienste:
+ * - Cronjobs nur bereitstellen, wenn das Addon verfügbar ist
+ * - REST-API nur aktivieren wenn das YForm-REST-Plugin aktiviert ist
  */
+if (rex_addon::get('cronjob')->isAvailable()) {
+    rex_cronjob_manager::registerType(Cronjob\Publish::class);
+    rex_cronjob_manager::registerType(Cronjob\Sync::class);
+}
 if (rex_plugin::get('yform', 'rest')->isAvailable()) {
     Api\Restful::init();
 }
@@ -69,7 +65,7 @@ if (rex::isBackend()) {
      * Plus(Add)-Button im Hauptmenü-Punkt des Addon bereitstellen.
      * 
      * RexStan: Using $_REQUEST is forbidden, use rex_request::request() or rex_request() instead.
-     * Kommentar: kein Alternative verfügbar
+     * Kommentar: Für diese Nutzung ist keine rex-Alternative verfügbar
      * @phpstan-ignore-next-line
      */
     if (0 < count($_REQUEST)) {
