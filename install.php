@@ -13,6 +13,8 @@ use rex_path;
 use rex_sql;
 use rex_yform_manager_table_api;
 
+use function count;
+
 $sql = rex_sql::factory();
 
 /* Tablesets aktualisieren */

@@ -12,7 +12,7 @@ use rex_socket_response;
 
 class Sync extends rex_cronjob
 {
-    /** @var array<string,string> $rest_urls  */
+    /** @var array<string,string> */
     private $rest_urls = ['category' => '/rest/neues/category/5.0.0/',
         'author' => '/rest/neues/author/5.0.0/',
         'entry' => '/rest/neues/entry/5.0.0/'];

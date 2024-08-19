@@ -21,7 +21,7 @@ class Neues
      *
      *  Beispiel / Example:
      *  echo neues::getList(2);
-     * 
+     *
      * @api
      */
     public static function getList(int $rowsPerPage = 10, string $pageCursor = 'page'): string
@@ -49,7 +49,7 @@ class Neues
      *
      *  Beispiel / Example:
      *  echo neues::getEntry(2);
-     * 
+     *
      * @api
      */
     public static function getEntry(int $postId): string

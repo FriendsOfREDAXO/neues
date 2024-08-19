@@ -12,7 +12,7 @@ $post = $this->getVar('post');
     <div class="col p-4 d-flex flex-column position-static">
 
         <!-- Categories -->
-        <?php // TODO: Doppelte Abrufe aus der DB sind Mist! ?>
+        <?php // TODO: Doppelte Abrufe aus der DB sind Mist!?>
         <?php if (0 < count($post->getCategories())) : ?>
             <p class="d-inline-block mb-2 text-primary-emphasis">
                 <?= htmlspecialchars(implode(', ', $post->getCategories()->toKeyValue('id', 'name'))) ?>
