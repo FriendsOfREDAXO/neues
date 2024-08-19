@@ -12,51 +12,69 @@ use rex_plugin;
 use rex_url;
 use rex_yform_manager_dataset;
 
-if (rex_addon::get('cronjob')->isAvailable() && !rex::isSafeMode()) {
+use function count;
+
+/**
+ * Tabellen in YForm mit eigener Model-Class.
+ */
+rex_yform_manager_dataset::setModelClass(
+    rex::getTable('neues_entry'),
+    Entry::class,
+);
+rex_yform_manager_dataset::setModelClass(
+    rex::getTable('neues_category'),
+    Category::class,
+);
+rex_yform_manager_dataset::setModelClass(
+    rex::getTable('neues_author'),
+    Author::class,
+);
+rex_yform_manager_dataset::setModelClass(
+    rex::getTable('neues_entry_lang'),
+    EntryLang::class,
+);
+
+/**
+ * RSS-Fead via rex-api anbieten.
+ */
+rex_api_function::register('neues_rss', Api\Rss::class);
+
+/**
+ * Optionale Dienste:
+ * - Cronjobs nur bereitstellen, wenn das Addon verfügbar ist
+ * - REST-API nur aktivieren wenn das YForm-REST-Plugin aktiviert ist
+ */
+if (rex_addon::get('cronjob')->isAvailable()) {
     rex_cronjob_manager::registerType(Cronjob\Publish::class);
     rex_cronjob_manager::registerType(Cronjob\Sync::class);
 }
-
-if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
-    rex_yform_manager_dataset::setModelClass(
-        rex::getTable('neues_entry'),
-        Entry::class,
-    );
-    rex_yform_manager_dataset::setModelClass(
-        rex::getTable('neues_category'),
-        Category::class,
-    );
-    rex_yform_manager_dataset::setModelClass(
-        rex::getTable('neues_author'),
-        Author::class,
-    );
-    rex_yform_manager_dataset::setModelClass(
-        rex::getTable('neues_entry_lang'),
-        EntryLang::class,
-    );
-}
-
-rex_api_function::register('neues_rss', Api\Rss::class);
-
-if (rex_plugin::get('yform', 'rest')->isAvailable() && !rex::isSafeMode()) {
+if (rex_plugin::get('yform', 'rest')->isAvailable()) {
     Api\Restful::init();
 }
 
-rex_extension::register('YFORM_DATA_LIST', Entry::epYformDataList(...));
-
-if (rex::isBackend() && rex_addon::get('neues') && rex_addon::get('neues')->isAvailable() && !rex::isSafeMode()) {
+if (rex::isBackend()) {
     $addon = rex_addon::get('neues');
     $pages = $addon->getProperty('pages');
 
-    if ($_REQUEST) {
+    /**
+     * Individualiserte Liste für Enries.
+     */
+    rex_extension::register('YFORM_DATA_LIST', Entry::epYformDataList(...));
+
+    /**
+     * Plus(Add)-Button im Hauptmenü-Punkt des Addon bereitstellen.
+     *
+     * RexStan: Using $_REQUEST is forbidden, use rex_request::request() or rex_request() instead.
+     * Kommentar: Für diese Nutzung ist keine rex-Alternative verfügbar
+     * @phpstan-ignore-next-line
+     */
+    if (0 < count($_REQUEST)) {
         $_csrf_key = Entry::table()->getCSRFKey();
 
-        $token = rex_csrf_token::factory($_csrf_key)->getUrlParams();
+        $params = rex_csrf_token::factory($_csrf_key)->getUrlParams();
 
-        $params = [];
         $params['table_name'] = Entry::table()->getTableName(); // Tabellenname anpassen
         $params['rex_yform_manager_popup'] = '0';
-        $params['_csrf_token'] = $token['_csrf_token'];
         $params['func'] = 'add';
 
         $href = rex_url::backendPage('neues/entry', $params);
