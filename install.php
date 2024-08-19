@@ -18,7 +18,7 @@ use function count;
 $sql = rex_sql::factory();
 
 /* Tablesets aktualisieren */
-if (rex_addon::get('yform')->isAvailable()) {
+if (rex_plugin::get('yform', 'manager')->isAvailable()) {
     rex_yform_manager_table_api::importTablesets(rex_file::get(__DIR__ . '/install/tableset.json'));
 
     // Vorhandene leere UUID-Felder aktualisieren
