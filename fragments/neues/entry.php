@@ -49,7 +49,7 @@ $post = $this->getVar('post');
 
 
                 <!-- Post Content -->
-                <?php if ('' < $post->getDescription()) : ?>
+                <?php if ('' !== $post->getDescription()) : ?>
                     <div class="mt-5">
                         <?= $post->getDescription() ?>
                     </div>
