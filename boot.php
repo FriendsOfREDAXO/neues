@@ -63,7 +63,7 @@ if (rex::isBackend()) {
 
     /**
      * Plus(Add)-Button im Hauptmenü-Punkt des Addon bereitstellen.
-     * 
+     *
      * RexStan: Using $_REQUEST is forbidden, use rex_request::request() or rex_request() instead.
      * Kommentar: Für diese Nutzung ist keine rex-Alternative verfügbar
      * @phpstan-ignore-next-line
