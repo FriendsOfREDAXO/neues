@@ -12,6 +12,7 @@ use rex_media;
 use rex_media_plus;
 use rex_url;
 use rex_yform;
+use rex_yform_list;
 use rex_yform_manager_collection;
 use rex_yform_manager_dataset;
 use rex_yform_manager_table;
@@ -76,9 +77,9 @@ class Entry extends rex_yform_manager_dataset
     /**
      * YFORM_DATA_LIST: passt die Listendarstellung an.
      *
-     * @api
      * @param rex_extension_point<rex_yform_list> $ep
      * @return void|rex_yform_list
+     * @api
      */
     public static function epYformDataList(rex_extension_point $ep)
     {
@@ -142,7 +143,7 @@ class Entry extends rex_yform_manager_dataset
      * Gibt den Autor des Eintrags zurück.
      * Returns the author of the entry.
      *
-     * @return neues_author|null Der Autor des Eintrags oder null, wenn kein Autor gesetzt ist. / The author of the entry or null if no author is set.
+     * @return Author|null Der Autor des Eintrags oder null, wenn kein Autor gesetzt ist. / The author of the entry or null if no author is set.
      *
      * Beispiel / Example:
      * $author = $entry->getAuthor();
@@ -199,14 +200,14 @@ class Entry extends rex_yform_manager_dataset
      * Gibt die Kategorien des Eintrags zurück.
      * Returns the categories of the entry.
      *
-     * @return rex_yform_manager_collection|null Die Kategorien des Eintrags oder null, wenn keine Kategorien gesetzt sind. / The categories of the entry or null if no categories are set.
+     * @return rex_yform_manager_collection<Category> Die Kategorien des Eintrags oder eine leere Liste. / The categories of the entry or an empty list.
      *
      * Beispiel / Example:
      * $categories = $entry->getCategories();
      *
      * @api
      */
-    public function getCategories(): ?rex_yform_manager_collection
+    public function getCategories(): rex_yform_manager_collection
     {
         return $this->getRelatedCollection('category_ids');
     }
@@ -254,7 +255,7 @@ class Entry extends rex_yform_manager_dataset
      *
      * Beispiel / Example:
      * $images = $entry->getImages();
-     *
+     * TODO: null kommt nicht vor
      * @api
      */
     public function getImages(): ?array
@@ -488,16 +489,16 @@ class Entry extends rex_yform_manager_dataset
      * Finds online entries. If a Category ID is provided, only entries from this Category are returned.
      *
      * @param int|null $category_id Die ID der Kategorie. / The ID of the Category.
-     * @return rex_yform_manager_collection|null Die gefundenen Einträge oder null, wenn keine Einträge gefunden wurden. / The found entries or null if no entries were found.
+     * @return rex_yform_manager_collection<static> Die gefundenen Einträge bzw. eine leere Liste. / The found entries or empty list.
      *
      * Beispiel / Example:
      * $entries = FriendsOfRedaxo\Neues\Entry::findOnline(1);
      *
      * @api
      */
-    public static function findOnline(?int $category_id = null): ?rex_yform_manager_collection
+    public static function findOnline(?int $category_id = null): rex_yform_manager_collection
     {
-        if ($category_id) {
+        if (null !== $category_id) {
             return self::findByCategory($category_id);
         }
         return self::query()->where('status', 1, '>=')->find();
@@ -509,14 +510,14 @@ class Entry extends rex_yform_manager_dataset
      *
      * @param int|null $category_id Die ID der Kategorie. / The ID of the Category.
      * @param int $status Der Status der Einträge. / The status of the entries.
-     * @return rex_yform_manager_collection|null Die gefundenen Einträge oder null, wenn keine Einträge gefunden wurden. / The found entries or null if no entries were found.
+     * @return rex_yform_manager_collection<static> Die gefundenen Einträge bzw. eine leere Liste. / The found entries or empty list.
      *
      * Beispiel / Example:
      * $entries = FriendsOfRedaxo\Neues\Entry::findByCategory(1, 1);
      *
      * @api
      */
-    public static function findByCategory(?int $category_id = null, int $status = 1): ?rex_yform_manager_collection
+    public static function findByCategory(?int $category_id = null, int $status = 1): rex_yform_manager_collection
     {
         $query = self::query();
         $alias = $query->getTableAlias();
@@ -530,14 +531,14 @@ class Entry extends rex_yform_manager_dataset
      *
      * @param string|array|null $category_ids Die IDs der Kategorien als String oder Array. / The IDs of the Categories as a String or Array.
      * @param int $status Der Status der Einträge. / The status of the entries.
-     * @return rex_yform_manager_collection|null Die gefundenen Einträge oder null, wenn keine Einträge gefunden wurden. / The found entries or null if no entries were found.
+     * @return rex_yform_manager_collection<static> Die gefundenen Einträge bzw. eine leere Liste. / The found entries or empty list.
      *
      * Beispiel / Example:
      * $entries = FriendsOfRedaxo\Neues\Entry::findByCategoryIds('1,2', 1);
      *
      * @api
      */
-    public static function findByCategoryIds(string|array|null $category_ids = null, int $status = 1): ?rex_yform_manager_collection
+    public static function findByCategoryIds(string|array|null $category_ids = null, int $status = 1): rex_yform_manager_collection
     {
         $query = self::query()->where('status', $status, '>=');
 
@@ -568,9 +569,6 @@ class Entry extends rex_yform_manager_dataset
      */
     public function getUrl(string $profile = 'neues-entry-id'): string
     {
-        if ($url = rex_getUrl(null, null, [$profile => $this->getId()])) {
-            return $url;
-        }
-        return '';
+        return rex_getUrl(null, null, [$profile => $this->getId()]);
     }
 }

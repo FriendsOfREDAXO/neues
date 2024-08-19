@@ -24,10 +24,10 @@ $post = $this->getVar('post');
                         <?= $post->getFormattedPublishDate() ?>
 
                         <!-- Author -->
-                        <?php if ($post->getAuthor()) : ?>
-                            <?php if ($post->getAuthor()->getName()) : ?>
+                        <?php if (null !== $post->getAuthor()) : ?>
+                            <?php if (null !== $post->getAuthor()->getName()) : ?>
                                 von <span><?= htmlspecialchars($post->getAuthor()->getName()) ?></span>
-                            <?php elseif($post->getAuthor()->getNickname()): ?>
+                            <?php elseif(null !== $post->getAuthor()->getNickname()): ?>
                                 von <span><?= htmlspecialchars($post->getAuthor()->getNickname()) ?></span>
                             <?php endif ?>
                         <?php endif ?>
@@ -40,7 +40,7 @@ $post = $this->getVar('post');
                     <?php
                     $media = rex_media::get($post->getImage());
                     ?>
-                    <?php if ($media) : ?>
+                    <?php if (null !== $media) : ?>
                         <div class="ratio ratio-16x9 mb-3 mt-4">
                             <img src="<?= $media->getUrl() ?>" alt="<?= htmlspecialchars($media->getTitle()) ?>" class="h-100 object-fit-cover" width="200"/>
                         </div>
@@ -49,7 +49,7 @@ $post = $this->getVar('post');
 
 
                 <!-- Post Content -->
-                <?php if ($post->getDescription()) : ?>
+                <?php if ('' !== $post->getDescription()) : ?>
                     <div class="mt-5">
                         <?= $post->getDescription() ?>
                     </div>
@@ -63,7 +63,7 @@ $post = $this->getVar('post');
                             $media = rex_media::get($image);
                             $mediaUrl = rex_media_manager::getUrl('rex_media_medium', $image);
                             ?>
-                            <?php if ($media) : ?>
+                            <?php if (null !== $media) : ?>
                                 <div class="col-md-4">
                                     <a href="<?= $media->getUrl() ?>" class="d-inline-flex ratio ratio-16x9 h-100">
                                         <img src="<?= $mediaUrl ?>" alt="<?= htmlspecialchars($media->getTitle()) ?>" class="h-100 object-fit-cover" width="200"/>

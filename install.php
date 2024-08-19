@@ -13,12 +13,15 @@ use rex_path;
 use rex_sql;
 use rex_yform_manager_table_api;
 
+use function count;
+
+$sql = rex_sql::factory();
+
 /* Tablesets aktualisieren */
-if (rex_addon::get('yform') && rex_addon::get('yform')->isAvailable()) {
+if (rex_plugin::get('yform', 'manager')->isAvailable()) {
     rex_yform_manager_table_api::importTablesets(rex_file::get(__DIR__ . '/install/tableset.json'));
 
     // Vorhandene leere UUID-Felder aktualisieren
-    $sql = rex_sql::factory();
     $sql->setQuery('UPDATE ' . rex::getTable('neues_author') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
     $sql->setQuery('UPDATE ' . rex::getTable('neues_category') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
     $sql->setQuery('UPDATE ' . rex::getTable('neues_entry') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
@@ -26,7 +29,7 @@ if (rex_addon::get('yform') && rex_addon::get('yform')->isAvailable()) {
     require_once __DIR__ . '/install/update_scheme.php';
 }
 
-if (!rex_media::get('neues_entry_fallback_image.png')) {
+if (null === rex_media::get('neues_entry_fallback_image.png')) {
     rex_file::copy(__DIR__ . '/install/neues_entry_fallback_image.png', rex_path::media('neues_entry_fallback_image.png'));
     $data = [];
     $data['title'] = 'Aktuelles - Fallback-Image';
@@ -40,7 +43,7 @@ if (!rex_media::get('neues_entry_fallback_image.png')) {
 }
 
 /* Cronjob installieren */
-if (rex_addon::get('cronjob') && rex_addon::get('cronjob')->isAvailable()) {
+if (rex_addon::get('cronjob')->isAvailable()) {
     $cronjobPublish = 'FriendsOfRedaxo\\Neues\\Cronjob\\Publish';
 
     /**
@@ -67,16 +70,16 @@ if (rex_addon::get('cronjob') && rex_addon::get('cronjob')->isAvailable()) {
 }
 
 /* URL-Profile installieren */
-if (rex_addon::get('url') && rex_addon::get('url')->isAvailable()) {
+if (rex_addon::get('url')->isAvailable()) {
     if (false === rex_config::get('neues', 'url_profile', false)) {
         $rex_neues_category = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_url_generator_profile WHERE `table_name` = '1_xxx_rex_neues_category'"));
-        if (!$rex_neues_category) {
-            $query = str_replace('999999', rex_article::getSiteStartArticleId(), rex_file::get(__DIR__ . '/install/rex_url_profile_neues_category.sql'));
+        if (0 < count($rex_neues_category)) {
+            $query = str_replace('999999', (string) rex_article::getSiteStartArticleId(), rex_file::get(__DIR__ . '/install/rex_url_profile_neues_category.sql'));
             rex_sql::factory()->setQuery($query);
         }
         $rex_neues_entry = array_filter(rex_sql::factory()->getArray("SELECT * FROM rex_url_generator_profile WHERE `table_name` = '1_xxx_rex_neues_entry'"));
-        if (!$rex_neues_entry) {
-            $query = str_replace('999999', rex_article::getSiteStartArticleId(), rex_file::get(__DIR__ . '/install/rex_url_profile_neues_entry.sql'));
+        if (0 < count($rex_neues_entry)) {
+            $query = str_replace('999999', (string) rex_article::getSiteStartArticleId(), rex_file::get(__DIR__ . '/install/rex_url_profile_neues_entry.sql'));
             rex_sql::factory()->setQuery($query);
         }
         /* URL-Profile wurden bereits einmal installiert, daher nicht nochmals installieren und Entwickler-Einstellungen respektieren */

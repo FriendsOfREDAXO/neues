@@ -12,7 +12,8 @@ $post = $this->getVar('post');
     <div class="col p-4 d-flex flex-column position-static">
 
         <!-- Categories -->
-        <?php if ($post->getCategories()) : ?>
+        <?php // TODO: Doppelte Abrufe aus der DB sind Mist!?>
+        <?php if (0 < count($post->getCategories())) : ?>
             <p class="d-inline-block mb-2 text-primary-emphasis">
                 <?= htmlspecialchars(implode(', ', $post->getCategories()->toKeyValue('id', 'name'))) ?>
             </p>
@@ -26,7 +27,7 @@ $post = $this->getVar('post');
         <?php endif ?>
 
         <!-- Date -->
-        <?php if ($post->getPublishDate()) : ?>
+        <?php if ('' < $post->getPublishDate()) : ?>
             <div class="mb-2 text-body-secondary">
                 <?= $post->getFormattedPublishDate() ?>
             </div>
@@ -46,7 +47,7 @@ $post = $this->getVar('post');
     $media = rex_media::get($post->getImage());
     $mediaUrl = rex_media_manager::getUrl('rex_media_medium', $post->getImage());
     ?>
-        <?php if ($media) : ?>
+        <?php if (null !== $media) : ?>
             <div class="col-auto d-none d-lg-block">
                 <img src="<?= $mediaUrl ?>" alt="<?= htmlspecialchars($media->getTitle()) ?>" class="h-100 object-fit-cover" width="200"/>
             </div>

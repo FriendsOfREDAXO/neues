@@ -22,7 +22,7 @@ class EntryLang extends rex_yform_manager_dataset
      * Gibt die News-Einträge der aktuellen Sprache zurück.
      * Returns the entries of the language.
      *
-     * @return rex_yform_manager_collection|null Die Einträge der Sprache oder null, wenn keine Einträge gefunden wurden. / The entries of the language or null if no entries were found.
+     * @return rex_yform_manager_collection<Entry> Die Einträge der Sprache oder null, wenn keine Einträge gefunden wurden. / The entries of the language or null if no entries were found.
      *
      * Beispiel / Example:
      * $entries = $language->getEntries();
