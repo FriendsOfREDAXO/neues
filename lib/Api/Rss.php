@@ -6,6 +6,7 @@ use FriendsOfRedaxo\Neues\Category;
 use FriendsOfRedaxo\Neues\Entry;
 use rex;
 use rex_api_function;
+use rex_api_result;
 use rex_clang;
 use rex_path;
 use rex_response;
@@ -17,7 +18,11 @@ class Rss extends rex_api_function
 {
     protected $published = true;  // Erlaubt den Aufruf aus dem Frontend
 
-    public function execute(): void
+    /**
+     * @return never
+     * @api
+     */
+    public function execute(): rex_api_result
     {
         $domain_id = rex_request('domain_id', 'int', null);
         $lang_id = rex_request('lang_id', 'int', null);
@@ -41,17 +46,32 @@ class Rss extends rex_api_function
         exit;
     }
 
-    public static function getRssFeed($collection, $domain, $lang, $description, $filename)
+    /**
+     * @param rex_yform_manager_collection<Entry> $collection
+     * @api
+     *
+     * TODO: Parameter Domain wird nicht benutzt: Klären ob der weg kann. Type fehlt
+     */
+    public static function getRssFeed($collection, $domain, int $lang, string $description, string $filename): string|bool
     {
         return self::createRssFeed($collection, $domain, $lang, $description, $filename);
     }
 
-    public static function joinUrls($url1, $url2)
+    /**
+     * @api
+     */
+    public static function joinUrls(string $url1, string $url2): string
     {
         return rtrim($url1, '/') . '/' . ltrim($url2, '/');
     }
 
-    public static function createRssFeed(rex_yform_manager_collection $collection, $domain, $lang, $description, $filename = 'rss.neues.xml')
+    /**
+     * @param rex_yform_manager_collection<Entry> $collection
+     * @api
+     *
+     * TODO: Parameter Domain wird nicht benutzt: Klären ob der weg kann. Type fehlt
+     */
+    public static function createRssFeed(rex_yform_manager_collection $collection, $domain, int $lang, string $description, string $filename = 'rss.neues.xml'): string|bool
     {
         $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"></rss>');
 
@@ -60,12 +80,13 @@ class Rss extends rex_api_function
         $channel->addChild('description', $description);
         $channel->addChild('link', rex::getServer());
 
+        // RexStan: Only booleans are allowed in &&, int given on the left side.
+        // TODO: klären was der Teil `$lang &&` bewirken soll und ggf. rauswerfen
         if ($lang && $lang > 0) {
             $channel->addChild('language', rex_clang::get($lang)->getCode());
         }
 
         foreach ($collection as $entry) {
-            /** @var neues_entry $entry */
             $item = $channel->addChild('item');
             $item->addChild('title', htmlspecialchars($entry->getName()));
             $item->addChild('description', htmlspecialchars(strip_tags($entry->getDescription())));
