@@ -19,7 +19,7 @@ use FriendsOfRedaxo\Neues\Cronjob\Publish;
 /**
  * Url-Parameter nscope auswerten: unbekannt oder ungültig lösen die
  * "Fehlermeldung" mit der Abfrage aus
- * (Text als Markdown schreiben; dann muss man hier nicht soviel HTML basteln)
+ * (Text als Markdown schreiben; dann muss man hier nicht soviel HTML basteln).
  */
 $scope = rex_request::get('nscope', 'int', 0);
 if (!in_array($scope, [1, 2], true)) {
