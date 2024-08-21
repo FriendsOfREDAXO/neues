@@ -29,7 +29,7 @@ class Rss extends rex_api_function
         $category_id = rex_request('category_id', 'int', null);
 
         $category = null;
-        if(null !== $category_id) {
+        if (null !== $category_id) {
             $category = Category::get($category_id);
         }
 

@@ -17,7 +17,7 @@ class Sync extends rex_cronjob
         'entry' => '/rest/neues/entry/5.0.0/'];
 
     /**
-     * @return bool 
+     * @return bool
      */
     public function execute()
     {
