@@ -28,14 +28,19 @@ class Rss extends rex_api_function
         $lang_id = rex_request('lang_id', 'int', null);
         $category_id = rex_request('category_id', 'int', null);
 
-        if ($category_id && $category = Category::get($category_id)) {
+        $category = null;
+        if(null !== $category_id) {
+            $category = Category::get($category_id);
+        }
+
+        if (null !== $category) {
             $collection = Entry::findOnline($category_id);
             $filename = 'rss.neues.' . rex_string::normalize($category->getName()) . '.xml';
             $description = 'RSS-FEED: ' . rex::getServerName() . ' | ' . rex_escape($category->getName());
         } else {
             $collection = Entry::findOnline();
-            $description = 'RSS-FEED: ' . rex::getServerName();
             $filename = 'rss.neues.xml';
+            $description = 'RSS-FEED: ' . rex::getServerName();
         }
 
         rex_response::cleanOutputBuffers();
@@ -80,9 +85,7 @@ class Rss extends rex_api_function
         $channel->addChild('description', $description);
         $channel->addChild('link', rex::getServer());
 
-        // RexStan: Only booleans are allowed in &&, int given on the left side.
-        // TODO: klären was der Teil `$lang &&` bewirken soll und ggf. rauswerfen
-        if ($lang && $lang > 0) {
+        if ($lang > 0) {
             $channel->addChild('language', rex_clang::get($lang)->getCode());
         }
 

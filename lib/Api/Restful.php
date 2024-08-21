@@ -20,7 +20,7 @@ class Restful
                 'query' => Entry::query(),
                 'get' => [
                     'fields' => [
-                        'FriendsOfRedaxo\Neues\Entry' => [
+                        Entry::class => [
                             'id',
                             'status',
                             'name',
@@ -40,7 +40,7 @@ class Restful
                             'updateuser',
                             'uuid',
                         ],
-                        'FriendsOfRedaxo\Neues\Category' => [
+                        Category::class => [
                             'id',
                             'name',
                             'image',
@@ -51,7 +51,7 @@ class Restful
                             'updateuser',
                             'uuid',
                         ],
-                        'FriendsOfRedaxo\Neues\Author' => [
+                        Author::class => [
                             'id',
                             'name',
                             'nickname',
@@ -68,7 +68,7 @@ class Restful
                 ],
                 'post' => [
                     'fields' => [
-                        'FriendsOfRedaxo\Neues\Entry' => [
+                        Entry::class => [
                             'status',
                             'name',
                             'teaser',
@@ -89,7 +89,7 @@ class Restful
                 ],
                 'delete' => [
                     'fields' => [
-                        'FriendsOfRedaxo\Neues\Entry' => [
+                        Entry::class => [
                             'id',
                         ],
                     ],
@@ -108,7 +108,7 @@ class Restful
                 'query' => Category::query(),
                 'get' => [
                     'fields' => [
-                        'FriendsOfRedaxo\Neues\Category' => [
+                        Category::class => [
                             'id',
                             'name',
                             'image',
@@ -123,7 +123,7 @@ class Restful
                 ],
                 'post' => [
                     'fields' => [
-                        'FriendsOfRedaxo\Neues\Category' => [
+                        Category::class => [
                             'name',
                             'image',
                             'status',
@@ -133,7 +133,7 @@ class Restful
                 ],
                 'delete' => [
                     'fields' => [
-                        'FriendsOfRedaxo\Neues\Category' => [
+                        Category::class => [
                             'id',
                         ],
                     ],
@@ -152,7 +152,7 @@ class Restful
                 'query' => Author::query(),
                 'get' => [
                     'fields' => [
-                        'FriendsOfRedaxo\Neues\Author' => [
+                        Author::class => [
                             'id',
                             'name',
                             'nickname',
@@ -169,7 +169,7 @@ class Restful
                 ],
                 'post' => [
                     'fields' => [
-                        'FriendsOfRedaxo\Neues\Author' => [
+                        Author::class => [
                             'name',
                             'nickname',
                             'text',
@@ -180,7 +180,7 @@ class Restful
                 ],
                 'delete' => [
                     'fields' => [
-                        'FriendsOfRedaxo\Neues\Author' => [
+                        Author::class => [
                             'id',
                         ],
                     ],

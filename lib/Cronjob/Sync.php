@@ -8,7 +8,6 @@ use FriendsOfRedaxo\Neues\Entry;
 use rex_cronjob;
 use rex_i18n;
 use rex_socket;
-use rex_socket_response;
 
 class Sync extends rex_cronjob
 {
@@ -17,21 +16,28 @@ class Sync extends rex_cronjob
         'author' => '/rest/neues/author/5.0.0/',
         'entry' => '/rest/neues/entry/5.0.0/'];
 
+    /**
+     * @return bool 
+     */
     public function execute()
     {
         $data = [];
 
-        foreach ($this->rest_urls as $type => $url) {
-            $url = $this->getParam('url') . $url;
-            $token = $this->getParam('token');
-            $status = $this->getParam('status');
+        $baseUrl = $this->getParam('url');
+        $token = $this->getParam('token');
+        $status = $this->getParam('status');
 
+        foreach ($this->rest_urls as $type => $url) {
+            $url = $baseUrl . $url;
             $socket = rex_socket::factoryUrl($url);
             $socket->addHeader('token', $token);
-            /** @var rex_socket_response $response */
             $response = $socket->doGet();
 
             if (!$response->isOk()) {
+                /**
+                 * REVIEW: in 'neues_entry_sync_error' ist kein Platzhalter für den Code. Code überflüssig?
+                 * TODO: reicht auch $this->setMessage(rex_i18n::msg('neues_entry_sync_error') ??
+                 */
                 $this->setMessage(sprintf(rex_i18n::msg('neues_entry_sync_error'), $response->getStatusCode()));
                 return false;
             }
@@ -106,6 +112,13 @@ class Sync extends rex_cronjob
             $neues_entry->setValue('updatedate', $entry['updatedate']);
             $neues_entry->save();
         }
+
+        /**
+         * REVIEW: Ist hier der letzte Status-Code wirklich erforderlich? Es wäre eh nur der der letzten Abfrage
+         * FIXME: Der Eintrag 'neues_entry_sync_success' kommt in den .lang-Dateien nicht vor.
+         * REXSTAN: Variable $response might not be defined.
+         * -> unwahrscheinlich, da es fix drei $data-Einträge gibt. Dennoch ....
+         */
         $this->setMessage(sprintf(rex_i18n::msg('neues_entry_sync_success'), $response->getStatusCode()));
         return true;
     }

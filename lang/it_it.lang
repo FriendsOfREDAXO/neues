@@ -91,6 +91,6 @@ neues_docs_restful_api = YForm API RESTful
 
 # Cronjob
 
-neues_entry_publish_success = %s articoli sono stati pubblicati con successo.
-neues_entry_publish_error = %s articoli non sono stati pubblicati.
+neues_entry_publish_success = %d articoli sono stati pubblicati con successo.
+neues_entry_publish_error = %d articoli non sono stati pubblicati.
 neues_entry_publish_cronjob = Pubblica articoli pianificati. (Corrente)
