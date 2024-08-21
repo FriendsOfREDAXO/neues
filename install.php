@@ -12,6 +12,7 @@ use rex_media_service;
 use rex_path;
 use rex_sql;
 use rex_yform_manager_table_api;
+use Url\Profile;
 
 /** @var rex_addon $this */
 
@@ -86,8 +87,9 @@ if (rex_addon::get('cronjob')->isAvailable()) {
  */
 if (rex_addon::get('url')->isAvailable()) {
     if (false === rex_config::get('neues', 'url_profile', false)) {
+        $urlProfileTable = rex::getTable(Profile::TABLE_NAME);
         // Category
-        $sql->setTable(rex::getTable('url_generator_profile'));
+        $sql->setTable($urlProfileTable);
         $sql->setWhere('table_name = :tn', [':tn' => '1_xxx_rex_neues_category']);
         $sql->select();
         if (0 === $sql->getRows()) {
@@ -95,7 +97,7 @@ if (rex_addon::get('url')->isAvailable()) {
         }
 
         // Entry
-        $sql->setTable(rex::getTable('url_generator_profile'));
+        $sql->setTable($urlProfileTable);
         $sql->setWhere('table_name = :tn', [':tn' => '1_xxx_rex_neues_entry']);
         $sql->select();
         if (0 === $sql->getRows()) {

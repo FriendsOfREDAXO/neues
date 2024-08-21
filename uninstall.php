@@ -15,6 +15,8 @@
  */
 
 use FriendsOfRedaxo\Neues\Cronjob\Publish;
+use Url\Cache;
+use Url\Profile;
 
 /**
  * Url-Parameter nscope auswerten: unbekannt oder ungültig lösen die
@@ -63,9 +65,32 @@ try {
 }
 
 try {
-    $sql->setTable(rex::getTable('url_generator_profile'));
-    $sql->setWhere('table_name LIKE :tn', [':tn' => '1_xxx_rex_neues_%']);
-    $sql->delete();
+    /**
+     * In enger Anlehnung an den Originalcode (Profil-Löschen) in der Datei
+     * «pages/generator.profiles.php» des Url-Addons.
+     * Siehe: if ($func == 'delete' && $id > 0) usw.
+     * 
+     * Funktioniert nur bei aktiviertem Url-Addon. Bei deaktiviertem Url-Addon
+     * bleiben die Einträge erhalten.
+     */
+    $urlProfileTable = rex::getTable(Profile::TABLE_NAME);
+
+    $profiles = $sql->setTable($urlProfileTable)
+        ->setWhere('table_name LIKE :tn', [':tn' => '1_xxx_rex_neues_%'])
+        ->select('id')
+        ->getArray(fetchType: PDO::FETCH_COLUMN);
+
+    foreach ($profiles as $profileId) {
+        $profile = Profile::get($profileId);
+        if (null !== $profile) {
+            $profile->deleteUrls();
+        }
+        $sql->setTable($urlProfileTable)
+            ->setWhere('id = :id', ['id' => $profileId])
+            ->delete();
+    }
+
+    Cache::deleteProfiles();
 } catch (Throwable $th) {
     // void; falls rex_url_generator_profile nicht existiert / Url-Addon fehlt
 }
