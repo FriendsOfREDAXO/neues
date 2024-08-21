@@ -69,7 +69,7 @@ try {
      * In enger Anlehnung an den Originalcode (Profil-Löschen) in der Datei
      * «pages/generator.profiles.php» des Url-Addons.
      * Siehe: if ($func == 'delete' && $id > 0) usw.
-     * 
+     *
      * Funktioniert nur bei aktiviertem Url-Addon. Bei deaktiviertem Url-Addon
      * bleiben die Einträge erhalten.
      */
