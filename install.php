@@ -13,6 +13,7 @@ use rex_path;
 use rex_sql;
 use rex_yform_manager_table_api;
 use Url\Profile;
+use Url\Cache;
 
 /** @var rex_addon $this */
 
@@ -103,6 +104,8 @@ if (rex_addon::get('url')->isAvailable()) {
         if (0 === $sql->getRows()) {
             $this->includeFile(__DIR__ . '/install/url_profile_entry.php', $subScriptParams);
         }
+
+        Cache::deleteProfiles();
 
         // URL-Profile als installiert markieren
         rex_config::set('neues', 'url_profile', true);
