@@ -12,8 +12,8 @@ use rex_media_service;
 use rex_path;
 use rex_sql;
 use rex_yform_manager_table_api;
-use Url\Profile;
 use Url\Cache;
+use Url\Profile;
 
 /** @var rex_addon $this */
 
