@@ -54,10 +54,8 @@ class Rss extends rex_api_function
     /**
      * @param rex_yform_manager_collection<Entry> $collection
      * @api
-     *
-     * TODO: Parameter Domain wird nicht benutzt: Klären ob der weg kann. Type fehlt
      */
-    public static function getRssFeed($collection, $domain, int $lang, string $description, string $filename): string|bool
+    public static function getRssFeed(rex_yform_manager_collection $collection, string $domain, int $lang, string $description, string $filename): string|bool
     {
         return self::createRssFeed($collection, $domain, $lang, $description, $filename);
     }
@@ -73,10 +71,8 @@ class Rss extends rex_api_function
     /**
      * @param rex_yform_manager_collection<Entry> $collection
      * @api
-     *
-     * TODO: Parameter Domain wird nicht benutzt: Klären ob der weg kann. Type fehlt
      */
-    public static function createRssFeed(rex_yform_manager_collection $collection, $domain, int $lang, string $description, string $filename = 'rss.neues.xml'): string|bool
+    public static function createRssFeed(rex_yform_manager_collection $collection, string $domain, int $lang, string $description, string $filename = 'rss.neues.xml'): string|bool
     {
         $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"></rss>');
 
