@@ -93,6 +93,6 @@ neues_docs_restful_api = YForm RESTful API
 
 # Cronjob
 
-neues_entry_publish_success = %s Καταχωρήσεις δημοσιεύτηκαν επιτυχώς.
-neues_entry_publish_error = %s Καταχωρήσεις δεν μπόρεσαν να δημοσιευτούν.
+neues_entry_publish_success = %d Καταχωρήσεις δημοσιεύτηκαν επιτυχώς.
+neues_entry_publish_error = %d Καταχωρήσεις δεν μπόρεσαν να δημοσιευτούν.
 neues_entry_publish_cronjob = Δημοσίευση προγραμματισμένων καταχωρήσεων. (Νέα)

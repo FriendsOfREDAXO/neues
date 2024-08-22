@@ -28,14 +28,19 @@ class Rss extends rex_api_function
         $lang_id = rex_request('lang_id', 'int', null);
         $category_id = rex_request('category_id', 'int', null);
 
-        if ($category_id && $category = Category::get($category_id)) {
+        $category = null;
+        if (null !== $category_id) {
+            $category = Category::get($category_id);
+        }
+
+        if (null !== $category) {
             $collection = Entry::findOnline($category_id);
             $filename = 'rss.neues.' . rex_string::normalize($category->getName()) . '.xml';
             $description = 'RSS-FEED: ' . rex::getServerName() . ' | ' . rex_escape($category->getName());
         } else {
             $collection = Entry::findOnline();
-            $description = 'RSS-FEED: ' . rex::getServerName();
             $filename = 'rss.neues.xml';
+            $description = 'RSS-FEED: ' . rex::getServerName();
         }
 
         rex_response::cleanOutputBuffers();
@@ -49,10 +54,8 @@ class Rss extends rex_api_function
     /**
      * @param rex_yform_manager_collection<Entry> $collection
      * @api
-     *
-     * TODO: Parameter Domain wird nicht benutzt: Klären ob der weg kann. Type fehlt
      */
-    public static function getRssFeed($collection, $domain, int $lang, string $description, string $filename): string|bool
+    public static function getRssFeed(rex_yform_manager_collection $collection, int $domain_id, int $lang, string $description, string $filename): string|bool
     {
         return self::createRssFeed($collection, $domain, $lang, $description, $filename);
     }
@@ -68,10 +71,8 @@ class Rss extends rex_api_function
     /**
      * @param rex_yform_manager_collection<Entry> $collection
      * @api
-     *
-     * TODO: Parameter Domain wird nicht benutzt: Klären ob der weg kann. Type fehlt
      */
-    public static function createRssFeed(rex_yform_manager_collection $collection, $domain, int $lang, string $description, string $filename = 'rss.neues.xml'): string|bool
+    public static function createRssFeed(rex_yform_manager_collection $collection, int $domain_id, int $lang, string $description, string $filename = 'rss.neues.xml'): string|bool
     {
         $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"></rss>');
 
@@ -80,9 +81,7 @@ class Rss extends rex_api_function
         $channel->addChild('description', $description);
         $channel->addChild('link', rex::getServer());
 
-        // RexStan: Only booleans are allowed in &&, int given on the left side.
-        // TODO: klären was der Teil `$lang &&` bewirken soll und ggf. rauswerfen
-        if ($lang && $lang > 0) {
+        if ($lang > 0) {
             $channel->addChild('language', rex_clang::get($lang)->getCode());
         }
 

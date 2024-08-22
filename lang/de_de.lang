@@ -100,8 +100,8 @@ neues_docs_restful_api = YForm RESTful API
 
 # Cronjob
 
-neues_entry_publish_success = %s Beiträge wurden erfolgreich veröffentlicht.
-neues_entry_publish_error = %s Beiträge konnten nicht veröffentlicht werden.
+neues_entry_publish_success = %d Beiträge wurden erfolgreich veröffentlicht.
+neues_entry_publish_error = %d Beiträge konnten nicht veröffentlicht werden.
 neues_entry_publish_cronjob = Geplante Beiträge veröffentlichen. (Aktuelles)
 
 neues_entry_sync_error = Fehler beim Synchronisieren der Beiträge.

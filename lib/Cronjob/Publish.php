@@ -10,6 +10,9 @@ use function count;
 
 class Publish extends rex_cronjob
 {
+    /**
+     * @return bool
+     */
     public function execute()
     {
         /* Collection von Neues-Einträgen, die noch nicht veröffentlicht sind, aber es sein sollten. (geplant) */
