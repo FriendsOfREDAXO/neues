@@ -35,7 +35,7 @@ class Sync extends rex_cronjob
 
             if (!$response->isOk()) {
                 /**
-                 * REVIEW: in 'neues_entry_sync_error' ist kein Platzhalter für den Code. Code überflüssig?
+                 * TODO: in 'neues_entry_sync_error' Platzhalter für den Code. einfügen.
                  * TODO: reicht auch $this->setMessage(rex_i18n::msg('neues_entry_sync_error') ??
                  */
                 $this->setMessage(sprintf(rex_i18n::msg('neues_entry_sync_error'), $response->getStatusCode()));
