@@ -1,42 +1,5 @@
 # Migration von REDAXO `FOR News Manager 3`, `Blogger 1.3.2` und `alexplusde\Neues` 3.x zu `FriendsOfREEAXO\Neues` 4.1
 
-## Warum der Wechsel?
-
-Das FOR-Addon News-Manager und das FOR-Addon Blogger befinden sich nicht mehr in aktiver Entwicklung. Sie wurden nur noch bis Ende 2022 bzw. Anfang 2024 gewartet. Potentielle Sicherheitslücken werden nicht mehr geschlossen.
-
-Um die Lücke zu schließen, wird das Addon `Neues` von @alexplus_de zu FriendsOfREDAXO gespendet. Die Weiterentwicklung des Neues ist gesichert. Es wird ständig an die neuesten REDAXO-Versionen angepasst und erweitert.
-
-Ein wesentlicher Vorteil gegenüber News Manager oder Blogger ist die Unterstützung von YForm. Damit lassen sich die News-Einträge und Kategorien komfortabel verwalten und erweitern, viele Funktionen von YForm und YOrm können genutzt werden.
-
-Wir danken Alex für die Bereitschaft, das Addon in die Hände von FriendsOfREDAXO zu geben, Alex bleibt Projekt-Lead des Addons. Sowie @schorschy @skerbis und @eace für die Unterstützung bei der Entwicklung.
-
-## Funktions-Parität und Unterschiede
-
-| Was                                  | News Manager `3.0.3`                        | Blogger `1.3.2` | Neues `^4.1`                                                  |
-| ------------------------------------ | ------------------------------------------- | --------------- | ------------------------------------------------------------- |
-| Letzte Weiterentwicklung und Wartung | ❌ 28. Dez. 2022                             | ❌ 31. März 2024 | ✅ aktuell                                                 |
-| REDAXO Core-Version                  | ab `^5.4`                                   | ❌ n/a             | ab `^5.15`                                                 |
-| PHP-Version                          | ab `^5.6`                                   | ❌ n/a             | ab `^7.2`                                                  |
-| Addon-Abhängigkeiten                 | URL ab `^2`                                 | Keine           | URL ab `^2`, YForm ab `^4`, YForm Field ab `^2`                |
-| Position im Backend                  | `Addons > News Manager`                     | `Addons > Blogger` | `Aktuelles` (oben)                                          |
-| News-Übersicht                       | ✅ `News Manager > "News anlegen"`           | `Blogger > Einträge` | ✅ `Aktuelles > Einträge`                               |
-| Kategorien                           | ✅ `News Manager > "Kategorien"`             | `Blogger > Kategorien` | ✅ `Aktuelles > Kategorien`                           |
-| Kommentare                           | ✅ als Plugin: `News Manager > "Kommentare"` | ❌ nein         | ❌ nein                                                     |
-| Autoren                              | ❌ nein                                      | ❌ nein         | ✅ `Aktuelles > Autoren`                                     |
-| Mehrsprachigkeit                     | ✅ `News Manager > (Sprache auswählen)`      | ❌ nein         | ✅ `Aktuelles > Sprachen`                                   |
-| Dokumentation                        | ✅ als Plugin                                | ❌ nein         | ✅ `Aktuelles > Hilfe`                                      |
-| Einstellungen                        | ❌ nein                                      | `Blogger > Einstellungen` | ✅ `Aktuelles > Einstellungen`                    |
-| WYSIWYG-Editor                       | ✅ ausschließlich `redactor2`                | ✅ frei wählbar | ✅ frei wählbar (`cke5`, `redactor`, `markitup`, `tinymce`) |
-| Backend-Sprachen                     | ✅ ja `de,en,es,se`                          | ✅ ja `de, en`  | ✅ ja `da,de,en,el,fi,nl,no,pl,ro,se,es,tr,uk`              |
-| RSS                                  | ✅ ja                                        | ❌ nein         | ✅ ja                                                       |
-| Fertige Fragmente                    | ✅ ja                                        | ✅ ja           | ✅ ja                                                       |
-| Multi-Domain-Unterstützung           | ❌ über Umwege                               | ❌ n/a             | ✅ ja                                                    |
-| Frei erweiterbare Felder             | ❌ nein                                      | ❌ nein         | ✅ ja (via YForm)                                           |
-| YOrm-Model                           | ❌ nein                                      | ❌ nein         | ✅ ja (News-Einträge, Kategorien, Autoren, Sprachen)        |
-| CSV-Import                           | ❌ nein                                      | ❌ nein         | ✅ ja (via YForm)                                           |
-| CSV-Export                           | ❌ nein                                      | ❌ nein         | ✅ ja (via YForm)                                           |
-| RESTful API                          | ❌ nein                                      | ❌ nein         | ✅ ja (via YForm)                                           |
-
 ## Migration von News Manager zu Neues
 
 ### Automatische Daten-Migration von News Manager zu Neues 4
