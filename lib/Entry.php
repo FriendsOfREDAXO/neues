@@ -549,6 +549,7 @@ class Entry extends rex_yform_manager_dataset
             }
 
             // whereInList anwenden
+            // FIXME: whereInList gibt es nicht! Ist $query->whereListContains() gemeint?
             $query->whereInList('category_ids', $category_ids);
         }
 
