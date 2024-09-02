@@ -31,18 +31,22 @@ pages:
                 title: translate:neues_entry
                 icon: rex-icon fa-bullhorn
                 perm: neues[date]
+                subPath: pages\yform.php
             category:
                 title: translate:neues_category
                 icon: rex-icon fa-folder
                 perm: neues[category]
+                subPath: pages\yform.php
             author:
                 title: translate:neues_author
                 icon: rex-icon fa-user
                 perm: neues[author]
+                subPath: pages\yform.php
             lang:
                 title: translate:neues_lang
                 perm: neues[lang]
                 icon: rex-icon fa-flag
+                subPath: pages\yform.php
             settings:
                 title: translate:neues_settings
                 icon: rex-icon fa-gear
@@ -53,6 +57,16 @@ pages:
                 icon: rex-icon fa-info-circle
                 itemClass: pull-right
                 perm: neues[docs]
+
+yform:
+    neues/entry:
+        table_name: FriendsOfRedaxo\Neues\Entry
+    neues/category:
+        table_name: FriendsOfRedaxo\Neues\Category
+    neues/author:
+        table_name: FriendsOfRedaxo\Neues\Author
+    neues/lang:
+        table_name: FriendsOfRedaxo\Neues\EntryLang
 
 default_config:
     default_author: "Redaktion"

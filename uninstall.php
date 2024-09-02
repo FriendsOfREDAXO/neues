@@ -26,6 +26,7 @@ use Url\Profile;
 $scope = rex_request::get('nscope', 'int', 0);
 if (!in_array($scope, [1, 2], true)) {
     $context = rex_context::fromGet();
+    // TODO: Texte nach *.lang verlagern
     $msg = '### Bitte den De-Installations-Umfang auswählen' . PHP_EOL;
     $msg .= '- **Minimal** (YForm-Tablesets entfernen) ⇒ **[Start](' . $context->getUrl(['nscope' => 1], false) . ')**' . PHP_EOL;
     $msg .= '- **Vollständig** (Tabellen, Tablesets, Cronjobs etc. entfernen) ⇒ **[Start](' . $context->getUrl(['nscope' => 2], false) . ')**' . PHP_EOL;

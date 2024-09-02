@@ -40,6 +40,7 @@ $fallbackImage = 'neues_entry_fallback_image.png';
 if (null === rex_media::get($fallbackImage)) {
     rex_file::copy(__DIR__ . '/install/' . $fallbackImage, rex_path::media($fallbackImage));
     $data = [];
+    // TODO: Text nach *.lang verlagern
     $data['title'] = 'Aktuelles - Fallback-Image';
     $data['category_id'] = 0;
     $data['file'] = [
