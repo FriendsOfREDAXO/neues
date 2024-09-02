@@ -1,7 +1,5 @@
 <?php
 
-echo rex_view::title(rex_addon::get('neues')->getProperty('page')['title']);
-
 $addon = rex_addon::get('neues');
 
 $form = rex_config_form::factory($addon->getName());
