@@ -6,7 +6,7 @@
  * für docs gilt: es sind Vorarbeiten notwendig, damit das Menü korrekt angezeigt
  * wird. Daher abweichender Ablauf.
  */
-if('neues/docs' === rex_be_controller::getCurrentPage()) {
+if ('neues/docs' === rex_be_controller::getCurrentPage()) {
     $this->includeFile(__DIR__ . '/neues.docs.php');
     return;
 }
