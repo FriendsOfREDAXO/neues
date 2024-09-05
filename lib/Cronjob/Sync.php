@@ -209,6 +209,9 @@ class Sync extends rex_cronjob
         return rex_i18n::msg('neues_entry_sync_cronjob');
     }
 
+    /**
+     * @return list<array<string, mixed>>
+     */
     public function getParamFields()
     {
         $media_categories = rex_sql::factory()->getArray('SELECT id, name FROM ' . rex::getTable('media_category'));
