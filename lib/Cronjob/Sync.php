@@ -17,7 +17,7 @@ use rex_string;
 
 class Sync extends rex_cronjob
 {
-    private static $ENDPOINT = '/rest/neues/entry/5.0.0/';
+    private const ENDPOINT = '/rest/neues/entry/5.0.0/';
 
     private $counter = [
         'category' => ['created' => 0, 'updated' => 0],
