@@ -203,7 +203,7 @@ class Sync extends rex_cronjob
     public function getParamFields()
     {
 
-        $media_categories = \rex_sql::factory()->getArray('SELECT id, name FROM ' . rex::getTable('media_category'));
+        $media_categories = \rex_sql::factory()->getArray('SELECT id, name FROM ' . \rex::getTable('media_category'));
         $media_category_options = ['' => 'Root'];
         foreach ($media_categories as $media_category) {
             $media_category_options[$media_category['id']] = $media_category['name'];
