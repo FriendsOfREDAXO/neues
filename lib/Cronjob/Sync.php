@@ -11,115 +11,187 @@ use rex_socket;
 
 class Sync extends rex_cronjob
 {
-    /** @var array<string,string> */
-    private $rest_urls = ['category' => '/rest/neues/category/5.0.0/',
-        'author' => '/rest/neues/author/5.0.0/',
-        'entry' => '/rest/neues/entry/5.0.0/'];
+    private static $ENDPOINT = '/rest/neues/entry/5.0.0/';
 
-    /**
-     * @return bool
-     */
+    private $counter = [
+        'category' => ['created' => 0, 'updated' => 0],
+        'author' => ['created' => 0, 'updated' => 0],
+        'entry' => ['created' => 0, 'updated' => 0]
+    ];
+
     public function execute()
     {
+        $url = rtrim($this->getParam('url'), "/") . self::$ENDPOINT;
         $data = [];
 
-        $baseUrl = $this->getParam('url');
+        /* Query zusammenstellen */
+        $query = [];
+        if(intval($this->getParam('x_per_page')) > 0) {
+            $query[] = 'per_page='. $this->getParam('x_per_page');
+        }
+        $query[] = 'order[updatedate]=desc';
+        $socket_url = $url . '?' . implode("&", $query);
         $token = $this->getParam('token');
-        $status = $this->getParam('status');
 
-        foreach ($this->rest_urls as $type => $url) {
-            $url = $baseUrl . $url;
-            $socket = rex_socket::factoryUrl($url);
-            $socket->addHeader('token', $token);
-            $response = $socket->doGet();
+        /* Socket erstellen und Daten abrufen */
+        $socket = rex_socket::factoryUrl($socket_url);
+        $socket->addHeader('token', $token);
+        /** @var rex_socket_response $response */
+        $response = $socket->doGet();
 
-            if (!$response->isOk()) {
-                /**
-                 * TODO: in 'neues_entry_sync_error' Platzhalter für den Code. einfügen.
-                 * TODO: reicht auch $this->setMessage(rex_i18n::msg('neues_entry_sync_error') ??
-                 */
-                $this->setMessage(sprintf(rex_i18n::msg('neues_entry_sync_error'), $response->getStatusCode()));
-                return false;
-            }
-
-            $data[$type] = json_decode($response->getBody(), true);
+        if (!$response->isOk()) {
+            $this->setMessage(sprintf(rex_i18n::msg('neues_entry_sync_error'), $response->getStatusCode()));
+            return false;
         }
 
-        if (isset($data['category']['data'])) {
-            foreach ($data['category']['data'] as $category) {
-                $category = $category['attributes'];
+        $data = json_decode($response->getBody(), true);
 
-                // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
-                $neues_category = Category::query()->where('uuid', $category['uuid'])->findOne();
-                if (null === $neues_category) {
-                    $neues_category = Category::create();
+        $entries = $data['data'];
+
+        foreach ($entries as $entry) {
+            $this->createEntry($entry);
+        }
+
+        $this->setMessage(sprintf(rex_i18n::msg('neues_entry_sync_cronjob_success'), $this->counter['entry']['created'] + $this->counter['entry']['updated'], $this->counter['entry']['created'], $this->counter['entry']['updated']));
+        return true;
+    }
+
+    function createEntry(array $current) {
+        $entry_data = $current['attributes'];
+
+        $entry = Entry::query()->where('uuid', $entry_data['uuid'])->findOne();
+        if (null === $entry) {
+            $entry = Entry::create();
+            $entry->setValue('uuid', $entry_data['uuid']);
+            $this->counter['entry']['created']++;
+        } else {
+            $this->counter['entry']['updated']++;
+        }
+
+        /* Kategorien abrufen und speichern */
+        $target_category_ids = [];
+        if($this->getParam('neues_category_id') > 0 && \FriendsOfRedaxo\Neues\Category::get($this->getParam('neues_category_id'))) {
+            $target_category_ids[] = $this->getParam('neues_category_id');
+        } else {
+            $categories = $current['relationships']['category_ids']['data'];
+
+            foreach ($categories as $category) {
+                $target_category = $this->createCategory($category['attributes']);
+                if($target_category) {
+                    $target_category_ids[] = $target_category->getId();
                 }
-
-                $neues_category->setValue('uuid', $category['uuid']);
-                $neues_category->setValue('name', $category['name']);
-                $neues_category->setValue('image', $category['image']);
-                $neues_category->setValue('status', $status);
-                $neues_category->setValue('createdate', $category['createdate']);
-                $neues_category->setValue('createuser', 'cronjob');
-                $neues_category->setValue('updatedate', $category['updatedate']);
-                $neues_category->setValue('updateuser', 'cronjob');
-                $neues_category->save();
             }
         }
+        $entry->setValue('category_ids', implode(",", $target_category_ids));
+        /* / Kategorien abrufen und speichern */
 
-        if (isset($data['author']['data'])) {
-            foreach ($data['author']['data'] as $author) {
-                $author = $author['attributes'];
-
-                // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
-                $neues_author = Author::query()->where('uuid', $author['uuid'])->findOne();
-                if (null === $neues_author) {
-                    $neues_author = Author::create();
-                }
-
-                $neues_author->setValue('uuid', $author['uuid']);
-                $neues_author->setValue('name', $author['name']);
-                $neues_author->setValue('nickname', $author['nickname']);
-                $neues_author->setValue('text', $author['text']);
-                $neues_author->save();
+        /* Autor abrufen und speichern */;
+        $author = $current['relationships']['author']['data'];
+        if($author) {
+            $target_author = $this->createAuthor($author['attributes']);
+            if($target_author) {
+                $entry->setValue('author_id', $target_author->getId());
             }
         }
+        /* / Autor abrufen und speichern */
 
-        foreach ($data['entry']['data'] as $entry) {
-            $entry = $entry['attributes'];
-            // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
-            $neues_entry = Entry::query()->where('uuid', $entry['uuid'])->findOne();
-            if (null === $neues_entry) {
-                $neues_entry = Entry::create();
-            }
+        /* Titelbild abrufen und speichern */
+        $updated_image = '';
+        $targetname = $entry_data['uuid'] . '_' . $entry_data['image'];
+        if($this->createMedia($entry_data['image'])) {
+            $updated_image = $targetname;
+        }
+        $entry->setValue('image', $updated_image);
+        /* / Titelbild abrufen und speichern */
 
-            $neues_entry->setValue('uuid', $entry['uuid']);
-            $neues_entry->setValue('name', $entry['name']);
-            $neues_entry->setValue('teaser', $entry['teaser']);
-            $neues_entry->setValue('description', $entry['description']);
-            $neues_entry->setValue('url', $entry['url']);
-            $neues_entry->setValue('image', $entry['image']);
-            $neues_entry->setValue('images', $entry['images']);
-            // $neues_entry->setValue('lang_id', $entry['lang_id']);
-            // $neues_entry->setValue('category_id', $entry['category_id']);
-            // $neues_entry->setValue('author_id', $entry['author_id']);
-            $neues_entry->setValue('status', $status);
-            $neues_entry->setValue('publishdate', $entry['publishdate']);
-            $neues_entry->setValue('domain_ids', 0);
-            $neues_entry->setValue('createuser', 'cronjob');
-            $neues_entry->setValue('updateuser', 'cronjob');
-            $neues_entry->setValue('createdate', $entry['createdate']);
-            $neues_entry->setValue('updatedate', $entry['updatedate']);
-            $neues_entry->save();
+        /* Galerie-Bilder abrufen und speichern */
+        $images = array_filter(explode(",", $entry_data['images']));
+        $updated_images = [];
+        foreach($images as $image) {
+            $targetname = $entry_data['uuid'] . '_' . $image;
+            if($this->createMedia($image, $targetname)) {
+                $updated_images[] = $targetname;
+            };
+        }
+        $entry->setValue('images', implode(",",$updated_images));
+        /* / Galerie-Bilder abrufen und speichern */
+
+        $entry->setValue('name', $entry_data['name']);
+        $entry->setValue('teaser', $entry_data['teaser']);
+        $entry->setValue('description', $entry_data['description']);
+        $entry->setValue('url', $entry_data['url']);
+        // $entry->setValue('lang_id', $entry['lang_id']);
+        $entry->setValue('publishdate', $entry_data['publishdate']);
+        $entry->setValue('domain_ids', 0);
+        $entry->setValue('createuser', 'neues_sync_cronjob');
+        $entry->setValue('updateuser', 'neues_sync_cronjob');
+        $entry->setValue('createdate', $entry_data['createdate']);
+        $entry->setValue('updatedate', $entry_data['updatedate']);
+        $entry->save();
+    } 
+
+    function createCategory($current) {
+        $category = Category::query()->where('uuid', $current['uuid'])->findOne();
+        if (null === $category) {
+            $category = Category::create();
+            $category->setValue('uuid', $current['uuid']);
+            $this->counter['category']['created']++;
+        } else {
+            $this->counter['category']['updated']++;
         }
 
-        /**
-         * REVIEW: Ist hier der letzte Status-Code wirklich erforderlich? Es wäre eh nur der der letzten Abfrage
-         * FIXME: Der Eintrag 'neues_entry_sync_success' kommt in den .lang-Dateien nicht vor.
-         * REXSTAN: Variable $response might not be defined.
-         * -> unwahrscheinlich, da es fix drei $data-Einträge gibt. Dennoch ....
-         */
-        $this->setMessage(sprintf(rex_i18n::msg('neues_entry_sync_success'), $response->getStatusCode()));
+        $category->setValue('name', $current['name']);
+        $category->setValue('image', $current['image']);
+        $category->setValue('status', $current['status']);
+        $category->setValue('createdate', $current['createdate']);
+        $category->setValue('createuser', 'neues_sync_cronjob');
+        $category->setValue('updatedate', $current['updatedate']);
+        $category->setValue('updateuser', 'neues_sync_cronjob');
+        $category->save();
+        return $category;
+    }
+
+    function createAuthor(array $current) {
+
+        // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
+        $author = Author::query()->where('uuid', $current['uuid'])->findOne();
+        if (null === $author) {
+            $author = Author::create();
+        }
+
+        $author->setValue('uuid', $current['uuid']);
+        $author->setValue('name', $current['name']);
+        $author->setValue('nickname', $current['nickname']);
+        $author->setValue('text', $current['text']);
+        $author->save();
+        return $author;
+    }
+    
+    function createMedia(string $filename, string $prefix = null) :bool {
+        $targetname = \rex_string::normalize($prefix) . $filename;
+        if ($filename === "") {
+            return false;
+        }
+
+        if(\rex_media::get($targetname)) {
+            return true;
+        }
+
+        $socket = rex_socket::factoryUrl($this->getParam('url').'/media/'.$filename);
+        /** @var rex_socket_response $response */
+        $response = $socket->doGet();
+
+        if ($response->isOk()) {
+            $cache_filepath = \rex_path::addonCache('neues', 'cronjob/' . $targetname);
+            $response->writeBodyTo($cache_filepath);
+            /* Überprüfe, ob die Datei auf dem Dateisystem vorhanden ist */
+            return \rex_media_service::addMedia([
+                'category_id' => $this->getParam('media_category_id'), 
+                'title' => $filename, 
+                'createuser' => 'neues_sync_cronjob',
+                'file' => ['name' => $targetname,
+                'path' => $cache_filepath]]) ? true : false;
+        }
         return true;
     }
 
@@ -130,11 +202,24 @@ class Sync extends rex_cronjob
 
     public function getParamFields()
     {
+
+        $media_categories = \rex_sql::factory()->getArray('SELECT id, name FROM ' . rex::getTable('media_category'));
+        $media_category_options = ['' => 'Root'];
+        foreach ($media_categories as $media_category) {
+            $media_category_options[$media_category['id']] = $media_category['name'];
+        }
+
+        $neues_categories = Category::getAll();
+        $neues_category_options = ['' => 'Original'];
+        foreach($neues_categories as $neues_category) {
+            $neues_category_options[$neues_category->getId()] = "📁 " . $neues_category->getName();
+        }
         $fields = [
             [
                 'name' => 'url',
                 'label' => rex_i18n::msg('neues_entry_sync_cronjob_url'),
                 'type' => 'text',
+                'attributes' => ['required' => 'required', 'type' => 'url'],
             ],
             [
                 'name' => 'token',
@@ -144,10 +229,30 @@ class Sync extends rex_cronjob
             [
                 'name' => 'status',
                 'label' => rex_i18n::msg('neues_entry_sync_cronjob_status'),
+                'type' => 'select',
+                'options' => ['1' => '🟢 Veröffentlichen', '0' => '🟡 Entwurf'],
+            ],
+            [
+                'name' => 'media_category_id',
+                'label' => rex_i18n::msg('neues_entry_sync_cronjob_media_category_id'),
+                'type' => 'select',
+                'options' => $media_category_options,
+            ],
+            [
+                'name' => 'neues_category_id',
+                'label' => rex_i18n::msg('neues_entry_sync_cronjob_neues_category_id'),
+                'type' => 'select',
+                'options' => $neues_category_options,
+            ],
+            [
+                /* Wie viele Einträge sollen abgerufen werden */
+                'name' => 'x_per_page',
+                'label' => rex_i18n::msg('neues_entry_sync_cronjob_x_per_page'),
                 'type' => 'text',
+                'attributes' => ['type' => 'number', 'min' => 1],
             ],
         ];
 
-        return $fields;
+        return  $fields;
     }
 }
