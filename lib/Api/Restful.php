@@ -17,7 +17,7 @@ class Restful
                 'path' => '/neues/entry/5.0.0/',
                 'auth' => '\rex_yform_rest_auth_token::checkToken',
                 'type' => Entry::class,
-                'query' => Entry::query()->where('status', 1, ">="),
+                'query' => Entry::query()->where('status', 1, '>='),
                 'get' => [
                     'fields' => [
                         Entry::class => [
@@ -105,7 +105,7 @@ class Restful
                 'path' => '/neues/category/5.0.0/',
                 'auth' => '\rex_yform_rest_auth_token::checkToken',
                 'type' => Category::class,
-                'query' => Category::query()->where('status', 1, ">="),
+                'query' => Category::query()->where('status', 1, '>='),
                 'get' => [
                     'fields' => [
                         Category::class => [
