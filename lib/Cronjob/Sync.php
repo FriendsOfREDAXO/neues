@@ -7,7 +7,12 @@ use FriendsOfRedaxo\Neues\Category;
 use FriendsOfRedaxo\Neues\Entry;
 use rex_cronjob;
 use rex_i18n;
+use rex_media;
+use rex_media_service;
+use rex_path;
 use rex_socket;
+use rex_sql;
+use rex_string;
 
 class Sync extends rex_cronjob
 {
@@ -16,21 +21,21 @@ class Sync extends rex_cronjob
     private $counter = [
         'category' => ['created' => 0, 'updated' => 0],
         'author' => ['created' => 0, 'updated' => 0],
-        'entry' => ['created' => 0, 'updated' => 0]
+        'entry' => ['created' => 0, 'updated' => 0],
     ];
 
     public function execute()
     {
-        $url = rtrim($this->getParam('url'), "/") . self::$ENDPOINT;
+        $url = rtrim($this->getParam('url'), '/') . self::$ENDPOINT;
         $data = [];
 
         /* Query zusammenstellen */
         $query = [];
-        if(intval($this->getParam('x_per_page')) > 0) {
-            $query[] = 'per_page='. $this->getParam('x_per_page');
+        if ((int) $this->getParam('x_per_page') > 0) {
+            $query[] = 'per_page=' . $this->getParam('x_per_page');
         }
         $query[] = 'order[updatedate]=desc';
-        $socket_url = $url . '?' . implode("&", $query);
+        $socket_url = $url . '?' . implode('&', $query);
         $token = $this->getParam('token');
 
         /* Socket erstellen und Daten abrufen */
@@ -56,40 +61,41 @@ class Sync extends rex_cronjob
         return true;
     }
 
-    function createEntry(array $current) {
+    public function createEntry(array $current)
+    {
         $entry_data = $current['attributes'];
 
         $entry = Entry::query()->where('uuid', $entry_data['uuid'])->findOne();
         if (null === $entry) {
             $entry = Entry::create();
             $entry->setValue('uuid', $entry_data['uuid']);
-            $this->counter['entry']['created']++;
+            ++$this->counter['entry']['created'];
         } else {
-            $this->counter['entry']['updated']++;
+            ++$this->counter['entry']['updated'];
         }
 
         /* Kategorien abrufen und speichern */
         $target_category_ids = [];
-        if($this->getParam('neues_category_id') > 0 && \FriendsOfRedaxo\Neues\Category::get($this->getParam('neues_category_id'))) {
+        if ($this->getParam('neues_category_id') > 0 && Category::get($this->getParam('neues_category_id'))) {
             $target_category_ids[] = $this->getParam('neues_category_id');
         } else {
             $categories = $current['relationships']['category_ids']['data'];
 
             foreach ($categories as $category) {
                 $target_category = $this->createCategory($category['attributes']);
-                if($target_category) {
+                if ($target_category) {
                     $target_category_ids[] = $target_category->getId();
                 }
             }
         }
-        $entry->setValue('category_ids', implode(",", $target_category_ids));
+        $entry->setValue('category_ids', implode(',', $target_category_ids));
         /* / Kategorien abrufen und speichern */
 
-        /* Autor abrufen und speichern */;
+        /* Autor abrufen und speichern */
         $author = $current['relationships']['author']['data'];
-        if($author) {
+        if ($author) {
             $target_author = $this->createAuthor($author['attributes']);
-            if($target_author) {
+            if ($target_author) {
                 $entry->setValue('author_id', $target_author->getId());
             }
         }
@@ -98,22 +104,22 @@ class Sync extends rex_cronjob
         /* Titelbild abrufen und speichern */
         $updated_image = '';
         $targetname = $entry_data['uuid'] . '_' . $entry_data['image'];
-        if($this->createMedia($entry_data['image'])) {
+        if ($this->createMedia($entry_data['image'])) {
             $updated_image = $targetname;
         }
         $entry->setValue('image', $updated_image);
         /* / Titelbild abrufen und speichern */
 
         /* Galerie-Bilder abrufen und speichern */
-        $images = array_filter(explode(",", $entry_data['images']));
+        $images = array_filter(explode(',', $entry_data['images']));
         $updated_images = [];
-        foreach($images as $image) {
+        foreach ($images as $image) {
             $targetname = $entry_data['uuid'] . '_' . $image;
-            if($this->createMedia($image, $targetname)) {
+            if ($this->createMedia($image, $targetname)) {
                 $updated_images[] = $targetname;
-            };
+            }
         }
-        $entry->setValue('images', implode(",",$updated_images));
+        $entry->setValue('images', implode(',', $updated_images));
         /* / Galerie-Bilder abrufen und speichern */
 
         $entry->setValue('name', $entry_data['name']);
@@ -128,16 +134,17 @@ class Sync extends rex_cronjob
         $entry->setValue('createdate', $entry_data['createdate']);
         $entry->setValue('updatedate', $entry_data['updatedate']);
         $entry->save();
-    } 
+    }
 
-    function createCategory($current) {
+    public function createCategory($current)
+    {
         $category = Category::query()->where('uuid', $current['uuid'])->findOne();
         if (null === $category) {
             $category = Category::create();
             $category->setValue('uuid', $current['uuid']);
-            $this->counter['category']['created']++;
+            ++$this->counter['category']['created'];
         } else {
-            $this->counter['category']['updated']++;
+            ++$this->counter['category']['updated'];
         }
 
         $category->setValue('name', $current['name']);
@@ -151,8 +158,8 @@ class Sync extends rex_cronjob
         return $category;
     }
 
-    function createAuthor(array $current) {
-
+    public function createAuthor(array $current)
+    {
         // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
         $author = Author::query()->where('uuid', $current['uuid'])->findOne();
         if (null === $author) {
@@ -166,31 +173,32 @@ class Sync extends rex_cronjob
         $author->save();
         return $author;
     }
-    
-    function createMedia(string $filename, string $prefix = null) :bool {
-        $targetname = \rex_string::normalize($prefix) . $filename;
-        if ($filename === "") {
+
+    public function createMedia(string $filename, ?string $prefix = null): bool
+    {
+        $targetname = rex_string::normalize($prefix) . $filename;
+        if ('' === $filename) {
             return false;
         }
 
-        if(\rex_media::get($targetname)) {
+        if (rex_media::get($targetname)) {
             return true;
         }
 
-        $socket = rex_socket::factoryUrl($this->getParam('url').'/media/'.$filename);
+        $socket = rex_socket::factoryUrl($this->getParam('url') . '/media/' . $filename);
         /** @var rex_socket_response $response */
         $response = $socket->doGet();
 
         if ($response->isOk()) {
-            $cache_filepath = \rex_path::addonCache('neues', 'cronjob/' . $targetname);
+            $cache_filepath = rex_path::addonCache('neues', 'cronjob/' . $targetname);
             $response->writeBodyTo($cache_filepath);
             /* Überprüfe, ob die Datei auf dem Dateisystem vorhanden ist */
-            return \rex_media_service::addMedia([
-                'category_id' => $this->getParam('media_category_id'), 
-                'title' => $filename, 
+            return rex_media_service::addMedia([
+                'category_id' => $this->getParam('media_category_id'),
+                'title' => $filename,
                 'createuser' => 'neues_sync_cronjob',
                 'file' => ['name' => $targetname,
-                'path' => $cache_filepath]]) ? true : false;
+                    'path' => $cache_filepath]]) ? true : false;
         }
         return true;
     }
@@ -202,8 +210,7 @@ class Sync extends rex_cronjob
 
     public function getParamFields()
     {
-
-        $media_categories = \rex_sql::factory()->getArray('SELECT id, name FROM ' . rex::getTable('media_category'));
+        $media_categories = rex_sql::factory()->getArray('SELECT id, name FROM ' . rex::getTable('media_category'));
         $media_category_options = ['' => 'Root'];
         foreach ($media_categories as $media_category) {
             $media_category_options[$media_category['id']] = $media_category['name'];
@@ -211,8 +218,8 @@ class Sync extends rex_cronjob
 
         $neues_categories = Category::getAll();
         $neues_category_options = ['' => 'Original'];
-        foreach($neues_categories as $neues_category) {
-            $neues_category_options[$neues_category->getId()] = "📁 " . $neues_category->getName();
+        foreach ($neues_categories as $neues_category) {
+            $neues_category_options[$neues_category->getId()] = '📁 ' . $neues_category->getName();
         }
         $fields = [
             [
@@ -253,6 +260,6 @@ class Sync extends rex_cronjob
             ],
         ];
 
-        return  $fields;
+        return $fields;
     }
 }
