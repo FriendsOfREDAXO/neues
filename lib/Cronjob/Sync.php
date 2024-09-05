@@ -27,7 +27,7 @@ class Sync extends rex_cronjob
 
     public function execute()
     {
-        $url = rtrim($this->getParam('url'), '/') . self::$ENDPOINT;
+        $url = rtrim($this->getParam('url'), '/') . self::ENDPOINT;
         $data = [];
 
         /* Query zusammenstellen */
