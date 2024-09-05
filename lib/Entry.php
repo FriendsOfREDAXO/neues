@@ -572,4 +572,49 @@ class Entry extends rex_yform_manager_dataset
     {
         return rex_getUrl(null, null, [$profile => $this->getId()]);
     }
+    
+    /**
+     * Sucht alle Einträge, die allen angegebenen Kriterien erntsprechen und gibt
+     * eine rex_yform_manager_collection der Einträge (Entry) zurück.
+     * 
+     * Select all Entry-Records matching the given criterias and returns a
+     * rex_yform_manager_collection
+     * 
+     * Beispiel / Example:
+     *  $deletedEntries = Entry::collection( status: 2);
+     *  $onlineEntriesDe = Entry::collection( status: 1, language: 'de');
+     *  $onlineEntriesCat = Entry::collection( status: 1, category: [1,2]);
+     * 
+     * @return rex_yform_manager_collection<static>
+     */
+    public static function collection (int|array $category = [], int $status=1, string|int $language=0): rex_yform_manager_collection
+    {
+        $query = static::query();
+        $alias = $query->getTableAlias();
+
+        if( !is_array($category)) {
+            $category = [$category];
+        }
+        if( 0 < count($category) ) {
+            $query->joinRelation('category_ids', 'c')
+                ->whereListContains('c.id', $category);
+        }
+
+        if( -2 < $status && $status < 3 ) {
+            $query->where($alias.'.status',$status);
+        }
+
+        if( is_string($language)) {
+            if( '' !== $language) {
+                $query->joinRelation('lang_id','l')
+                    ->where('l.code',$language);
+            }
+        } elseif(0 < $language) {
+            $query->where('lang_id',$language);
+        }
+
+        return $query->find();
+    }
+}
+
 }
