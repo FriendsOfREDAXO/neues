@@ -501,7 +501,7 @@ class Entry extends rex_yform_manager_dataset
         if (null !== $category_id) {
             return self::findByCategory($category_id);
         }
-        return self::query()->where('status', 1, '=')->find();
+        return self::query()->where('status', 1)->find();
     }
 
     /**
@@ -521,7 +521,7 @@ class Entry extends rex_yform_manager_dataset
     {
         $query = self::query();
         $alias = $query->getTableAlias();
-        $query->joinRelation('category_ids', 'c')->where($alias . '.status', $status, '=')->where('c.id', $category_id);
+        $query->joinRelation('category_ids', 'c')->where($alias . '.status', $status)->where('c.id', $category_id);
         return $query->find();
     }
 
@@ -540,7 +540,7 @@ class Entry extends rex_yform_manager_dataset
      */
     public static function findByCategoryIds(string|array|null $category_ids = null, int $status = 1): rex_yform_manager_collection
     {
-        $query = self::query()->where('status', $status, '=');
+        $query = self::query()->where('status', $status);
 
         if ($category_ids) {
             // Wenn es ein String ist, in ein Array umwandeln
