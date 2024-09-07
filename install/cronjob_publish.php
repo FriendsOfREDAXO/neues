@@ -21,7 +21,7 @@ $timestamp = rex_cronjob_manager_sql::calculateNextTime($job_intervall);
 
 $sql->setTable(rex::getTable('cronjob'));
 $sql->setValue('name', '[neues] Geplante Beiträge veröffentlichen');
-$sql->setValue('description', 'Veröffentlicht alle Beiträge (status = 1), deren Status geplant (status = 0) ist und deren Veröffentlichungszeitpunkt erreicht wurde (publishdate < now()).');
+$sql->setValue('description', 'Veröffentlicht alle Beiträge (status = Entry::ONLINE), deren Status geplant (status = Entry::PLANNED) ist und deren Veröffentlichungszeitpunkt erreicht wurde (publishdate < now()).');
 $sql->setValue('type', Publish::class);
 $sql->setValue('parameters', '[]');
 $sql->setValue('interval', json_encode($job_intervall));

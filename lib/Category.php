@@ -2,6 +2,7 @@
 
 namespace FriendsOfRedaxo\Neues;
 
+use rex_i18n;
 use rex_yform_manager_collection;
 use rex_yform_manager_dataset;
 
@@ -22,6 +23,9 @@ use rex_yform_manager_dataset;
  */
 class Category extends rex_yform_manager_dataset
 {
+    public const DRAFT = -1;
+    public const ONLINE = 1;
+
     /**
      * Gibt den Namen der Kategorie zurück.
      * Returns the name of the Category.
@@ -89,5 +93,19 @@ class Category extends rex_yform_manager_dataset
             return $url;
         }
         return null;
+    }
+
+    /**
+     * Callback für das Entry-Formular: Auswahlmöglichkeiten des Status-Feldes
+     * FriendsOfRedaxo\Neues\Category::statusChoice.
+     * @api
+     * @return array<int,string>
+     */
+    public static function statusChoice(): array
+    {
+        return [
+            self::DRAFT => rex_i18n::msg('neues_status_draft'),
+            self::ONLINE => rex_i18n::msg('neues_status_online'),
+        ];
     }
 }

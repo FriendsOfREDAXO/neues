@@ -244,12 +244,12 @@ Findet Online-Einträge. Wenn eine Kategorie-ID angegeben ist, werden nur Eintr�
 $entries = FriendsOfRedaxo\Neues\Entry::findOnline(1);
 ```
 
-### findByCategory(?int $category_id = null, int $status = 1)
+### findByCategory(?int $category_id = null, int $status = Entry::ONLINE)
 
 Findet Einträge nach Kategorie.
 
 ```php
-$entries = FriendsOfRedaxo\Neues\Entry::findByCategory(1, 1);
+$entries = FriendsOfRedaxo\Neues\Entry::findByCategory(1, Entry::ONLINE);
 ```
 
 ### getUrl(string $profile = 'neues-entry-id')
