@@ -8,6 +8,7 @@ use rex_config;
 use rex_csrf_token;
 use rex_extension_point;
 use rex_formatter;
+use rex_i18n;
 use rex_media;
 use rex_media_plus;
 use rex_url;
@@ -32,6 +33,11 @@ use function is_string;
  */
 class Entry extends rex_yform_manager_dataset
 {
+    public const DELETED = 2; // FIXME: muss auf -2 geändert werden.
+    public const DRAFT = -1;
+    public const PLANNED = 0;
+    public const ONLINE = 1;
+
     /**
      * Standards für das Formular anpassen
      * - Editor-Konfiguration einfügen.
@@ -501,7 +507,7 @@ class Entry extends rex_yform_manager_dataset
         if (null !== $category_id) {
             return self::findByCategory($category_id);
         }
-        return self::query()->where('status', 1, '>=')->find();
+        return self::query()->where('status', self::ONLINE, '>=')->find();
     }
 
     /**
@@ -517,7 +523,7 @@ class Entry extends rex_yform_manager_dataset
      *
      * @api
      */
-    public static function findByCategory(?int $category_id = null, int $status = 1): rex_yform_manager_collection
+    public static function findByCategory(?int $category_id = null, int $status = self::ONLINE): rex_yform_manager_collection
     {
         $query = self::query();
         $alias = $query->getTableAlias();
@@ -538,7 +544,7 @@ class Entry extends rex_yform_manager_dataset
      *
      * @api
      */
-    public static function findByCategoryIds(string|array|null $category_ids = null, int $status = 1): rex_yform_manager_collection
+    public static function findByCategoryIds(string|array|null $category_ids = null, int $status = self::ONLINE): rex_yform_manager_collection
     {
         $query = self::query()->where('status', $status, '>=');
 
@@ -571,5 +577,21 @@ class Entry extends rex_yform_manager_dataset
     public function getUrl(string $profile = 'neues-entry-id'): string
     {
         return rex_getUrl(null, null, [$profile => $this->getId()]);
+    }
+
+    /**
+     * Callback für das Entry-Formular: Auswahlmöglichkeiten des Status-Feldes
+     * FriendsOfRedaxo\Neues\Entry::statusChoice.
+     * @api
+     * @return array<int,string>
+     */
+    public static function statusChoice(): array
+    {
+        return [
+            self::DELETED => rex_i18n::msg('neues_status_deleted'),
+            self::DRAFT => rex_i18n::msg('neues_status_draft'),
+            self::PLANNED => rex_i18n::msg('neues_status_planned'),
+            self::ONLINE => rex_i18n::msg('neues_status_online'),
+        ];
     }
 }
