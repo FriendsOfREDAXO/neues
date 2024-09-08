@@ -19,7 +19,7 @@ $post = $this->getVar('post');
                 <?php endif ?>
 
                 <!-- Date -->
-                <?php if ($post->getPublishDate()) : ?>
+                <?php if ('' < $post->getPublishDate()) : ?>
                     <p class="blog-post-meta">
                         <?= $post->getFormattedPublishDate() ?>
 
@@ -56,9 +56,10 @@ $post = $this->getVar('post');
                 <?php endif ?>
 
                 <!-- Post Images/Gallery -->
-                <?php if ($post->getImages()) : ?>
+                <?php $images = $post->getImages(); 
+                      if (0 < count($images)) : ?>
                     <div class="mt-5 row g-3">
-                        <?php foreach ($post->getImages() as $image) : ?>
+                        <?php foreach ($images as $image) : ?>
                             <?php
                             $media = rex_media::get($image);
                             $mediaUrl = rex_media_manager::getUrl('rex_media_medium', $image);
