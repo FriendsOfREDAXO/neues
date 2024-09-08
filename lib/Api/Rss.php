@@ -57,7 +57,7 @@ class Rss extends rex_api_function
      */
     public static function getRssFeed(rex_yform_manager_collection $collection, int $domain_id, int $lang, string $description, string $filename): string|bool
     {
-        return self::createRssFeed($collection, $domain, $lang, $description, $filename);
+        return self::createRssFeed($collection, $domain_id, $lang, $description, $filename);
     }
 
     /**
