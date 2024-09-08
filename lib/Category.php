@@ -23,7 +23,9 @@ use rex_yform_manager_dataset;
  */
 class Category extends rex_yform_manager_dataset
 {
+    /** @api */
     public const DRAFT = -1;
+    /** @api */
     public const ONLINE = 1;
 
     /**
@@ -80,19 +82,16 @@ class Category extends rex_yform_manager_dataset
      * Returns the URL of the Category.
      *
      * @param string $profile Das Profil, das für die URL-Erstellung verwendet wird. Standardmäßig 'neues-category-id'. / The profile used for URL creation. Defaults to 'neues-category-id'.
-     * @return string Die URL der Kategorie oder ein leerer String, wenn keine URL gefunden wurde. / The URL of the Category or an empty string if no URL was found.
+     * @return string Die URL der Kategorie. / The URL of the Category.
      *
      * Beispiel / Example:
      * $url = $category->getUrl();
      *
      * @api
      */
-    public function getUrl(string $profile = 'neues-category-id'): ?string
+    public function getUrl(string $profile = 'neues-category-id'): string
     {
-        if ($url = rex_getUrl(null, null, [$profile => $this->getId()])) {
-            return $url;
-        }
-        return null;
+       return rex_getUrl(null, null, [$profile => $this->getId()]);
     }
 
     /**
