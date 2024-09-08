@@ -76,6 +76,12 @@ try {
      */
     $urlProfileTable = rex::getTable(Profile::TABLE_NAME);
 
+    /**
+     * RexStan: Unable to resolve the template type TFetchType in call to method rex_sql::getArray()
+     * RexStan: Parameter $fetchType of method rex_sql::getArray() expects 2|3|12, 7 given.
+     * Das liegt an rex_sql; dort sind nicht alle möglichen PDO::FETCH_... hinterlegt.
+     * kann man ignorieren
+     */
     $profiles = $sql->setTable($urlProfileTable)
         ->setWhere('table_name LIKE :tn', [':tn' => '1_xxx_rex_neues_%'])
         ->select('id')
@@ -83,6 +89,11 @@ try {
 
     foreach ($profiles as $profileId) {
         $profile = Profile::get($profileId);
+        /**
+         * RexStan: Strict comparison using !== between null and Url\Profile will always evaluate to true.
+         * Der Fehler ist im URL-Addon (https://github.com/tbaddade/redaxo_url/pull/301)
+         * TODO: wenn im URL-Addon behoben kann dieser Kommentar gelöscht werden.
+         */
         if (null !== $profile) {
             $profile->deleteUrls();
         }
