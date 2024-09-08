@@ -6,7 +6,7 @@
  */
 
 $mdFiles = [];
-foreach (glob(rex_addon::get('neues')->getPath('docs') . '/*.md') ?: [] as $file) {
+foreach (glob(rex_path::addon('neues', 'docs/*.md')) as $file) {
     $mdFiles[mb_substr(basename($file), 0, -3)] = $file;
 }
 
