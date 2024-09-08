@@ -91,7 +91,7 @@ class Category extends rex_yform_manager_dataset
      */
     public function getUrl(string $profile = 'neues-category-id'): string
     {
-       return rex_getUrl(null, null, [$profile => $this->getId()]);
+        return rex_getUrl(null, null, [$profile => $this->getId()]);
     }
 
     /**
