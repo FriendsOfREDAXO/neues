@@ -56,7 +56,7 @@ $post = $this->getVar('post');
                 <?php endif ?>
 
                 <!-- Post Images/Gallery -->
-                <?php $images = $post->getImages(); 
+                <?php $images = $post->getImages();
                       if (0 < count($images)) : ?>
                     <div class="mt-5 row g-3">
                         <?php foreach ($images as $image) : ?>
