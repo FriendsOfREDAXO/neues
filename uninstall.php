@@ -80,7 +80,7 @@ try {
      * RexStan: Unable to resolve the template type TFetchType in call to method rex_sql::getArray()
      * RexStan: Parameter $fetchType of method rex_sql::getArray() expects 2|3|12, 7 given.
      * Das liegt an rex_sql; dort sind nicht alle möglichen PDO::FETCH_... hinterlegt.
-     * kann man ignorieren
+     * kann man ignorieren.
      */
     $profiles = $sql->setTable($urlProfileTable)
         ->setWhere('table_name LIKE :tn', [':tn' => '1_xxx_rex_neues_%'])
