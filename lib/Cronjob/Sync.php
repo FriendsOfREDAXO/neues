@@ -14,11 +14,13 @@ use rex_path;
 use rex_socket;
 use rex_sql;
 use rex_string;
+use Throwable;
 
 class Sync extends rex_cronjob
 {
     private const ENDPOINT = '/rest/neues/entry/5.0.0/';
 
+    /** @var array<string,array<string,int>> */
     private $counter = [
         'category' => ['created' => 0, 'updated' => 0],
         'author' => ['created' => 0, 'updated' => 0],
@@ -42,7 +44,6 @@ class Sync extends rex_cronjob
         /* Socket erstellen und Daten abrufen */
         $socket = rex_socket::factoryUrl($socket_url);
         $socket->addHeader('token', $token);
-        /** @var rex_socket_response $response */
         $response = $socket->doGet();
 
         if (!$response->isOk()) {
@@ -62,7 +63,10 @@ class Sync extends rex_cronjob
         return true;
     }
 
-    public function createEntry(array $current)
+    /**
+     * @param array<string,mixed> $current
+     */
+    public function createEntry(array $current): void
     {
         $entry_data = $current['attributes'];
 
@@ -77,30 +81,25 @@ class Sync extends rex_cronjob
 
         /* Kategorien abrufen und speichern */
         $target_category_ids = [];
-        if ($this->getParam('neues_category_id') > 0 && Category::get($this->getParam('neues_category_id'))) {
+        if ($this->getParam('neues_category_id') > 0 && null !== Category::get($this->getParam('neues_category_id'))) {
             $target_category_ids[] = $this->getParam('neues_category_id');
         } else {
             $categories = $current['relationships']['category_ids']['data'];
 
             foreach ($categories as $category) {
                 $target_category = $this->createCategory($category['attributes']);
-                if ($target_category) {
-                    $target_category_ids[] = $target_category->getId();
-                }
+                $target_category_ids[] = $target_category->getId();
             }
         }
         $entry->setValue('category_ids', implode(',', $target_category_ids));
         /* / Kategorien abrufen und speichern */
 
         /* Autor abrufen und speichern */
-        $author = $current['relationships']['author']['data'];
-        if ($author) {
+        if (isset($current['relationships']['author']['data'])) {
+            $author = $current['relationships']['author']['data'];
             $target_author = $this->createAuthor($author['attributes']);
-            if ($target_author) {
-                $entry->setValue('author_id', $target_author->getId());
-            }
+            $entry->setValue('author_id', $target_author->getId());
         }
-        /* / Autor abrufen und speichern */
 
         /* Titelbild abrufen und speichern */
         $updated_image = '';
@@ -137,7 +136,10 @@ class Sync extends rex_cronjob
         $entry->save();
     }
 
-    public function createCategory($current)
+    /**
+     * @param array<string,mixed> $current
+     */
+    public function createCategory(array $current): Category
     {
         $category = Category::query()->where('uuid', $current['uuid'])->findOne();
         if (null === $category) {
@@ -159,7 +161,10 @@ class Sync extends rex_cronjob
         return $category;
     }
 
-    public function createAuthor(array $current)
+    /**
+     * @param array<string,mixed> $current
+     */
+    public function createAuthor(array $current): Author
     {
         // Überprüfe, ob UUID bereits in der Datenbank vorhanden ist
         $author = Author::query()->where('uuid', $current['uuid'])->findOne();
@@ -182,24 +187,31 @@ class Sync extends rex_cronjob
             return false;
         }
 
-        if (rex_media::get($targetname)) {
+        if (null !== rex_media::get($targetname)) {
             return true;
         }
 
         $socket = rex_socket::factoryUrl($this->getParam('url') . '/media/' . $filename);
-        /** @var rex_socket_response $response */
         $response = $socket->doGet();
 
         if ($response->isOk()) {
             $cache_filepath = rex_path::addonCache('neues', 'cronjob/' . $targetname);
             $response->writeBodyTo($cache_filepath);
             /* Überprüfe, ob die Datei auf dem Dateisystem vorhanden ist */
-            return rex_media_service::addMedia([
-                'category_id' => $this->getParam('media_category_id'),
-                'title' => $filename,
-                'createuser' => 'neues_sync_cronjob',
-                'file' => ['name' => $targetname,
-                    'path' => $cache_filepath]]) ? true : false;
+            try {
+                rex_media_service::addMedia([
+                    'category_id' => $this->getParam('media_category_id'),
+                    'title' => $filename,
+                    'createuser' => 'neues_sync_cronjob',
+                    'file' => [
+                        'name' => $targetname,
+                        'path' => $cache_filepath,
+                    ],
+                ]);
+                return true;
+            } catch (Throwable $th) {
+                return false;
+            }
         }
         return true;
     }
