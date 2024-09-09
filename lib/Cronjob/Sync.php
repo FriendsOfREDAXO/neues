@@ -65,8 +65,8 @@ class Sync extends rex_cronjob
 
     /**
      * @param array<string,mixed> $current
-     * 
-     * TODO: klären, warum createAuthor bzw. createCategory ein entsprechendes Objekt zurückliefern, createEntry aber nicht. 
+     *
+     * TODO: klären, warum createAuthor bzw. createCategory ein entsprechendes Objekt zurückliefern, createEntry aber nicht.
      */
     public function createEntry(array $current): void
     {
