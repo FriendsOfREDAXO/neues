@@ -31,7 +31,14 @@ Im REDAXO-Installer das Addon `neues` herunterladen und installieren. Anschließ
 
 MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/neues/blob/master/LICENSE)  
 
-## Autor
+## Autoren
+
+**Friends of REDAXO**
+
+**Projekt-Lead**  
+[Alexander Walther](https://github.com/alexplusde)
+
+## Credits
 
 **Alexander Walther**  
 <http://www.alexplus.de>
@@ -41,10 +48,4 @@ MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/neues/blob/master/L
 <http://www.alexplus.de>
 <https://github.com/schorschy>
 
-**Projekt-Lead**  
-[Alexander Walther](https://github.com/alexplusde)
-
-## Credits
-
-neues basiert auf: [YForm](https://github.com/yakamara/redaxo_yform)  
-Danke an [Gregor Harlan](https://github.com/gharlan) sowie [Norbert Micheel](https://github.com/tyrant88) für die Unterstützung
+Neues basiert auf: [YForm](https://github.com/yakamara/redaxo_yform), spezieller Dank zu YOrm an [Gregor Harlan](https://github.com/gharlan)
