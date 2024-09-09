@@ -65,6 +65,8 @@ class Sync extends rex_cronjob
 
     /**
      * @param array<string,mixed> $current
+     * 
+     * TODO: klären, warum createAuthor bzw. createCategory ein entsprechendes Objekt zurückliefern, createEntry aber nicht. 
      */
     public function createEntry(array $current): void
     {
@@ -100,6 +102,7 @@ class Sync extends rex_cronjob
             $target_author = $this->createAuthor($author['attributes']);
             $entry->setValue('author_id', $target_author->getId());
         }
+        /* / Autor abrufen und speichern */
 
         /* Titelbild abrufen und speichern */
         $updated_image = '';
