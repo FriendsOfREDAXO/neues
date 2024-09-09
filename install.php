@@ -11,6 +11,7 @@ use rex_media;
 use rex_media_service;
 use rex_path;
 use rex_sql;
+use rex_version;
 use rex_yform_manager_table_api;
 use Url\Cache;
 use Url\Profile;
@@ -111,4 +112,17 @@ if (rex_addon::get('url')->isAvailable()) {
         // URL-Profile als installiert markieren
         rex_config::set('neues', 'url_profile', true);
     }
+}
+
+
+/**
+ * Beim Update einer Version vor 5.1.0 wird ein Fehler bei den Status-Werten
+ * korrigiert. Deleted wird von 2 auf -2 geändert.
+ */
+if (rex_version::compare('5.1.0', $$this->getVersion(), '>')) {
+    $sql = rex_sql::factory();
+    $sql->setTable('neues_entry');
+    $sql->setWhere('status',2);
+    $sql->setValue('status',-2);
+    $sql->update();
 }
