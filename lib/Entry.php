@@ -33,9 +33,13 @@ use function is_string;
  */
 class Entry extends rex_yform_manager_dataset
 {
-    public const DELETED = 2; // FIXME: muss auf -2 geändert werden.
+    /** @api */
+    public const DELETED = -2;
+    /** @api */
     public const DRAFT = -1;
+    /** @api */
     public const PLANNED = 0;
+    /** @api */
     public const ONLINE = 1;
 
     /**
