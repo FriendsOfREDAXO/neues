@@ -1,7 +1,7 @@
 package: neues
 version: '5.1.0-dev-2024-09-05'
-author: 'Friends Of REDAXO'
-supportpage: https://github.com/FriendsOfREDAXO/neues/
+author: 'FriendsOfREDAXO, Alexander Walther, Paul Götz, Thorben, Christoph Böcker'
+supportpage: https://alexplusde.github.io/neues/
 load: late
 
 requires:
@@ -26,7 +26,7 @@ pages:
         prio: 16
         icon: rex-icon fa-bullhorn
         perm: neues[]
-        subpages:
+        subpages: 
             entry:
                 title: translate:neues_entry
                 icon: rex-icon fa-bullhorn
