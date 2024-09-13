@@ -401,6 +401,36 @@ class Entry extends rex_yform_manager_dataset
     }
 
     /**
+     * Gibt die Canonical URL des Eintrags zurück.
+     * Returns the canonical URL of the entry.
+     *
+     * @return string|null Die Canonical URL des Eintrags oder null, wenn keine URL gesetzt ist. / The canonical URL of the entry or null if no URL is set.
+     *
+     * Beispiel / Example:
+     * $canonicalUrl = $entry->getCanonicalUrl();
+     *
+     * @api
+     */
+    public function getCanonicalUrl(): ?string
+    {
+        return $this->getValue('canonical_url');
+    }
+
+    /**
+     * Setzt die Canonical URL des Eintrags.
+     * Sets the canonical URL of the entry.
+     *
+     * @param string $url Die neue Canonical URL des Eintrags. / The new canonical URL of the entry.
+     *
+     * @api
+     */
+    public function setCanonicalUrl(string $url): self
+    {
+        $this->setValue('canonical_url', $url);
+        return $this;
+    }
+
+    /**
      * Gibt das Veröffentlichungsdatum des Eintrags zurück.
      * Returns the publish date of the entry.
      *
@@ -558,9 +588,7 @@ class Entry extends rex_yform_manager_dataset
                 $category_ids = explode(',', $category_ids);
             }
 
-            // whereInList anwenden
-            // FIXME: whereInList gibt es nicht! Ist $query->whereListContains() gemeint?
-            $query->whereInList('category_ids', $category_ids);
+            $query->whereListContains('category_ids', $category_ids);
         }
 
         return $query->find();
