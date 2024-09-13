@@ -31,6 +31,8 @@ neues_description = Inhalt
 neues_description_notice = Geben Sie den Inhalt Ihres News-Beitrags an.
 neues_image = Titelbild
 neues_images = Galerie
+neues_canonical_url = Canonical URL 
+neues_canonical_url_notice = Gibt die Original-URL des News-Beitrags an, falls dieser Beitrag auf mehreren Websites veröffentlicht wurde.
 
 neues_external_url = Externer Link
 neues_external_url_notice = Gibt es weitere Informationen auf einer anderen Website, dann geben Sie hier die Adresse zu einer externen Website ein, z.B. <code>http://www.example.org/foo-bar/</code>

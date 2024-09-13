@@ -136,6 +136,8 @@ class Sync extends rex_cronjob
         $entry->setValue('updateuser', 'neues_sync_cronjob');
         $entry->setValue('createdate', $entry_data['createdate']);
         $entry->setValue('updatedate', $entry_data['updatedate']);
+        // $category->setValue('canonical_url', $current['canonical_url']);
+
         $entry->save();
     }
 

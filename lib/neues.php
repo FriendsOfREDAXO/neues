@@ -6,6 +6,8 @@ use rex_fragment;
 use rex_pager;
 use rex_sql;
 
+use const ENT_QUOTES;
+
 class Neues
 {
     /**
@@ -58,5 +60,11 @@ class Neues
         $fragment = new rex_fragment();
         $fragment->setVar('post', $post);
         return $fragment->parse('neues/entry.php');
+    }
+
+    /* Hilfsklasse für JSON-LD Fragmente */
+    public static function htmlEncode($value)
+    {
+        return htmlentities($value, ENT_QUOTES, 'UTF-8');
     }
 }
