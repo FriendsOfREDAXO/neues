@@ -118,7 +118,7 @@ if (rex_addon::get('url')->isAvailable()) {
  * Beim Update einer Version vor 5.1.0 wird ein Fehler bei den Status-Werten
  * korrigiert. Deleted wird von 2 auf -2 geändert.
  */
-if (rex_version::compare('5.1.0', $$this->getVersion(), '>')) {
+if (rex_version::compare('5.1.0', $this->getVersion(), '>')) {
     $sql = rex_sql::factory();
     $sql->setTable('neues_entry');
     $sql->setWhere('status', 2);
