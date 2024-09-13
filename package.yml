@@ -1,8 +1,7 @@
 package: neues
-version: '5.1.0-dev-2024-09-05'
-author: 'FriendsOfREDAXO, Alexander Walther, Paul Götz, Thorben, Christoph Böcker'
+version: '5.1.0'
+author: 'FriendsOfREDAXO (Credits: Alexander Walther, Paul Götz, Thorben, Christoph Böcker)'
 supportpage: https://alexplusde.github.io/neues/
-load: late
 
 requires:
     php:
