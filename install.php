@@ -66,7 +66,7 @@ if (rex_addon::get('cronjob')->isAvailable()) {
      * -> rex_cronjob_neues_publish ändern in FriendsOfRedaxo\Neues\Cronjob\Publish.
      */
     $sql->setTable(rex::getTable('cronjob'));
-    $sql->setValue('type', Publish::class);
+    $sql->setValue('type', 'FriendsOfRedaxo\\Neues\\Cronjob\\Publish');
     $sql->setWhere('`type` = :class', [':class' => 'rex_cronjob_neues_publish']);
     $sql->update();
 
@@ -74,7 +74,7 @@ if (rex_addon::get('cronjob')->isAvailable()) {
      * Fehlenden CronJob eintragen.
      */
     $sql->setTable(rex::getTable('cronjob'));
-    $sql->setWhere('`type` = :class', [':class' => Publish::class]);
+    $sql->setWhere('`type` = :class', [':class' => 'FriendsOfRedaxo\\Neues\\Cronjob\\Publish']);
     $sql->select();
 
     if (0 === $sql->getRows()) {
