@@ -41,7 +41,10 @@ class Category extends rex_yform_manager_dataset
      */
     public function getName(): string
     {
-        return $this->getValue('name');
+        if ($this->hasValue('name')) {
+            return $this->getValue('name');
+        }
+        return '';
     }
 
     /**
@@ -65,7 +68,7 @@ class Category extends rex_yform_manager_dataset
      * Gibt die Einträge der Kategorie zurück.
      * Returns the entries of the Category.
      *
-     * @return rex_yform_manager_collection<Entry> Die Einträge der Kategorie oder null, wenn keine Einträge vorhanden sind. / The entries of the Category or null if no entries are present.
+     * @return rex_yform_manager_collection<Entry> Die Einträge der Kategorie oder leere Liste, wenn keine Einträge vorhanden sind. / The entries of the Category or empty list if no entries are present.
      *
      * Beispiel / Example:
      * $entries = $category->getEntries();
