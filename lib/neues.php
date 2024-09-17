@@ -69,11 +69,9 @@ class Neues
     }
 
     /**
-     * Hilfsklasse für JSON-LD Fragmente
-     * 
+     * Hilfsklasse für JSON-LD Fragmente.
+     *
      * @api
-     * @param string $value 
-     * @return string 
      */
     public static function htmlEncode(string $value): string
     {
@@ -81,7 +79,7 @@ class Neues
     }
 
     /**
-     * EP-Callback für PAGES_PREPARED
+     * EP-Callback für PAGES_PREPARED.
      *
      * Ergänzt den Backend-Menüpunkt um einen Plus-Button. Dies aber nur dann,
      * wenn die Instanz nicht via Redaxo-Konsole aufgerufen wurde.
