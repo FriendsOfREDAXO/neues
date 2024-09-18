@@ -83,30 +83,27 @@ class Neues
      *
      * Ergänzt den Backend-Menüpunkt um einen Plus-Button. Dies aber nur dann,
      * wenn die Instanz nicht via Redaxo-Konsole aufgerufen wurde.
-     * (Prüfung zeitverzögert im EP, da die Konsole während der boot.php noch
-     * nicht initialisiert ist).
+     * Der EP bietet sich an, da er bei Konsolen-Aufrufen nicht durchlaufen wird.
      *
      * @api
      * @param rex_extension_point<array<string,rex_be_page>> $ep
      */
     public static function epPagesPrepared(rex_extension_point $ep): void
     {
-        if (null === rex::getConsole()) {
-            $_csrf_key = Entry::table()->getCSRFKey();
+        $_csrf_key = Entry::table()->getCSRFKey();
 
-            $params = rex_csrf_token::factory($_csrf_key)->getUrlParams();
+        $params = rex_csrf_token::factory($_csrf_key)->getUrlParams();
 
-            $params['table_name'] = Entry::table()->getTableName(); // Tabellenname anpassen
-            $params['rex_yform_manager_popup'] = '0';
-            $params['func'] = 'add';
+        $params['table_name'] = Entry::table()->getTableName(); // Tabellenname anpassen
+        $params['rex_yform_manager_popup'] = '0';
+        $params['func'] = 'add';
 
-            $href = rex_url::backendPage('neues/entry', $params);
+        $href = rex_url::backendPage('neues/entry', $params);
 
-            $neues = rex_be_controller::getPageObject('neues');
-            $neues->setTitle(
-                $neues->getTitle() .
-                ' <a class="label label-primary tex-primary" style="position: absolute; right: 18px; top: 10px; padding: 0.2em 0.6em 0.3em; border-radius: 3px; color: white; display: inline; width: auto;" href="' . $href . '">+</a>',
-            );
-        }
+        $neues = rex_be_controller::getPageObject('neues');
+        $neues->setTitle(
+            $neues->getTitle() .
+            ' <a class="label label-primary tex-primary" style="position: absolute; right: 18px; top: 10px; padding: 0.2em 0.6em 0.3em; border-radius: 3px; color: white; display: inline; width: auto;" href="' . $href . '">+</a>',
+        );
     }
 }
