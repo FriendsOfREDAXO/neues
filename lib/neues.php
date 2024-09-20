@@ -90,17 +90,20 @@ class Neues
      */
     public static function epPagesPrepared(rex_extension_point $ep): void
     {
+        $neues = rex_be_controller::getPageObject('neues');
+        if (null === $neues) {
+            return;
+        }
+
         $_csrf_key = Entry::table()->getCSRFKey();
 
         $params = rex_csrf_token::factory($_csrf_key)->getUrlParams();
-
         $params['table_name'] = Entry::table()->getTableName(); // Tabellenname anpassen
         $params['rex_yform_manager_popup'] = '0';
         $params['func'] = 'add';
 
         $href = rex_url::backendPage('neues/entry', $params);
 
-        $neues = rex_be_controller::getPageObject('neues');
         $neues->setTitle(
             $neues->getTitle() .
             ' <a class="label label-primary tex-primary" style="position: absolute; right: 18px; top: 10px; padding: 0.2em 0.6em 0.3em; border-radius: 3px; color: white; display: inline; width: auto;" href="' . $href . '">+</a>',
