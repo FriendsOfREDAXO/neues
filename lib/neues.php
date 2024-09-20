@@ -94,7 +94,7 @@ class Neues
         if (null === $neues) {
             return;
         }
-        
+
         $_csrf_key = Entry::table()->getCSRFKey();
 
         $params = rex_csrf_token::factory($_csrf_key)->getUrlParams();
