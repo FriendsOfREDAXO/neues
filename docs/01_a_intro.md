@@ -1,6 +1,6 @@
 # News-Verwaltung für REDAXO 5 (Aktuelles, Pressemitteilungen, Pressestimmen, ...)
 
-![friendsofredaxo neues](https://github.com/alexplusde/neues/assets/3855487/9baa05e7-17d3-46a2-ad62-36223a896e94)
+![friendsofredaxo neues](https://github.com/FriendsOfREDAXO/neues/assets/3855487/e6ead321-154e-4a1f-be29-53bbabadec06)
 
 Mit diesem Addon können News-Beiträge anhand von YForm und YOrm im Backend verwaltet und im Frontend ausgegeben werden. Auf Wunsch auch multidomainfähig und mehrsprachig.
 
@@ -18,8 +18,9 @@ Mit diesem Addon können News-Beiträge anhand von YForm und YOrm im Backend ver
 
 > **Tipp:** Neues arbeitet hervorragend zusammen mit den Addons [`yform_usability`](https://github.com/FriendsOfREDAXO/yform_usability/) und [`yform_geo_osm`](https://github.com/FriendsOfREDAXO/yform_geo_osm)
 
-> **Steuere eigene Verbesserungen** dem [GitHub-Repository von neues](https://github.com/alexplusde/neues) bei. Oder **unterstütze dieses Addon:** Mit einer [Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
+> **Steuere eigene Verbesserungen** dem [GitHub-Repository von neues](https://github.com/FriendsOfREDAXO/neues) bei.
 
+ 
 ## Installation
 
 Im REDAXO-Installer das Addon `neues` herunterladen und installieren. Anschließend erscheint im Hauptmenü ein neuer Menüpunkt `Aktuelles`.
@@ -28,17 +29,14 @@ Im REDAXO-Installer das Addon `neues` herunterladen und installieren. Anschließ
 
 ## Lizenz
 
-MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/neues/blob/master/LICENSE)  
+MIT Lizenz, siehe [LICENSE.md](https://github.com/FriendsOfREDAXO/neues/blob/master/LICENSE)  
 
 ## Autor
 
-**Alexander Walther**  
-<http://www.alexplus.de>
-<https://github.com/alexplusde>
+**Friends Of REDAXO**
 
-**Paul Götz**  
-<http://www.alexplus.de>
-<https://github.com/schorschy>
+* http://www.redaxo.org
+* https://github.com/FriendsOfREDAXO
 
 **Projekt-Lead**  
 [Alexander Walther](https://github.com/alexplusde)
