@@ -1,7 +1,7 @@
 package: neues
 version: '6.0.0-dev-2024-09-16'
-author: 'FriendsOfREDAXO (Credits: Alexander Walther, Paul Götz, Thorben, Christoph Böcker)'
-supportpage: https://alexplusde.github.io/neues/
+author: Friends of REDAXO
+supportpage: https://github.com/FriendsofREDAXO/neues
 
 requires:
     php:
