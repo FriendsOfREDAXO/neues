@@ -236,7 +236,7 @@ Setzt den Status des Eintrags.
 $entry = $entry->setStatus(1);
 ```
 
-### findOnline(?int $category_id = null)
+### findOnline(int $category_id = 0)
 
 Findet Online-Eintr채ge. Wenn eine Kategorie-ID angegeben ist, werden nur Eintr채ge aus dieser Kategorie zur체ckgegeben.
 
@@ -244,7 +244,7 @@ Findet Online-Eintr채ge. Wenn eine Kategorie-ID angegeben ist, werden nur Eintr�
 $entries = FriendsOfRedaxo\Neues\Entry::findOnline(1);
 ```
 
-### findByCategory(?int $category_id = null, int $status = Entry::ONLINE)
+### findByCategory(int $category_id = 0, int $status = Entry::ONLINE)
 
 Findet Eintr채ge nach Kategorie.
 

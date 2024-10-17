@@ -38,16 +38,19 @@ class EntryLang extends rex_yform_manager_dataset
      * Gibt den Code der Sprache zurück.
      * Returns the code of the language.
      *
-     * @return string|null Der Code der Sprache oder null, wenn kein Code gesetzt ist. / The code of the language or null if no code is set.
+     * @return string Der Code der Sprache oder '', wenn kein Code gesetzt ist. / The code of the language or '' if no code is set.
      *
      * Beispiel / Example:
      * $code = $language->getCode();
      *
      * @api
      */
-    public function getCode(): ?string
+    public function getCode(): string
     {
-        return $this->getValue('code');
+        if ($this->hasValue('code')) {
+            return $this->getValue('code');
+        }
+        return '';
     }
 
     /**
@@ -77,7 +80,10 @@ class EntryLang extends rex_yform_manager_dataset
      */
     public function getName(): string
     {
-        return $this->getValue('name');
+        if ($this->hasValue('name')) {
+            return $this->getValue('name');
+        }
+        return '';
     }
 
     /**
