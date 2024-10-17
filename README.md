@@ -19,7 +19,7 @@ Mit diesem Addon können News-Beiträge anhand von YForm und YOrm im Backend ver
 
 > **Tipp:** Neues arbeitet hervorragend zusammen mit den Addons [`yform_usability`](https://github.com/FriendsOfREDAXO/yform_usability/) und [`yform_geo_osm`](https://github.com/FriendsOfREDAXO/yform_geo_osm)
 
-> **Steuere eigene Verbesserungen** dem [GitHub-Repository von neues](https://github.com/alexplusde/neues) bei. Oder **unterstütze dieses Addon:** Mit einer [Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
+> **Steuere eigene Verbesserungen** dem [GitHub-Repository von neues](https://github.com/FriendsOfREDAXO/neues) bei. Oder **unterstütze dieses Addon:** Mit einer [Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
 
 ## Installation
 
@@ -31,14 +31,14 @@ Im REDAXO-Installer das Addon `neues` herunterladen und installieren. Anschließ
 
 MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/neues/blob/master/LICENSE)  
 
-## Autoren
+## Autor
 
 **Friends of REDAXO**
 
+## Credits
+
 **Projekt-Lead**  
 [Alexander Walther](https://github.com/alexplusde)
-
-## Credits
 
 **Alexander Walther**  
 <http://www.alexplus.de>
