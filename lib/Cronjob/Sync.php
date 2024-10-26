@@ -247,7 +247,7 @@ class Sync extends rex_cronjob
                 'name' => 'url',
                 'label' => rex_i18n::msg('neues_entry_sync_cronjob_url'),
                 'type' => 'text',
-                'attributes' => ['required' => 'required', 'type' => 'url'],
+                'attributes' => ['type' => 'url'],
             ],
             [
                 'name' => 'token',
