@@ -29,16 +29,19 @@ class Author extends rex_yform_manager_dataset
      * Gibt den Namen des Autors zurück.
      * Returns the name of the author.
      *
-     * @return string|null Der Name des Autors oder null, wenn kein Name gesetzt ist. / The name of the author or null if no name is set.
+     * @return string Der Name des Autors oder '', wenn kein Name gesetzt ist. / The name of the author or '' if no name is set.
      *
      * Beispiel / Example:
      * $name = $author->getName();
      *
      * @api
      */
-    public function getName(): ?string
+    public function getName(): string
     {
-        return $this->getValue('name');
+        if ($this->hasValue('name')) {
+            return $this->getValue('name');
+        }
+        return '';
     }
 
     /**
@@ -60,16 +63,19 @@ class Author extends rex_yform_manager_dataset
      * Gibt den Spitznamen des Autors zurück.
      * Returns the nickname of the author.
      *
-     * @return string|null Der Spitzname des Autors oder null, wenn kein Spitzname gesetzt ist. / The nickname of the author or null if no nickname is set.
+     * @return string Der Spitzname des Autors oder '', wenn kein Spitzname gesetzt ist. / The nickname of the author or '' if no nickname is set.
      *
      * Beispiel / Example:
      * $nickname = $author->getNickname();
      *
      * @api
      */
-    public function getNickname(): ?string
+    public function getNickname(): string
     {
-        return $this->getValue('nickname');
+        if ($this->hasValue('nickname')) {
+            return $this->getValue('nickname');
+        }
+        return '';
     }
 
     /**
@@ -92,19 +98,19 @@ class Author extends rex_yform_manager_dataset
      * Returns the text of the author.
      *
      * @param bool $asPlaintext Wenn true, wird der Text ohne HTML-Tags zurückgegeben. / If true, the text is returned without HTML tags.
-     * @return string|null Der Text des Autors oder null, wenn kein Text gesetzt ist. / The text of the author or null if no text is set.
+     * @return string Der Text des Autors oder '', wenn kein Text gesetzt ist. / The text of the author or '' if no text is set.
      *
      * Beispiel / Example:
      * $text = $author->getText(true);
      *
      * @api
      */
-    public function getText(bool $asPlaintext = false): ?string
+    public function getText(bool $asPlaintext = false): string
     {
-        if ($asPlaintext) {
-            return strip_tags($this->getValue('text'));
+        if ($this->hasValue('text')) {
+            return $asPlaintext ? strip_tags($this->getValue('text')) : $this->getValue('text');
         }
-        return $this->getValue('text');
+        return '';
     }
 
     /**
@@ -126,16 +132,19 @@ class Author extends rex_yform_manager_dataset
      * Gibt die Benutzer-ID des Autors zurück.
      * Returns the user ID of the author.
      *
-     * @return int|null Die Benutzer-ID des Autors oder null, wenn keine Benutzer-ID gesetzt ist. / The user ID of the author or null if no user ID is set.
+     * @return int Die Benutzer-ID des Autors oder 0, wenn keine Benutzer-ID gesetzt ist. / The user ID of the author or 0 if no user ID is set.
      *
      * Beispiel / Example:
      * $beUserId = $author->getBeUserId();
      *
      * @api
      */
-    public function getBeUserId(): ?int
+    public function getBeUserId(): int
     {
-        return (int) $this->getValue('be_user_id');
+        if ($this->hasValue('be_user_id')) {
+            return (int) $this->getValue('be_user_id');
+        }
+        return 0;
     }
 
     /**
@@ -165,6 +174,10 @@ class Author extends rex_yform_manager_dataset
      */
     public function getBeUser(): ?rex_user
     {
-        return rex_user::get($this->getBeUserId());
+        $userId = $this->getBeUserId();
+        if (0 !== $userId) {
+            return rex_user::get($userId);
+        }
+        return null;
     }
 }

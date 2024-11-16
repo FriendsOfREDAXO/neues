@@ -16,8 +16,12 @@ use rex_yform;
 use rex_yform_list;
 use rex_yform_manager_collection;
 use rex_yform_manager_dataset;
+use rex_yform_manager_query;
 use rex_yform_manager_table;
 
+use function count;
+use function is_bool;
+use function is_int;
 use function is_string;
 
 /**
@@ -162,8 +166,8 @@ class Entry extends rex_yform_manager_dataset
      */
     public function getAuthor(): ?Author
     {
-        if ($this->getRelatedDataset('author_id')) {
-            return Author::get($this->getRelatedDataset('author_id')->getId());
+        if ($this->hasValue('author_id')) {
+            return Author::get($this->getValue('author_id'));
         }
         return null;
     }
@@ -173,7 +177,10 @@ class Entry extends rex_yform_manager_dataset
      */
     public function getDomain(): string
     {
-        return $this->getValue('domain');
+        if ($this->hasValue('domain')) {
+            return (string) $this->getValue('domain');
+        }
+        return '';
     }
 
     /**
@@ -203,7 +210,10 @@ class Entry extends rex_yform_manager_dataset
      */
     public function getTeaser(): string
     {
-        return $this->getValue('teaser');
+        if ($this->hasValue('teaser')) {
+            return $this->getValue('teaser');
+        }
+        return '';
     }
 
     /**
@@ -235,12 +245,16 @@ class Entry extends rex_yform_manager_dataset
      */
     public function getImage(): string
     {
-        if ('' == $this->getValue('image')) {
-            $this->image = rex_config::get('neues', 'default_thumbnail');
+        if ($this->hasValue('image')) {
+            $image = $this->getValue('image');
         } else {
-            $this->image = $this->getValue('image');
+            $image = '';
         }
-        return $this->image;
+        if ('' == $image) {
+            $image = rex_config::get('neues', 'default_thumbnail');
+            $this->setImage($image);
+        }
+        return $image;
     }
 
     /**
@@ -261,27 +275,30 @@ class Entry extends rex_yform_manager_dataset
      * Gibt die Bilder des Eintrags zurück.
      * Returns the images of the entry.
      *
-     * @return array|null Die Bilder des Eintrags oder null, wenn keine Bilder gesetzt sind. / The images of the entry or null if no images are set.
+     * @return array<string> Die Bilder des Eintrags oder [], wenn keine Bilder gesetzt sind. / The images of the entry or [] if no images are set.
      *
      * Beispiel / Example:
      * $images = $entry->getImages();
-     * TODO: null kommt nicht vor
      * @api
      */
-    public function getImages(): ?array
+    public function getImages(): array
     {
-        return array_filter(explode(',', $this->getValue('images')));
+        if ($this->hasValue('images')) {
+            $images = $this->getValue('images');
+            return array_filter(explode(',', $images));
+        }
+        return [];
     }
 
     /**
      * Setzt die Bilder des Eintrags.
      * Sets the images of the entry.
      *
-     * @param array|null $images Die neuen Bilder des Eintrags. / The new images of the entry.
+     * @param array<string> $images Die neuen Bilder des Eintrags. / The new images of the entry.
      *
      * @api
      */
-    public function setImages(?array $images): self
+    public function setImages(array $images = []): self
     {
         $this->setValue('images', implode(',', $images));
         return $this;
@@ -300,17 +317,21 @@ class Entry extends rex_yform_manager_dataset
      */
     public function getMedia(): ?rex_media
     {
-        if (rex_addon::get('media_manager_responsive')->isAvailable()) {
-            return rex_media_plus::get($this->getImage());
+        $image = $this->getImage();
+        if ('' !== $image) {
+            if (rex_addon::get('media_manager_responsive')->isAvailable()) {
+                return rex_media_plus::get($image);
+            }
+            return rex_media::get($image);
         }
-        return rex_media::get($this->getImage());
+        return null;
     }
 
     /**
      * Setzt das Medium des Eintrags.
      * Sets the media of the entry.
      *
-     * @param rex_media|null $media Das neue Medium des Eintrags. / The new media of the entry.
+     * @param rex_media|null $media Das neue Medium des Eintrags oer null für Entfernen. / The new media of the entry or null to delete.
      *
      * @api
      */
@@ -319,7 +340,7 @@ class Entry extends rex_yform_manager_dataset
         if (null !== $media) {
             $this->setValue('image', $media->getFileName());
         } else {
-            $this->setValue('image', null);
+            $this->setValue('image', '');
         }
         return $this;
     }
@@ -337,7 +358,7 @@ class Entry extends rex_yform_manager_dataset
      */
     public function getDescriptionAsPlaintext(): string
     {
-        return strip_tags($this->getValue('description'));
+        return strip_tags($this->getDescription());
     }
 
     /**
@@ -353,7 +374,10 @@ class Entry extends rex_yform_manager_dataset
      */
     public function getDescription(): string
     {
-        return $this->getValue('description');
+        if ($this->hasValue('description')) {
+            return $this->getValue('description');
+        }
+        return '';
     }
 
     /**
@@ -374,16 +398,19 @@ class Entry extends rex_yform_manager_dataset
      * Gibt die externe URL des Eintrags zurück.
      * Returns the external URL of the entry.
      *
-     * @return string|null Die externe URL des Eintrags oder null, wenn keine URL gesetzt ist. / The external URL of the entry or null if no URL is set.
+     * @return string Die externe URL des Eintrags oder '', wenn keine URL gesetzt ist. / The external URL of the entry or '' if no URL is set.
      *
      * Beispiel / Example:
      * $externalUrl = $entry->getExternalUrl();
      *
      * @api
      */
-    public function getExternalUrl(): ?string
+    public function getExternalUrl(): string
     {
-        return $this->getValue('url');
+        if ($this->hasValue('url')) {
+            return $this->getValue('url');
+        }
+        return '';
     }
 
     /**
@@ -404,16 +431,19 @@ class Entry extends rex_yform_manager_dataset
      * Gibt die Canonical URL des Eintrags zurück.
      * Returns the canonical URL of the entry.
      *
-     * @return string|null Die Canonical URL des Eintrags oder null, wenn keine URL gesetzt ist. / The canonical URL of the entry or null if no URL is set.
+     * @return string Die Canonical URL des Eintrags oder '', wenn keine URL gesetzt ist. / The canonical URL of the entry or '' if no URL is set.
      *
      * Beispiel / Example:
      * $canonicalUrl = $entry->getCanonicalUrl();
      *
      * @api
      */
-    public function getCanonicalUrl(): ?string
+    public function getCanonicalUrl(): string
     {
-        return $this->getValue('canonical_url');
+        if ($this->hasValue('canonical_url')) {
+            return $this->getValue('canonical_url');
+        }
+        return '';
     }
 
     /**
@@ -443,7 +473,10 @@ class Entry extends rex_yform_manager_dataset
      */
     public function getPublishDate(): string
     {
-        return $this->getValue('publishdate');
+        if ($this->hasValue('publishdate')) {
+            return $this->getValue('publishdate');
+        }
+        return '';
     }
 
     /**
@@ -481,7 +514,7 @@ class Entry extends rex_yform_manager_dataset
      * Gibt das formatierte Veröffentlichungsdatum und -zeit des Eintrags zurück.
      * Returns the formatted publish date and time of the entry.
      *
-     * @param array $format Das Format des Datums und der Zeit. Standardmäßig [IntlDateFormatter::FULL, IntlDateFormatter::SHORT]. / The format of the date and time. Defaults to [IntlDateFormatter::FULL, IntlDateFormatter::SHORT].
+     * @param array{int,int} $format Das Format des Datums und der Zeit. Standardmäßig [IntlDateFormatter::FULL, IntlDateFormatter::SHORT]. / The format of the date and time. Defaults to [IntlDateFormatter::FULL, IntlDateFormatter::SHORT].
      * @return string Das formatierte Veröffentlichungsdatum und -zeit des Eintrags. / The formatted publish date and time of the entry.
      *
      * Beispiel / Example:
@@ -491,23 +524,30 @@ class Entry extends rex_yform_manager_dataset
      */
     public function getFormattedPublishDateTime($format = [IntlDateFormatter::FULL, IntlDateFormatter::SHORT]): string
     {
-        return rex_formatter::intlDateTime($this->getPublishDate(), $format);
+        $date = $this->getPublishDate();
+        if ('' !== $date) {
+            return rex_formatter::intlDateTime($date, $format);
+        }
+        return '';
     }
 
     /**
      * Gibt den Status des Eintrags zurück.
      * Returns the status of the entry.
      *
-     * @return string Der Status des Eintrags. / The status of the entry.
+     * @return int Der Status des Eintrags. / The status of the entry.
      *
      * Beispiel / Example:
      * $status = $entry->getStatus();
      *
      * @api
      */
-    public function getStatus(): string
+    public function getStatus(): int
     {
-        return $this->getValue('status');
+        if ($this->hasValue('status')) {
+            return $this->getValue('status');
+        }
+        return self::VOID;
     }
 
     /**
@@ -525,10 +565,143 @@ class Entry extends rex_yform_manager_dataset
     }
 
     /**
+     * Allgemeine Suche nach Einträgen über Kategorien, Status, Autor und Sprachen
+     * General Search for Entries by category, language, author, and status.
+     *
+     * Anwendungsbeispiele / Usage examples
+     * $allEntries = Entry::findBy();
+     * $entries = Entry::findBy (status: Entry::IS_ONLINE, category: '1,2');
+     * $entries = Entry::findBy (status: Entry::PLANNED, category: [1,2], lang: 'de');
+     *
+     * @api
+     * @param int|array<int>|string $category
+     * @param int|array<int>|bool   $status
+     * @param int|array<int>|string $author
+     * @return rex_yform_manager_collection<static>
+     */
+    public static function findBy(int|array|string $category = [], int|array|bool $status = [], string|int $lang = -1, int|array|string $author = []): rex_yform_manager_collection
+    {
+        $query = self::queryBy($category, $status, $lang, $author);
+        return $query->find();
+    }
+
+    /**
+     * Allgemeine Suche nach Einträgen über Kategorien, Status, Autor und Sprachen vorbereiten.
+     * An die erzeugte Query können weitere Conditions oder Sortierungen angefügt werden.
+     *
+     * Prepare a general search for entries by category, language, author, and status
+     * Add further conditions or sorts
+     *
+     * Anwendungsbeispiele / Usage examples
+     * $query = Entry::queryBy();
+     * $query = Entry::queryBy (status: Entry::IS_ONLINE, category: '1,2');
+     * $query = Entry::queryBy (status: Entry::PLANNED, category: [1,2], lang: 'de');
+     *
+     * $query->sortBy('publishdate', 'desc');
+     * $entries = $query->find();
+     *
+     * @api
+     * @param int|array<int>|string $category
+     * @param int|array<int>|bool   $status
+     * @param int|array<int>|string $author
+     * @return rex_yform_manager_query<static>
+     */
+    public static function queryBy(int|array|string $category = [], int|array|bool $status = [], string|int $lang = -1, int|array|string $author = []): rex_yform_manager_query
+    {
+        /**
+         * Die Abfrage vorbereiten.
+         */
+        $query = self::query();
+        $alias = $query->getTableAlias();
+        // Als Beifang wird ein Zusatzfeld mit den IDs der zugeordneten Kategorien
+        // erzeugt (categories), das für die Filterung auf Kategorien erforderlich ist
+        $query->leftJoinRelation('category_ids', 'c');
+        $query->selectRaw('IFNULL(GROUP_CONCAT(c.id),"0")', 'categories');
+        $query->groupBy($alias . '.id');
+
+        /**
+         * Kategorie in einen normierten Wert umwandeln und ggf. die Query anpassen
+         * - String in ein Array umwandeln
+         * - Einzelwert in ein Array umandeln
+         * - Default ist [] => kein Filter
+         * - 0 ist "alle ohne Kategorie".
+         */
+        if (is_string($category)) {
+            $category = array_filter(explode(',', $category));
+        }
+        if (is_int($category)) {
+            $category = [$category];
+        }
+        if (0 < count($category)) {
+            $query->havingListContains('categories', $category);
+        }
+
+        /**
+         * Status berücksichtigen
+         * - Bool-Wert (Entry::IS_ONLINE)
+         * - Int-Wert für einen speziellen Status
+         * - Array mit mehreren Int-Werten eines Status.
+         * - Default ist [] => kein Filter.
+         */
+        $boolStatus = is_bool($status);
+        if (is_bool($status)) {
+            $operator = $status ? '>=' : '<';
+            $query->where($alias . '.status', self::ONLINE, $operator);
+        } elseif (is_int($status)) {
+            $query->where($alias . '.status', $status);
+        } elseif (0 < count($status)) {
+            $query->whereListContains($alias . '.status', $status);
+        }
+
+        /**
+         * Sprache berücksichtigen
+         * - string verweist auf das Feld rex_neues_entry_lang.code (in ID auflösen)
+         * - int verweist auf die ID, die aber auch direkt im Datensatz steht.
+         * - Default: -1 => keine Einschränkung, alle suchen
+         * - Abfrage nur der Entries ohne Sprachzuordnung mit lang=0
+         * Immer im Ergebnisset: "alle Sprachen", also Texte ohne spezifische Sprachzuordnung (0).
+         */
+        if (is_string($lang)) {
+            $language = EntryLang::query()->where('code', $lang)->findOne();
+            $lang = null === $language ? -1 : $language->getId();
+        }
+        if (-1 !== $lang) {
+            $condition = [0];
+            if (0 !== $lang) {
+                $condition[] = $lang;
+            }
+            $query->whereListContains('lang_id', $condition);
+        }
+
+        /**
+         * Autor eingrenzen
+         * - String in ein Array umwandeln
+         * - int ist die ID genau eines Autors
+         * - array ist eine Autorenliste
+         * - 0 liefert die Entries ohne zugeordneten Autor
+         * - Default: [] steht für alle Einträge, kein Filter.
+         */
+        if (is_string($author)) {
+            $author = array_filter(explode(',', $author));
+        }
+        if (is_int($author)) {
+            $author = [$author];
+        }
+        if (0 < count($author)) {
+            $query->whereListContains('author_id', $author);
+        }
+
+        /**
+         * Abfrage bereitstellen.
+         */
+        return $query;
+    }
+
+    /**
      * Findet Online-Einträge. Wenn eine Kategorie-ID angegeben ist, werden nur Einträge aus dieser Kategorie zurückgegeben.
      * Finds online entries. If a Category ID is provided, only entries from this Category are returned.
      *
-     * @param int|null $category_id Die ID der Kategorie. / The ID of the Category.
+     * @param int $category_id Die ID der Kategorie. / The ID of the Category.
      * @return rex_yform_manager_collection<static> Die gefundenen Einträge bzw. eine leere Liste. / The found entries or empty list.
      *
      * Beispiel / Example:
@@ -536,8 +709,12 @@ class Entry extends rex_yform_manager_dataset
      *
      * @api
      */
-    public static function findOnline(?int $category_id = null): rex_yform_manager_collection
+    public static function findOnline(int $category_id = 0): rex_yform_manager_collection
     {
+        /**
+         * TODO: auf Entry::findBy zurückgreifen oder die Methode entfernen weil durch findBy obsolet
+         *     return Entry::findBy (category: $category, status: self::IS_ONLINE);.
+         */
         if (null !== $category_id) {
             return self::findByCategory($category_id);
         }
@@ -548,7 +725,7 @@ class Entry extends rex_yform_manager_dataset
      * Findet Einträge nach Kategorie.
      * Finds entries by Category.
      *
-     * @param int|null $category_id Die ID der Kategorie. / The ID of the Category.
+     * @param int $category_id Die ID der Kategorie. / The ID of the Category.
      * @param int $status Der Status der Einträge. / The status of the entries.
      * @return rex_yform_manager_collection<static> Die gefundenen Einträge bzw. eine leere Liste. / The found entries or empty list.
      *
@@ -557,8 +734,12 @@ class Entry extends rex_yform_manager_dataset
      *
      * @api
      */
-    public static function findByCategory(?int $category_id = null, int $status = self::ONLINE): rex_yform_manager_collection
+    public static function findByCategory(int $category_id = 0, int $status = self::ONLINE): rex_yform_manager_collection
     {
+        /**
+         * TODO: auf Entry::findBy zurückgreifen oder die Methode entfernen weil durch findBy obsolet
+         *     return Entry::findBy (category: $category, status: $status);.
+         */
         $query = self::query();
         $alias = $query->getTableAlias();
         $query->joinRelation('category_ids', 'c')->where($alias . '.status', $status, '>=')->where('c.id', $category_id);
@@ -569,7 +750,7 @@ class Entry extends rex_yform_manager_dataset
      * Findet Einträge durch IDs mehrerer Kategorien.
      * Finds entries by multiple Categories.
      *
-     * @param string|array|null $category_ids Die IDs der Kategorien als String oder Array. / The IDs of the Categories as a String or Array.
+     * @param string|array<int> $category_ids Die IDs der Kategorien als String oder Array. / The IDs of the Categories as a String or Array.
      * @param int $status Der Status der Einträge. / The status of the entries.
      * @return rex_yform_manager_collection<static> Die gefundenen Einträge bzw. eine leere Liste. / The found entries or empty list.
      *
@@ -578,16 +759,18 @@ class Entry extends rex_yform_manager_dataset
      *
      * @api
      */
-    public static function findByCategoryIds(string|array|null $category_ids = null, int $status = self::ONLINE): rex_yform_manager_collection
+    public static function findByCategoryIds(string|array $category_ids = [], int $status = self::ONLINE): rex_yform_manager_collection
     {
+        /**
+         * TODO: auf Entry::findBy zurückgreifen oder die Methode entfernen weil durch findBy obsolet
+         *     return Entry::findBy (category: $category, status: $status);.
+         */
         $query = self::query()->where('status', $status, '>=');
 
-        if ($category_ids) {
-            // Wenn es ein String ist, in ein Array umwandeln
-            if (is_string($category_ids)) {
-                $category_ids = explode(',', $category_ids);
-            }
-
+        if (is_string($category_ids)) {
+            $category_ids = explode(',', $category_ids);
+        }
+        if (0 < count($category_ids)) {
             $query->whereListContains('category_ids', $category_ids);
         }
 
