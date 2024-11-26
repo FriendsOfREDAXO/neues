@@ -7,6 +7,7 @@ use rex_cronjob;
 use rex_i18n;
 
 use function count;
+use function sprintf;
 
 class Publish extends rex_cronjob
 {
