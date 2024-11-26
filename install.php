@@ -121,7 +121,7 @@ if (rex_addon::get('url')->isAvailable()) {
 if (rex_version::compare('5.1.0', $this->getVersion(), '>')) {
     $sql = rex_sql::factory();
     $sql->setTable(rex::getTable('neues_entry'));
-    $sql->setWhere('status', 2);
+    $sql->setWhere('status = 2');
     $sql->setValue('status', -2);
     $sql->update();
 }

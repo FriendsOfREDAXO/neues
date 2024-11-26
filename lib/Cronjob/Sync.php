@@ -16,6 +16,8 @@ use rex_sql;
 use rex_string;
 use Throwable;
 
+use function sprintf;
+
 class Sync extends rex_cronjob
 {
     private const ENDPOINT = '/rest/neues/entry/5.0.0/';
