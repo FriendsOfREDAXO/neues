@@ -6,7 +6,7 @@ $form = rex_config_form::factory($addon->getName());
 
 $field = $form->addMediaField('default_thumbnail');
 $field->setPreview(true);
-$field->setTypes('jpg,gif,png');
+$field->setTypes('jpg,jpeg,gif,png');
 $field->setLabel(rex_i18n::msg('neues_default_thumbnail'));
 
 $field = $form->addInputField('text', 'external_url_label', null, ['class' => 'form-control']);
