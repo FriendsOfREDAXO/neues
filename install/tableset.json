@@ -636,7 +636,7 @@
                 "not_required": "",
                 "multiple": "1",
                 "notice": "",
-                "types": "jpg,png",
+                "types": "jpg,jpeg,gif,png",
                 "preview": "1",
                 "category": ""
             },
