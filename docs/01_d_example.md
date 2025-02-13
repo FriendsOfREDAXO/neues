@@ -16,7 +16,8 @@ Im Template, in dem du die Ausgabe von Neues realisieren möchtest, fügst du fo
 <?php
     // Voraussetzung: URL-Addon ist installiert und konfiguriert
     $manager = Url\Url::resolveCurrent();
-    
+    use FriendsOfRedaxo\Neues\Neues;
+
     if($manager) {
         // Ausgabe eines einzelnen Datensatzes
         $postId = $manager->getDatasetId();
