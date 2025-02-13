@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Ruft Seiten des YForm-Tablemanagers als native Addon-Seiten auf.
  *
