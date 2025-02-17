@@ -386,7 +386,7 @@
                 "attributes": "{\"required\":\"required\"}",
                 "default": "",
                 "no_db": "0",
-                "notice": "transalte:neues_name_notice",
+                "notice": "translate:neues_name_notice",
                 "append": "",
                 "prepend": ""
             },
