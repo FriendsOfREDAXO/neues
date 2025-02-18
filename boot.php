@@ -4,6 +4,8 @@ namespace FriendsOfRedaxo\Neues;
 
 use rex;
 use rex_addon;
+use rex_config;
+use rex_extension_point;
 use rex_api_function;
 use rex_cronjob_manager;
 use rex_extension;
@@ -58,4 +60,13 @@ if (rex::isBackend()) {
      * Plus(Add)-Button im Hauptmenü-Punkt des Addon bereitstellen.
      */
     rex_extension::register('PAGES_PREPARED', Neues::epPagesPrepared(...));
+
+    /**
+     * Für die korrekte Editor auswahl.
+     */
+    rex_extension::register('OUTPUT_FILTER', function (rex_extension_point $ep) {
+        $suchmuster = 'class="###neues-settings-editor###"';
+        $ersetzen = rex_config::get("neues", "editor") ?? 'class="form-control"';
+        $ep->setSubject(str_replace($suchmuster, $ersetzen, $ep->getSubject()));
+    });
 }
