@@ -2,6 +2,8 @@
 
 namespace FriendsOfRedaxo\Neues;
 
+use rex;
+use rex_sql;
 use rex_user;
 use rex_yform_manager_dataset;
 
@@ -179,5 +181,25 @@ class Author extends rex_yform_manager_dataset
             return rex_user::get($userId);
         }
         return null;
+    }
+
+    /**
+     * Füllt die Autorentabelle "rex_neues_author" mit den registrierten Benutzern aus dem REDAXO-Backend,
+     * sodass diese direkt als Autoren zur Verfügung stehen.
+     *
+     * @return void
+     */
+    public static function fillAuthorTableWithBeUsers(): void
+    {
+        $users = rex_sql::factory()->getArray('SELECT * FROM '.rex::getTablePrefix().'user');
+
+        foreach ($users as $user) {
+            if(self::query()->where('email', $user['email'])->findOne() === null) {
+               $new_user = self::create();
+               $new_user->setName($user['name']);
+               $new_user->setNickname($user['login']);
+               $new_user->save();
+            }
+         }
     }
 }
