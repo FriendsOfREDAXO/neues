@@ -4,11 +4,11 @@ namespace FriendsOfRedaxo\Neues;
 
 use rex;
 use rex_addon;
-use rex_config;
-use rex_extension_point;
 use rex_api_function;
+use rex_config;
 use rex_cronjob_manager;
 use rex_extension;
+use rex_extension_point;
 use rex_plugin;
 use rex_yform_manager_dataset;
 
@@ -64,9 +64,9 @@ if (rex::isBackend()) {
     /**
      * Für die korrekte Editor auswahl.
      */
-    rex_extension::register('OUTPUT_FILTER', function (rex_extension_point $ep) {
+    rex_extension::register('OUTPUT_FILTER', static function (rex_extension_point $ep) {
         $suchmuster = 'class="###neues-settings-editor###"';
-        $ersetzen = rex_config::get("neues", "editor") ?? 'class="form-control"';
+        $ersetzen = rex_config::get('neues', 'editor') ?? 'class="form-control"';
         $ep->setSubject(str_replace($suchmuster, $ersetzen, $ep->getSubject()));
     });
 }
