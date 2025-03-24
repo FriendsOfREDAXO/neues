@@ -13,7 +13,7 @@ Um sicherzustellen, dass deine Anpassungen updatesicher sind, kopiere die entspr
 
 Wenn diese Verzeichnisse angelegt sind und dort ebenfalls folgende Dateien enthalten sind, werden **diese** aus dem theme/project-Verzeichnis verwendet und nicht die Dateien aus `/src/addons/fragments/neues`:
 
-```
+```text
 entry.php
 list-entry.php
 list.php
