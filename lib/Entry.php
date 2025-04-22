@@ -20,6 +20,11 @@ use rex_yform_manager_dataset;
 use rex_yform_manager_query;
 use rex_yform_manager_table;
 
+use function count;
+use function is_bool;
+use function is_int;
+use function is_string;
+
 /**
  * Class Entry (ex. neues_entry).
  *
@@ -58,17 +63,17 @@ class Entry extends rex_yform_manager_dataset
             $elements,
             [
                 'form_elements' => $elements,
-                'yform' => $yform
-            ]
+                'yform' => $yform,
+            ],
         ));
-        
+
         $suchtext = '###neues-settings-editor###';
         foreach ($elements as $k => &$e) {
             if ('textarea' === $e[0] && str_contains($e[5], $suchtext)) {
                 $e[5] = str_replace($suchtext, rex_config::get('neues', 'editor'), $e[5]);
             }
         }
-        
+
         return $yform;
     }
 
