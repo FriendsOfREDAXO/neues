@@ -6,6 +6,7 @@ use IntlDateFormatter;
 use rex_addon;
 use rex_config;
 use rex_csrf_token;
+use rex_extension;
 use rex_extension_point;
 use rex_formatter;
 use rex_i18n;
@@ -18,11 +19,6 @@ use rex_yform_manager_collection;
 use rex_yform_manager_dataset;
 use rex_yform_manager_query;
 use rex_yform_manager_table;
-
-use function count;
-use function is_bool;
-use function is_int;
-use function is_string;
 
 /**
  * Class Entry (ex. neues_entry).
@@ -55,14 +51,24 @@ class Entry extends rex_yform_manager_dataset
     public function getForm(): rex_yform
     {
         $yform = parent::getForm();
+        $elements = $yform->objparams['form_elements'];
 
+        $elements = rex_extension::registerPoint(new rex_extension_point(
+            'NEUES_ENTRY_FORM',
+            $elements,
+            [
+                'form_elements' => $elements,
+                'yform' => $yform
+            ]
+        ));
+        
         $suchtext = '###neues-settings-editor###';
-        foreach ($yform->objparams['form_elements'] as $k => &$e) {
+        foreach ($elements as $k => &$e) {
             if ('textarea' === $e[0] && str_contains($e[5], $suchtext)) {
                 $e[5] = str_replace($suchtext, rex_config::get('neues', 'editor'), $e[5]);
             }
         }
-
+        
         return $yform;
     }
 
@@ -547,7 +553,7 @@ class Entry extends rex_yform_manager_dataset
         if ($this->hasValue('status')) {
             return $this->getValue('status');
         }
-        return self::VOID;
+        return self::DRAFT;
     }
 
     /**
