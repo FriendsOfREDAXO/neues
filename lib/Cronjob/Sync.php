@@ -31,17 +31,17 @@ class Sync extends rex_cronjob
 
     public function execute()
     {
-        $url = rtrim($this->getParam('friendsofredaxo_neues_cronjob_sync_url'), '/') . self::ENDPOINT;
+        $url = rtrim($this->getParam('url'), '/') . self::ENDPOINT;
         $data = [];
 
         /* Query zusammenstellen */
         $query = [];
-        if ((int) $this->getParam('friendsofredaxo_neues_cronjob_sync_x_per_page') > 0) {
-            $query[] = 'per_page=' . $this->getParam('friendsofredaxo_neues_cronjob_sync_x_per_page');
+        if ((int) $this->getParam('x_per_page') > 0) {
+            $query[] = 'per_page=' . $this->getParam('x_per_page');
         }
         $query[] = 'order[updatedate]=desc';
         $socket_url = $url . '?' . implode('&', $query);
-        $token = $this->getParam('friendsofredaxo_neues_cronjob_sync_token');
+        $token = $this->getParam('token');
 
         /* Socket erstellen und Daten abrufen */
         $socket = rex_socket::factoryUrl($socket_url);
@@ -85,8 +85,8 @@ class Sync extends rex_cronjob
 
         /* Kategorien abrufen und speichern */
         $target_category_ids = [];
-        if ($this->getParam('friendsofredaxo_neues_cronjob_sync_neues_category_id') > 0 && null !== Category::get($this->getParam('friendsofredaxo_neues_cronjob_sync_neues_category_id'))) {
-            $target_category_ids[] = $this->getParam('friendsofredaxo_neues_cronjob_sync_neues_category_id');
+        if ($this->getParam('neues_category_id') > 0 && null !== Category::get($this->getParam('neues_category_id'))) {
+            $target_category_ids[] = $this->getParam('neues_category_id');
         } else {
             $categories = $current['relationships']['category_ids']['data'];
 
@@ -198,7 +198,7 @@ class Sync extends rex_cronjob
             return true;
         }
 
-        $socket = rex_socket::factoryUrl($this->getParam('friendsofredaxo_neues_cronjob_sync_url') . '/media/' . $filename);
+        $socket = rex_socket::factoryUrl($this->getParam('url') . '/media/' . $filename);
         $response = $socket->doGet();
 
         if ($response->isOk()) {
@@ -207,7 +207,7 @@ class Sync extends rex_cronjob
             /* Überprüfe, ob die Datei auf dem Dateisystem vorhanden ist */
             try {
                 rex_media_service::addMedia([
-                    'category_id' => $this->getParam('friendsofredaxo_neues_cronjob_sync_media_category_id'),
+                    'category_id' => $this->getParam('media_category_id'),
                     'title' => $filename,
                     'createuser' => 'neues_sync_cronjob',
                     'file' => [
