@@ -6,7 +6,7 @@ supportpage: https://github.com/FriendsofREDAXO/neues
 requires:
     php:
         version: '>7.3,<9'
-    redaxo: ^5.17
+    redaxo: ^5.18.3
     packages:
         yform: '^4'
         yform/manager: '^4'
