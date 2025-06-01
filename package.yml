@@ -8,8 +8,7 @@ requires:
         version: '>7.3,<9'
     redaxo: ^5.18.3
     packages:
-        yform: '^4'
-        yform/manager: '^4'
+        yform: '^4.1.1'
         yform_field: '^2.7.1'
 
 page:
