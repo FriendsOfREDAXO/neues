@@ -1,15 +1,15 @@
 package: neues
-version: '6.0.1'
+version: '6.0.2'
 author: Friends of REDAXO
 supportpage: https://github.com/FriendsofREDAXO/neues
 
 requires:
     php:
-        version: '>7.3,<9'
-    redaxo: ^5.18.3
+        version: '>8.2,<9'
+    redaxo: '^5.18.3'
     packages:
-        yform: '^4.1.1'
-        yform_field: '^2.7.1'
+        yform: '>4.1.1,<6'
+        yform_field: '^2.10'
 
 page:
     title: translate:neues
