@@ -11,7 +11,7 @@ use rex_extension_point;
 use rex_formatter;
 use rex_i18n;
 use rex_media;
-use rex_media_plus;
+use Alexplusde\ManagerResponsive\Media;
 use rex_url;
 use rex_yform;
 use rex_yform_list;
@@ -331,7 +331,7 @@ class Entry extends rex_yform_manager_dataset
         $image = $this->getImage();
         if ('' !== $image) {
             if (rex_addon::get('media_manager_responsive')->isAvailable()) {
-                return rex_media_plus::get($image);
+                return Media::get($image);
             }
             return rex_media::get($image);
         }
