@@ -15,6 +15,8 @@ page:
     title: translate:neues
     prio: 100
     icon: rex-icon fa-gear
+    app_type: app # wird von @alxndr-w benötigt
+    app_scope: user # wird von @alxndr-w benötigt
 
 pages:
     neues:
