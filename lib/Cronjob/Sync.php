@@ -286,7 +286,10 @@ class Sync extends rex_cronjob
                 'name' => 'media_prefix',
                 'label' => rex_i18n::msg('neues_entry_sync_cronjob_media_prefix'),
                 'type' => 'select',
-                'options' => ['1' => '✅ Ja (UUID + Dateiname)', '0' => '❌ Nein (nur Dateiname)'],
+                'options' => [
+                    '1' => rex_i18n::msg('neues_entry_sync_cronjob_media_prefix_yes'),
+                    '0' => rex_i18n::msg('neues_entry_sync_cronjob_media_prefix_no'),
+                ],
             ],
         ];
 
