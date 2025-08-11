@@ -94,3 +94,15 @@ neues_docs_restful_api = YForm RESTful API
 neues_entry_publish_success = %d posts have been successfully published.
 neues_entry_publish_error = %d posts could not be published.
 neues_entry_publish_cronjob = Publish planned posts. (Current)
+
+neues_entry_sync_error = Error synchronizing posts.
+neues_entry_sync_cronjob = [📰 News] Retrieve posts, categories and authors from another REDAXO installation
+neues_entry_sync_cronjob_url = URL of the REDAXO installation
+neues_entry_sync_cronjob_token = RESTful API token
+neues_entry_sync_cronjob_status = Status value
+neues_entry_sync_cronjob_neues_category_id = Default category
+neues_entry_sync_cronjob_neues_author_id = Default author
+neues_entry_sync_cronjob_media_category_id = Import to media pool category
+neues_entry_sync_cronjob_x_per_page = Number of recent posts
+neues_entry_sync_cronjob_media_prefix = Media with prefix
+neues_entry_sync_cronjob_success = %s posts were successfully synchronized (Created: %s, updated %s).

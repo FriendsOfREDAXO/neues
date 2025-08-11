@@ -115,4 +115,5 @@ neues_entry_sync_cronjob_neues_category_id = Standard-Kategorie
 neues_entry_sync_cronjob_neues_author_id = Standard-Autor
 neues_entry_sync_cronjob_media_category_id = Import in Medienpool-Kategorie
 neues_entry_sync_cronjob_x_per_page = Anzahl der letzten Beiträge
+neues_entry_sync_cronjob_media_prefix = Medien mit Präfix
 neues_entry_sync_cronjob_success = %s Beiträge wurden erfolgreich synchronisiert (Erstellt: %s, aktualisiert %s).
