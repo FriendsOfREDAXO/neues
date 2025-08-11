@@ -190,7 +190,7 @@ class Sync extends rex_cronjob
 
     public function createMedia(string $filename, string $prefix = ''): bool
     {
-        $targetname = rex_string::normalize($prefix) . $filename;
+        $targetname = rex_string::normalize($prefix . $filename);
         if ('' === $filename) {
             return false;
         }
