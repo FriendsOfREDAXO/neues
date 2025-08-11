@@ -18,6 +18,13 @@ $field->setLabel(rex_i18n::msg('neues_default_author'));
 $field = $form->addInputField('textarea', 'no_entries_placeholder', null, ['class' => 'form-control']);
 $field->setLabel(rex_i18n::msg('neues_no_entries_placeholder'));
 
+$field = $form->addSelectField('schema_type');
+$field->setLabel(rex_i18n::msg('neues_schema_type'));
+$field->setNotice(rex_i18n::msg('neues_schema_type_notice'));
+$select = $field->getSelect();
+$select->addOption(rex_i18n::msg('neues_schema_type_article'), 'Article');
+$select->addOption(rex_i18n::msg('neues_schema_type_newsarticle'), 'NewsArticle');
+
 $field = $form->addInputField('text', 'editor', null, ['class' => 'form-control']);
 $field->setLabel(rex_i18n::msg('neues_editor'));
 $field->setNotice('z.B. <code>class="form-control redactor-editor--default"</code>');
