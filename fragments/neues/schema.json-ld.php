@@ -20,20 +20,23 @@ foreach ($entry->getImages() as $imageName) {
         $imageUrls[] = $media->getUrl();
     }
 }
+
+// Build schema.org data as PHP array
+$schemaData = [
+    '@context' => 'https://schema.org',
+    '@type' => $schemaType,
+    'url' => $entry->getUrl(),
+    'publisher' => [
+        '@type' => 'Organization',
+        'name' => \rex::getserverName(),
+    ],
+    'headline' => $entry->getName(),
+    'mainEntityOfPage' => $entry->getUrl(),
+    'articleBody' => $entry->getDescriptionAsPlaintext(),
+    'image' => $imageUrls,
+    'datePublished' => (new \DateTime($entry->getPublishDate()))->format(\DateTime::ATOM),
+];
 ?>
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "<?= Neues::htmlEncode($schemaType) ?>",
-    "url": "<?= Neues::htmlEncode($entry->getUrl()) ?>",
-    "publisher":{
-        "@type":"Organization",
-        "name":"<?= Neues::htmlEncode(\rex::getserverName()) ?>",
-    },
-    "headline": "<?= Neues::htmlEncode($entry->getName()) ?>",
-    "mainEntityOfPage": "<?= Neues::htmlEncode($entry->getUrl()) ?>",
-    "articleBody": "<?= Neues::htmlEncode($entry->getDescriptionAsPlaintext()) ?>",
-    "image": <?= json_encode($imageUrls) ?>,
-    "datePublished": "<?= Neues::htmlEncode((new \DateTime($entry->getPublishDate()))->format(\DateTime::ATOM)) ?>"
-}
+<?= json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?>
 </script>
