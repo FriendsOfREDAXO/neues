@@ -14,7 +14,7 @@ $posts = $this->getVar('posts');
 <!-- Entry list -->
 <div class="container">
     <div class="row row-cols-1 row-cols-md-2 g-3">
-        <?php if(0 < count($posts)) { ?>
+        <?php if (0 < count($posts)) { ?>
             <?php foreach ($posts as $post) : ?>
                 <div class="col">
                     <?php
@@ -26,7 +26,7 @@ $posts = $this->getVar('posts');
             <?php endforeach ?>
         <?php } else { ?>
             <div class="placeholder">
-                <?php if(null !== rex_config::get('neues', 'no_entries_placeholder')) { ?>
+                <?php if (null !== rex_config::get('neues', 'no_entries_placeholder')) { ?>
                     <p><?= rex_i18n::msg('no_entries_placeholder') ?></p>
                     <?php } ?>
                 </div>

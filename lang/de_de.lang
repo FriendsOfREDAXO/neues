@@ -84,6 +84,10 @@ neues_author_uuid = UUID
 neues_editor = Editor
 neues_external_url_label = Label externer Link
 neues_no_entries_placeholder = Platzhalter-Text bei leerer Liste
+neues_schema_type = Schema.org-Typ
+neues_schema_type_notice = Wählen Sie den schema.org-Typ für strukturierte Daten. "Article" für allgemeine Artikel, "NewsArticle" für Nachrichten.
+neues_schema_type_article = Article (Allgemeine Artikel)
+neues_schema_type_newsarticle = NewsArticle (Nachrichten)
 
 # Doku
 

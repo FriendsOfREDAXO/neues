@@ -6,6 +6,11 @@ use FriendsOfRedaxo\Neues\Entry;
 
 /** @var Entry $post */
 $post = $this->getVar('post');
+
+// Add schema.org structured data
+$schemaFragment = new rex_fragment();
+$schemaFragment->setVar('entry', $post);
+$schemaOutput = $schemaFragment->parse('neues/schema.json-ld.php');
 ?>
 
 <div class="container">
@@ -27,7 +32,7 @@ $post = $this->getVar('post');
                         <?php if (null !== $post->getAuthor()) : ?>
                             <?php if ('' !== $post->getAuthor()->getName()) : ?>
                                 von <span><?= htmlspecialchars($post->getAuthor()->getName()) ?></span>
-                            <?php elseif(null !== $post->getAuthor()->getNickname()): ?>
+                            <?php elseif (null !== $post->getAuthor()->getNickname()): ?>
                                 von <span><?= htmlspecialchars($post->getAuthor()->getNickname()) ?></span>
                             <?php endif ?>
                         <?php endif ?>
@@ -80,3 +85,5 @@ $post = $this->getVar('post');
         </div>
     </div>
 </div>
+
+<?= $schemaOutput ?>

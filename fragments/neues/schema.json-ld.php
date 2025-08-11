@@ -2,14 +2,19 @@
 
 namespace FriendsOfRedaxo\Neues;
 
+use rex_config;
+
 /** @var \rex_fragment $this */
 $entry = $this->getVar('entry');
 /** @var Entry $entry */
+
+// Get the configured schema type, default to 'Article'
+$schemaType = rex_config::get('neues', 'schema_type', 'Article');
 ?>
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": "NewsArticle",
+    "@type": "<?= Neues::htmlEncode($schemaType) ?>",
     "url": "<?= Neues::htmlEncode($entry->getUrl()) ?>",
     "publisher":{
         "@type":"Organization",

@@ -76,7 +76,6 @@ if ('' !== $wrapper_class) {
 }
 
 if (version_compare(rex_addon::get('yform')->getVersion(), '5.0.0', '<')) {
-
     include rex_path::plugin('yform', 'manager', 'pages/data_edit.php');
 } else {
     include rex_path::addon('yform', 'pages/manager.data_edit.php');

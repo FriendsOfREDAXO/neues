@@ -67,6 +67,12 @@ neues_date_ids = Entries
 neues_date_id_notice = News posts assigned to this category
 
 neues_editor = Editor
+neues_external_url_label = External link label
+neues_no_entries_placeholder = Placeholder text for empty list
+neues_schema_type = Schema.org Type
+neues_schema_type_notice = Choose the schema.org type for structured data. "Article" for general articles, "NewsArticle" for news content.
+neues_schema_type_article = Article (General articles)
+neues_schema_type_newsarticle = NewsArticle (News content)
 
 neues_author = Authors
 neues_author_name = Name

@@ -74,3 +74,4 @@ default_config:
     external_url_label: "Zur Website"
     editor: 'class="form-control redactor-editor--default"'
     url_profile: false
+    schema_type: "Article"
