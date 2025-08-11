@@ -2,6 +2,7 @@
 
 namespace FriendsOfRedaxo\Neues;
 
+use Alexplusde\ManagerResponsive\Media;
 use IntlDateFormatter;
 use rex_addon;
 use rex_config;
@@ -11,7 +12,6 @@ use rex_extension_point;
 use rex_formatter;
 use rex_i18n;
 use rex_media;
-use Alexplusde\ManagerResponsive\Media;
 use rex_url;
 use rex_yform;
 use rex_yform_list;
