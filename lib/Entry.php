@@ -68,7 +68,6 @@ class Entry extends rex_yform_manager_dataset
         ));
 
         $suchtext = '###neues-settings-editor###';
-        $attachmentsPlaceholder = '###neues-settings-attachments###';
         foreach ($elements as $k => &$e) {
             if ('textarea' === $e[0] && str_contains($e[5], $suchtext)) {
                 $e[5] = str_replace($suchtext, rex_config::get('neues', 'editor'), $e[5]);
