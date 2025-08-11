@@ -2,7 +2,6 @@
 
 namespace FriendsOfRedaxo\Neues;
 
-use FriendsOfRedaxo\Neues\Cronjob\Publish;
 use rex;
 use rex_addon;
 use rex_config;

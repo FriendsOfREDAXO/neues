@@ -27,7 +27,7 @@ $post = $this->getVar('post');
                         <?php if (null !== $post->getAuthor()) : ?>
                             <?php if ('' !== $post->getAuthor()->getName()) : ?>
                                 von <span><?= htmlspecialchars($post->getAuthor()->getName()) ?></span>
-                            <?php elseif(null !== $post->getAuthor()->getNickname()): ?>
+                            <?php elseif (null !== $post->getAuthor()->getNickname()): ?>
                                 von <span><?= htmlspecialchars($post->getAuthor()->getNickname()) ?></span>
                             <?php endif ?>
                         <?php endif ?>
