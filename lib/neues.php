@@ -2,7 +2,6 @@
 
 namespace FriendsOfRedaxo\Neues;
 
-use rex;
 use rex_be_controller;
 use rex_be_page;
 use rex_csrf_token;

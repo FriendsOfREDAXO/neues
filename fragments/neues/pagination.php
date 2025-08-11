@@ -42,7 +42,7 @@ $articleLink = rex_article::getCurrent()->getUrl();
             </li>
 
             <!-- Pages -->
-            <?php for($i = 0; $i < $pager->getPageCount(); ++$i): ?>
+            <?php for ($i = 0; $i < $pager->getPageCount(); ++$i): ?>
                 <li class="page-item">
                     <?php if (0 === $page) : ?>
                         <a class="page-link <?= $currentPage === $i ? 'active' : '' ?>"
