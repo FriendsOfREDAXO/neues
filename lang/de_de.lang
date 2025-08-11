@@ -31,6 +31,8 @@ neues_description = Inhalt
 neues_description_notice = Geben Sie den Inhalt Ihres News-Beitrags an.
 neues_image = Titelbild
 neues_images = Galerie
+neues_attachments = Dateianhänge
+neues_attachments_notice = Zusätzliche Dateien (z.B. PDFs) die zu diesem Beitrag gehören
 neues_canonical_url = Canonical URL 
 neues_canonical_url_notice = Gibt die Original-URL des News-Beitrags an, falls dieser Beitrag auf mehreren Websites veröffentlicht wurde.
 
@@ -82,6 +84,8 @@ neues_author_uuid = UUID
 # Settings
 
 neues_editor = Editor
+neues_show_attachments = Dateianhänge anzeigen
+neues_show_attachments_notice = Wenn aktiviert, wird das Feld für Dateianhänge in den Beiträgen angezeigt
 neues_external_url_label = Label externer Link
 neues_no_entries_placeholder = Platzhalter-Text bei leerer Liste
 neues_schema_type = Schema.org-Typ
@@ -119,4 +123,5 @@ neues_entry_sync_cronjob_neues_category_id = Standard-Kategorie
 neues_entry_sync_cronjob_neues_author_id = Standard-Autor
 neues_entry_sync_cronjob_media_category_id = Import in Medienpool-Kategorie
 neues_entry_sync_cronjob_x_per_page = Anzahl der letzten Beiträge
+neues_entry_sync_cronjob_media_prefix = Medien mit Präfix
 neues_entry_sync_cronjob_success = %s Beiträge wurden erfolgreich synchronisiert (Erstellt: %s, aktualisiert %s).

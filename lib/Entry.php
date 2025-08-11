@@ -72,6 +72,14 @@ class Entry extends rex_yform_manager_dataset
             if ('textarea' === $e[0] && str_contains($e[5], $suchtext)) {
                 $e[5] = str_replace($suchtext, rex_config::get('neues', 'editor'), $e[5]);
             }
+            // Handle attachments field visibility
+            if ('be_media_preview' === $e[0] && isset($e[2]) && 'attachments' === $e[2]) {
+                $showAttachments = rex_config::get('neues', 'show_attachments', false);
+                if (!$showAttachments) {
+                    // Remove the field from the form elements
+                    unset($elements[$k]);
+                }
+            }
         }
 
         return $yform;
@@ -177,7 +185,7 @@ class Entry extends rex_yform_manager_dataset
      */
     public function getAuthor(): ?Author
     {
-        if ($this->hasValue('author_id')) {
+        if ($this->hasValue('author_id') && $this->getValue('author_id') > 0) {
             return Author::get($this->getValue('author_id'));
         }
         return null;
@@ -312,6 +320,55 @@ class Entry extends rex_yform_manager_dataset
     public function setImages(array $images = []): self
     {
         $this->setValue('images', implode(',', $images));
+        return $this;
+    }
+
+    /**
+     * Gibt die Dateianhänge des Eintrags zurück.
+     * Returns the attachments of the entry.
+     *
+     * @return array<rex_media> Die Dateianhänge des Eintrags oder [], wenn keine Anhänge gesetzt sind. / The attachments of the entry or [] if no attachments are set.
+     *
+     * Beispiel / Example:
+     * $attachments = $entry->getAttachments();
+     * @api
+     */
+    public function getAttachments(): array
+    {
+        if ($this->hasValue('attachments')) {
+            $attachments = $this->getValue('attachments');
+            $attachmentFiles = array_filter(explode(',', $attachments));
+            $result = [];
+            foreach ($attachmentFiles as $filename) {
+                $media = rex_media::get($filename);
+                if ($media) {
+                    $result[] = $media;
+                }
+            }
+            return $result;
+        }
+        return [];
+    }
+
+    /**
+     * Setzt die Dateianhänge des Eintrags.
+     * Sets the attachments of the entry.
+     *
+     * @param array<rex_media|string> $attachments Die neuen Dateianhänge des Eintrags als rex_media Objekte oder Dateinamen. / The new attachments of the entry as rex_media objects or filenames.
+     *
+     * @api
+     */
+    public function setAttachments(array $attachments = []): self
+    {
+        $filenames = [];
+        foreach ($attachments as $attachment) {
+            if ($attachment instanceof rex_media) {
+                $filenames[] = $attachment->getFileName();
+            } elseif (is_string($attachment)) {
+                $filenames[] = $attachment;
+            }
+        }
+        $this->setValue('attachments', implode(',', $filenames));
         return $this;
     }
 

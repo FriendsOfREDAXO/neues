@@ -108,8 +108,9 @@ class Sync extends rex_cronjob
 
         /* Titelbild abrufen und speichern */
         $updated_image = '';
-        $targetname = $entry_data['uuid'] . '_' . $entry_data['image'];
-        if ($this->createMedia($entry_data['image'])) {
+        $prefix = $this->getParam('media_prefix') ? $entry_data['uuid'] . '_' : '';
+        $targetname = $prefix . $entry_data['image'];
+        if ($this->createMedia($entry_data['image'], $prefix)) {
             $updated_image = $targetname;
         }
         $entry->setValue('image', $updated_image);
@@ -119,8 +120,8 @@ class Sync extends rex_cronjob
         $images = array_filter(explode(',', $entry_data['images']));
         $updated_images = [];
         foreach ($images as $image) {
-            $targetname = $entry_data['uuid'] . '_' . $image;
-            if ($this->createMedia($image, $targetname)) {
+            $targetname = $prefix . $image;
+            if ($this->createMedia($image, $prefix)) {
                 $updated_images[] = $targetname;
             }
         }
@@ -187,9 +188,9 @@ class Sync extends rex_cronjob
         return $author;
     }
 
-    public function createMedia(string $filename, ?string $prefix = null): bool
+    public function createMedia(string $filename, string $prefix = ''): bool
     {
-        $targetname = rex_string::normalize($prefix) . $filename;
+        $targetname = rex_string::normalize($prefix . $filename);
         if ('' === $filename) {
             return false;
         }
@@ -280,6 +281,15 @@ class Sync extends rex_cronjob
                 'label' => rex_i18n::msg('neues_entry_sync_cronjob_x_per_page'),
                 'type' => 'text',
                 'attributes' => ['type' => 'number', 'min' => 1],
+            ],
+            [
+                'name' => 'media_prefix',
+                'label' => rex_i18n::msg('neues_entry_sync_cronjob_media_prefix'),
+                'type' => 'select',
+                'options' => [
+                    '1' => rex_i18n::msg('neues_entry_sync_cronjob_media_prefix_yes'),
+                    '0' => rex_i18n::msg('neues_entry_sync_cronjob_media_prefix_no'),
+                ],
             ],
         ];
 

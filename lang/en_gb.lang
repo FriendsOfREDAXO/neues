@@ -30,6 +30,8 @@ neues_description = Content
 neues_description_notice = Enter the content of your news post.
 neues_image = Cover image
 neues_images = Gallery
+neues_attachments = File attachments
+neues_attachments_notice = Additional files (e.g. PDFs) that belong to this post
 
 neues_external_url = External link
 neues_external_url_notice = If there is more information on another website, enter the address of an external website here, e.g. <code>http://www.example.org/foo-bar/</code>
@@ -67,12 +69,17 @@ neues_date_ids = Entries
 neues_date_id_notice = News posts assigned to this category
 
 neues_editor = Editor
+
 neues_external_url_label = External link label
 neues_no_entries_placeholder = Placeholder text for empty list
 neues_schema_type = Schema.org Type
 neues_schema_type_notice = Choose the schema.org type for structured data. "Article" for general articles, "NewsArticle" for news content.
 neues_schema_type_article = Article (General articles)
 neues_schema_type_newsarticle = NewsArticle (News content)
+
+neues_show_attachments = Show attachments
+neues_show_attachments_notice = When enabled, the file attachments field will be displayed in entries
+
 
 neues_author = Authors
 neues_author_name = Name
@@ -100,3 +107,15 @@ neues_docs_restful_api = YForm RESTful API
 neues_entry_publish_success = %d posts have been successfully published.
 neues_entry_publish_error = %d posts could not be published.
 neues_entry_publish_cronjob = Publish planned posts. (Current)
+
+neues_entry_sync_error = Error synchronizing posts.
+neues_entry_sync_cronjob = [📰 News] Retrieve posts, categories and authors from another REDAXO installation
+neues_entry_sync_cronjob_url = URL of the REDAXO installation
+neues_entry_sync_cronjob_token = RESTful API token
+neues_entry_sync_cronjob_status = Status value
+neues_entry_sync_cronjob_neues_category_id = Default category
+neues_entry_sync_cronjob_neues_author_id = Default author
+neues_entry_sync_cronjob_media_category_id = Import to media pool category
+neues_entry_sync_cronjob_x_per_page = Number of recent posts
+neues_entry_sync_cronjob_media_prefix = Media with prefix
+neues_entry_sync_cronjob_success = %s posts were successfully synchronized (Created: %s, updated %s).
