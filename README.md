@@ -10,6 +10,7 @@ Mit diesem Addon können News-Beiträge anhand von YForm und YOrm im Backend ver
 * Vollständig mit **YForm** umgesetzt: Alle Features und Anpassungsmöglichkeiten von YForm verfügbar
 * Einfach: Die Ausgabe erfolgt über [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) oder objektorientiert über [YOrm](https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md)
 * Flexibel: **Zugriff** über die [YForm Rest-API](https://github.com/yakamara/redaxo_yform/blob/master/docs/05_rest.md)
+* **RSS-Feed** integriert: Vollautomatischer RSS 2.0-Feed mit Kategorie- und Sprachfilterung über `index.php?rex-api-call=neues_rss`
 * Sinnvoll: Nur ausgewählte **Rollen**/Redakteure haben Zugriff
 * Bereit für Multidomain-Newsverwaltung mit YRewrite
 * Bereit für **mehrsprachige** Websites: Reiter für Sprachen auf Wunsch anzeigen oder ausblenden
@@ -26,6 +27,24 @@ Mit diesem Addon können News-Beiträge anhand von YForm und YOrm im Backend ver
 Im REDAXO-Installer das Addon `neues` herunterladen und installieren. Anschließend erscheint im Hauptmenü ein neuer Menüpunkt `Aktuelles`.
 
 ![image](https://user-images.githubusercontent.com/3855487/209792457-b6f824dc-7fd8-4295-a7c7-2eab046d19c7.png)
+
+## RSS-Feed
+
+Das Addon bietet einen integrierten RSS 2.0-Feed für News-Einträge:
+
+**Basis-Feed:** `index.php?rex-api-call=neues_rss`
+
+**Mit Filtern:**
+- Nach Kategorie: `index.php?rex-api-call=neues_rss&category_id=3`
+- Nach Sprache: `index.php?rex-api-call=neues_rss&lang_id=2`  
+- Kombiniert: `index.php?rex-api-call=neues_rss&category_id=3&lang_id=2`
+
+**Schöne URLs** können über `.htaccess` eingerichtet werden:
+```apache
+RewriteRule ^feed/?$ index.php?rex-api-call=neues_rss [L]
+```
+
+Detaillierte Dokumentation siehe [docs/07_rss.md](docs/07_rss.md).
 
 ## Lizenz
 
