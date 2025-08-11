@@ -22,6 +22,10 @@ $field = $form->addInputField('text', 'editor', null, ['class' => 'form-control'
 $field->setLabel(rex_i18n::msg('neues_editor'));
 $field->setNotice('z.B. <code>class="form-control redactor-editor--default"</code>');
 
+$field = $form->addCheckboxField('show_attachments');
+$field->setLabel(rex_i18n::msg('neues_show_attachments'));
+$field->setNotice(rex_i18n::msg('neues_show_attachments_notice'));
+
 $fragment = new rex_fragment();
 $fragment->setVar('class', 'edit', false);
 $fragment->setVar('title', $addon->i18n('neues_settings'), false);
