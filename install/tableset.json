@@ -644,6 +644,23 @@
                 "table_name": "rex_neues_entry",
                 "prio": 19,
                 "type_id": "value",
+                "type_name": "be_media_preview",
+                "db_type": "text",
+                "list_hidden": 1,
+                "search": 0,
+                "name": "attachments",
+                "label": "translate:neues_attachments",
+                "not_required": "",
+                "multiple": "1",
+                "notice": "translate:neues_attachments_notice",
+                "types": "pdf,doc,docx,xls,xlsx,zip,txt",
+                "preview": "1",
+                "category": ""
+            },
+            {
+                "table_name": "rex_neues_entry",
+                "prio": 20,
+                "type_id": "value",
                 "type_name": "html",
                 "db_type": "none",
                 "list_hidden": 0,
@@ -655,7 +672,7 @@
             },
             {
                 "table_name": "rex_neues_entry",
-                "prio": 20,
+                "prio": 21,
                 "type_id": "value",
                 "type_name": "datestamp",
                 "db_type": "datetime",
@@ -671,7 +688,7 @@
             },
             {
                 "table_name": "rex_neues_entry",
-                "prio": 21,
+                "prio": 22,
                 "type_id": "value",
                 "type_name": "be_user",
                 "db_type": "varchar(191)",
@@ -685,7 +702,7 @@
             },
             {
                 "table_name": "rex_neues_entry",
-                "prio": 22,
+                "prio": 23,
                 "type_id": "value",
                 "type_name": "datestamp",
                 "db_type": "datetime",
@@ -701,7 +718,7 @@
             },
             {
                 "table_name": "rex_neues_entry",
-                "prio": 23,
+                "prio": 24,
                 "type_id": "value",
                 "type_name": "be_user",
                 "db_type": "varchar(191)",
@@ -715,7 +732,7 @@
             },
             {
                 "table_name": "rex_neues_entry",
-                "prio": 24,
+                "prio": 25,
                 "type_id": "value",
                 "type_name": "uuid",
                 "db_type": "varchar(36)",
@@ -729,7 +746,7 @@
             },
             {
                 "table_name": "rex_neues_entry",
-                "prio": 25,
+                "prio": 26,
                 "type_id": "value",
                 "type_name": "showvalue",
                 "db_type": "varchar(191)",

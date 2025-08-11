@@ -316,6 +316,55 @@ class Entry extends rex_yform_manager_dataset
     }
 
     /**
+     * Gibt die Dateianhänge des Eintrags zurück.
+     * Returns the attachments of the entry.
+     *
+     * @return array<rex_media> Die Dateianhänge des Eintrags oder [], wenn keine Anhänge gesetzt sind. / The attachments of the entry or [] if no attachments are set.
+     *
+     * Beispiel / Example:
+     * $attachments = $entry->getAttachments();
+     * @api
+     */
+    public function getAttachments(): array
+    {
+        if ($this->hasValue('attachments')) {
+            $attachments = $this->getValue('attachments');
+            $attachmentFiles = array_filter(explode(',', $attachments));
+            $result = [];
+            foreach ($attachmentFiles as $filename) {
+                $media = rex_media::get($filename);
+                if ($media) {
+                    $result[] = $media;
+                }
+            }
+            return $result;
+        }
+        return [];
+    }
+
+    /**
+     * Setzt die Dateianhänge des Eintrags.
+     * Sets the attachments of the entry.
+     *
+     * @param array<rex_media|string> $attachments Die neuen Dateianhänge des Eintrags als rex_media Objekte oder Dateinamen. / The new attachments of the entry as rex_media objects or filenames.
+     *
+     * @api
+     */
+    public function setAttachments(array $attachments = []): self
+    {
+        $filenames = [];
+        foreach ($attachments as $attachment) {
+            if ($attachment instanceof rex_media) {
+                $filenames[] = $attachment->getFileName();
+            } elseif (is_string($attachment)) {
+                $filenames[] = $attachment;
+            }
+        }
+        $this->setValue('attachments', implode(',', $filenames));
+        return $this;
+    }
+
+    /**
      * Gibt das Medium des Eintrags zurück.
      * Returns the media of the entry.
      *

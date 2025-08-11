@@ -30,6 +30,8 @@ neues_description = Content
 neues_description_notice = Enter the content of your news post.
 neues_image = Cover image
 neues_images = Gallery
+neues_attachments = File attachments
+neues_attachments_notice = Additional files (e.g. PDFs) that belong to this post
 
 neues_external_url = External link
 neues_external_url_notice = If there is more information on another website, enter the address of an external website here, e.g. <code>http://www.example.org/foo-bar/</code>

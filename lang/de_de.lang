@@ -31,6 +31,8 @@ neues_description = Inhalt
 neues_description_notice = Geben Sie den Inhalt Ihres News-Beitrags an.
 neues_image = Titelbild
 neues_images = Galerie
+neues_attachments = Dateianhänge
+neues_attachments_notice = Zusätzliche Dateien (z.B. PDFs) die zu diesem Beitrag gehören
 neues_canonical_url = Canonical URL 
 neues_canonical_url_notice = Gibt die Original-URL des News-Beitrags an, falls dieser Beitrag auf mehreren Websites veröffentlicht wurde.
 
