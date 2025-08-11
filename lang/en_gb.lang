@@ -69,6 +69,8 @@ neues_date_ids = Entries
 neues_date_id_notice = News posts assigned to this category
 
 neues_editor = Editor
+neues_show_attachments = Show attachments
+neues_show_attachments_notice = When enabled, the file attachments field will be displayed in entries
 
 neues_author = Authors
 neues_author_name = Name

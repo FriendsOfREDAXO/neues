@@ -84,6 +84,8 @@ neues_author_uuid = UUID
 # Settings
 
 neues_editor = Editor
+neues_show_attachments = Dateianhänge anzeigen
+neues_show_attachments_notice = Wenn aktiviert, wird das Feld für Dateianhänge in den Beiträgen angezeigt
 neues_external_url_label = Label externer Link
 neues_no_entries_placeholder = Platzhalter-Text bei leerer Liste
 

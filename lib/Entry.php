@@ -68,9 +68,18 @@ class Entry extends rex_yform_manager_dataset
         ));
 
         $suchtext = '###neues-settings-editor###';
+        $attachmentsPlaceholder = '###neues-settings-attachments###';
         foreach ($elements as $k => &$e) {
             if ('textarea' === $e[0] && str_contains($e[5], $suchtext)) {
                 $e[5] = str_replace($suchtext, rex_config::get('neues', 'editor'), $e[5]);
+            }
+            // Handle attachments field visibility
+            if ('be_media_preview' === $e[0] && isset($e[2]) && 'attachments' === $e[2]) {
+                $showAttachments = rex_config::get('neues', 'show_attachments', false);
+                if (!$showAttachments) {
+                    // Remove the field from the form elements
+                    unset($elements[$k]);
+                }
             }
         }
 
