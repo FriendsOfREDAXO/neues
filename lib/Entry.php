@@ -177,7 +177,7 @@ class Entry extends rex_yform_manager_dataset
      */
     public function getAuthor(): ?Author
     {
-        if ($this->hasValue('author_id')) {
+        if ($this->hasValue('author_id') && $this->getValue('author_id') > 0) {
             return Author::get($this->getValue('author_id'));
         }
         return null;
