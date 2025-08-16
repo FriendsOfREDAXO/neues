@@ -47,6 +47,51 @@ class Entry extends rex_yform_manager_dataset
     /** @api */
     public const ONLINE = 1;
 
+    // Single point of truth for field names
+    public const string ID = 'id';
+    public const string STATUS_FIELD = 'status';
+    public const string NAME = 'name';
+    public const string TEASER = 'teaser';
+    public const string DESCRIPTION = 'description';
+    public const string DOMAIN_IDS = 'domain_ids';
+    public const string LANG_ID = 'lang_id';
+    public const string PUBLISHDATE = 'publishdate';
+    public const string AUTHOR_ID = 'author_id';
+    public const string URL = 'url';
+    public const string CATEGORY_IDS = 'category_ids';
+    public const string IMAGE = 'image';
+    public const string IMAGES = 'images';
+    public const string ATTACHMENTS = 'attachments';
+    public const string CREATEDATE = 'createdate';
+    public const string CREATEUSER = 'createuser';
+    public const string UPDATEDATE = 'updatedate';
+    public const string UPDATEUSER = 'updateuser';
+    public const string UUID = 'uuid';
+    public const string CANONICAL_URL = 'canonical_url';
+
+    public const array FIELD_CONFIG = [
+        self::ID,
+        self::STATUS_FIELD => [],
+        self::NAME => [],
+        self::TEASER => [],
+        self::DESCRIPTION => [],
+        self::DOMAIN_IDS => [],
+        self::LANG_ID => [],
+        self::PUBLISHDATE => [],
+        self::AUTHOR_ID => [],
+        self::URL => [],
+        self::CATEGORY_IDS => [],
+        self::IMAGE => [],
+        self::IMAGES => [],
+        self::ATTACHMENTS => [],
+        self::CREATEDATE => [],
+        self::CREATEUSER => [],
+        self::UPDATEDATE => [],
+        self::UPDATEUSER => [],
+        self::UUID => [],
+        self::CANONICAL_URL => [],
+    ];
+
     /**
      * Standards für das Formular anpassen
      * - Editor-Konfiguration einfügen.

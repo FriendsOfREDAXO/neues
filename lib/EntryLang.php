@@ -18,6 +18,19 @@ use rex_yform_manager_dataset;
  */
 class EntryLang extends rex_yform_manager_dataset
 {
+    // Single point of truth for field names
+    public const string ID = 'id';
+    public const string ENTRY = 'entry';
+    public const string CODE = 'code';
+    public const string NAME = 'name';
+
+    public const array FIELD_CONFIG = [
+        self::ID,
+        self::ENTRY => [],
+        self::CODE => [],
+        self::NAME => [],
+    ];
+
     /**
      * Gibt die News-Einträge der aktuellen Sprache zurück.
      * Returns the entries of the language.
