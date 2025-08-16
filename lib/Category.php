@@ -28,6 +28,31 @@ class Category extends rex_yform_manager_dataset
     /** @api */
     public const ONLINE = 1;
 
+    // Single point of truth for field names
+    public const string ID = 'id';
+    public const string DATE_ID = 'date_id';
+    public const string NAME = 'name';
+    public const string IMAGE = 'image';
+    public const string STATUS = 'status';
+    public const string CREATEUSER = 'createuser';
+    public const string UPDATEUSER = 'updateuser';
+    public const string UPDATEDATE = 'updatedate';
+    public const string CREATEDATE = 'createdate';
+    public const string UUID = 'uuid';
+
+    public const array FIELD_CONFIG = [
+        self::ID,
+        self::DATE_ID => [],
+        self::NAME => [],
+        self::IMAGE => [],
+        self::STATUS => [],
+        self::CREATEUSER => [],
+        self::UPDATEUSER => [],
+        self::UPDATEDATE => [],
+        self::CREATEDATE => [],
+        self::UUID => [],
+    ];
+
     /**
      * Gibt den Namen der Kategorie zurück.
      * Returns the name of the Category.
