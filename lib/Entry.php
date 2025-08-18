@@ -48,8 +48,7 @@ class Entry extends rex_yform_manager_dataset
     public const ONLINE = 1;
 
     // Single point of truth for field names
-    public const string ID = 'id';
-    public const string STATUS_FIELD = 'status';
+    public const string STATUS = 'status';
     public const string NAME = 'name';
     public const string TEASER = 'teaser';
     public const string DESCRIPTION = 'description';
@@ -70,8 +69,7 @@ class Entry extends rex_yform_manager_dataset
     public const string CANONICAL_URL = 'canonical_url';
 
     public const array FIELD_CONFIG = [
-        self::ID,
-        self::STATUS_FIELD => [],
+        self::STATUS => [],
         self::NAME => [],
         self::TEASER => [],
         self::DESCRIPTION => [],
