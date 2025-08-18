@@ -2,7 +2,7 @@
 
 namespace FriendsOfRedaxo\Neues;
 
-use Alexplusde\ManagerResponsive\Media;
+use Alexplusde\MediaManagerResponsive\Media;
 use IntlDateFormatter;
 use rex_addon;
 use rex_config;
