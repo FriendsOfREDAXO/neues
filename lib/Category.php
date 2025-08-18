@@ -29,16 +29,16 @@ class Category extends rex_yform_manager_dataset
     public const ONLINE = 1;
 
     // Single point of truth for field names
-    public const string ID = 'id';
-    public const string DATE_ID = 'date_id';
-    public const string NAME = 'name';
-    public const string IMAGE = 'image';
-    public const string STATUS = 'status';
-    public const string CREATEUSER = 'createuser';
-    public const string UPDATEUSER = 'updateuser';
-    public const string UPDATEDATE = 'updatedate';
-    public const string CREATEDATE = 'createdate';
-    public const string UUID = 'uuid';
+    public const ID = 'id';
+    public const DATE_ID = 'date_id';
+    public const NAME = 'name';
+    public const IMAGE = 'image';
+    public const STATUS = 'status';
+    public const CREATEUSER = 'createuser';
+    public const UPDATEUSER = 'updateuser';
+    public const UPDATEDATE = 'updatedate';
+    public const CREATEDATE = 'createdate';
+    public const UUID = 'uuid';
 
     public const array FIELD_CONFIG = [
         self::ID,

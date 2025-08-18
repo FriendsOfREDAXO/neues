@@ -27,12 +27,12 @@ use rex_yform_manager_dataset;
 class Author extends rex_yform_manager_dataset
 {
     // Single point of truth for field names
-    public const string ID = 'id';
-    public const string NAME = 'name';
-    public const string NICKNAME = 'nickname';
-    public const string TEXT = 'text';
-    public const string BE_USER_ID = 'be_user_id';
-    public const string UUID = 'uuid';
+    public const ID = 'id';
+    public const NAME = 'name';
+    public const NICKNAME = 'nickname';
+    public const TEXT = 'text';
+    public const BE_USER_ID = 'be_user_id';
+    public const UUID = 'uuid';
 
     public const array FIELD_CONFIG = [
         self::ID,

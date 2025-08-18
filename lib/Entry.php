@@ -48,25 +48,25 @@ class Entry extends rex_yform_manager_dataset
     public const ONLINE = 1;
 
     // Single point of truth for field names
-    public const string STATUS = 'status';
-    public const string NAME = 'name';
-    public const string TEASER = 'teaser';
-    public const string DESCRIPTION = 'description';
-    public const string DOMAIN_IDS = 'domain_ids';
-    public const string LANG_ID = 'lang_id';
-    public const string PUBLISHDATE = 'publishdate';
-    public const string AUTHOR_ID = 'author_id';
-    public const string URL = 'url';
-    public const string CATEGORY_IDS = 'category_ids';
-    public const string IMAGE = 'image';
-    public const string IMAGES = 'images';
-    public const string ATTACHMENTS = 'attachments';
-    public const string CREATEDATE = 'createdate';
-    public const string CREATEUSER = 'createuser';
-    public const string UPDATEDATE = 'updatedate';
-    public const string UPDATEUSER = 'updateuser';
-    public const string UUID = 'uuid';
-    public const string CANONICAL_URL = 'canonical_url';
+    public const STATUS = 'status';
+    public const NAME = 'name';
+    public const TEASER = 'teaser';
+    public const DESCRIPTION = 'description';
+    public const DOMAIN_IDS = 'domain_ids';
+    public const LANG_ID = 'lang_id';
+    public const PUBLISHDATE = 'publishdate';
+    public const AUTHOR_ID = 'author_id';
+    public const URL = 'url';
+    public const CATEGORY_IDS = 'category_ids';
+    public const IMAGE = 'image';
+    public const IMAGES = 'images';
+    public const ATTACHMENTS = 'attachments';
+    public const CREATEDATE = 'createdate';
+    public const CREATEUSER = 'createuser';
+    public const UPDATEDATE = 'updatedate';
+    public const UPDATEUSER = 'updateuser';
+    public const UUID = 'uuid';
+    public const CANONICAL_URL = 'canonical_url';
 
     public const array FIELD_CONFIG = [
         self::STATUS => [],
