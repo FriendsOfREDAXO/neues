@@ -24,7 +24,7 @@ class EntryLang extends rex_yform_manager_dataset
     public const CODE = 'code';
     public const NAME = 'name';
 
-    public const array FIELD_CONFIG = [
+    public const FIELD_CONFIG = [
         self::ID,
         self::ENTRY => [],
         self::CODE => [],

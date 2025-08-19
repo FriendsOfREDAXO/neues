@@ -68,7 +68,7 @@ class Entry extends rex_yform_manager_dataset
     public const UUID = 'uuid';
     public const CANONICAL_URL = 'canonical_url';
 
-    public const array FIELD_CONFIG = [
+    public const FIELD_CONFIG = [
         self::STATUS => [],
         self::NAME => [],
         self::TEASER => [],

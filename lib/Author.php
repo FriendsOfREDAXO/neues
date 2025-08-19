@@ -34,7 +34,7 @@ class Author extends rex_yform_manager_dataset
     public const BE_USER_ID = 'be_user_id';
     public const UUID = 'uuid';
 
-    public const array FIELD_CONFIG = [
+    public const FIELD_CONFIG = [
         self::ID,
         self::NAME => [],
         self::NICKNAME => [],

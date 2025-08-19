@@ -40,7 +40,7 @@ class Category extends rex_yform_manager_dataset
     public const CREATEDATE = 'createdate';
     public const UUID = 'uuid';
 
-    public const array FIELD_CONFIG = [
+    public const FIELD_CONFIG = [
         self::ID,
         self::DATE_ID => [],
         self::NAME => [],
