@@ -9,7 +9,7 @@ requires:
     redaxo: '^5.18.3'
     packages:
         yform: '>4.1.1,<6'
-        yform_field: '^2.10'
+        yform_field: ">=2.11.0,<4"
 
 page:
     title: translate:neues
