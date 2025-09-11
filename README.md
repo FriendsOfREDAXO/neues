@@ -48,7 +48,7 @@ Detaillierte Dokumentation siehe [docs/07_rss.md](docs/07_rss.md).
 
 ## Lizenz
 
-MIT Lizenz, siehe [LICENSE.md](https://github.com/FriendsOfREDAXO/neues/blob/main/LICENSE)  
+MIT Lizenz, siehe [LICENSE](https://github.com/FriendsOfREDAXO/neues/blob/main/LICENSE)  
 
 ## Autor
 
