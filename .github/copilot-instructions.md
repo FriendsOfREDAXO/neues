@@ -105,9 +105,9 @@ Since there are **NO automated tests**, you MUST manually validate:
 ## CRITICAL Development Guidelines
 
 ### NEVER CANCEL Commands
-- Build operations are fast (<10 seconds typically)
-- **Composer install**: Max 15 seconds with network delays
-- **PHP CS Fixer**: Max 2 seconds for full check/fix
+- Build operations are fast (typically <10 seconds)
+- **Composer install**: typically ~8 seconds, max 15 seconds with network delays
+- **PHP CS Fixer**: typically ~0.7 seconds, max 2 seconds for full check/fix
 
 ### File Locations for Customization
 - **Theme-based**: `theme/private/fragments/neues/` (overrides addon fragments)
