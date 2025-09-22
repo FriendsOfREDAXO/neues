@@ -9,7 +9,7 @@
 ## Working Effectively
 
 ### Bootstrap the Development Environment
-- **Composer Install**: `composer install --no-interaction` - takes ~8 seconds, downloads 35 packages. May show GitHub authentication warnings (safe to ignore).
+- **Composer Install**: `composer install --no-interaction` - downloads 35 packages (timing may vary by environment). May show GitHub authentication warnings (safe to ignore).
 - **PHP Requirements**: PHP 8.2+, tested with PHP 8.3.6
 - **REDAXO Dependencies**: Requires REDAXO 5.18.3+, YForm 4.1.1+, yform_field 2.11.0+
 
