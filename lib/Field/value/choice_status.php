@@ -4,17 +4,18 @@ class rex_yform_value_choice_status extends rex_yform_value_abstract
     public function enterObject()
     {
         $choices = [];
-        $choices_string = $this->getElement('choices');
+        $choices_raw = $this->getElement('choices');
+        $choices_string = (string) ($choices_raw ?? '');
 
         if (false !== strpos($choices_string, '::')) {
-            if (is_callable($choices_string)) {
-                $choices = call_user_func($choices_string);
+            if (is_callable($choices_raw)) {
+                $choices = call_user_func($choices_raw);
                 if (!is_array($choices)) {
                     $choices = [];
                 }
             }
-        } elseif ('' !== trim((string) $choices_string)) {
-            foreach (preg_split('/\r\n|\r|\n|,/', (string) $choices_string) as $choice_line) {
+        } elseif ('' !== trim($choices_string)) {
+            foreach (preg_split('/\r\n|\r|\n|,/', $choices_string) as $choice_line) {
                 $choice_line = trim($choice_line);
                 if ('' === $choice_line) {
                     continue;
