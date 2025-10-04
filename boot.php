@@ -55,7 +55,7 @@ if (rex::isBackend()) {
      * CSS für Custom Fields laden
      */
     \rex_view::addCssFile(\rex_addon::get('neues')->getAssetsUrl('neues-fields.css'));
-    
+
     /**
      * Individualiserte Liste für Enries.
      */

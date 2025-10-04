@@ -1,10 +1,10 @@
 <?php
 /**
  * Test template for custom YForm fields
- * 
+ *
  * This can be used to test the custom field types:
  * - domain
- * - datetime_local  
+ * - datetime_local
  * - choice_status
  */
 
@@ -21,7 +21,7 @@ if (rex_addon::get('yrewrite')->isAvailable()) {
 // Test datetime_local field
 echo '<p>Current datetime for datetime_local: ' . date('Y-m-d\TH:i') . '</p>';
 
-// Test choice_status field  
+// Test choice_status field
 echo '<p>Status options will be loaded from callback methods</p>';
 
 echo '<hr>';

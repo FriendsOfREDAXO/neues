@@ -26,9 +26,9 @@ $class_group = trim('form-group ' . $this->getElement('css_class'));
     <?php if ($this->getElement('label') != ''): ?>
         <label class="control-label" for="<?= $this->getFieldId() ?>"><?= rex_i18n::translate($this->getElement('label'), false) ?></label>
     <?php endif; ?>
-    
+
     <?= $select->get() ?>
-    
+
     <?php if ($notice != ''): ?>
         <p class="help-block small"><?= $notice ?></p>
     <?php endif; ?>

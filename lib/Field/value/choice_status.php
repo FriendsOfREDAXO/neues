@@ -5,7 +5,7 @@ class rex_yform_value_choice_status extends rex_yform_value_abstract
     {
         $choices = [];
         $choices_string = $this->getElement('choices');
-        
+
         if (false !== strpos($choices_string, '::')) {
             if (is_callable($choices_string)) {
                 $choices = call_user_func($choices_string);
@@ -27,7 +27,7 @@ class rex_yform_value_choice_status extends rex_yform_value_abstract
         }
 
         $value = $this->getValue();
-        
+
         $select = new rex_select();
         $select->setId($this->getFieldId());
         $select->setName($this->getFieldName());
@@ -47,7 +47,7 @@ class rex_yform_value_choice_status extends rex_yform_value_abstract
     {
         $value = $this->getValue();
         $is_form_submission = isset($_POST['FORM']);
-        
+
         if ($is_form_submission) {
             $this->params['value_pool']['sql'][$this->getName()] = (string) $value;
         }
@@ -79,13 +79,13 @@ class rex_yform_value_choice_status extends rex_yform_value_abstract
         } else {
             $actual_value = $value;
         }
-        
+
         // Ensure we have a scalar value
         if (is_array($actual_value)) {
             $actual_value = (string) reset($actual_value);
         }
         $actual_value = (string) $actual_value;
-        
+
         if ('' === $actual_value && '0' !== $actual_value) {
             return '-';
         }
@@ -96,7 +96,7 @@ class rex_yform_value_choice_status extends rex_yform_value_abstract
         }
 
         $status_value = isset($choices[$actual_value]) ? $choices[$actual_value] : $actual_value;
-        
+
         $status_class = '';
         if (is_numeric($actual_value)) {
             $int_value = (int) $actual_value;
@@ -108,7 +108,7 @@ class rex_yform_value_choice_status extends rex_yform_value_abstract
                 $status_class = 'text-danger';
             }
         }
-        
+
         return '<span class="' . $status_class . '">' . rex_escape($status_value) . '</span>';
     }
 }

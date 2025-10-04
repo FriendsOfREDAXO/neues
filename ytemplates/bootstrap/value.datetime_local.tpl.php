@@ -35,9 +35,9 @@ foreach ($attributes as $key => $value) {
     <?php if ($this->getElement('label') != ''): ?>
         <label class="control-label" for="<?= $this->getFieldId() ?>"><?= rex_i18n::translate($this->getElement('label'), false) ?></label>
     <?php endif; ?>
-    
+
     <input<?= $attr_string ?> />
-    
+
     <?php if ($notice != ''): ?>
         <p class="help-block small"><?= $notice ?></p>
     <?php endif; ?>

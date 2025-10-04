@@ -12,7 +12,7 @@ class rex_yform_value_datetime_local extends rex_yform_value_abstract
     public function enterObject()
     {
         $value = $this->getValue();
-        
+
         // Convert database datetime format to HTML5 datetime-local format
         if ($value && $value !== '0000-00-00 00:00:00') {
             $datetime = DateTime::createFromFormat('Y-m-d H:i:s', $value);
@@ -47,7 +47,7 @@ class rex_yform_value_datetime_local extends rex_yform_value_abstract
         }
 
         $this->params['form_output'][$this->getId()] = $this->parse('value.datetime_local.tpl.php', compact('attributes'));
-        
+
         // Set value pool for saving
         $this->params['value_pool']['email'][$this->getName()] = $this->getValue();
         if ($this->saveInDb()) {
@@ -80,7 +80,7 @@ class rex_yform_value_datetime_local extends rex_yform_value_abstract
     public function preValidateAction(): void
     {
         $value = $this->getValue();
-        
+
         if ($value && $value !== '' && $value !== '0000-00-00 00:00:00') {
             // Only convert if it's HTML5 datetime-local format (contains 'T')
             if (strpos($value, 'T') !== false) {
@@ -116,7 +116,7 @@ class rex_yform_value_datetime_local extends rex_yform_value_abstract
     public static function getListValues($params)
     {
         $value = $params['subject'];
-        
+
         if (empty($value) || $value === '0000-00-00 00:00:00') {
             return '-';
         }

@@ -14,7 +14,7 @@ class rex_yform_value_domain extends rex_yform_value_abstract
         $multiple = $this->getElement('multiple') == '1';
 
         $domains = [];
-        
+
         // Get domains from YRewrite if available
         if (\rex_addon::get('yrewrite')->isAvailable()) {
             $yrewrite_domains = \rex_yrewrite::getDomains();
@@ -29,7 +29,7 @@ class rex_yform_value_domain extends rex_yform_value_abstract
         }
 
         $value = $this->getValue();
-        
+
         if ($multiple) {
             if (is_array($value)) {
                 // $value is already an array, use it directly
@@ -46,7 +46,7 @@ class rex_yform_value_domain extends rex_yform_value_abstract
         $attributes['class'] = 'form-control selectpicker';
         $attributes['id'] = $this->getFieldId();
         $attributes['name'] = $this->getFieldName() . ($multiple ? '[]' : '');
-        
+
         if ($multiple) {
             $attributes['multiple'] = 'multiple';
             $attributes['data-live-search'] = 'true';
@@ -90,7 +90,7 @@ class rex_yform_value_domain extends rex_yform_value_abstract
         }
 
         $this->params['form_output'][$this->getId()] = $this->parse('value.domain.tpl.php', compact('select', 'multiple'));
-        
+
         // Set value pool for saving
         $this->params['value_pool']['email'][$this->getName()] = $this->getValue();
         if ($this->saveInDb()) {
@@ -102,7 +102,7 @@ class rex_yform_value_domain extends rex_yform_value_abstract
     {
         $value = $this->getValue();
         $multiple = $this->getElement('multiple') == '1';
-        
+
         // Only process if we actually have array data (from form submission)
         if (is_array($value) && !empty($value)) {
             if ($multiple) {

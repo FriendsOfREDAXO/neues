@@ -2,7 +2,7 @@
 /**
  * @var rex_select $select
  * @var bool $multiple
- * @var bool $expanded  
+ * @var bool $expanded
  * @var array $choices
  */
 
