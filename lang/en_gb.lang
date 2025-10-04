@@ -119,3 +119,14 @@ neues_entry_sync_cronjob_media_category_id = Import to media pool category
 neues_entry_sync_cronjob_x_per_page = Number of recent posts
 neues_entry_sync_cronjob_media_prefix = Media with prefix
 neues_entry_sync_cronjob_success = %s posts were successfully synchronized (Created: %s, updated %s).
+
+# Custom YForm field types
+neues_domain_please_select = Please select
+neues_domain_no_domains_available = No domains available
+yform_values_domain_description = Domain selection from YRewrite domains
+yform_values_datetime_local_description = Local date/time input
+yform_values_datetime_local_current_date = Use current date
+yform_values_datetime_local_min = Minimum date
+yform_values_datetime_local_max = Maximum date
+yform_values_choice_status_description = Status selection with color coding
+yform_values_choice_size = Number of visible options

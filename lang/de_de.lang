@@ -125,3 +125,14 @@ neues_entry_sync_cronjob_media_category_id = Import in Medienpool-Kategorie
 neues_entry_sync_cronjob_x_per_page = Anzahl der letzten Beiträge
 neues_entry_sync_cronjob_media_prefix = Medien mit Präfix
 neues_entry_sync_cronjob_success = %s Beiträge wurden erfolgreich synchronisiert (Erstellt: %s, aktualisiert %s).
+
+# Custom YForm field types
+neues_domain_please_select = Bitte wählen
+neues_domain_no_domains_available = Keine Domains verfügbar
+yform_values_domain_description = Domain-Auswahl aus YRewrite-Domains
+yform_values_datetime_local_description = Lokale Datum/Zeit-Eingabe
+yform_values_datetime_local_current_date = Aktuelles Datum verwenden
+yform_values_datetime_local_min = Minimales Datum
+yform_values_datetime_local_max = Maximales Datum
+yform_values_choice_status_description = Status-Auswahl mit Farbkodierung
+yform_values_choice_size = Anzahl angezeigter Optionen

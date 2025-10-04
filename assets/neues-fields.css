@@ -1,0 +1,90 @@
+/* Status Choice Field Styling */
+.neues-status-choice {
+    position: relative;
+}
+
+/* Option styling for select dropdown */
+.neues-status-choice option.status-1 {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.neues-status-choice option.status-0 {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.neues-status-choice option.status--1 {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.neues-status-choice option.status--2 {
+    background-color: #f5c6cb;
+    color: #721c24;
+}
+
+/* Legacy support for direct value attributes */
+.neues-status-choice option[value="1"] {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.neues-status-choice option[value="0"] {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.neues-status-choice option[value="-1"] {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.neues-status-choice option[value="-2"] {
+    background-color: #f5c6cb;
+    color: #721c24;
+}
+
+/* Radio button styling for expanded mode */
+.neues-status-choice-radio + .status-label.status-1 {
+    color: #155724;
+    font-weight: bold;
+}
+
+.neues-status-choice-radio + .status-label.status-0 {
+    color: #856404;  
+    font-weight: bold;
+}
+
+.neues-status-choice-radio + .status-label.status--1 {
+    color: #721c24;
+    font-weight: bold;
+}
+
+.neues-status-choice-radio + .status-label.status--2 {
+    color: #721c24;
+    font-weight: bold;
+}
+
+/* List view status indicators */
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-warning {
+    color: #ffc107 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+/* Domain field styling */
+.neues-domain-select {
+    width: 100%;
+}
+
+/* DateTime local field styling */
+input[type="datetime-local"] {
+    width: 100%;
+}
