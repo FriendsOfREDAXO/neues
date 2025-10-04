@@ -10,10 +10,6 @@ requires:
     packages:
         yform: '>4.1.1,<6'
 
-conflicts:
-    packages:
-        yform_field: '*'
-
 page:
     title: translate:neues
     prio: 100
