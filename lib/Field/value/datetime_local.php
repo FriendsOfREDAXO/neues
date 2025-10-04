@@ -2,7 +2,7 @@
 
 /**
  * DateTime Local field for YForm
- * Provides HTML5 datetime-local input field
+ * Provides HTML5 datetime-local input field.
  *
  * @package FriendsOfRedaxo\Neues
  */
@@ -14,7 +14,7 @@ class rex_yform_value_datetime_local extends rex_yform_value_abstract
         $value = $this->getValue();
 
         // Convert database datetime format to HTML5 datetime-local format
-        if ($value && $value !== '0000-00-00 00:00:00') {
+        if ($value && '0000-00-00 00:00:00' !== $value) {
             $datetime = DateTime::createFromFormat('Y-m-d H:i:s', $value);
             if ($datetime) {
                 $value = $datetime->format('Y-m-d\TH:i');
@@ -22,7 +22,7 @@ class rex_yform_value_datetime_local extends rex_yform_value_abstract
         } else {
             $value = '';
             // Set current date if specified
-            if ($this->getElement('current_date') == '1') {
+            if ('1' == $this->getElement('current_date')) {
                 $value = date('Y-m-d\TH:i');
             }
         }
@@ -66,13 +66,13 @@ class rex_yform_value_datetime_local extends rex_yform_value_abstract
             'type' => 'value',
             'name' => 'datetime_local',
             'values' => [
-                'name' => ['type' => 'name', 'label' => \rex_i18n::msg('yform_values_defaults_name')],
-                'label' => ['type' => 'text', 'label' => \rex_i18n::msg('yform_values_defaults_label')],
-                'current_date' => ['type' => 'checkbox', 'label' => \rex_i18n::msg('yform_values_datetime_local_current_date')],
-                'min' => ['type' => 'text', 'label' => \rex_i18n::msg('yform_values_datetime_local_min')],
-                'max' => ['type' => 'text', 'label' => \rex_i18n::msg('yform_values_datetime_local_max')],
+                'name' => ['type' => 'name', 'label' => rex_i18n::msg('yform_values_defaults_name')],
+                'label' => ['type' => 'text', 'label' => rex_i18n::msg('yform_values_defaults_label')],
+                'current_date' => ['type' => 'checkbox', 'label' => rex_i18n::msg('yform_values_datetime_local_current_date')],
+                'min' => ['type' => 'text', 'label' => rex_i18n::msg('yform_values_datetime_local_min')],
+                'max' => ['type' => 'text', 'label' => rex_i18n::msg('yform_values_datetime_local_max')],
             ],
-            'description' => \rex_i18n::msg('yform_values_datetime_local_description'),
+            'description' => rex_i18n::msg('yform_values_datetime_local_description'),
             'db_type' => ['datetime'],
         ];
     }
@@ -81,9 +81,9 @@ class rex_yform_value_datetime_local extends rex_yform_value_abstract
     {
         $value = $this->getValue();
 
-        if ($value && $value !== '' && $value !== '0000-00-00 00:00:00') {
+        if ($value && '' !== $value && '0000-00-00 00:00:00' !== $value) {
             // Only convert if it's HTML5 datetime-local format (contains 'T')
-            if (strpos($value, 'T') !== false) {
+            if (str_contains($value, 'T')) {
                 $datetime = DateTime::createFromFormat('Y-m-d\TH:i', $value);
                 if ($datetime) {
                     $this->setValue($datetime->format('Y-m-d H:i:s'));
@@ -95,7 +95,7 @@ class rex_yform_value_datetime_local extends rex_yform_value_abstract
                     }
                 }
             }
-        } elseif ($value === '0000-00-00 00:00:00') {
+        } elseif ('0000-00-00 00:00:00' === $value) {
             // Convert invalid database datetime to empty
             $this->setValue('');
         }
@@ -117,7 +117,7 @@ class rex_yform_value_datetime_local extends rex_yform_value_abstract
     {
         $value = $params['subject'];
 
-        if (empty($value) || $value === '0000-00-00 00:00:00') {
+        if (empty($value) || '0000-00-00 00:00:00' === $value) {
             return '-';
         }
 

@@ -9,7 +9,10 @@ use rex_config;
 use rex_cronjob_manager;
 use rex_extension;
 use rex_extension_point;
+use rex_path;
 use rex_plugin;
+use rex_view;
+use rex_yform;
 use rex_yform_manager_dataset;
 
 /**
@@ -52,9 +55,9 @@ if (rex_plugin::get('yform', 'rest')->isAvailable()) {
 
 if (rex::isBackend()) {
     /**
-     * CSS für Custom Fields laden
+     * CSS für Custom Fields laden.
      */
-    \rex_view::addCssFile(\rex_addon::get('neues')->getAssetsUrl('neues-fields.css'));
+    rex_view::addCssFile(rex_addon::get('neues')->getAssetsUrl('neues-fields.css'));
 
     /**
      * Individualiserte Liste für Enries.
@@ -77,4 +80,4 @@ if (rex::isBackend()) {
 }
 
 // Register custom YForm template path
-\rex_yform::addTemplatePath(\rex_path::addon('neues', 'ytemplates'));
+rex_yform::addTemplatePath(rex_path::addon('neues', 'ytemplates'));

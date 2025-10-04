@@ -2,7 +2,7 @@
 
 /**
  * Domain field for YForm
- * Provides domain selection from YRewrite domains
+ * Provides domain selection from YRewrite domains.
  *
  * @package FriendsOfRedaxo\Neues
  */
@@ -11,13 +11,13 @@ class rex_yform_value_domain extends rex_yform_value_abstract
 {
     public function enterObject()
     {
-        $multiple = $this->getElement('multiple') == '1';
+        $multiple = '1' == $this->getElement('multiple');
 
         $domains = [];
 
         // Get domains from YRewrite if available
-        if (\rex_addon::get('yrewrite')->isAvailable()) {
-            $yrewrite_domains = \rex_yrewrite::getDomains();
+        if (rex_addon::get('yrewrite')->isAvailable()) {
+            $yrewrite_domains = rex_yrewrite::getDomains();
             foreach ($yrewrite_domains as $domain) {
                 $domains[$domain->getId()] = $domain->getName();
             }
@@ -25,7 +25,7 @@ class rex_yform_value_domain extends rex_yform_value_abstract
 
         // If no domains available, show info message
         if (empty($domains)) {
-            $domains[0] = \rex_i18n::msg('neues_domain_no_domains_available');
+            $domains[0] = rex_i18n::msg('neues_domain_no_domains_available');
         }
 
         $value = $this->getValue();
@@ -57,7 +57,7 @@ class rex_yform_value_domain extends rex_yform_value_abstract
             $attributes['required'] = 'required';
         }
 
-        $select = new \rex_select();
+        $select = new rex_select();
         $select->setId($attributes['id']);
         $select->setName($attributes['name']);
         $select->setMultiple($multiple);
@@ -101,7 +101,7 @@ class rex_yform_value_domain extends rex_yform_value_abstract
     public function preValidateAction(): void
     {
         $value = $this->getValue();
-        $multiple = $this->getElement('multiple') == '1';
+        $multiple = '1' == $this->getElement('multiple');
 
         // Only process if we actually have array data (from form submission)
         if (is_array($value) && !empty($value)) {
@@ -133,11 +133,11 @@ class rex_yform_value_domain extends rex_yform_value_abstract
             'type' => 'value',
             'name' => 'domain',
             'values' => [
-                'name' => ['type' => 'name', 'label' => \rex_i18n::msg('yform_values_defaults_name')],
-                'label' => ['type' => 'text', 'label' => \rex_i18n::msg('yform_values_defaults_label')],
-                'multiple' => ['type' => 'checkbox', 'label' => \rex_i18n::msg('yform_values_choice_multiple')],
+                'name' => ['type' => 'name', 'label' => rex_i18n::msg('yform_values_defaults_name')],
+                'label' => ['type' => 'text', 'label' => rex_i18n::msg('yform_values_defaults_label')],
+                'multiple' => ['type' => 'checkbox', 'label' => rex_i18n::msg('yform_values_choice_multiple')],
             ],
-            'description' => \rex_i18n::msg('yform_values_domain_description'),
+            'description' => rex_i18n::msg('yform_values_domain_description'),
             'db_type' => ['varchar(191)', 'text'],
         ];
     }
@@ -161,19 +161,20 @@ class rex_yform_value_domain extends rex_yform_value_abstract
             }
         }
 
-        $value = (string) $value;        if (empty($value)) {
+        $value = (string) $value;
+        if (empty($value)) {
             return '-';
         }
 
         $domain_ids = array_filter(array_map('intval', explode(',', (string) $value)));
         $domain_names = [];
 
-        if (\rex_addon::get('yrewrite')->isAvailable()) {
-            $yrewrite_domains = \rex_yrewrite::getDomains();
+        if (rex_addon::get('yrewrite')->isAvailable()) {
+            $yrewrite_domains = rex_yrewrite::getDomains();
             foreach ($domain_ids as $domain_id) {
                 foreach ($yrewrite_domains as $domain) {
                     if ($domain->getId() == $domain_id) {
-                        $domain_names[] = \rex_escape($domain->getName());
+                        $domain_names[] = rex_escape($domain->getName());
                         break;
                     }
                 }

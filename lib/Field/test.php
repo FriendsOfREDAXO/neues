@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Test template for custom YForm fields
+ * Test template for custom YForm fields.
  *
  * This can be used to test the custom field types:
  * - domain
@@ -26,4 +27,3 @@ echo '<p>Status options will be loaded from callback methods</p>';
 
 echo '<hr>';
 echo '<p><em>Fields are ready for use in YForm Manager</em></p>';
-?>

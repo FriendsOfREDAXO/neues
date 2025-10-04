@@ -1,10 +1,8 @@
 <?php
-/**
- * @var rex_yform_value_choice_status $this
- */
+/** @var rex_yform_value_choice_status $this */
 
 $notice = [];
-if ($this->getElement('notice') != '') {
+if ('' != $this->getElement('notice')) {
     $notice[] = rex_i18n::translate($this->getElement('notice'), false);
 }
 if (isset($this->params['warning_messages'][$this->getId()]) && !$this->params['hide_field_warning_messages']) {
@@ -22,7 +20,7 @@ $class_group = trim('form-group ' . $this->getElement('css_class'));
 $choices_string = $this->getElement('choices');
 $choices = [];
 
-if (false !== strpos($choices_string, '::')) {
+if (str_contains($choices_string, '::')) {
     // Handle callback format like "ClassName::methodName"
     if (is_callable($choices_string)) {
         $choices = call_user_func($choices_string);
@@ -30,19 +28,19 @@ if (false !== strpos($choices_string, '::')) {
 }
 
 $value = $this->getValue();
-$multiple = $this->getElement('multiple') == '1';
-$expanded = $this->getElement('expanded') == '1';
+$multiple = '1' == $this->getElement('multiple');
+$expanded = '1' == $this->getElement('expanded');
 
 ?>
 
 <div class="<?= rex_escape($class_group) ?>">
-    <?php if ($this->getElement('label') != ''): ?>
+    <?php if ('' != $this->getElement('label')): ?>
         <label class="control-label" for="<?= $this->getFieldId() ?>"><?= rex_i18n::translate($this->getElement('label'), false) ?></label>
-    <?php endif; ?>
+    <?php endif ?>
 
     <?php if ($expanded): ?>
         <!-- Expanded as radio buttons or checkboxes -->
-        <?php $input_type = $multiple ? 'checkbox' : 'radio'; ?>
+        <?php $input_type = $multiple ? 'checkbox' : 'radio' ?>
         <?php foreach ($choices as $choice_value => $choice_label): ?>
             <div class="<?= $input_type ?>">
                 <label>
@@ -54,7 +52,7 @@ $expanded = $this->getElement('expanded') == '1';
                     <span class="status-label status-<?= rex_escape($choice_value, 'html_attr') ?>"><?= rex_escape($choice_label) ?></span>
                 </label>
             </div>
-        <?php endforeach; ?>
+        <?php endforeach ?>
     <?php else: ?>
         <!-- As select dropdown -->
         <select class="form-control selectpicker neues-status-choice"
@@ -66,7 +64,7 @@ $expanded = $this->getElement('expanded') == '1';
 
             <?php if (!$multiple && $this->getElement('placeholder')): ?>
                 <option value=""><?= rex_escape($this->getElement('placeholder')) ?></option>
-            <?php endif; ?>
+            <?php endif ?>
 
             <?php foreach ($choices as $choice_value => $choice_label): ?>
                 <option value="<?= rex_escape($choice_value) ?>"
@@ -74,11 +72,11 @@ $expanded = $this->getElement('expanded') == '1';
                         <?= ($multiple ? (is_array($value) && in_array($choice_value, $value)) : ($value == $choice_value)) ? 'selected="selected"' : '' ?>>
                     <?= rex_escape($choice_label) ?>
                 </option>
-            <?php endforeach; ?>
+            <?php endforeach ?>
         </select>
-    <?php endif; ?>
+    <?php endif ?>
 
-    <?php if ($notice != ''): ?>
+    <?php if ('' != $notice): ?>
         <p class="help-block small"><?= $notice ?></p>
-    <?php endif; ?>
+    <?php endif ?>
 </div>

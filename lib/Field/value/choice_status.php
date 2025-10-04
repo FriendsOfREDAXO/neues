@@ -1,4 +1,7 @@
 <?php
+
+use FriendsOfRedaxo\Neues\Entry;
+
 class rex_yform_value_choice_status extends rex_yform_value_abstract
 {
     public function enterObject()
@@ -7,7 +10,7 @@ class rex_yform_value_choice_status extends rex_yform_value_abstract
         $choices_raw = $this->getElement('choices');
         $choices_string = (string) ($choices_raw ?? '');
 
-        if (false !== strpos($choices_string, '::')) {
+        if (str_contains($choices_string, '::')) {
             if (is_callable($choices_raw)) {
                 $choices = call_user_func($choices_raw);
                 if (!is_array($choices)) {
@@ -93,17 +96,17 @@ class rex_yform_value_choice_status extends rex_yform_value_abstract
 
         $choices = [];
         if (class_exists('FriendsOfRedaxo\Neues\Entry') && method_exists('FriendsOfRedaxo\Neues\Entry', 'statusChoice')) {
-            $choices = \FriendsOfRedaxo\Neues\Entry::statusChoice();
+            $choices = Entry::statusChoice();
         }
 
-        $status_value = isset($choices[$actual_value]) ? $choices[$actual_value] : $actual_value;
+        $status_value = $choices[$actual_value] ?? $actual_value;
 
         $status_class = '';
         if (is_numeric($actual_value)) {
             $int_value = (int) $actual_value;
             if ($int_value >= 1) {
                 $status_class = 'text-success';
-            } elseif ($int_value === 0) {
+            } elseif (0 === $int_value) {
                 $status_class = 'text-warning';
             } else {
                 $status_class = 'text-danger';
