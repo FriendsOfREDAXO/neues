@@ -13,6 +13,17 @@ class rex_yform_value_choice_status extends rex_yform_value_abstract
                     $choices = [];
                 }
             }
+        } elseif ('' !== trim((string) $choices_string)) {
+            foreach (preg_split('/\r\n|\r|\n|,/', (string) $choices_string) as $choice_line) {
+                $choice_line = trim($choice_line);
+                if ('' === $choice_line) {
+                    continue;
+                }
+                $parts = array_map('trim', explode('=', $choice_line, 2));
+                $valuePart = $parts[0];
+                $labelPart = $parts[1] ?? $parts[0];
+                $choices[$valuePart] = $labelPart;
+            }
         }
 
         $value = $this->getValue();

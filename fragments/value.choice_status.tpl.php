@@ -8,4 +8,3 @@
 
 // Always output the select element - rex_select handles multiple and selected values
 echo $select->get();
-?>

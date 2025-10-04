@@ -151,10 +151,17 @@ class rex_yform_value_domain extends rex_yform_value_abstract
 
     public static function getListValue($params)
     {
-                $field = $params['field'];
         $value = $params['subject'];
-        
-        if (empty($value)) {
+
+        if (is_array($value)) {
+            if (isset($value['subject'])) {
+                $value = $value['subject'];
+            } else {
+                $value = reset($value);
+            }
+        }
+
+        $value = (string) $value;        if (empty($value)) {
             return '-';
         }
 

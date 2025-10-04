@@ -31,7 +31,7 @@ foreach ($attributes as $key => $value) {
 
 ?>
 
-<div class="<?= $class_group ?>">
+<div class="<?= rex_escape($class_group) ?>">
     <?php if ($this->getElement('label') != ''): ?>
         <label class="control-label" for="<?= $this->getFieldId() ?>"><?= rex_i18n::translate($this->getElement('label'), false) ?></label>
     <?php endif; ?>
