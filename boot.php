@@ -46,9 +46,8 @@ if (rex_addon::get('cronjob')->isAvailable()) {
     rex_cronjob_manager::registerType(Cronjob\Publish::class);
     rex_cronjob_manager::registerType(Cronjob\Sync::class);
 }
-if (rex_plugin::get('yform', 'rest')->isAvailable()) {
-    Api\Restful::init();
-}
+
+Api\Restful::init();
 
 if (rex::isBackend()) {
     /**
