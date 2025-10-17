@@ -52,7 +52,7 @@ if (version_compare(rex_addon::get('yform')->getVersion(), '5.0.0', '<')) {
         Api\Restful::init();
     }
 } else {
-        Api\Restful::init();
+    Api\Restful::init();
 }
 
 if (rex::isBackend()) {
