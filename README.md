@@ -72,15 +72,11 @@ MIT Lizenz, siehe [LICENSE](https://github.com/FriendsOfREDAXO/neues/blob/main/L
 
 ## Credits
 
-**Projekt-Lead**  
-[Alexander Walther](https://github.com/alexplusde)
-
+Danke an: 
 **Alexander Walther**  
 <http://www.alexplus.de>
-<https://github.com/alexplusde>
 
 **Paul Götz**  
-<http://www.alexplus.de>
 <https://github.com/schorschy>
 
 Neues basiert auf: [YForm](https://github.com/yakamara/redaxo_yform), spezieller Dank zu YOrm an [Gregor Harlan](https://github.com/gharlan)
