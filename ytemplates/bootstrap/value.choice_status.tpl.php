@@ -24,7 +24,13 @@ if (str_contains($choices_string, '::')) {
     // Handle callback format like "ClassName::methodName"
     if (is_callable($choices_string)) {
         $choices = call_user_func($choices_string);
+    } else {
+        // Fallback or log warning
+        $choices = [];
     }
+} else {
+    // Parse other formats (e.g., pipe-separated, JSON)
+    $choices = array_filter(array_map('trim', explode('|', $choices_string)));
 }
 
 $value = $this->getValue();
