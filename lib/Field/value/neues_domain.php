@@ -7,7 +7,7 @@
  * @package FriendsOfRedaxo\Neues
  */
 
-class rex_yform_value_domain extends rex_yform_value_abstract
+class rex_yform_value_neues_domain extends rex_yform_value_abstract
 {
     public function enterObject()
     {
@@ -89,7 +89,7 @@ class rex_yform_value_domain extends rex_yform_value_abstract
             $select->setSelected($value);
         }
 
-        $this->params['form_output'][$this->getId()] = $this->parse('value.domain.tpl.php', compact('select', 'multiple'));
+        $this->params['form_output'][$this->getId()] = $this->parse('value.neues_domain.tpl.php', compact('select', 'multiple'));
 
         // Set value pool for saving
         $this->params['value_pool']['email'][$this->getName()] = $this->getValue();
@@ -124,14 +124,14 @@ class rex_yform_value_domain extends rex_yform_value_abstract
 
     public function getDescription(): string
     {
-        return 'domain|name|label|multiple';
+        return 'neues_domain|name|label|multiple';
     }
 
     public function getDefinitions(): array
     {
         return [
             'type' => 'value',
-            'name' => 'domain',
+            'name' => 'neues_domain',
             'values' => [
                 'name' => ['type' => 'name', 'label' => rex_i18n::msg('yform_values_defaults_name')],
                 'label' => ['type' => 'text', 'label' => rex_i18n::msg('yform_values_defaults_label')],

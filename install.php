@@ -6,11 +6,13 @@ use rex;
 use rex_addon;
 use rex_config;
 use rex_file;
+use rex_logger;
 use rex_media;
 use rex_media_service;
 use rex_path;
 use rex_sql;
 use rex_version;
+use rex_yform_manager_table;
 use rex_yform_manager_table_api;
 use Url\Cache;
 use Url\Profile;
@@ -20,6 +22,11 @@ use Url\Profile;
 $sql = rex_sql::factory();
 
 /**
+ * YForm-Cache löschen vor dem Import (wie ycom es macht)
+ */
+rex_yform_manager_table::deleteCache();
+
+/**
  * Tablesets aktualisieren
  * - Datenbanktabellen anlegen bzw. das Schema aktualisieren
  * - YForm-Tablesets eintragen bzw. aktualisieren (soweit das möglich ist)
@@ -27,7 +34,11 @@ $sql = rex_sql::factory();
  */
 $this->includeFile(__DIR__ . '/install/update_scheme.php');
 
-rex_yform_manager_table_api::importTablesets(rex_file::get(__DIR__ . '/install/tableset.json', '[]'));
+// Tableset-Import mit Cache-Kontrolle
+$tablesetContent = rex_file::get(__DIR__ . '/install/tableset.json', '[]');
+if (is_string($tablesetContent) && '' !== $tablesetContent) {
+    rex_yform_manager_table_api::importTablesets($tablesetContent);
+}
 
 $sql->setQuery('UPDATE ' . rex::getTable('neues_author') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
 $sql->setQuery('UPDATE ' . rex::getTable('neues_category') . ' SET uuid = uuid() WHERE uuid IS NULL OR uuid = ""');
@@ -41,7 +52,7 @@ if (null === rex_media::get($fallbackImage)) {
     rex_file::copy(__DIR__ . '/install/' . $fallbackImage, rex_path::media($fallbackImage));
     $data = [];
     // TODO: Text nach *.lang verlagern
-    $data['title'] = 'Aktuelles - Fallback-Image';
+    $data['title'] = 'Neues - Fallback-Image';
     $data['category_id'] = 0;
     $data['file'] = [
         'name' => $fallbackImage,
@@ -124,3 +135,31 @@ if (rex_version::compare('5.1.0', $this->getVersion(), '>')) {
     $sql->setValue('status', -2);
     $sql->update();
 }
+
+/**
+ * Migration für Version 7.0.0: Feldnamen-Migration vor tableset.json Import
+ * Verhindert Konflikte mit yform_field Addon
+ */
+if (rex_version::compare('7.0.0', $this->getVersion(), '>')) {
+    if (rex_addon::get('yform')->isAvailable()) {
+        $fieldMappings = [
+            'choice_status' => 'neues_choice_status',
+            'datetime_local' => 'neues_datetime_local',
+            'domain' => 'neues_domain',
+        ];
+        
+        foreach ($fieldMappings as $oldFieldName => $newFieldName) {
+            $sql = rex_sql::factory();
+            $sql->setQuery('UPDATE ' . rex::getTable('yform_field') . ' SET type_name = ? WHERE type_name = ? AND table_name LIKE "rex_neues_%"', [$newFieldName, $oldFieldName]);
+        }
+        
+        // YForm-Cache regenerieren nach Migration
+        rex_yform_manager_table_api::generateTableClass();
+    }
+}
+
+/**
+ * Cache löschen am Ende der Installation (wie ycom es macht)
+ * Das verhindert doppelte Imports und Cache-Probleme
+ */
+rex_delete_cache();

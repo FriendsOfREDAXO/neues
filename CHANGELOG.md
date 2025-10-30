@@ -1,6 +1,26 @@
 # Changelog
 
-## xx-xx-2024 x.x.x (**Breacking Changes ⚠**)
+## 30-10-2025 7.0.0 (**Breaking Changes ⚠**)
+
+### YForm-Feldkonflikt mit yform_field Addon aufgelöst
+
+**Breaking Changes:**
+- YForm-Feldnamen wurden umbenannt um Konflikte mit dem `yform_field` Addon zu vermeiden:
+  - `choice_status` → `neues_choice_status`
+  - `datetime_local` → `neues_datetime_local`
+  - `domain` → `neues_domain`
+
+**Migration:**
+- Beim Update auf Version 7.0.0 werden bestehende YForm-Tabellendefinitionen automatisch migriert
+- Bestehende Daten bleiben unverändert erhalten
+- Das neues-Addon kann nun parallel mit yform_field verwendet werden
+
+**Weitere Änderungen:**
+- Menübezeichnung von "Aktuelles" zu "Neues" geändert für bessere Konsistenz
+- Addon-Vergleiche aus der Dokumentation entfernt
+- Package-Konfiguration bereinigt (conflicts-Eintrag entfernt)
+
+## xx-xx-2024 x.x.x (**Breaking Changes ⚠**)
 
 > Work in Progress !!!
 

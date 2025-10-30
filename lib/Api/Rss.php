@@ -33,15 +33,50 @@ class Rss extends rex_api_function
             $category = Category::get($category_id);
         }
 
-        if (null !== $category) {
-            $collection = Entry::findOnline($category_id);
-            $filename = 'rss.neues.' . rex_string::normalize($category->getName()) . '.xml';
-            $description = 'RSS-FEED: ' . rex::getServerName() . ' | ' . rex_escape($category->getName());
-        } else {
-            $collection = Entry::findOnline();
-            $filename = 'rss.neues.xml';
-            $description = 'RSS-FEED: ' . rex::getServerName();
+        // Basis-Query für alle Filter
+        $query = Entry::query()->where('status', Entry::STATUS_ONLINE);
+        
+        // Kategorie-Filter
+        if (null !== $category_id) {
+            $query->whereRaw('FIND_IN_SET(?, category_ids)', [$category_id]);
         }
+        
+        // Domain-Filter (falls Domain-IDs gesetzt sind)
+        if (null !== $domain_id) {
+            $query->whereRaw('(domain_ids = "" OR domain_ids IS NULL OR FIND_IN_SET(?, domain_ids))', [$domain_id]);
+        }
+        
+        // Sprach-Filter
+        if (null !== $lang_id) {
+            $query->where('lang_id', $lang_id);
+        }
+        
+        $collection = $query->orderBy('publishdate', 'DESC')->limit(50)->find();
+        
+        // Filename und Description basierend auf Filtern
+        $filename_parts = ['rss', 'neues'];
+        $description_parts = ['RSS-FEED: ' . rex::getServerName()];
+        
+        if (null !== $category) {
+            $filename_parts[] = rex_string::normalize($category->getName());
+            $description_parts[] = rex_escape($category->getName());
+        }
+        
+        if (null !== $domain_id) {
+            $filename_parts[] = 'domain' . $domain_id;
+            $description_parts[] = 'Domain ' . $domain_id;
+        }
+        
+        if (null !== $lang_id && $lang_id > 0) {
+            $lang = rex_clang::get($lang_id);
+            if ($lang) {
+                $filename_parts[] = $lang->getCode();
+                $description_parts[] = $lang->getName();
+            }
+        }
+        
+        $filename = implode('.', $filename_parts) . '.xml';
+        $description = implode(' | ', $description_parts);
 
         rex_response::cleanOutputBuffers();
         rex_response::sendContentType('application/xml; charset=utf-8');
