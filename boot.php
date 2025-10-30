@@ -9,7 +9,10 @@ use rex_config;
 use rex_cronjob_manager;
 use rex_extension;
 use rex_extension_point;
+use rex_path;
 use rex_plugin;
+use rex_view;
+use rex_yform;
 use rex_yform_manager_dataset;
 
 /**
@@ -33,7 +36,7 @@ rex_yform_manager_dataset::setModelClass(
 );
 
 /**
- * RSS-Fead via rex-api anbieten.
+ * RSS-Feed via rex-api anbieten.
  */
 rex_api_function::register('neues_rss', Api\Rss::class);
 
@@ -57,6 +60,11 @@ if (version_compare(rex_addon::get('yform')->getVersion(), '5.0.0', '<')) {
 
 if (rex::isBackend()) {
     /**
+     * CSS für Custom Fields laden.
+     */
+    rex_view::addCssFile(rex_addon::get('neues')->getAssetsUrl('neues-fields.css'));
+
+    /**
      * Individualiserte Liste für Enries.
      */
     rex_extension::register('YFORM_DATA_LIST', Entry::epYformDataList(...));
@@ -75,3 +83,6 @@ if (rex::isBackend()) {
         $ep->setSubject(str_replace($suchmuster, $ersetzen, $ep->getSubject()));
     });
 }
+
+// Register custom YForm template path
+rex_yform::addTemplatePath(rex_path::addon('neues', 'ytemplates'));

@@ -1,5 +1,5 @@
 package: neues
-version: '6.1.0-dev-2025-10-17'
+version: '6.1.0-beta1
 author: Friends of REDAXO
 supportpage: https://github.com/FriendsofREDAXO/neues
 
@@ -9,7 +9,10 @@ requires:
     redaxo: '^5.18.3'
     packages:
         yform: '>4.1.1,<6'
-        yform_field: ">=2.11.0,<4"
+
+conflicts:
+    packages:
+        yform_field: '*'
 
 page:
     title: translate:neues
@@ -26,7 +29,7 @@ pages:
         prio: 16
         icon: rex-icon fa-bullhorn
         perm: neues[]
-        subpages: 
+        subpages:
             entry:
                 title: translate:neues_entry
                 icon: rex-icon fa-bullhorn
