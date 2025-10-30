@@ -12,11 +12,11 @@
 echo '<h3>Custom YForm Fields Test</h3>';
 
 // Test domain field
-if (rex_addon::get('yrewrite')->isAvailable()) {
+if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isAvailable()) {
     $domains = rex_yrewrite::getDomains();
     echo '<p>Available YRewrite domains: ' . count($domains) . '</p>';
 } else {
-    echo '<p><strong>Warning:</strong> YRewrite not available - domain field will show fallback message</p>';
+    echo '<p><strong>Warning:</strong> YRewrite not installed or available - domain field will show fallback message</p>';
 }
 
 // Test datetime_local field

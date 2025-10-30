@@ -6,7 +6,7 @@ This addon provides custom YForm field types that were previously part of the yf
 
 ### domain
 - **Purpose**: Domain selection from YRewrite domains
-- **Usage**: `domain|name|label|multiple|size`
+- **Usage**: `domain|name|label|multiple`
 - **Description**: Provides a select field with all available YRewrite domains
 - **Database**: varchar(191) or text for multiple selections
 

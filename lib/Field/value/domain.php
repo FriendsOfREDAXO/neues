@@ -16,7 +16,7 @@ class rex_yform_value_domain extends rex_yform_value_abstract
         $domains = [];
 
         // Get domains from YRewrite if available
-        if (rex_addon::get('yrewrite')->isAvailable()) {
+        if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isAvailable()) {
             $yrewrite_domains = rex_yrewrite::getDomains();
             foreach ($yrewrite_domains as $domain) {
                 $domains[$domain->getId()] = $domain->getName();
@@ -169,11 +169,11 @@ class rex_yform_value_domain extends rex_yform_value_abstract
         $domain_ids = array_filter(array_map('intval', explode(',', (string) $value)));
         $domain_names = [];
 
-        if (rex_addon::get('yrewrite')->isAvailable()) {
+        if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isAvailable()) {
             $yrewrite_domains = rex_yrewrite::getDomains();
             foreach ($domain_ids as $domain_id) {
                 foreach ($yrewrite_domains as $domain) {
-                    if ($domain->getId() == $domain_id) {
+                    if ($domain->getId() === (int) $domain_id) {
                         $domain_names[] = rex_escape($domain->getName());
                         break;
                     }

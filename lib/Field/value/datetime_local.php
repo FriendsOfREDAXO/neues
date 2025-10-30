@@ -113,7 +113,7 @@ class rex_yform_value_datetime_local extends rex_yform_value_abstract
         }
     }
 
-    public static function getListValues($params)
+    public static function getListValue($params)
     {
         $value = $params['subject'];
 

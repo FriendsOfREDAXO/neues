@@ -33,8 +33,6 @@ neues_image = Titelbild
 neues_images = Galerie
 neues_attachments = Dateianhänge
 neues_attachments_notice = Zusätzliche Dateien (z.B. PDFs) die zu diesem Beitrag gehören
-neues_canonical_url = Canonical URL 
-neues_canonical_url_notice = Gibt die Original-URL des News-Beitrags an, falls dieser Beitrag auf mehreren Websites veröffentlicht wurde.
 
 neues_external_url = Externer Link
 neues_external_url_notice = Gibt es weitere Informationen auf einer anderen Website, dann geben Sie hier die Adresse zu einer externen Website ein, z.B. <code>http://www.example.org/foo-bar/</code>
@@ -136,3 +134,5 @@ yform_values_datetime_local_min = Minimales Datum
 yform_values_datetime_local_max = Maximales Datum
 yform_values_choice_status_description = Status-Auswahl mit Farbkodierung
 yform_values_choice_size = Anzahl angezeigter Optionen
+neues_dashboard_add_author = Autor hinzufügen
+neues_dashboard_add_category = Kategorie hinzufügen

@@ -44,7 +44,7 @@ class rex_yform_value_choice_status extends rex_yform_value_abstract
 
         $select->setSelected($value);
 
-        $this->params['form_output'][$this->getId()] = $this->parse('value.choice_status.tpl.php', compact('select', 'choices'));
+        $this->params['form_output'][$this->getId()] = $this->parse('value.choice_status.tpl.php', compact('choices'));
     }
 
     public function preValidateAction(): void

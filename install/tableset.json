@@ -743,20 +743,6 @@
                 "not_required": "",
                 "no_db": "0",
                 "show_value": "1"
-            },
-            {
-                "table_name": "rex_neues_entry",
-                "prio": 26,
-                "type_id": "value",
-                "type_name": "showvalue",
-                "db_type": "varchar(191)",
-                "list_hidden": 1,
-                "search": 0,
-                "name": "canonical_url",
-                "label": "translate:neues_canonical_url",
-                "not_required": "",
-                "default": "",
-                "notice": "translate:neues_canonical_url_notice"
             }
         ]
     },

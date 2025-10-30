@@ -130,3 +130,6 @@ yform_values_datetime_local_min = Minimum date
 yform_values_datetime_local_max = Maximum date
 yform_values_choice_status_description = Status selection with color coding
 yform_values_choice_size = Number of visible options
+neues_dashboard_add_entry = Add entry
+neues_dashboard_add_author = Add author
+neues_dashboard_add_category = Add category

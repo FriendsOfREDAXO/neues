@@ -53,7 +53,7 @@ $expanded = '1' == $this->getElement('expanded');
                     <input type="<?= $input_type ?>"
                            name="<?= $this->getFieldName() ?><?= $multiple ? '[]' : '' ?>"
                            value="<?= rex_escape($choice_value) ?>"
-                           <?= ($multiple ? (is_array($value) && in_array($choice_value, $value)) : ($value == $choice_value)) ? 'checked="checked"' : '' ?>
+                           <?= ($multiple ? (is_array($value) && in_array($choice_value, $value, true)) : ($value === $choice_value)) ? 'checked="checked"' : '' ?>
                            class="neues-status-choice-radio" />
                     <span class="status-label status-<?= rex_escape($choice_value, 'html_attr') ?>"><?= rex_escape($choice_label) ?></span>
                 </label>
@@ -75,7 +75,7 @@ $expanded = '1' == $this->getElement('expanded');
             <?php foreach ($choices as $choice_value => $choice_label): ?>
                 <option value="<?= rex_escape($choice_value) ?>"
                         class="status-option status-<?= rex_escape($choice_value, 'html_attr') ?>"
-                        <?= ($multiple ? (is_array($value) && in_array($choice_value, $value)) : ($value == $choice_value)) ? 'selected="selected"' : '' ?>>
+                        <?= ($multiple ? (is_array($value) && in_array($choice_value, $value, true)) : ($value === $choice_value)) ? 'selected="selected"' : '' ?>>
                     <?= rex_escape($choice_label) ?>
                 </option>
             <?php endforeach ?>

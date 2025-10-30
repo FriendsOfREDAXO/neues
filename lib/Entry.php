@@ -66,7 +66,6 @@ class Entry extends rex_yform_manager_dataset
     public const UPDATEDATE = 'updatedate';
     public const UPDATEUSER = 'updateuser';
     public const UUID = 'uuid';
-    public const CANONICAL_URL = 'canonical_url';
 
     public const FIELD_CONFIG = [
         self::STATUS => [],
@@ -87,7 +86,6 @@ class Entry extends rex_yform_manager_dataset
         self::UPDATEDATE => [],
         self::UPDATEUSER => [],
         self::UUID => [],
-        self::CANONICAL_URL => [],
     ];
 
     /**
@@ -535,39 +533,6 @@ class Entry extends rex_yform_manager_dataset
     public function setExternalUrl(string $url): self
     {
         $this->setValue('url', $url);
-        return $this;
-    }
-
-    /**
-     * Gibt die Canonical URL des Eintrags zurück.
-     * Returns the canonical URL of the entry.
-     *
-     * @return string Die Canonical URL des Eintrags oder '', wenn keine URL gesetzt ist. / The canonical URL of the entry or '' if no URL is set.
-     *
-     * Beispiel / Example:
-     * $canonicalUrl = $entry->getCanonicalUrl();
-     *
-     * @api
-     */
-    public function getCanonicalUrl(): string
-    {
-        if ($this->hasValue('canonical_url')) {
-            return $this->getValue('canonical_url');
-        }
-        return '';
-    }
-
-    /**
-     * Setzt die Canonical URL des Eintrags.
-     * Sets the canonical URL of the entry.
-     *
-     * @param string $url Die neue Canonical URL des Eintrags. / The new canonical URL of the entry.
-     *
-     * @api
-     */
-    public function setCanonicalUrl(string $url): self
-    {
-        $this->setValue('canonical_url', $url);
         return $this;
     }
 
