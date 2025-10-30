@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Cleanup Script für neues Addon Version 7.0.0
- * 
+ * Cleanup Script für neues Addon Version 7.0.0.
+ *
  * Bereinigt doppelte YForm-Felder nach der Migration.
  * Entfernt die alten Feldnamen, falls sowohl alte als auch neue existieren.
  */
@@ -29,12 +29,12 @@ foreach ($fieldMappings as $oldFieldName => $newFieldName) {
             (SELECT COUNT(*) FROM ' . rex::getTable('yform_field') . ' WHERE type_name = :new_name AND table_name LIKE "rex_neues_%") as new_count
     ', [
         ':old_name' => $oldFieldName,
-        ':new_name' => $newFieldName
+        ':new_name' => $newFieldName,
     ]);
-    
+
     $oldCount = (int) $sql->getValue('old_count');
     $newCount = (int) $sql->getValue('new_count');
-    
+
     if ($oldCount > 0 && $newCount > 0) {
         // Beide Felder existieren - alte entfernen
         $sql = rex_sql::factory();
@@ -43,13 +43,13 @@ foreach ($fieldMappings as $oldFieldName => $newFieldName) {
             WHERE type_name = :old_name 
             AND table_name LIKE "rex_neues_%"
         ', [':old_name' => $oldFieldName]);
-        
+
         $deleted = $sql->getRows();
         if ($deleted > 0) {
             $totalCleaned += $deleted;
             echo "🧹 Removed duplicate old field '{$oldFieldName}' ({$deleted} fields deleted)\n";
         }
-    } elseif ($oldCount > 0 && $newCount === 0) {
+    } elseif ($oldCount > 0 && 0 === $newCount) {
         // Nur alte Felder existieren - umbenennen
         $sql = rex_sql::factory();
         $sql->setQuery('
@@ -59,9 +59,9 @@ foreach ($fieldMappings as $oldFieldName => $newFieldName) {
             AND table_name LIKE "rex_neues_%"
         ', [
             ':old_name' => $oldFieldName,
-            ':new_name' => $newFieldName
+            ':new_name' => $newFieldName,
         ]);
-        
+
         $updated = $sql->getRows();
         if ($updated > 0) {
             $totalCleaned += $updated;
@@ -77,10 +77,10 @@ foreach ($fieldMappings as $oldFieldName => $newFieldName) {
 if ($totalCleaned > 0) {
     // Tableset neu importieren
     rex_yform_manager_table_api::importTablesets(rex_file::get(__DIR__ . '/tableset.json', '[]'));
-    
+
     // YForm-Cache leeren
     rex_yform_manager_table_api::generateTableClass();
-    
+
     echo "🎉 Cleanup completed: {$totalCleaned} YForm field operations performed\n";
     echo "📄 Tableset reimported and cache cleared\n";
 } else {

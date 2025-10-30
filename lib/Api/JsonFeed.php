@@ -8,16 +8,17 @@ use rex;
 use rex_api_function;
 use rex_api_result;
 use rex_clang;
-use rex_request;
 use rex_response;
-use rex_string;
+
+use const JSON_PRETTY_PRINT;
+use const JSON_UNESCAPED_UNICODE;
 
 class JsonFeed extends rex_api_function
 {
     protected $published = true;  // Erlaubt den Aufruf aus dem Frontend
 
     /**
-     * JSON Feed 1.1 API für News-Einträge
+     * JSON Feed 1.1 API für News-Einträge.
      * @return never
      * @api
      */
@@ -31,27 +32,27 @@ class JsonFeed extends rex_api_function
 
         // Basis-Query für alle Filter
         $query = Entry::query()->where('status', Entry::STATUS_ONLINE);
-        
+
         // Kategorie-Filter
         if (null !== $category_id) {
             $query->whereRaw('FIND_IN_SET(?, category_ids)', [$category_id]);
         }
-        
+
         // Domain-Filter (falls Domain-IDs gesetzt sind)
         if (null !== $domain_id) {
             $query->whereRaw('(domain_ids = "" OR domain_ids IS NULL OR FIND_IN_SET(?, domain_ids))', [$domain_id]);
         }
-        
+
         // Sprach-Filter
         if (null !== $lang_id) {
             $query->where('lang_id', $lang_id);
         }
-        
+
         $collection = $query->orderBy('publishdate', 'DESC')->limit($limit)->offset($offset)->find();
 
         // Feed-Metadaten generieren
         $feed = $this->createFeedMetadata($category_id, $lang_id, $domain_id);
-        
+
         // Items hinzufügen
         $feed['items'] = [];
         foreach ($collection as $entry) {
@@ -66,13 +67,13 @@ class JsonFeed extends rex_api_function
     }
 
     /**
-     * Erstellt die Feed-Metadaten basierend auf Filtern
+     * Erstellt die Feed-Metadaten basierend auf Filtern.
      */
     private function createFeedMetadata(?int $category_id, ?int $lang_id, ?int $domain_id): array
     {
         $title_parts = [rex::getServerName()];
         $description_parts = ['News-Feed'];
-        
+
         // Kategorie-Info hinzufügen
         if (null !== $category_id) {
             $category = Category::get($category_id);
@@ -81,7 +82,7 @@ class JsonFeed extends rex_api_function
                 $description_parts[] = $category->getName();
             }
         }
-        
+
         // Sprach-Info hinzufügen
         if (null !== $lang_id && $lang_id > 0) {
             $lang = rex_clang::get($lang_id);
@@ -90,7 +91,7 @@ class JsonFeed extends rex_api_function
                 $description_parts[] = $lang->getName();
             }
         }
-        
+
         // Domain-Info hinzufügen
         if (null !== $domain_id) {
             $title_parts[] = 'Domain ' . $domain_id;
@@ -108,14 +109,14 @@ class JsonFeed extends rex_api_function
             'authors' => [
                 [
                     'name' => rex::getServerName(),
-                    'url' => rex::getServer()
-                ]
-            ]
+                    'url' => rex::getServer(),
+                ],
+            ],
         ];
     }
 
     /**
-     * Erstellt ein JSON Feed Item aus einem News-Eintrag
+     * Erstellt ein JSON Feed Item aus einem News-Eintrag.
      */
     private function createFeedItem(Entry $entry): array
     {
@@ -125,15 +126,15 @@ class JsonFeed extends rex_api_function
             'content_html' => $entry->getDescription(),
             'content_text' => strip_tags($entry->getDescription()),
             'url' => rex::getServer() . $entry->getUrl(),
-            'date_published' => date('c', strtotime($entry->getPublishDate()))
+            'date_published' => date('c', strtotime($entry->getPublishDate())),
         ];
 
         // Autor hinzufügen falls vorhanden
         if ($entry->getAuthor()) {
             $item['authors'] = [
                 [
-                    'name' => $entry->getAuthor()->getName()
-                ]
+                    'name' => $entry->getAuthor()->getName(),
+                ],
             ];
         }
 
@@ -159,20 +160,20 @@ class JsonFeed extends rex_api_function
     }
 
     /**
-     * Generiert die Feed-URL mit aktuellen Parametern
+     * Generiert die Feed-URL mit aktuellen Parametern.
      */
     private function getFeedUrl(?int $category_id, ?int $lang_id, ?int $domain_id): string
     {
         $params = ['rex-api-call' => 'neues_json'];
-        
+
         if (null !== $category_id) {
             $params['category_id'] = $category_id;
         }
-        
+
         if (null !== $lang_id) {
             $params['lang_id'] = $lang_id;
         }
-        
+
         if (null !== $domain_id) {
             $params['domain_id'] = $domain_id;
         }

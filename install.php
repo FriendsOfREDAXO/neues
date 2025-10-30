@@ -6,7 +6,6 @@ use rex;
 use rex_addon;
 use rex_config;
 use rex_file;
-use rex_logger;
 use rex_media;
 use rex_media_service;
 use rex_path;
@@ -17,12 +16,14 @@ use rex_yform_manager_table_api;
 use Url\Cache;
 use Url\Profile;
 
+use function is_string;
+
 /** @var rex_addon $this */
 
 $sql = rex_sql::factory();
 
 /**
- * YForm-Cache löschen vor dem Import (wie ycom es macht)
+ * YForm-Cache löschen vor dem Import (wie ycom es macht).
  */
 rex_yform_manager_table::deleteCache();
 
@@ -138,7 +139,7 @@ if (rex_version::compare('5.1.0', $this->getVersion(), '>')) {
 
 /**
  * Migration für Version 7.0.0: Feldnamen-Migration vor tableset.json Import
- * Verhindert Konflikte mit yform_field Addon
+ * Verhindert Konflikte mit yform_field Addon.
  */
 if (rex_version::compare('7.0.0', $this->getVersion(), '>')) {
     if (rex_addon::get('yform')->isAvailable()) {
@@ -147,12 +148,12 @@ if (rex_version::compare('7.0.0', $this->getVersion(), '>')) {
             'datetime_local' => 'neues_datetime_local',
             'domain' => 'neues_domain',
         ];
-        
+
         foreach ($fieldMappings as $oldFieldName => $newFieldName) {
             $sql = rex_sql::factory();
             $sql->setQuery('UPDATE ' . rex::getTable('yform_field') . ' SET type_name = ? WHERE type_name = ? AND table_name LIKE "rex_neues_%"', [$newFieldName, $oldFieldName]);
         }
-        
+
         // YForm-Cache regenerieren nach Migration
         rex_yform_manager_table_api::generateTableClass();
     }
@@ -160,6 +161,6 @@ if (rex_version::compare('7.0.0', $this->getVersion(), '>')) {
 
 /**
  * Cache löschen am Ende der Installation (wie ycom es macht)
- * Das verhindert doppelte Imports und Cache-Probleme
+ * Das verhindert doppelte Imports und Cache-Probleme.
  */
 rex_delete_cache();

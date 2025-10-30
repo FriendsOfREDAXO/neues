@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Migration Script für neues Addon Version 7.0.0
- * 
+ * Migration Script für neues Addon Version 7.0.0.
+ *
  * Migriert YForm-Feldnamen von den alten Namen zu den neuen Namen
  * um Konflikte mit dem yform_field Addon zu vermeiden.
  */
@@ -28,9 +28,9 @@ foreach ($fieldMappings as $oldFieldName => $newFieldName) {
         WHERE type_name = :old_name 
         AND table_name LIKE "rex_neues_%"
     ', [':old_name' => $oldFieldName]);
-    
+
     $oldFieldsExist = $sql->getValue('count') > 0;
-    
+
     if ($oldFieldsExist) {
         // Alte Felder zu neuen Feldnamen ändern
         $sql = rex_sql::factory();
@@ -41,9 +41,9 @@ foreach ($fieldMappings as $oldFieldName => $newFieldName) {
             AND table_name LIKE "rex_neues_%"
         ', [
             ':old_name' => $oldFieldName,
-            ':new_name' => $newFieldName
+            ':new_name' => $newFieldName,
         ]);
-        
+
         $updated = $sql->getRows();
         if ($updated > 0) {
             $totalUpdated += $updated;
@@ -57,10 +57,10 @@ foreach ($fieldMappings as $oldFieldName => $newFieldName) {
 if ($totalUpdated > 0) {
     // Tableset neu importieren
     rex_yform_manager_table_api::importTablesets(rex_file::get(__DIR__ . '/tableset.json', '[]'));
-    
+
     // YForm-Cache leeren
     rex_yform_manager_table_api::generateTableClass();
-    
+
     echo "🎉 Migration completed: {$totalUpdated} YForm fields migrated to new names\n";
     echo "📄 Tableset reimported and cache cleared\n";
 } else {
