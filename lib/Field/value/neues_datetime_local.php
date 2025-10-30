@@ -7,7 +7,7 @@
  * @package FriendsOfRedaxo\Neues
  */
 
-class rex_yform_value_datetime_local extends rex_yform_value_abstract
+class rex_yform_value_neues_datetime_local extends rex_yform_value_abstract
 {
     public function enterObject()
     {
@@ -46,7 +46,7 @@ class rex_yform_value_datetime_local extends rex_yform_value_abstract
             $attributes['max'] = $max;
         }
 
-        $this->params['form_output'][$this->getId()] = $this->parse('value.datetime_local.tpl.php', compact('attributes'));
+        $this->params['form_output'][$this->getId()] = $this->parse('value.neues_datetime_local.tpl.php', compact('attributes'));
 
         // Set value pool for saving
         $this->params['value_pool']['email'][$this->getName()] = $this->getValue();
@@ -57,14 +57,14 @@ class rex_yform_value_datetime_local extends rex_yform_value_abstract
 
     public function getDescription(): string
     {
-        return 'datetime_local|name|label|current_date|min|max';
+        return 'neues_datetime_local|name|label|current_date|min|max';
     }
 
     public function getDefinitions(): array
     {
         return [
             'type' => 'value',
-            'name' => 'datetime_local',
+            'name' => 'neues_datetime_local',
             'values' => [
                 'name' => ['type' => 'name', 'label' => rex_i18n::msg('yform_values_defaults_name')],
                 'label' => ['type' => 'text', 'label' => rex_i18n::msg('yform_values_defaults_label')],

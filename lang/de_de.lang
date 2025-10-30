@@ -1,5 +1,5 @@
-neues = Aktuelles
-neues_title = Aktuelles
+neues = Neues
+neues_title = Neues
 neues_entry = Beiträge
 neues_settings = Einstellungen
 neues_lang = Sprachen
@@ -110,7 +110,7 @@ neues_docs_restful_api = YForm RESTful API
 
 neues_entry_publish_success = %d Beiträge wurden erfolgreich veröffentlicht.
 neues_entry_publish_error = %d Beiträge konnten nicht veröffentlicht werden.
-neues_entry_publish_cronjob = Geplante Beiträge veröffentlichen. (Aktuelles)
+neues_entry_publish_cronjob = Geplante Beiträge veröffentlichen. (Neues)
 
 neues_entry_sync_error = Fehler beim Synchronisieren der Beiträge.
 neues_entry_sync_cronjob = [📰 Neues] Beiträge, Kategorien und Autoren einer anderen REDAXO-Installation abrufen

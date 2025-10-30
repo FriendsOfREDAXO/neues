@@ -1,7 +1,5 @@
 # URL-Profile
 
-Das Addon URL in Version 2.x wird vorausgesetzt.
-
 ## Schnelle Einrichtung von Profilen
 
 Die Konfiguration der URL-Profile ist abhängig vom gewünschten Projekt und Umfang. Deshalb werden keine URL-Profile bei der Installation eingerichtet.
@@ -10,7 +8,7 @@ Nachfolgend Beispiel-Konfigurationen für verschiedene Szenarien:
 
 ## News-Einträge mit einer Domain
 
-Mit der Methode `getUrl()` kann die URL des aktuellen News-Eintrags geholt werden. Dazu muss URL2 installiert sein und ein Profil mit dem Schlüssel `neues-entry-id` angelegt sein.
+Mit der Methode `getUrl()` kann die URL des aktuellen News-Eintrags geholt werden. Dazu muss ein URL-Profil mit dem Schlüssel `neues-entry-id` angelegt sein.
 
 Beispiel:
 

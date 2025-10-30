@@ -2,7 +2,7 @@
 
 use FriendsOfRedaxo\Neues\Entry;
 
-class rex_yform_value_choice_status extends rex_yform_value_abstract
+class rex_yform_value_neues_choice_status extends rex_yform_value_abstract
 {
     public function enterObject()
     {
@@ -44,7 +44,7 @@ class rex_yform_value_choice_status extends rex_yform_value_abstract
 
         $select->setSelected($value);
 
-        $this->params['form_output'][$this->getId()] = $this->parse('value.choice_status.tpl.php', compact('choices'));
+        $this->params['form_output'][$this->getId()] = $this->parse('value.neues_choice_status.tpl.php', compact('choices'));
     }
 
     public function preValidateAction(): void
@@ -61,7 +61,7 @@ class rex_yform_value_choice_status extends rex_yform_value_abstract
     {
         return [
             'type' => 'value',
-            'name' => 'choice_status',
+            'name' => 'neues_choice_status',
             'values' => [
                 'name' => ['type' => 'name', 'label' => rex_i18n::msg('yform_values_defaults_name')],
                 'label' => ['type' => 'text', 'label' => rex_i18n::msg('yform_values_defaults_label')],

@@ -38,7 +38,7 @@ Setzt die Sprache des RSS-Feeds auf die Sprache mit ID 2. Derzeit beeinflusst di
 index.php?rex-api-call=neues_rss&domain_id=1
 ```
 
-Parameter für zukünftige Domain-Filterung (noch nicht vollständig implementiert).
+Zeigt nur Einträge an, die entweder keine Domain-Beschränkung haben oder explizit der angegebenen Domain zugeordnet sind. Ideal für Multi-Domain-Setups.
 
 ### Kombinierte Filter
 
