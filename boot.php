@@ -14,6 +14,9 @@ use rex_plugin;
 use rex_view;
 use rex_yform;
 use rex_yform_manager_dataset;
+use rex_yform_value_uuid;
+
+use function in_array;
 
 /**
  * Tabellen in YForm mit eigener Model-Class.
@@ -111,7 +114,7 @@ if (rex::isBackend()) {
             return $ep->getSubject();
         }
 
-        $newUuid = \rex_yform_value_uuid::guidv4();
+        $newUuid = rex_yform_value_uuid::guidv4();
         $dataset->setValue('uuid', $newUuid);
 
         $yform = $ep->getSubject();
