@@ -155,7 +155,7 @@ if (rex_version::compare('7.0.0', $this->getVersion(), '>')) {
         }
 
         // YForm-Cache regenerieren nach Migration
-        rex_yform_manager_table_api::generateTableClass();
+        rex_yform_manager_table_api::generateTablesAndFields();
     }
 }
 
