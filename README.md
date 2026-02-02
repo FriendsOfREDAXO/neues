@@ -1,5 +1,7 @@
 # News-Verwaltung für REDAXO 5 (News, Pressemitteilungen, Pressestimmen, ...)
 
+🙋 Aktuell hat das AddOn keinen Maintainer / Lead. , wer das AddOn weiterführen möchte, bitte in Slack melden.
+
 Mit diesem Addon können News-Beiträge anhand von YForm und YOrm im Backend verwaltet und im Frontend ausgegeben werden. Auf Wunsch auch multidomainfähig und mehrsprachig.
 
 ## Features
